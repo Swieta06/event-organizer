@@ -19,11 +19,6 @@ app.set("view engine", "ejs");
 
 // logger setup
 app.use(logger("dev"));
-app.use(
-  logger("combined", {
-    stream: fs.createWriteStream("./storage/logs/access.log", { flags: "a" }),
-  })
-);
 
 // body parser setup
 app.use(cors());
