@@ -7,6 +7,9 @@ const fs = require("fs");
 const router = require("./routes");
 const createError = require("http-errors");
 const errorHandler = require("./middlewares/error");
+const session = require("express-session");
+const passport = require("passport");
+require("dotenv").config();
 
 const app = express();
 
@@ -34,7 +37,10 @@ app.use(express.static(path.join(__dirname, "public")));
 // session setup
 app.use(
   session({
-    secret: "yang=penting=aman", //TODO: change this secret,
+    secret: process.env.SESSION_SECRET, //TODO: change this secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
   })
 );
 
@@ -43,14 +49,6 @@ require("./config/passport");
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(
-  passport.session({
-    secret: "yang=penting=aman", //TODO: change this secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
-  })
-);
 
 // routes setup
 app.use("/", router);
