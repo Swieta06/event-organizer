@@ -2,6 +2,7 @@ const passport = require("passport");
 const { User } = require("../models");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const uuid = require("uuid");
+const encrypt = require("../utils/bcrypt");
 passport.use(
   new GoogleStrategy(
     {
@@ -11,7 +12,8 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       const id = uuid.v4();
-      const pass = profile.id;
+      const pass = encrypt.generate(profile.id);
+      console.log(pass);
       const email = profile.emails[0].value;
       const name = profile.name.givenName + profile.name.familyName;
       const photo = profile.photos[0].value;
