@@ -58,8 +58,4 @@ router.use(function (req, res, next) {
 // error handler
 router.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.info(`Server Running On http://localhost:${PORT}`);
-});
+module.exports = app;
