@@ -9,6 +9,7 @@ const createError = require("http-errors");
 const errorHandler = require("./middlewares/error");
 const session = require("express-session");
 const passport = require("passport");
+const flash = require("connect-flash");
 require("dotenv").config();
 
 const app = express();
@@ -41,10 +42,11 @@ app.use(
 
 // passport setup
 require("./config/passport");
+require("./config/googleOauth");
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 // routes setup
 app.use("/", router);
 
@@ -56,4 +58,8 @@ router.use(function (req, res, next) {
 // error handler
 router.use(errorHandler);
 
-module.exports = app;
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.info(`Server Running On http://localhost:${PORT}`);
+});
