@@ -7,3 +7,26 @@
 
 <!-- Custom Javascript -->
 <script src="/javascripts/index.js"></script>
+
+<!-- navbar logic -->
+<script>
+
+function Logic(){
+
+  if(isLogin){
+    showMe()
+  }else{
+    hideMe()
+  }
+
+}
+
+function showMe(){
+  var obj=document.getElementById('nav1');
+obj.style.visibility='visible';
+}
+function hideMe(){
+var obj=document.getElementById('nav');
+obj.style.visibility='hidden';
+}
+</script>
