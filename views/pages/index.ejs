@@ -3,7 +3,7 @@
 <html>
   <%- include('../partials/head.ejs', {title: 'Home'}) %>
 
-  <body>
+  <body class="p-0">
     <header>
       <!-- Swita taruh sini -->
        <%- include('../partials/navbar.ejs') %>
@@ -11,13 +11,29 @@
     </header>
     <main>
       <p class="mt-5">test</p>
+      <p class="mt-5 bg-purple-pressed">test</p>
        <!-- bry taruh sini -->
        <!-- faisal taruh sini -->
        <!-- steven taruh sini -->
        <!-- kusno taruh sini -->
     </main>
     <footer>
-      <!-- Ari taruh sini -->
+      <div id="footer">
+        <div class="text-center pt-5 position-relative">
+          <h1 class="fs-24 mb-3 pt-5 mt-4">Nama Web</h1>
+          <p class="fs-16 pb-4">ini nanti diisi dengan tagline dari perusahaan event organizer</p>
+          <div class="footer-icon my-5">
+            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-twitter"></i></a>
+            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-instagram"></i></a>
+            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-youtube"></i></a>
+            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-facebook"></i></a>
+          </div>
+          <div class="position-absolute bottom-0 text-center w-100 mb-3">
+            <p class="text-neutral-10 ">&copy; 2022 Halloween. All Rights Reserved</p>
+          </div>
+            <img src="/images/default/imgFooter.png" class="w-100 mt-5" alt="">
+        </div>
+      </div>
     </footer>
 
     <%- include('../partials/scripts.ejs') %>
