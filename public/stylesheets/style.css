@@ -131,7 +131,7 @@ a {
   border-color: #FFFFFF !important;
 }
 .border-neutral-20 {
-  borderF5F5 !important;
+  border: F5F5 !important;
 }
 .border-neutral-30 {
   border-color: #EDEDED !important;
@@ -238,4 +238,124 @@ a {
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+/*testimoni*/
+#testimoni {
+  width: 1440px;
+  height: 410px;
+  left: 0px;
+  top: 0px;
+  background: #7940CC;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
+.testimoni-shape{
+  display: inline-block;
+}
+
+.testimoni-oval {
+  height: 250px;
+  width: 150px;
+  border-radius: 0 60px 180px 0;
+  margin-bottom: 60px;
+  background: linear-gradient(90deg, rgba(119, 0, 212, 0.8) 0%, rgba(179, 67, 247, 0.8) 50%, rgba(148, 111, 252, 0.8) 100%);
+}
+
+.testimoni-triangle {
+  width: 400px;
+  height: 58px;
+  left: -17.65px;
+  top: 293.44px;
+  border-radius: 0 40px 20px 0;
+  transform:rotate(9.84deg) translatey(18%) ;
+  background: linear-gradient(90deg, rgba(55, 0, 212, 0.5) -5.25%, rgba(125, 67, 247, 0.5) 58.1%, rgba(131, 111, 252, 0.5) 121.44%);
+}
+
+.pertanyaan-testimoni{
+  display: inline-block;
+  transform: translate(-80%, -100%);
+  width: 340px;
+  height: 108px;
+  left: 0px;
+  top: 0px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 150%;
+  letter-spacing: -0.022em;
+  color: #FFFFFF;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 16px 0px;
+}
+
+.slider-testimoni{
+  display: inline-block;
+  transform: translate(65%, -130%);
+  display: inline-block;
+  padding: 24px;
+  width: 802px;
+  height: 223px;
+  left: 0px;
+  top: 11.5px;
+  margin: 0px 16px;
+}
+
+.nama-testimoni {
+  display: inline-block;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+  color: #7940CC;
+  margin: 16px 0px;  
+}
+
+.border-jawaban-testimoni{
+  display: inline-block;
+  padding: 24px;
+  width: 202px;
+  height: 223px;
+  left: 0px;
+  top: 11.5px;
+  background: #F5F5F5;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  margin: 0px 16px;
+}
+
+.slick-prev, .slick-next {
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 5px;
+}
+.slick-next {
+  right: 5px;
+}
+.slick-prev:before, .slick-next:before {
+  font-size: 40px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.slick-dots li button:before {
+  margin-top: 60px;
+  font-size: 12px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 1;
+}
+.slick-dots li.slick-active button:before {
+  color: #dedede;
 }
