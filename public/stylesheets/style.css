@@ -131,7 +131,7 @@ a {
   border-color: #FFFFFF !important;
 }
 .border-neutral-20 {
-  borderF5F5 !important;
+  border-color: #F5F5F5 !important;
 }
 .border-neutral-30 {
   border-color: #EDEDED !important;
@@ -235,7 +235,16 @@ a {
 }
 .text-neutral-100 {
   color: #0A0A0A !important;
-
+}
 .cursor-pointer{
   cursor: pointer;
+}
+
+/* CSS Faisal */
+#our-client .container {
+  padding: 100px 0;
+}
+#our-client .title {
+  margin-bottom: 48px;
+  font-weight: 600;
 }
