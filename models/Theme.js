@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Theme.hasMany(models.Order);
     }
   }
-  Themes.init(
+  Theme.init(
     {
       name: DataTypes.STRING,
       photo: DataTypes.TEXT,
