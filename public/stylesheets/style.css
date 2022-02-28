@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -7,3 +13,123 @@ a {
   color: #00B7FF;
 }
 
+/* Defaul css */
+/* Button*/
+.btn-purple {
+  background-color: #7940CC !important;
+}
+.btn-purple:hover {
+  background-color: #653EB2 !important;
+}
+.btn-purple:active {
+  box-shadow: 0 0 0 0.25rem rgba(121, 64, 204, 0.2) !important;
+  border-color: #7940CC !important;
+  background-color: #3C286B !important;
+}
+.btn-purple:focus {
+  box-shadow: none;
+  border-color: #7940CC !important;
+  background-color: #3C286B !important;
+}
+/* Button Outline Purple*/
+.btn-outline-purple {
+  background-color: #FFFF !important;
+  border-color: #653EB2 !important;
+}
+.btn-outline-purple:hover {
+  border-color: #7940CC !important;
+}
+.btn-outline-purple:active {
+  box-shadow: 0 0 0 0.25rem rgba(121, 64, 204, 0.2) !important;
+}
+.btn-outline-purple:focus {
+  border-color: #3C286B !important;
+  color: #3C286B !important;
+  box-shadow: none;
+}
+
+/* Input Outline */
+.input-outline-purple:active,
+.input-outline-purple:focus {
+  box-shadow: 0 0 0 0.25rem #E8D1F9 !important;
+  border-color: #7940CC !important;
+}
+
+/* Background*/
+.bg-purple {
+  background-color: #7940CC !important;
+}
+
+/* Shadow Default */
+.shadow-default {
+  box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Font Size */
+.fs-48 {
+  font-size: 48px;
+}
+
+.fs-36 {
+  font-size: 36px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+/* Text */
+.text-purple {
+  color: #7940CC !important;
+}
+
+.text-neutral-20 {
+  color: #F5F5F5;
+}
+
+.text-neutral-30 {
+  color: #EDEDED;
+}
+
+.text-neutral-40 {
+  color: #E0E0E0;
+}
+
+.text-neutral-50 {
+  color: #C2C2C2;
+}
+
+.text-neutral-60 {
+  color: #9E9E9E;
+}
+
+.text-neutral-70 {
+  color: #757575;
+}
+
+.text-neutral-80 {
+  color: #616161;
+}
+
+.text-neutral-90 {
+  color: #404040;
+}
+
+.text-neutral-100 {
+  color: #0A0A0A;
+}
