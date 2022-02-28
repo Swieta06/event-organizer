@@ -56,80 +56,117 @@ a {
 }
 
 /* Background*/
-.bg-purple {
+.bg-purple-main {
   background-color: #7940CC !important;
+}
+.bg-purple-surface {
+  background-color: #E8D1F9 !important;
+}
+.bg-purple-border {
+  background-color: #D2C3EE !important;
+}
+.bg-purple-hover {
+  background-color: #653EB2 !important;
+}
+.bg-purple-pressed {
+  background-color: #3C286B !important;
+}
+.bg-purple-focused {
+  background-color:  rgba(121, 64, 204, 0.2) !important;
+}
+
+/* Border */
+.border-purple-main {
+  border-color: #7940CC !important;
+}
+.border-purple-surface {
+  border-color: #E8D1F9 !important;
+}
+.border-purple-border {
+  border-color: #D2C3EE !important;
+}
+.border-purple-hover {
+  border-color: #653EB2 !important;
+}
+.border-purple-pressed {
+  border-color: #3C286B !important;
+}
+.border-purple-focused {
+  border-color:  rgba(121, 64, 204, 0.2) !important;
 }
 
 /* Shadow Default */
 .shadow-default {
-  box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Font Size */
 .fs-48 {
   font-size: 48px;
 }
-
 .fs-36 {
   font-size: 36px;
 }
-
 .fs-24 {
   font-size: 24px;
 }
-
 .fs-18 {
   font-size: 18px;
 }
-
 .fs-16 {
   font-size: 16px;
 }
-
 .fs-14 {
   font-size: 14px;
 }
-
 .fs-12 {
   font-size: 12px;
 }
-/* Text */
-.text-purple {
+
+/* Text-color */
+.text-purple-main {
   color: #7940CC !important;
 }
-
+.text-purple-surface {
+  color: #E8D1F9 !important;
+}
+.text-purple-border {
+  color: #D2C3EE !important;
+}
+.text-purple-hover {
+  color: #653EB2 !important;
+}
+.text-purple-pressed {
+  color: #3C286B !important;
+}
+.text-purple-focused {
+  color:  rgba(121, 64, 204, 0.2) !important;
+}
+/* Text Neutral */
 .text-neutral-20 {
-  color: #F5F5F5;
+  color: #F5F5F5 !important;
 }
-
 .text-neutral-30 {
-  color: #EDEDED;
+  color: #EDEDED !important;
 }
-
 .text-neutral-40 {
-  color: #E0E0E0;
+  color: #E0E0E0 !important;
 }
-
 .text-neutral-50 {
-  color: #C2C2C2;
+  color: #C2C2C2 !important;
 }
-
 .text-neutral-60 {
-  color: #9E9E9E;
+  color: #9E9E9E !important;
 }
-
 .text-neutral-70 {
-  color: #757575;
+  color: #757575 !important;
 }
-
 .text-neutral-80 {
-  color: #616161;
+  color: #616161 !important;
 }
-
 .text-neutral-90 {
-  color: #404040;
+  color: #404040 !important;
 }
-
 .text-neutral-100 {
-  color: #0A0A0A;
+  color: #0A0A0A !important;
 }
