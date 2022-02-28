@@ -125,6 +125,7 @@ a {
 .border-purple-focused {
   border-color:  rgba(121, 64, 204, 0.2) !important;
 }
+
 /* Border Neutral */
 .border-neutral-10 {
   border-color: #FFFFFF !important;
@@ -234,4 +235,7 @@ a {
 }
 .text-neutral-100 {
   color: #0A0A0A !important;
+
+.cursor-pointer{
+  cursor: pointer;
 }
