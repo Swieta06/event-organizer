@@ -40,6 +40,10 @@ module.exports = {
       desc: {
         type: Sequelize.TEXT,
       },
+      concept: {
+        type: Sequelize.ENUM,
+        values: ["indoor", "outdoor"],
+      },
       eventAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -55,6 +59,11 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Orders");
+    Promise.all([
+      queryInterface.dropTable("Orders"),
+      queryInterface.sequelize.query(
+        'DROP TYPE IF EXISTS "enum_Orders_concept";'
+      ),
+    ]);
   },
 };
