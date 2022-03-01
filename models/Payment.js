@@ -1,18 +1,20 @@
 "use strict";
 const { Model } = require("sequelize");
 const uuid = require("uuid").v4;
+
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Payment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.Order);
+      Payment.belongsTo(models.Order);
+      Payment.belongsTo(models.PaymentMethod);
     }
   }
-  User.init(
+  Payment.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -20,30 +22,31 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue: uuid,
       },
-      email: {
+      photo: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      bankHolder: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      name: {
+      bankNumber: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
+      price: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      role: {
-        type: DataTypes.ENUM,
-        values: ["admin", "customer"],
-        defaultValue: "customer",
+      paidAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
       },
-      photo: DataTypes.STRING,
-      address: DataTypes.TEXT,
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: "Payment",
     }
   );
-  return User;
+  return Payment;
 };

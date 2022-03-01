@@ -1,49 +1,42 @@
-"use strict";
-const { Model } = require("sequelize");
-const uuid = require("uuid").v4;
+'use strict';
+const { Model } = require('sequelize');
+const uuid = require('uuid').v4;
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class ResetPasswordToken extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.Order);
+      // define association here
     }
   }
-  User.init(
+  ResetPasswordToken.init(
     {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        allowNull: true,
+        allowNull: false,
         defaultValue: uuid,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      name: {
+      token: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
+      expiredAt: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
-      role: {
-        type: DataTypes.ENUM,
-        values: ["admin", "customer"],
-        defaultValue: "customer",
-      },
-      photo: DataTypes.STRING,
-      address: DataTypes.TEXT,
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: 'ResetPasswordToken',
     }
   );
-  return User;
+  return ResetPasswordToken;
 };
