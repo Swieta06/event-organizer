@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
-const { authentication } = require('../../middlewares');
+const passport = require("passport");
+const { authentication } = require("../../middlewares");
+const { homeControllers } = require("../../controllers");
+
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('pages/index', { title: 'Express' });
-});
+router.get("/", homeControllers.getIndex);
 
 /* Login Goole. */
 router.get(
