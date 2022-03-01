@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       desc: DataTypes.TEXT,
       concept: {
-        type: Sequelize.ENUM,
+        type: DataTypes.ENUM,
         values: ["indoor", "outdoor"],
       },
       eventAt: {
