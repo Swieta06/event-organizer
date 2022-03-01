@@ -25,15 +25,6 @@ module.exports = {
         onUpdate: "CASCADE",
         allowNull: false,
       },
-      ThemeId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Themes",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        allowNull: false,
-      },
       status: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
@@ -48,6 +39,10 @@ module.exports = {
       },
       desc: {
         type: Sequelize.TEXT,
+      },
+      concept: {
+        type: Sequelize.ENUM,
+        values: ["indoor", "outdoor"],
       },
       eventAt: {
         allowNull: false,
@@ -64,6 +59,11 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Orders");
+    Promise.all([
+      queryInterface.dropTable("Orders"),
+      queryInterface.sequelize.query(
+        'DROP TYPE IF EXISTS "enum_Orders_concept";'
+      ),
+    ]);
   },
 };
