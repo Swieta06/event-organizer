@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const { authentication } = require("../../middlewares");
-const homeController = require("../../controllers/home");
+const { homeControllers } = require("../../controllers");
 
 /* GET home page. */
-router.get("/", homeController.getIndex);
+router.get("/", homeControllers.getIndex);
 
 /* Login Goole. */
 router.get(

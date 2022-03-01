@@ -1,4 +1,4 @@
-const { Package } = require("../models");
+const { Package } = require("../../models");
 
 exports.getIndex = async (req, res) => {
   try {
