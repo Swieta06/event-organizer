@@ -25,15 +25,6 @@ module.exports = {
         onUpdate: "CASCADE",
         allowNull: false,
       },
-      ThemeId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Themes",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        allowNull: false,
-      },
       status: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
