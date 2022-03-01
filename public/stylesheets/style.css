@@ -198,7 +198,7 @@ a {
   border-color: #FFFFFF !important;
 }
 .border-neutral-20 {
-  borderF5F5 !important;
+  border-color: #F5F5F5 !important;
 }
 .border-neutral-30 {
   border-color: #EDEDED !important;
@@ -302,7 +302,55 @@ a {
 }
 .text-neutral-100 {
   color: #0A0A0A !important;
-
+}
 .cursor-pointer{
   cursor: pointer;
+}
+
+/* CSS Faisal */
+#our-client .container {
+  padding: 100px 0;
+}
+#our-client .title {
+  margin-bottom: 48px;
+  font-weight: 600;
+}
+#why-choose-us .icon-wcu {
+  padding: 22px;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 32px;
+}
+#why-choose-us .container {
+  padding: 142px 109px;
+}
+#why-choose-us .title {
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+#why-choose-us .title-paragraph {
+  margin-bottom: 100px;
+  max-width: 890px;
+}
+#why-choose-us .icon-wcu-title {
+  font-weight: 600;
+  max-width: 324px;
+  margin-bottom: 16px;
+}
+#why-choose-us .icon-wcu-paragraph {
+  max-width: 324px;
+}
+#why-choose-us .bg-wcu-1{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#why-choose-us .bg-wcu-2{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#why-choose-us {
+  position: relative;
 }
