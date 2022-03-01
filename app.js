@@ -52,11 +52,11 @@ app.use(flash());
 app.use('/', router);
 
 // catch 404 and forward to error handler
-router.use(function (req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-router.use(errorHandler);
+app.use(errorHandler);
 
 module.exports = app;
