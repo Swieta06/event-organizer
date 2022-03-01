@@ -291,9 +291,12 @@ a {
 /* progbar style */
 .containerbar{
   width: 100%;
+  
  
 }
 .progressbar{
+  margin-right: 150px;
+  margin-left: 150px;
 counter-reset: step;
 
 }
@@ -301,7 +304,7 @@ counter-reset: step;
   margin-top: 100px;
   list-style-type: none;
   float:left;
-  width: 23.22%;
+  width: 23.23%;
   position: relative;
   text-align: center;
   
