@@ -25,6 +25,9 @@ module.exports = {
       ],
       {}
     );
+    await queryInterface.sequelize.query(
+      'ALTER SEQUENCE public."PaymentMethods_id_seq" RESTART 2;'
+    );
   },
 
   async down(queryInterface, Sequelize) {

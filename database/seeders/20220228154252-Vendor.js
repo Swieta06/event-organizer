@@ -15,6 +15,7 @@ module.exports = {
      'Vendors',
      [
        {
+         id: 1,
          name:"Event Organizer",
          province:"Jawa Barat",
          city:"Bekasi",
@@ -23,6 +24,7 @@ module.exports = {
          updatedAt: new Date()
        },
        {
+        id: 2,
         name:"EO Planner",
         province:"Jawa Barat",
         city:"Depok",
@@ -33,6 +35,9 @@ module.exports = {
      ],
      {}
    );
+    await queryInterface.sequelize.query(
+      'ALTER SEQUENCE public."Vendors_id_seq" RESTART 3;'
+    );
   },
 
   async down (queryInterface, Sequelize) {
@@ -42,5 +47,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("Vendors", null, {});
   }
 };

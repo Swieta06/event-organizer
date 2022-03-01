@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Package.hasMany(models.Order);
+      Package.belongsToMany(models.Product, {
+        through: "PackageProducts",
+        foreignKey: "PackageId",
+        as: "products",
+      });
     }
   }
   Package.init(

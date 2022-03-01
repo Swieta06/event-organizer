@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       Order.belongsTo(models.Package);
       Order.belongsTo(models.Theme);
       Order.hasOne(models.Payment);
+      Order.belongsToMany(models.Product, {
+        through: models.OrderProduct,
+        foreignKey: "OrderId",
+        as: "products",
+      });
+      Order.hasMany(models.OrderProduct);
     }
   }
   Order.init(

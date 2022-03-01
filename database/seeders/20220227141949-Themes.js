@@ -57,6 +57,9 @@ module.exports = {
       ],
       {}
     );
+    await queryInterface.sequelize.query(
+      'ALTER SEQUENCE public."Themes_id_seq" RESTART 6;'
+    );
   },
 
   async down(queryInterface, Sequelize) {
@@ -66,5 +69,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("Themes", null, {});
   },
 };
