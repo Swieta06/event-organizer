@@ -1,4 +1,4 @@
-const { User } = require("../../controllers")
+const { Auth } = require("../../controllers")
 const route = require("express").Router()
 const { body, validationResult } = require('express-validator');
 const response = require('../../utils/response');
@@ -13,7 +13,7 @@ route.post("/register",
         }
         next();
     },
-    User.register);
+    Auth.register);
 
 route.post("/login",
     body('email').isEmail(),
@@ -24,6 +24,6 @@ route.post("/login",
         }
         next();
     },
-    User.login);
+    Auth.login);
 
 module.exports = route
