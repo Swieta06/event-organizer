@@ -22,6 +22,16 @@ a {
   border-radius: 6px;
 }
 
+#faq {
+  position: static;
+  height: 920px;
+}
+
+#faq .title {
+  margin-bottom: 48px;
+  font-weight: 600;
+}
+
  .faq-text{
   font-family: Inter;
   font-style: normal;
@@ -34,25 +44,25 @@ a {
 
 .faq-Sphere-kecil{
   position: absolute;
-  top: 200px;
-  left: 50px;
+  top: 250px;
+  left: 75px;
   
 }
 
 .faq-Sphere-a1{
   position: absolute;
   transform: rotate(0deg);
-  top: 250px;
-  
+  top: 300px;
+  width: 100%;
 }
 
 .faq-Meliuk-liuk{
   position: absolute;
   left: -10px;
-  top: 350px;
+  top: 400px;
   border: 0px solid #C2C2C2;
   transform: rotate(0deg);
-  
+  width: 100%;
 }
 /* shapes bagian kanan */
 .faq-Sphere-kecil-b1{
@@ -65,9 +75,10 @@ a {
 .faq-Sphere-b1{
   position: absolute;
   transform: rotate(0deg);
-  top: 400px;
+  top: 453px;
   right: 0px;
   bottom: 0px;
+  background-size: cover;
 }
 
 .faq-Meliuk-liuk_b1{
@@ -76,7 +87,6 @@ a {
   top: 0px;
   border: 0px solid #C2C2C2;
   transform: rotate(0deg);
-  
 }
 
 
