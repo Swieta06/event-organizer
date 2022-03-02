@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <%- include('../partials/head.ejs', {title: 'Home'}) %>
+<style>
+    .slide-show-ari{
+        flex-wrap: nowrap !important;
+        overflow: auto hidden !important;
+        overflow-x: hidden !important;
+        white-space: nowrap;
+        transition: all 0.5s ease 0s !important;
+        position: relative !important;
+    }
+    .slide-show-control{
+        position: absolute;
+        z-index: 2000;
+        top: 60%;
+        left: 1%;
+        display: flex;
+        width: 98%;
+        justify-content: space-between;
+    }
+</style>
+  <body class="p-0">
+    <header>
+      <!-- Swita taruh sini -->
+       <%- include('../partials/navbar.ejs') %>
+       <%- include('login')%> 
+    </header>
+    <main style="background-color:  #E5E5E5;">
+      <p class="mt-5 bg-purple-pressed">test</p>
+      <p class="mt-5 bg-purple-pressed">test</p>
+      <div class="container-fluid" id="orderStep1" >
+          <div class="row justify-content-center">
+              <div class="col-10 position-relative bg-neutral-10 text-center px-5 py-5 rounded-3">
+                  <h1 class="text-capitalize text-neutral-100 fw-bold fs-24">detail acara</h1>
+                  
+                  <div class="food">
+                      <p class="text-neutral-90 text-start fs-24 fw-bold text-capitalize">Pilih menu utama</p>
+                     <div class="slide-show-ari">
+                          <div class="food-item">
+                      </div>
+                     </div>
+                    </div>
+                    <div class="themes" >
+                      <p class="text-neutral-90 text-start fs-24 fw-bold text-capitalize">Pilih tema acara</p>
+                      <%
+                        const themes = [
+                            {
+                                name: "custom tema",
+                                img: "customtheme.png"
+                            },
+                            {
+                                name: "colorful",
+                                img: "colorfultheme.png"
+                            },
+                            {
+                                name: "gold & white",
+                                img: "goldwhitetheme.png"
+                            },
+                            {
+                                name: "Monokrom",
+                                img: "Monokromtheme.png"
+                            },
+                            {
+                                name: "Halloween",
+                                img: "Halloweentheme.png"
+                            },
+                            {
+                                name: "custom tema",
+                                img: "customtheme.png"
+                            },
+                            {
+                                name: "colorful",
+                                img: "colorfultheme.png"
+                            },
+                            {
+                                name: "gold & white",
+                                img: "goldwhitetheme.png"
+                            },
+                            {
+                                name: "Monokrom",
+                                img: "Monokromtheme.png"
+                            },
+                            {
+                                name: "Halloween",
+                                img: "Halloweentheme.png"
+                            },
+                        ];
+
+                        const lengthThemes = themes.length; 
+                      %>
+
+        <div class="slide-show-control">
+             <button id="btnLeft" class=" fs-24 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
+             <button id="btnRight" class=" fs-24 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
+        </div>
+                
+        <div class="slide-show-ari">
+        <% themes.forEach((data, i)=>{ %>
+        <% let themeId = i + 1; %>
+       <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item px-1 d-inline-block <%= themeId === 1 ? "pivot": ""%>" id="card<%=themeId%>">
+                <div class="card ">
+                  <div class="card-header bg-white">
+                    <div class="row my-1">
+                      <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18"><%= data.name %></label></div>
+                      <div class="col-2">
+                        <input class="form-check-input" type="radio" name="radioNoLabel" id="test" value="" aria-label="..."/>
+                      </div>
+                    </div>
+                 </div>
+                  <div class="card-body p-0" style="white-space: initial;">
+                           <img class="w-100" src="images/default/<%= data.img%>" alt=""/>
+                           <!-- <p class="w-100" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
+                  </div>
+                </div>
+           </div>
+      <% });  %>
+
+        </div>
+
+
+              </div>
+          </div>
+      </div>
+
+    </main>
+    <footer>
+    
+    </footer>
+  <script>
+
+    //   Themes
+          function themesControl() {
+          const dataId = document.querySelector('.pivot').id;
+          const sortingId = parseInt(dataId.charAt(dataId.length - 1))
+          const dataLength = document.querySelectorAll(".slide-show-item").length 
+          const totalItemShow = 5;
+          
+          
+          const btnLeft = document.getElementById('btnLeft');
+          const btnRight = document.getElementById('btnRight');
+
+          if(sortingId === 1){
+             document.getElementById('btnLeft').style.visibility = 'hidden';
+           }
+
+         btnRight.addEventListener('click', ()=>{
+          const pivot = document.querySelector('.pivot').id;
+          const getData = parseInt(pivot.charAt(pivot.length - 1))
+          const pivotBreak = dataLength - totalItemShow + 1; 
+          const hitung = (getData  > pivotBreak) ? pivotBreak : getData;
+
+          for (let i = 1; i <= dataLength; i++) {
+             document.getElementById(`card${i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
+             document.getElementById(`card${i}`).style.transition = "all 1s ease 0s";
+           }
+           const addPivot = getData+1;
+             if(getData  <= pivotBreak){
+               document.getElementById(pivot).classList.remove('pivot')
+               document.getElementById(`card${addPivot}`).classList.add('pivot')
+             }
+            
+             if (addPivot !== 1) {
+                btnLeft.style.visibility = 'visible';
+            }
+
+             if (addPivot === pivotBreak) {
+                btnRight.style.visibility = 'hidden';
+            }
+          })
+          
+         btnLeft.addEventListener('click', ()=>{
+          const pivot = document.querySelector('.pivot').id;
+          const getData = parseInt(pivot.charAt(pivot.length - 1))
+          const hitung =  getData - 2 ;
+          const rubah = getData - 1;
+          for (let i = 1; i <= dataLength; i++) {
+             document.getElementById(`card${i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
+             document.getElementById(`card${i}`).style.transition = "all 1s ease 0s";
+           }
+             if(getData > 1){
+             document.getElementById(pivot).classList.remove('pivot')
+             document.getElementById(`card${rubah}`).classList.add('pivot')
+             }
+            if (rubah !== 1) {
+             btnRight.style.visibility = 'visible';
+            }
+             if (rubah === 1) {
+             btnLeft.style.visibility = 'hidden';
+            }
+          });
+          }
+
+          themesControl();
+
+       </script>
+    <%- include('../partials/scripts.ejs') %>
+  </body>
+</html>

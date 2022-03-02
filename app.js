@@ -51,6 +51,9 @@ app.use(flash());
 // routes setup
 app.use('/', router);
 
+router.get('/order',(req, res)=>{
+    res.render("pages/orderStep1");
+})
 // catch 404 and forward to error handler
 router.use(function (req, res, next) {
   next(createError(404));
