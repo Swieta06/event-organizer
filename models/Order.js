@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Order.belongsTo(models.User);
       Order.belongsTo(models.Package);
-      Order.belongsTo(models.Theme);
       Order.hasOne(models.Payment);
       Order.belongsToMany(models.Product, {
         through: models.OrderProduct,
@@ -43,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
       },
       desc: DataTypes.TEXT,
+      concept: {
+        type: DataTypes.ENUM,
+        values: ["indoor", "outdoor"],
+      },
       eventAt: {
         type: DataTypes.DATE,
         allowNull: false,
