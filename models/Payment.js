@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      bankName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       bankHolder: {
         type: DataTypes.STRING,
         allowNull: false,

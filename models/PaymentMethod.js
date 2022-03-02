@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   PaymentMethod.init(
     {
+      bankBranch: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       bankName: {
         type: DataTypes.STRING,
         allowNull: false,
