@@ -77,27 +77,27 @@
               <div class="col">
                 <p>paket yang dipilih</p>
                 <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
+                  <option selected>Paket Silver - Kapasitas 30 orang</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
               </div>
               <div class="col">
-                <p>tambahana jumlah tamu</p>
+                <p>tambahan jumlah tamu</p>
                
                 <div class="row align-items-center">
 
                   <div class="col">
                 <div class="d-flex">
-                  <button type="button" class="btn btn-outline-purple text-purple-main">-</button>
-                  <input type="email" class="mx-2 w-25 text-center text-purple-main" disabled  placeholder="0">
-                  <button type="button" class="btn btn-outline-purple text-purple-main ">+</button>
+                  <button type="button" id="redGuest" class="btn btn-outline-purple text-purple-main">-</button>
+                  <input type="text" class="mx-2 w-25 text-center text-purple-main" disabled  value="0" id="totalGuest">
+                  <button type="button" id="addGuest" class="btn btn-outline-purple text-purple-main ">+</button>
                 </div>
 
                   </div>
                   <div class="col">
-                  <div class="">total tamu undangan 30</div>
+                  <div class="" id="totalGuestText"></div>
 
                   </div>
 
@@ -185,7 +185,7 @@
              <button id="btnRighttheme" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
         </div>
                 
-        <div class="slide-show-ari">
+        <div class="slide-show-ari theme-check">
         <% themes.forEach((data, i)=>{ %>
         <% let themeId = i + 1; %>
        <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-theme px-1 d-inline-block <%= themeId === 1 ? "pivottheme": ""%>" id="theme<%=themeId%>">
@@ -193,8 +193,8 @@
                   <div class="card-header bg-white">
                     <div class="row my-1">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18"><%= data.name %></label></div>
-                      <div class="col-2">
-                        <input class="form-check-input" type="radio" name="radioNoLabel" id="test" value="" aria-label="..."/>
+                      <div class="col-2 radio-check">
+                        <input class="form-check-input" type="radio" name="radioNoLabel" id="<%= data.name %>" value="" aria-label="..."/>
                       </div>
                     </div>
                  </div>
@@ -217,8 +217,8 @@
 <div class="row text-start mt-3">
   <div class="col">
     <p>Bagaimana konsep acara anda?</p>
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Indoor</option>
+    <select class="form-select" id="eventConcept" >
+      <option value="0" selected>Indoor</option>
       <option value="1">Outdoor</option>
       <option value="2">Two</option>
       <option value="3">Three</option>
@@ -226,7 +226,7 @@
   </div>
   <div class="col">
     <p>Tulis nama untuk souvenir costum pulpen</p>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      <input type="email" class="form-control" id="costumPulpen" placeholder="">
   </div>
 </div>
 
@@ -244,7 +244,7 @@
             </div>
             <div class="col-7 text-center">
               <p class="mb-1 mt-2">total (1 paket)</p>
-              <p class="fs-18">25.000.000</p>
+              <p class="fs-18" id="price">25.000.000</p>
             </div>
             <div class="col-2 text-end">
               <button type="button" class="btn w-100 text-white btn-purple" >sebelumnya</button>
@@ -255,6 +255,18 @@
     </footer>
   <script>
 
+
+//     const snackCheck = document.getElementsByClassName("snack-check");
+   
+//  snackCheck[0].addEventListener('click', function(event){
+//         console.log(event.path[0].id);
+//       });
+
+
+//  const foodCheck = document.getElementsByClassName("food-check");
+//  foodCheck[0].addEventListener('click', function(event){
+//         console.log(event.path[0].id);
+//       });
     //   Themes
            function themesControl(title) {
           const pivot = document.querySelector(`.${"pivot"+title}`).id;
@@ -452,7 +464,7 @@
                 <button id="btnLeft${title}" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
                 <button id="btnRight${title}" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
              </div>
-             <div class="slide-show-ari"  id="${title}Item"></div>
+             <div class="slide-show-ari theme-check"  id="${title}Item"></div>
                       `
           }
           const card = (type, title,themeId, data)=>{
@@ -460,10 +472,10 @@
              <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${themeId === 1 ? `pivot${title}`: ""}" id="${title+themeId}" >
                 <div class="card ">
                   <div class="card-header bg-white">
-                    <div class="row my-1">
+                    <div class="row my-1 ">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${data.name}</label></div>
                       <div class="col-2">
-                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="radioNoLabel" id="test" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">`}
+                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="radioNoLabel" id="${data.name}" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" value="" id="${data.name}">`}
                         
                       </div>
                     </div>
@@ -479,17 +491,62 @@
           document.getElementById('food').innerHTML = cardControl('food', "menu utama");
           document.getElementById('snack').innerHTML = cardControl('snack', "jenis snack");
           dataBE.makanan.forEach((data, i)=>{
-          let themeId = i+1
-          document.getElementById('foodItem').innerHTML += card("radio","food",themeId, data);
+              let themeId = i+1
+              document.getElementById('foodItem').innerHTML += card("radio","food",themeId, data);
           })
           dataBE.snack.forEach((data, i)=>{
-          let themeId = i+1
-          document.getElementById('snackItem').innerHTML += card("checkbox","snack",themeId, data);
+              let themeId = i+1
+              document.getElementById('snackItem').innerHTML += card("checkbox","snack",themeId, data);
           })
 
           themesControl("food");
           themesControl("snack");
           themesControl("theme");
+  
+       </script>
+       <script>
+         const eventConcept = document.getElementById("eventConcept");
+         eventConcept.addEventListener("change",(e)=>{
+            console.log(e.target.value);
+         });
+        const costumPulpen = document.getElementById("costumPulpen");
+
+        costumPulpen.addEventListener('keyup',(e)=>{
+          console.log(e.target.value);
+        })
+
+         const themeCheck = document.getElementsByClassName("theme-check");
+          const lengthTheme = themeCheck.length;
+         for (let i = 0; i < lengthTheme; i++) {
+            themeCheck[i].addEventListener('click', function(event){
+              console.log(event.path[0].id);
+            });
+         }
+
+         const redGuest = document.getElementById("redGuest");
+         const addGuest = document.getElementById("addGuest");
+         const totalGuest = document.getElementById("totalGuest");
+         const totalGuestText = document.getElementById("totalGuestText");
+         localStorage.setItem('guest', 30)
+         const localStorageGuest = localStorage.getItem('guest');
+         totalGuest.value = localStorageGuest;
+         totalGuestText.innerText = `total tamu undangan ${localStorageGuest}`;
+         redGuest.addEventListener('click',()=>{
+           const total = parseInt(localStorage.getItem('guest')) - 10;
+           totalGuest.value =  total;
+           totalGuestText.innerText =  `total tamu undangan ${total}`;
+           console.log(total);
+           console.log(total === 0);
+           if (total !== 0) {
+             localStorage.setItem('guest', total)
+           }
+         })
+         addGuest.addEventListener('click',()=>{
+           const total = parseInt(localStorage.getItem('guest')) + 10;
+           totalGuest.value =  total;
+           totalGuestText.innerText =  `total tamu undangan ${total}`;
+           localStorage.setItem('guest', total)
+         })
 
        </script>
     <%- include('../partials/scripts.ejs') %>
