@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const { authentication } = require("../../middlewares");
 const { homeControllers } = require("../../controllers");
+const ordersRoute = require("./orders");
 
 /* GET home page. */
 router.get("/", homeControllers.getIndex);
@@ -31,5 +32,7 @@ router.get('/request-reset-password', (req, res) => {
 router.get('/confirm-reset-password', (req, res) => {
   res.render('pages/confirm-reset-password-test');
 });
+
+router.use('/orders', ordersRoute);
 
 module.exports = router;
