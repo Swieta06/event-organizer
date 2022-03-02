@@ -15,9 +15,9 @@
         position: absolute;
         z-index: 2000;
         top: 60%;
-        left: 1%;
+        left: -1%;
         display: flex;
-        width: 98%;
+        width: 102%;
         justify-content: space-between;
     }
 </style>
@@ -31,19 +31,38 @@
       <p class="mt-5 bg-purple-pressed">test</p>
       <p class="mt-5 bg-purple-pressed">test</p>
       <div class="container-fluid" id="orderStep1" >
-          <div class="row justify-content-center">
+        <div class="row justify-content-center">
+          <div class="col-10 bg-neutral-10 px-5">
+            <!-- Isi Disini mAS Faisal -->
+            Form
+          </div>
+        </div>
+
+          <div class="row justify-content-center mt-4">
               <div class="col-10 position-relative bg-neutral-10 text-center px-5 py-5 rounded-3">
                   <h1 class="text-capitalize text-neutral-100 fw-bold fs-24">detail acara</h1>
-                  
-                  <div class="food">
-                      <p class="text-neutral-90 text-start fs-24 fw-bold text-capitalize">Pilih menu utama</p>
-                     <div class="slide-show-ari">
-                          <div class="food-item">
-                      </div>
-                     </div>
+                  <div class="row">
+                    <div class="col-12 position-relative">
+
+                      <!-- Food -->
+                  <div class="food" id="food"></div>
+                      <!-- Food -->
                     </div>
-                    <div class="themes" >
-                      <p class="text-neutral-90 text-start fs-24 fw-bold text-capitalize">Pilih tema acara</p>
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col-12 position-relative">
+
+                      <!-- Food -->
+                  <div class="snack" id="snack"></div>
+                      <!-- Food -->
+                    </div>
+                  </div>
+                
+<!-- Themes -->
+<div class="row mt-5">
+  <div class="col-12 position-relative">
+        <div class="themes" >
+                      <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih tema acara</p>
                       <%
                         const themes = [
                             {
@@ -92,14 +111,14 @@
                       %>
 
         <div class="slide-show-control">
-             <button id="btnLeft" class=" fs-24 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
-             <button id="btnRight" class=" fs-24 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
+             <button id="btnLefttheme" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
+             <button id="btnRighttheme" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
         </div>
                 
         <div class="slide-show-ari">
         <% themes.forEach((data, i)=>{ %>
         <% let themeId = i + 1; %>
-       <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item px-1 d-inline-block <%= themeId === 1 ? "pivot": ""%>" id="card<%=themeId%>">
+       <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-theme px-1 d-inline-block <%= themeId === 1 ? "pivottheme": ""%>" id="theme<%=themeId%>">
                 <div class="card ">
                   <div class="card-header bg-white">
                     <div class="row my-1">
@@ -118,9 +137,10 @@
       <% });  %>
 
         </div>
-
-
               </div>
+  </div>
+</div>
+
           </div>
       </div>
 
@@ -131,34 +151,34 @@
   <script>
 
     //   Themes
-          function themesControl() {
-          const dataId = document.querySelector('.pivot').id;
-          const sortingId = parseInt(dataId.charAt(dataId.length - 1))
-          const dataLength = document.querySelectorAll(".slide-show-item").length 
+           function themesControl(title) {
+          const pivot = document.querySelector(`.${"pivot"+title}`).id;
+          const sortingId = parseInt(pivot.charAt(pivot.length - 1))
+          const dataLength = document.querySelectorAll(`.slide-show-item-${title}`).length 
           const totalItemShow = 5;
           
           
-          const btnLeft = document.getElementById('btnLeft');
-          const btnRight = document.getElementById('btnRight');
+          const btnLeft = document.getElementById(`btnLeft${title}`);
+          const btnRight = document.getElementById(`btnRight${title}`);
 
           if(sortingId === 1){
-             document.getElementById('btnLeft').style.visibility = 'hidden';
+             btnLeft.style.visibility = 'hidden';
            }
 
          btnRight.addEventListener('click', ()=>{
-          const pivot = document.querySelector('.pivot').id;
+          const pivot = document.querySelector(`.${"pivot"+title}`).id;
           const getData = parseInt(pivot.charAt(pivot.length - 1))
           const pivotBreak = dataLength - totalItemShow + 1; 
           const hitung = (getData  > pivotBreak) ? pivotBreak : getData;
 
           for (let i = 1; i <= dataLength; i++) {
-             document.getElementById(`card${i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
-             document.getElementById(`card${i}`).style.transition = "all 1s ease 0s";
+             document.getElementById(`${title+i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
+             document.getElementById(`${title+i}`).style.transition = "all 1s ease 0s";
            }
            const addPivot = getData+1;
              if(getData  <= pivotBreak){
-               document.getElementById(pivot).classList.remove('pivot')
-               document.getElementById(`card${addPivot}`).classList.add('pivot')
+               document.getElementById(pivot).classList.remove(`${"pivot"+title}`)
+               document.getElementById(`${title+addPivot}`).classList.add(`${"pivot"+title}`)
              }
             
              if (addPivot !== 1) {
@@ -171,17 +191,17 @@
           })
           
          btnLeft.addEventListener('click', ()=>{
-          const pivot = document.querySelector('.pivot').id;
+          const pivot = document.querySelector(`.${"pivot"+title}`).id;
           const getData = parseInt(pivot.charAt(pivot.length - 1))
           const hitung =  getData - 2 ;
           const rubah = getData - 1;
           for (let i = 1; i <= dataLength; i++) {
-             document.getElementById(`card${i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
-             document.getElementById(`card${i}`).style.transition = "all 1s ease 0s";
+             document.getElementById(`${title+i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
+             document.getElementById(`${title+i}`).style.transition = "all 1s ease 0s";
            }
              if(getData > 1){
-             document.getElementById(pivot).classList.remove('pivot')
-             document.getElementById(`card${rubah}`).classList.add('pivot')
+             document.getElementById(pivot).classList.remove(`${"pivot"+title}`)
+             document.getElementById(`${title+rubah}`).classList.add(`${"pivot"+title}`)
              }
             if (rubah !== 1) {
              btnRight.style.visibility = 'visible';
@@ -192,7 +212,181 @@
           });
           }
 
-          themesControl();
+
+
+
+          const dataBE = {
+            vendors : [],
+            makanan : [
+                {
+                    id:1,
+                    name: 'nasi goreng',
+                    photo: "nasigoreng.png",
+                    desc:"",
+                },
+                {
+                    id:2,
+                    name: 'nasi kuning',
+                    photo: "nasikuning.png",
+                    desc:"",
+                },
+                {
+                    id:3,
+                    name: 'nasi uduk',
+                    photo: "nasiuduk.png",
+                    desc:"",
+                },
+                {
+                    id:4,
+                    name: 'mie seafood',
+                    photo: "mieseafood.png",
+                    desc:"",
+                },
+                {
+                    id:5,
+                    name: 'soto mie',
+                    photo: "sotomie.png",
+                    desc:"",
+                },
+                {
+                    id:6,
+                    name: 'nasi goreng',
+                    photo: "nasigoreng.png",
+                    desc:"",
+                },
+                {
+                    id:7,
+                    name: 'nasi kuning',
+                    photo: "nasikuning.png",
+                    desc:"",
+                },
+                {
+                    id:8,
+                    name: 'nasi uduk',
+                    photo: "nasiuduk.png",
+                    desc:"",
+                },
+                {
+                    id:9,
+                    name: 'mie seafood',
+                    photo: "mieseafood.png",
+                    desc:"",
+                },
+                {
+                    id:10,
+                    name: 'soto mie',
+                    photo: "sotomie.png",
+                    desc:"",
+                },
+        ],
+        snack : [
+           {
+                    id:1,
+                    name: 'sus vla',
+                    photo: "susvla.png",
+                    desc:"",
+                },
+                {
+                    id:2,
+                    name: 'brownies',
+                    photo: "brownies.png",
+                    desc:"",
+                },
+                {
+                    id:3,
+                    name: 'risoles',
+                    photo: "risoles.png",
+                    desc:"",
+                },
+                {
+                    id:4,
+                    name: 'pastel',
+                    photo: "pastel.png",
+                    desc:"",
+                },
+                {
+                    id:5,
+                    name: 'mini sandwich',
+                    photo: "minisandwich.png",
+                    desc:"",
+                },
+                {
+                    id:6,
+                    name: 'nasi goreng',
+                    photo: "nasigoreng.png",
+                    desc:"",
+                },
+                {
+                    id:7,
+                    name: 'nasi kuning',
+                    photo: "nasikuning.png",
+                    desc:"",
+                },
+                {
+                    id:8,
+                    name: 'nasi uduk',
+                    photo: "nasiuduk.png",
+                    desc:"",
+                },
+                {
+                    id:9,
+                    name: 'mie seafood',
+                    photo: "mieseafood.png",
+                    desc:"",
+                },
+                {
+                    id:10,
+                    name: 'soto mie',
+                    photo: "sotomie.png",
+                    desc:"",
+                },
+        ]
+          };
+
+         const cardControl = (title, customTitle) =>{
+           return `
+           <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih ${customTitle}</p>
+            <div class="slide-show-control">
+                <button id="btnLeft${title}" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
+                <button id="btnRight${title}" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
+             </div>
+             <div class="slide-show-ari"  id="${title}Item"></div>
+                      `
+          }
+          const cardRadio = (title,themeId, data)=>{
+            return `
+             <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${themeId === 1 ? `pivot${title}`: ""}" id="${title+themeId}" >
+                <div class="card ">
+                  <div class="card-header bg-white">
+                    <div class="row my-1">
+                      <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${data.name}</label></div>
+                      <div class="col-2">
+                        <input class="form-check-input" type="radio" name="radioNoLabel" id="test" value="" aria-label="..."/>
+                      </div>
+                    </div>
+                 </div>
+                  <div class="card-body p-0" style="white-space: initial;">
+                           <img class="w-100" src="images/default/${data.photo}" alt=""/>
+                           <!-- <p class="w-100" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
+                  </div>
+                </div>
+           </div>`;
+          }
+
+          document.getElementById('food').innerHTML = cardControl('food', "menu utama");
+          document.getElementById('snack').innerHTML = cardControl('snack', "jenis snack");
+          dataBE.makanan.forEach((data, i)=>{
+          let themeId = i+1
+          document.getElementById('foodItem').innerHTML += cardRadio("food",themeId, data);
+          })
+          dataBE.snack.forEach((data, i)=>{
+          let themeId = i+1
+          document.getElementById('snackItem').innerHTML += cardRadio("snack",themeId, data);
+          })
+
+          themesControl("food");
+          themesControl("snack");
+          themesControl("theme");
 
        </script>
     <%- include('../partials/scripts.ejs') %>
