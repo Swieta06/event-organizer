@@ -83,7 +83,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6d6",
           name: "Nasi Goreng",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Dilengkapi dengan isian potongan ayam, telur, sosis, bakso, dan acar",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -96,7 +96,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6d7",
           name: "Sus Vla",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Kue sus lembut dengan isi vla vanila dan taburan gula diatasnya.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -109,7 +109,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6d8",
           name: "Brownies",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Potongan brownies panggang lembut dengan topping almond.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -158,10 +158,10 @@ module.exports = {
         },
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6dc",
-          name: "Kursi Kecil",
+          name: "Kursi Ragna",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 18000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -171,7 +171,7 @@ module.exports = {
         },
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6dd",
-          name: "Meja",
+          name: "Round Table",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           price: 300000,
@@ -200,7 +200,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6df",
           name: "Nasi Kuning",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -213,7 +213,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6e0",
           name: "Nasi Uduk",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Disajikan dengan ragam lauk seperti telur, bihun, tempe orek, dan bakwan.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -226,7 +226,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6e1",
           name: "Mie Seafood",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Mie goreng seafood pedas dilengkapi dengan pangsit isi ayam dan selada.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -239,7 +239,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6e2",
           name: "Soto Mie",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Soto ayam kuah bening dengan isian ayam suwir, sayuran, dan telur rebus.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -253,7 +253,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6e3",
           name: "Risoles",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Risoles isi smoked beef dengan perpaduan mozarella dan mayonaise.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -266,7 +266,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6e4",
           name: "Pastel",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Kue pastel gurih dengan isian bihun, sayur dan ayam suwir.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -279,7 +279,7 @@ module.exports = {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6e5",
           name: "Mini Sandwich",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "Mini sandwich yang terdiri dari bun, potongan smoked beef, dan mayonaise.",
           price: 0,
           stock: 1,
           photo: "https://via.placeholder.com/200",
@@ -400,7 +400,7 @@ module.exports = {
           name: "Kursi-2",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 20000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -413,7 +413,7 @@ module.exports = {
           name: "Kursi-3",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 35000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -426,7 +426,7 @@ module.exports = {
           name: "Kursi-4",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 30000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -439,7 +439,7 @@ module.exports = {
           name: "Kursi-5",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 35000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -450,10 +450,10 @@ module.exports = {
         // HERE IS MEJA
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6f2",
-          name: "Meja-2",
+          name: "Round Table",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 40000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -463,10 +463,10 @@ module.exports = {
         },
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d6f3",
-          name: "Meja-3",
+          name: "Round Table",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 50000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -479,7 +479,7 @@ module.exports = {
           name: "Meja-4",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 40000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -492,7 +492,7 @@ module.exports = {
           name: "Meja-5",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          price: 300000,
+          price: 50000,
           stock: 20,
           photo: "https://via.placeholder.com/200",
           VendorId: 1,
@@ -558,6 +558,8 @@ module.exports = {
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d7a1",
           name: "Custom Tema",
+          description:
+            "Diskusikan dengan menekan tombol Whatsapp pada halaman detail pesanan.",
           photo: "https://via.placeholder.com/200",
           VendorId: 2,
           CategoryId: 10,
@@ -567,6 +569,8 @@ module.exports = {
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d7a2",
           name: "Colorful",
+          description:
+            "Dekorasi warna-warni yang memberi kesan ceria dan energik.",
           photo: "https://via.placeholder.com/200",
           VendorId: 2,
           CategoryId: 10,
@@ -576,6 +580,8 @@ module.exports = {
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d7a3",
           name: "Gold & White",
+          description:
+            "Perpaduan emas dan putih memberi kesan elegan dan persatuan.",
           photo: "https://via.placeholder.com/200",
           VendorId: 2,
           CategoryId: 10,
@@ -585,6 +591,8 @@ module.exports = {
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d7a4",
           name: "Monokrom",
+          description:
+            "Perpaduan hitam dan putih memberi kesan sederhana dan hangat.",
           photo: "https://via.placeholder.com/200",
           VendorId: 2,
           CategoryId: 10,
@@ -594,6 +602,8 @@ module.exports = {
         {
           id: "d6d6d6d6-d6d6-d6d6-d6d6-d6d6d6d6d7a5",
           name: "Halloween",
+          description:
+            "Dekorasi dihiasi banyak bunga indah memberi kesan santai dan menyenangkan.",
           photo: "https://via.placeholder.com/200",
           VendorId: 2,
           CategoryId: 10,
