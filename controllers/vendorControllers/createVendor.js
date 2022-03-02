@@ -15,7 +15,7 @@ const createVendor = async (req, res, next) => {
     const newVendor = await Vendor.create(payload);
     res.status(200).json(response("success create vendor", newVendor, null));
   } catch (error) {
-    next(createError(500, error.message));
+    next(createError(error.status || 500, error.message));
   }
 };
 

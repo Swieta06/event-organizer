@@ -24,7 +24,7 @@ const updateVendor = async (req, res, next) => {
       .status(200)
       .json(response("success updated vendor", updatedVendor, null));
   } catch (error) {
-    next(createError(500, error.message));
+    next(createError(error.status || 500, error.message));
   }
 };
 
