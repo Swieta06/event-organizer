@@ -1,24 +1,15 @@
-const { User } = require("../../models")
-const bcrypt = require("../../utils/bcrypt")
+const response = require('../../utils/response');
 
-class Login {
-    static async login(req, res) {
-        try {
-            let {
-                email,
-                password
-            } = req.body
-
-            const payload = {
-                id,
-                email,
-                name,
-                password
-            }
-        } catch (error) {
-            res.send(error)
-        }
+async function login(req, res) {
+    try {
+        if (req.isAuthenticated()) {
+            res.redirect("/");
+            return;
+          }
+        res.render("pages/index", { title: "Express" });
+    } catch (error) {
+        res.status(500).json(response('Internal server error', null, error));
     }
 }
 
-module.exports = Login
+module.exports = login

@@ -1,7 +1,7 @@
-const Register = require("./register.controller")
-const Login = require("./login.controller")
+const register = require("./register.controller")
+const login = require("./login.controller")
 
 module.exports = {
-    Register,
-    Login
+    register,
+    login
 }
