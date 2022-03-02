@@ -14,32 +14,102 @@
     .slide-show-control{
         position: absolute;
         z-index: 2000;
-        top: 60%;
+        top: 54%;
         left: -1%;
         display: flex;
         width: 102%;
         justify-content: space-between;
     }
 </style>
-  <body class="p-0">
+  <body class="p-0" style="background-color:  #E5E5E5;">
     <header>
       <!-- Swita taruh sini -->
        <%- include('../partials/navbar.ejs') %>
        <%- include('login')%> 
     </header>
-    <main style="background-color:  #E5E5E5;">
-      <p class="mt-5 bg-purple-pressed">test</p>
-      <p class="mt-5 bg-purple-pressed">test</p>
+    <main >
+      <p class="mt-5">test</p>
       <div class="container-fluid" id="orderStep1" >
         <div class="row justify-content-center">
-          <div class="col-10 bg-neutral-10 px-5">
-            <!-- Isi Disini mAS Faisal -->
-            Form
+          <div class="col-10 bg-neutral-10 px-5  py-5 rounded-3">
+            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
+            <div class="row mt-5">
+              <div class="col">
+                <p>pilih lokasi</p>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col ">
+                <p>tanggal diselenggarakan acara</p>
+                <div class="row">
+                  <div class="col-3">
+                     <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                  </div>
+                  <div class="col-6">
+                     <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                  </div>
+                  <div class="col-3">
+                     <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col">
+                <p>paket yang dipilih</p>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col">
+                <p>tambahana jumlah tamu</p>
+               
+                <div class="row align-items-center">
+
+                  <div class="col">
+                <div class="d-flex">
+                  <button type="button" class="btn btn-outline-purple text-purple-main">-</button>
+                  <input type="email" class="mx-2 w-25 text-center text-purple-main" disabled  placeholder="0">
+                  <button type="button" class="btn btn-outline-purple text-purple-main ">+</button>
+                </div>
+
+                  </div>
+                  <div class="col">
+                  <div class="">total tamu undangan 30</div>
+
+                  </div>
+
+                </div>
+                  
+              </div>
+            </div>
           </div>
         </div>
 
-          <div class="row justify-content-center mt-4">
-              <div class="col-10 position-relative bg-neutral-10 text-center px-5 py-5 rounded-3">
+          <div style=" margin-bottom: 100px;" class="row justify-content-center mt-4">
+              <div  class="col-10 position-relative  bg-neutral-10 text-center px-5 py-5 rounded-3">
                   <h1 class="text-capitalize text-neutral-100 fw-bold fs-24">detail acara</h1>
                   <div class="row">
                     <div class="col-12 position-relative">
@@ -130,14 +200,33 @@
                  </div>
                   <div class="card-body p-0" style="white-space: initial;">
                            <img class="w-100" src="images/default/<%= data.img%>" alt=""/>
-                           <!-- <p class="w-100" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
+                           <!-- <p class="w-100 text-start" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
                   </div>
                 </div>
            </div>
       <% });  %>
 
         </div>
+
+        <p class="text-muted text-purple-main text-start mt-3">*untuk kustom tema acara bisa di diskusikan lebih lanjut melalui Whatsapp pada Halaman Detail pesanan</p>
               </div>
+  </div>
+</div>
+
+
+<div class="row text-start mt-3">
+  <div class="col">
+    <p>Bagaimana konsep acara anda?</p>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Indoor</option>
+      <option value="1">Outdoor</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+  <div class="col">
+    <p>Tulis nama untuk souvenir costum pulpen</p>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
   </div>
 </div>
 
@@ -146,7 +235,23 @@
 
     </main>
     <footer>
-    
+      <div class="footer  position-fixed bottom-0 w-100 shadow-lg">
+      <!-- <div class="footer  container-fluid bg-neutral-10"> -->
+        <div class="bg-white">
+          <div class="row align-items-center justify-content-around">
+            <div class="col-2">
+              <button type="button" class="btn btn-outline-purple  w-100"  >Selanjutnya</button>
+            </div>
+            <div class="col-7 text-center">
+              <p class="mb-1 mt-2">total (1 paket)</p>
+              <p class="fs-18">25.000.000</p>
+            </div>
+            <div class="col-2 text-end">
+              <button type="button" class="btn w-100 text-white btn-purple" >sebelumnya</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   <script>
 
@@ -212,9 +317,6 @@
           });
           }
 
-
-
-
           const dataBE = {
             vendors : [],
             makanan : [
@@ -222,61 +324,61 @@
                     id:1,
                     name: 'nasi goreng',
                     photo: "nasigoreng.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:2,
                     name: 'nasi kuning',
                     photo: "nasikuning.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:3,
                     name: 'nasi uduk',
                     photo: "nasiuduk.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:4,
                     name: 'mie seafood',
                     photo: "mieseafood.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:5,
                     name: 'soto mie',
                     photo: "sotomie.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:6,
                     name: 'nasi goreng',
                     photo: "nasigoreng.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:7,
                     name: 'nasi kuning',
                     photo: "nasikuning.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:8,
                     name: 'nasi uduk',
                     photo: "nasiuduk.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:9,
                     name: 'mie seafood',
                     photo: "mieseafood.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
                 {
                     id:10,
                     name: 'soto mie',
                     photo: "sotomie.png",
-                    desc:"",
+                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
                 },
         ],
         snack : [
@@ -353,7 +455,7 @@
              <div class="slide-show-ari"  id="${title}Item"></div>
                       `
           }
-          const cardRadio = (title,themeId, data)=>{
+          const card = (type, title,themeId, data)=>{
             return `
              <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${themeId === 1 ? `pivot${title}`: ""}" id="${title+themeId}" >
                 <div class="card ">
@@ -361,13 +463,14 @@
                     <div class="row my-1">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${data.name}</label></div>
                       <div class="col-2">
-                        <input class="form-check-input" type="radio" name="radioNoLabel" id="test" value="" aria-label="..."/>
+                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="radioNoLabel" id="test" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">`}
+                        
                       </div>
                     </div>
                  </div>
                   <div class="card-body p-0" style="white-space: initial;">
                            <img class="w-100" src="images/default/${data.photo}" alt=""/>
-                           <!-- <p class="w-100" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
+                           ${data.desc ? `<p class="w-100" > ${data.desc} </p>`:""}
                   </div>
                 </div>
            </div>`;
@@ -377,11 +480,11 @@
           document.getElementById('snack').innerHTML = cardControl('snack', "jenis snack");
           dataBE.makanan.forEach((data, i)=>{
           let themeId = i+1
-          document.getElementById('foodItem').innerHTML += cardRadio("food",themeId, data);
+          document.getElementById('foodItem').innerHTML += card("radio","food",themeId, data);
           })
           dataBE.snack.forEach((data, i)=>{
           let themeId = i+1
-          document.getElementById('snackItem').innerHTML += cardRadio("snack",themeId, data);
+          document.getElementById('snackItem').innerHTML += card("checkbox","snack",themeId, data);
           })
 
           themesControl("food");
