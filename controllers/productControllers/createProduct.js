@@ -4,7 +4,7 @@ const createError = require("http-errors");
 
 exports.createProduct = async (req, res) => {
   try {
-    let {VendorId, name, description, price, CategoryId, photo, stock} = req.body;
+   let {VendorId, name, description, price, CategoryId, photo, stock} = req.body;
    const dataProduct = { 
         VendorId : req.body.VendorId, 
         name : req.body.name, 

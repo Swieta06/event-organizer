@@ -8,7 +8,7 @@ exports.getAllProduct = async (req, res, next) => {
       attributes: ["id","VendorId", "name", "description", "price", "CategoryId", "photo", "stock"],
     });
       if(getDataProduct){
-          res.status(201).json(response('Success get data products', getDataProduct));
+          res.status(200).json(response('Success get data products', getDataProduct));
       }else {
           res.status(400).json({
                message : 'Bad request'
