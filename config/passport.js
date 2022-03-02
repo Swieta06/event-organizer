@@ -4,7 +4,8 @@ const { User } = require("../models");
 const bcrypt = require("../utils/bcrypt");
 
 passport.use(
-  new LocalStrategy(async function (email, password, done) {
+  
+  new LocalStrategy({usernameFiled:"email"}, async function (email, password, done) {
     // TODO: find the user by username and validate the password is correct then return done
     const user = await User.findOne({
       where: {

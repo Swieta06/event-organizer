@@ -1,3 +1,5 @@
+// const passport = require("../../config/passport")
+const passport = require("passport");
 const { Auth } = require("../../controllers")
 const route = require("express").Router()
 const { body, validationResult } = require('express-validator');
@@ -24,6 +26,7 @@ route.post("/login",
         }
         next();
     },
+    passport.authenticate("local", { failureRedirect: "/" }),
     Auth.login);
 
 module.exports = route
