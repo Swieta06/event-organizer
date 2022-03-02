@@ -29,6 +29,21 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue: uuid,
       },
+      customerName: {
+        type: DataTypes.STRING,
+      },
+      companyName: {
+        type: DataTypes.STRING,
+      },
+      tel: {
+        type: DataTypes.STRING,
+      },
+      address: {
+        type: DataTypes.STRING,
+      },
+      postalCode: {
+        type: DataTypes.STRING,
+      },
       status: {
         type: DataTypes.INTEGER,
         defaultValue: 0,

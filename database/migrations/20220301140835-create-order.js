@@ -25,6 +25,21 @@ module.exports = {
         onUpdate: "CASCADE",
         allowNull: false,
       },
+      customerName: {
+        type: Sequelize.STRING,
+      },
+      companyName: {
+        type: Sequelize.STRING,
+      },
+      tel: {
+        type: Sequelize.STRING,
+      },
+      address: {
+        type: Sequelize.STRING,
+      },
+      postalCode: {
+        type: Sequelize.STRING,
+      },
       status: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
