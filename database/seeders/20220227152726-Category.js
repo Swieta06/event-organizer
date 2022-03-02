@@ -67,12 +67,18 @@ module.exports = {
           name:"souvenir",
           createdAt: new Date(),
           updatedAt: new Date(),
+        },
+        {
+          id: 10,
+          name:"themes",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         }
       ],
       {}
     );
     await queryInterface.sequelize.query(
-      'ALTER SEQUENCE public."Categories_id_seq" RESTART 10;'
+      'ALTER SEQUENCE public."Categories_id_seq" RESTART 11;'
     );
   },
 

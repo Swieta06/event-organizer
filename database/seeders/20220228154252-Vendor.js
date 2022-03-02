@@ -31,7 +31,34 @@ module.exports = {
         phone:"081725675532",
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        id: 3,
+        name:"Penyewa Tenda",
+        province:"Jawa Barat",
+        city:"Bekasi",
+        phone:"081725673319",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 4,
+        name:"Penyewa Tenda",
+        province:"Jawa Barat",
+        city:"Depok",
+        phone:"081725673319",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 5,
+        name:"Penyewa Tenda",
+        province:"Jakarta",
+        city:"Jakarta Selatan",
+        phone:"081725673319",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, 
      ],
      {}
    );
