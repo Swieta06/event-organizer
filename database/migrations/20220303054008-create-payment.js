@@ -29,6 +29,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      bankName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       bankHolder: {
         type: Sequelize.STRING,
         allowNull: false,
