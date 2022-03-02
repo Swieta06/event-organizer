@@ -1,6 +1,8 @@
 "use strict";
 const { set } = require("dottie");
 const { Model } = require("sequelize");
+const SequelizeSlugify = require("sequelize-slugify");
+const uuid = require("uuid").v4;
 module.exports = (sequelize, DataTypes) => {
   class Package extends Model {
     /**
@@ -9,7 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Package.hasMany(models.Order);
+      Package.belongsToMany(models.Product, {
+        through: "PackageProducts",
+        foreignKey: "PackageId",
+        as: "products",
+      });
     }
   }
   Package.init(
@@ -18,10 +25,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
         type: DataTypes.UUID,
+        defaultValue: uuid,
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      slug: {
+        type: DataTypes.STRING,
+        unique: true,
       },
       minParticipant: {
         type: DataTypes.INTEGER,
@@ -56,5 +68,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Package",
     }
   );
+
+  SequelizeSlugify.slugifyModel(Package, { source: ["name"] });
   return Package;
 };

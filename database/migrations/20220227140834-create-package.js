@@ -11,6 +11,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      slug: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
       minParticipant: {
         type: Sequelize.INTEGER,
         allowNull: false,
