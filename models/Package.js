@@ -61,6 +61,10 @@ module.exports = (sequelize, DataTypes) => {
         set(value) {
           this.setDataValue("features", value.join(","));
         },
+        minOrderTime: {
+          type: DataTypes.INTEGER,
+          defaultValue: 7,
+        },
       },
     },
     {

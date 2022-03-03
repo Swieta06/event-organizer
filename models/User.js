@@ -41,6 +41,19 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.TEXT,
     },
     {
+      hooks: {
+        beforeCreate: function (user) {
+          if (!user.photo) {
+            let getName = user.name;
+            getName = encodeURIComponent(getName.trim());
+            const randomColor = Math.floor(Math.random() * 16777215).toString(
+              16
+            );
+            const urlAvatar = `https://ui-avatars.com/api/?name=${getName}&background=${randomColor}&color=fff&size=64`;
+            user.photo = urlAvatar;
+          }
+        },
+      },
       sequelize,
       modelName: "User",
     }
