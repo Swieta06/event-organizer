@@ -3,9 +3,15 @@ const createError = require("http-errors");
 
 exports.getViewsStep2 = async (req, res, next) => {
   try {
-    const { step, namePackage, location } = req.query;
+    const {
+        step,
+        package,
+        location
+    } = req.query;
 
-    if (step === 1 || step === "" || step === undefined || step === null) {
+    if (step != 2 || location == "" || package == "") {
+        throw new Error();
+    } else {
       const attribute = [
         "id",
         "name",
@@ -109,6 +115,7 @@ exports.getViewsStep2 = async (req, res, next) => {
         kursi,
         meja,
         tenda,
+        package,
       });
     }
   } catch (error) {
