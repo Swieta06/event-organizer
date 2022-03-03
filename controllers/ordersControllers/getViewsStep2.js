@@ -3,12 +3,9 @@ const createError = require("http-errors");
 
 exports.getViewsStep2 = async (req, res, next) => {
   try {
-    let { step, namePackage, location } = req.query;
-    toString(location);
+    const { step, namePackage, location } = req.query;
 
-    if (step != 2) {
-      res.json(location);
-    } else {
+    if (step === 1 || step === "" || step === undefined || step === null) {
       const attribute = [
         "id",
         "name",
@@ -17,6 +14,17 @@ exports.getViewsStep2 = async (req, res, next) => {
         "price",
         "stock",
       ];
+      const excluded = [
+        "id",
+        "name",
+        "province",
+        "city",
+        "phone",
+        "createdAt",
+        "updatedAt",
+      ];
+
+      //   Get data Talent
       const talent = await Product.findAll({
         attributes: attribute,
         where: {
@@ -24,8 +32,11 @@ exports.getViewsStep2 = async (req, res, next) => {
         },
       });
 
+      // Get data kipas by location
       const kipas = await Vendor.findAll({
-        attributes: ["city"],
+        attributes: {
+          exclude: excluded,
+        },
         where: {
           city: location,
         },
@@ -34,40 +45,70 @@ exports.getViewsStep2 = async (req, res, next) => {
           as: "products",
           attributes: attribute,
           where: {
-            CategoryId: 2,
+            CategoryId: 3,
           },
         },
       });
 
-      //   const kursi = await Product.findAll({
-      //     attributes: attribute,
-      //     where: {
-      //       CategoryId: 4,
-      //       //   city: location,
-      //     },
-      //   });
+      // Get data kursi by location
+      const kursi = await Vendor.findAll({
+        attributes: {
+          exclude: excluded,
+        },
+        where: {
+          city: location,
+        },
+        include: {
+          model: Product,
+          as: "products",
+          attributes: attribute,
+          where: {
+            CategoryId: 4,
+          },
+        },
+      });
 
-      //   const meja = await Product.findAll({
-      //     attributes: attribute,
-      //     where: {
-      //       CategoryId: 5,
-      //       //   city: location,
-      //     },
-      //   });
+      // Get data meja by location
+      const meja = await Vendor.findAll({
+        attributes: {
+          exclude: excluded,
+        },
+        where: {
+          city: location,
+        },
+        include: {
+          model: Product,
+          as: "products",
+          attributes: attribute,
+          where: {
+            CategoryId: 5,
+          },
+        },
+      });
 
-      //   const tenda = await Product.findAll({
-      //     attributes: attribute,
-      //     where: {
-      //       CategoryId: 7,
-      //       //   city: location,
-      //     },
-      //   });
+      // Get data tenda by location
+      const tenda = await Vendor.findAll({
+        attributes: {
+          exclude: excluded,
+        },
+        where: {
+          city: location,
+        },
+        include: {
+          model: Product,
+          as: "products",
+          attributes: attribute,
+          where: {
+            CategoryId: 7,
+          },
+        },
+      });
       res.status(200).json({
-        // talents: talent,
-        kipas: kipas,
-        // kursis: kursi,
-        // mejas: meja,
-        // tendas: tenda,
+        talent,
+        kipas,
+        kursi,
+        meja,
+        tenda,
       });
     }
   } catch (error) {
