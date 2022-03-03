@@ -36,10 +36,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      paidAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
