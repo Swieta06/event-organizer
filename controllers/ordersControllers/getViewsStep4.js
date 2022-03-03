@@ -1,10 +1,12 @@
 const { Order, PaymentMethod } = require("../../models");
 const createError = require("http-errors");
-const response = require("../../utils/response");
 
 const getViewsStep4 = async (req, res, next) => {
   try {
     const { step } = req.query;
+    if (step != "4") {
+      throw createError(404, "Page Not Found");
+    }
     const { OrderId } = req.params;
     const data = await Order.findOne({
       where: {
@@ -28,7 +30,7 @@ const getViewsStep4 = async (req, res, next) => {
           bankNumber: data.PaymentMethod.bankNumber,
         },
       });
-    else res.status(400).json(response("Order Not Found"));
+    else throw createError(400, "Order Not Found");
   } catch (error) {
     next(createError(error.status || 500, error.message));
   }
