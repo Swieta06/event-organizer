@@ -16,15 +16,6 @@ module.exports = {
         onUpdate: "CASCADE",
         allowNull: false,
       },
-      PaymentMethodId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "PaymentMethods",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        allowNull: false,
-      },
       photo: {
         type: Sequelize.TEXT,
         allowNull: false,

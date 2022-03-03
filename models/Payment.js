@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Payment.belongsTo(models.Order);
-      Payment.belongsTo(models.PaymentMethod);
     }
   }
   Payment.init(
