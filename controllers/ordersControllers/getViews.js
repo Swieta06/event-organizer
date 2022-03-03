@@ -3,24 +3,28 @@ const createError = require("http-errors");
 
 exports.getViews = async function (req, res, next) {
   try {
-    const { step, namePackage } = req.params;
-    if (step === 1 || step === "" || step === undefined || step === null) {
+    const { step, package: packageName } = req.query;
+    if (step === "1" || step === undefined || step === null) {
       let location = await Vendor.findAll({
         attributes: ["city"],
       });
       location = location.map((element) => {
         return element.city;
       });
-      const packages = await Package.findOne({
+      const packages = await Package.findAll({
         attributes: [
           "id",
           "name",
+          "slug",
           "minParticipant",
           "additionCost",
           "price",
           "maxSnack",
         ],
-        where: { slug: namePackage },
+      });
+      packages.forEach((element) => {
+        element.dataValues.selected =
+          element.name === packageName || element.slug === packageName;
       });
       const category = await Category.findOne({
         attributes: ["id", "name"],
@@ -30,7 +34,9 @@ exports.getViews = async function (req, res, next) {
         attributes: ["id", "name", "photo"],
       });
       res.render("pages/orderStep1", { location, packages, themes });
+      return;
     }
+    next();
   } catch (error) {
     next(createError(error.status || 500, error.message));
   }
