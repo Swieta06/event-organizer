@@ -67,6 +67,7 @@ exports.updateOrder = async (req, res, next) => {
       tel,
       address,
       postalCode,
+      status: 1,
       PaymentMethodId: paymentMethodId,
     };
 
