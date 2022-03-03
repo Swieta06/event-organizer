@@ -1,6 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const uuid = require("uuid").v4;
+const randomString = require("../utils/randomString");
 
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
@@ -25,10 +26,9 @@ module.exports = (sequelize, DataTypes) => {
   Order.init(
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: true,
-        defaultValue: uuid,
       },
       customerName: {
         type: DataTypes.STRING,
@@ -68,6 +68,34 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
+      hooks: {
+        beforeCreate: async function (order, options) {
+          const pack = await order.getPackage();
+          const date = order.createdAt
+            .toLocaleDateString("id-ID", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })
+            .split("/")
+            .join("");
+          const time = order.createdAt
+            .toLocaleTimeString("id-ID")
+            .split(".")
+            .join("");
+          const idOrders = await Order.findAll({
+            attributes: ["id"],
+          });
+          idOrders.map((idOrder) => idOrder.id);
+          const packName = pack.slug;
+          let orderId = "";
+          do {
+            const random = randomString(4, "aA#");
+            orderId = `${packName.substring(0, 4)}${date}${time}${random}`;
+          } while (idOrders.includes(orderId));
+          order.id = orderId;
+        },
+      },
       sequelize,
       modelName: "Order",
     }
