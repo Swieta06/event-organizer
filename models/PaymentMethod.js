@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      PaymentMethod.hasOne(models.Payment);
+      PaymentMethod.hasOne(models.Order);
     }
   }
   PaymentMethod.init(
