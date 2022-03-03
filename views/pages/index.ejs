@@ -1,69 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
-  <%- include('../partials/head.ejs', {title: 'Home'}) %>
+  <html>
+    <%- include('../partials/head.ejs', {title: 'Home'}) %>
 
-  <body class="p-0">
-    <header>
-      <!-- Swita taruh sini -->
-       <%- include('../partials/navbar.ejs') %>
-       <%- include('login')%> 
-    </header>
-    <main>
-      <p class="mt-5">test</p>
-      <p class="mt-5 bg-purple-pressed">test</p>
-       <!-- bry taruh sini -->
-       <!-- faisal taruh sini -->
-      <div id="our-client" class="bg-neutral-20">
-        <div class="container">
-          <h2 class="text-center title fs-36">Klien kami</h2>
-          <div class="row align-items-center">
-            <div class="col-lg-2 text-center offset-lg-1 mb-3 mb-lg-0">
-              <img src="/images/default/client-1.png" alt="BCA" />
+    <body class="p-0">
+      <header>
+        <!-- Swita taruh sini -->
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%>
+      </header>
+      <main>
+        <!-- bry taruh sini -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button id="dot" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button id="dot" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button id="dot" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div id="carousel-img" class="carousel-inner">
+            <div class="carousel-item active">
+              <div id="image-slider">
+                <img src="/images/default/slide-1.png" class="d-block" alt="slide-1" />
+              </div>
+              <div id="text-slider" class="caption">
+                <h5>Capricorn Celebration Dinner and Awards</h5>
+                <p>Capricorn Group mengadakan jamuan makan malam sekaligus memberikan penghargaan bagi karyawan terbaiknya sebagai bentuk perayaan hari jadi perusahaan yang ke-25 tahun.</p>
+                <div class="d-grid gap-2 col-6">
+                  <button id="btn" class="btn" type="button">Lihat selengkapnya</button>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-2 text-center mb-3 mb-lg-0">
-              <img src="/images/default/client-2.png" alt="gojek" />
+            <div class="carousel-item">
+              <div id="image-slider">
+                <img src="/images/default/slide-2.jpg" class="d-block w-100" alt="slide-2" />
+              </div>
+              <div id="text-slider" class="caption">
+                <h5>Google Remarkable Dinner</h5>
+                <p>I am Remarkable Group mengadakan jamuan makan malam yang memberdayakan wanita dan kelompok kurang terwakili lainnya untuk merayakan pencapaian mereka di tempat kerja dan di luar.</p>
+                <div class="d-grid gap-2 col-6">
+                  <button id="btn" class="btn" type="button">Lihat selengkapnya</button>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-2 text-center mb-3 mb-lg-0">
-              <img src="/images/default/client-3.png" alt="Binar" />
+            <div class="carousel-item">
+              <div id="image-slider">
+                <img src="/images/default/slide-3.jpg" class="d-block w-100" alt="slide-3" />
+              </div>
+              <div id="text-slider" class="caption">
+                <h5>Gathering Night and Awards Special Event</h5>
+                <p>Heenoor Group mengadakan malam keakraban sekaligus memberikan penghargaan bagi karyawannya sebagai bentuk pencapaian mereka ditempat kerja.</p>
+                <div class="d-grid gap-2 col-6">
+                  <button id="btn" class="btn" type="button">Lihat selengkapnya</button>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-2 text-center mb-3 mb-lg-0">
-              <img src="/images/default/client-4.png" alt="tokopedia" />
-            </div>
-            <div class="col-lg-2 text-center mb-3 mb-lg-0">
-              <img src="/images/default/client-5.png" alt="tiket.com" />
+          </div>
+          <a id="prev" class="prev bi-chevron-left" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="left: 32px"></a>
+          <a id="next" class="next bi-chevron-right" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="right: 32px"></a>
+        </div>
+        <!-- faisal taruh sini -->
+        <div id="our-client" class="bg-neutral-20">
+          <div class="container">
+            <h2 class="text-center title fs-36">Klien kami</h2>
+            <div class="row align-items-center">
+              <div class="col-lg-2 text-center offset-lg-1 mb-3 mb-lg-0">
+                <img src="/images/default/client-1.png" alt="BCA" />
+              </div>
+              <div class="col-lg-2 text-center mb-3 mb-lg-0">
+                <img src="/images/default/client-2.png" alt="gojek" />
+              </div>
+              <div class="col-lg-2 text-center mb-3 mb-lg-0">
+                <img src="/images/default/client-3.png" alt="Binar" />
+              </div>
+              <div class="col-lg-2 text-center mb-3 mb-lg-0">
+                <img src="/images/default/client-4.png" alt="tokopedia" />
+              </div>
+              <div class="col-lg-2 text-center mb-3 mb-lg-0">
+                <img src="/images/default/client-5.png" alt="tiket.com" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- ========================================================== -->
-      <div id="why-choose-us" class="bg-neutral-10">
-        <img src="/images/default/Meliuk-liuk.png" alt="Meliuk-liuk" class="bg-wcu-1">
-        <img src="/images/default/Meliuk-liuk-1.png" alt="Meliuk-liuk-1" class="bg-wcu-2">
-        <div class="container position-relative">
-          <h2 class="text-center title fs-36">Kenapa memilih kami?</h2>
-          <p class="mx-auto text-center fs-18 title-paragraph">Sebuah acara membutuhkan persiapan untuk mencapai hasil yang diinginkan. Pengalaman kami menjadi dasar profesionalisme dalam berkarya. Beri tahu kami apa yang kamu perlukan, kami siap mewujudkan.</p>
-          <div class="row g-4">
-            <div class="col-lg-4 text-center">
-              <div class="bg-purple-main icon-wcu mx-auto">
-                <img src="/images/default/placeholder.png" alt="placeholder" />
+        <div id="why-choose-us" class="bg-neutral-10">
+          <img src="/images/default/Meliuk-liuk.png" alt="Meliuk-liuk" class="bg-wcu-1" />
+          <img src="/images/default/Meliuk-liuk-1.png" alt="Meliuk-liuk-1" class="bg-wcu-2" />
+          <div class="container position-relative">
+            <h2 class="text-center title fs-36">Kenapa memilih kami?</h2>
+            <p class="mx-auto text-center fs-18 title-paragraph">
+              Sebuah acara membutuhkan persiapan untuk mencapai hasil yang diinginkan. Pengalaman kami menjadi dasar profesionalisme dalam berkarya. Beri tahu kami apa yang kamu perlukan, kami siap mewujudkan.
+            </p>
+            <div class="row g-4">
+              <div class="col-lg-4 text-center">
+                <div class="bg-purple-main icon-wcu mx-auto">
+                  <img src="/images/default/placeholder.png" alt="placeholder" />
+                </div>
+                <h3 class="fs-24 icon-wcu-title mx-auto">
+                  Lokasi vendor tersebar<br />
+                  di seluruh Indonesia
+                </h3>
+                <p class="fs-14 icon-wcu-paragraph mx-auto">Bekerja sama hanya dengan vendor terbaik yang tersebar di seluruh Indonesia. Memberikan kemudahan menyampaikan apapun dan kapanpun, karena kami berada didekatmu.</p>
               </div>
-              <h3 class="fs-24 icon-wcu-title mx-auto">Lokasi vendor tersebar<br> di seluruh Indonesia</h3>
-              <p class="fs-14 icon-wcu-paragraph mx-auto">Bekerja sama hanya dengan vendor terbaik yang tersebar di seluruh Indonesia. Memberikan kemudahan menyampaikan apapun dan kapanpun, karena kami berada didekatmu.</p>
-            </div>
-            <div class="col-lg-4 text-center">
-              <div class="bg-purple-main icon-wcu mx-auto">
-                <img src="/images/default/party.png" alt="customize">
+              <div class="col-lg-4 text-center">
+                <div class="bg-purple-main icon-wcu mx-auto">
+                  <img src="/images/default/party.png" alt="customize" />
+                </div>
+                <h3 class="fs-24 icon-wcu-title mx-auto">Paket yang dapat dikustomisasi sesuka hati</h3>
+                <p class="fs-14 icon-wcu-paragraph mx-auto">Kamu dapat memilih jenis paket yang paling sesuai dengan acaramu dan melakukan kustomisasi sesuai keinginanmu. Kebutuhan kamu adalah prioritas kami.</p>
               </div>
-              <h3 class="fs-24 icon-wcu-title mx-auto">Paket yang dapat dikustomisasi sesuka hati</h3>
-              <p  class="fs-14 icon-wcu-paragraph mx-auto">Kamu dapat memilih jenis paket yang paling sesuai dengan acaramu dan melakukan kustomisasi sesuai keinginanmu. Kebutuhan kamu adalah prioritas kami.</p>
-            </div>
-            <div class="col-lg-4 text-center">
-              <div class="bg-purple-main icon-wcu mx-auto">
-                <img src="/images/default/calendar.png" alt="event">
+              <div class="col-lg-4 text-center">
+                <div class="bg-purple-main icon-wcu mx-auto">
+                  <img src="/images/default/calendar.png" alt="event" />
+                </div>
+                <h3 class="fs-24 icon-wcu-title mx-auto">Acara maksimal meski diwaktu minimal</h3>
+                <p class="fs-14 icon-wcu-paragraph mx-auto">Satu-satunya EO yang berani menawarkan acara dalam hitungan hari. Semua persiapan telah dipertimbangkan. Buktikan keandalan kami mencapai hasil yang maksimal.</p>
               </div>
-              <h3 class="fs-24 icon-wcu-title mx-auto">Acara maksimal meski diwaktu minimal</h3>
-              <p class="fs-14 icon-wcu-paragraph mx-auto">Satu-satunya EO yang berani menawarkan acara dalam hitungan hari. Semua persiapan telah dipertimbangkan. Buktikan keandalan kami mencapai hasil yang maksimal.</p>
             </div>
           </div>
         </div>
@@ -76,25 +125,31 @@
         
        
     </main>
-    <footer>
-      <div id="footer">
-        <div class="text-center pt-5 position-relative">
-          <h1 class="fs-24 mb-3 pt-5 mt-4">Nama Web</h1>
-          <p class="fs-16 pb-4">ini nanti diisi dengan tagline dari perusahaan event organizer</p>
-          <div class="footer-icon my-5">
-            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-twitter"></i></a>
-            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-instagram"></i></a>
-            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-youtube"></i></a>
-            <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-facebook"></i></a>
+   
+        
+        <!-- steven taruh sini -->
+        <!-- kusno taruh sini -->
+      </main>
+      <footer>
+        <div id="footer">
+          <div class="text-center pt-5 position-relative">
+            <h1 class="fs-24 mb-3 pt-5 mt-4">Nama Web</h1>
+            <p class="fs-16 pb-4">ini nanti diisi dengan tagline dari perusahaan event organizer</p>
+            <div class="footer-icon my-5">
+              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-twitter"></i></a>
+              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-instagram"></i></a>
+              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-youtube"></i></a>
+              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-facebook"></i></a>
+            </div>
+            <div class="position-absolute bottom-0 text-center w-100 mb-3">
+              <p class="text-neutral-10">&copy; 2022 Halloween. All Rights Reserved</p>
+            </div>
+            <img src="/images/default/imgFooter.png" class="w-100 mt-5" alt="" />
           </div>
-          <div class="position-absolute bottom-0 text-center w-100 mb-3">
-            <p class="text-neutral-10 ">&copy; 2022 Halloween. All Rights Reserved</p>
-          </div>
-            <img src="/images/default/imgFooter.png" class="w-100 mt-5" alt="">
         </div>
-      </div>
-    </footer>
+      </footer>
 
-    <%- include('../partials/scripts.ejs') %>
-  </body>
+      <%- include('../partials/scripts.ejs') %>
+    </body>
+  </html>
 </html>

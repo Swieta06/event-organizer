@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const userRoute = require('./user');
+const vendorRoute = require("./vendor");
+const userRoute = require("./user");
+const productRoute = require("./product");
 
-router.use('/users', userRoute);
+router.use("/users", userRoute);
+router.use("/products", productRoute);
+router.use("/vendors", vendorRoute);
 
 /* GET test api. */
 router.get('/', function (req, res, next) {

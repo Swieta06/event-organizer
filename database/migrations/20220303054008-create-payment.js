@@ -1,44 +1,44 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Packages", {
+    await queryInterface.createTable("Payments", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      name: {
+      OrderId: {
+        type: Sequelize.UUID,
+        references: {
+          model: "Orders",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        allowNull: false,
+      },
+      photo: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      bankName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      slug: {
+      bankHolder: {
         type: Sequelize.STRING,
-        unique: true,
-      },
-      minParticipant: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 0,
+      },
+      bankNumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       price: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 0,
       },
-      additionCost: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
-      maxSnack: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
-      features: {
-        type: Sequelize.TEXT,
-      },
-      minOrderTime: {
-        type: Sequelize.INTEGER,
-        defaultValue: 7,
+      paidAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -51,6 +51,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Packages");
+    await queryInterface.dropTable("Payments");
   },
 };
