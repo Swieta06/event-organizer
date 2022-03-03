@@ -5,6 +5,12 @@ const createError = require("http-errors");
 
 exports.updateOrder = async (req, res, next) => {
   try {
+    if (!req.body.paymentMethod) {
+      throw createError(400, "paymentMethod not defined");
+    }
+    if (!req.body.order) {
+      throw createError(400, "order detail not defined");
+    }
     const { idOrder: orderId } = req.params;
     const { customerName, companyName, tel, address, postalCode } =
       req.body.order;
