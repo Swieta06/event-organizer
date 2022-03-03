@@ -89,6 +89,10 @@ a {
   transform: rotate(0deg);
 }
 
+#maps {
+  background-color: #F5F5F5;
+}
+
 
 /* Defaul css */
 /* Button*/
