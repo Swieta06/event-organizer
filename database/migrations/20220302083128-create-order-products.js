@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       OrderId: {
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
         references: {
           model: "Orders",
           key: "id",

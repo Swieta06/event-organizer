@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
       },
       OrderId: {
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
         references: {
           model: "Orders",
           key: "id",
