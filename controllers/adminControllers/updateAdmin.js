@@ -6,7 +6,7 @@ const bcrypt = require('../../utils/bcrypt');
 async function updateAdmin(req, res, next) {
     try {
         const { id } = req.params;
-        if ((req.user?.id == id) && (req.user?.role == "admin")) {
+        if ((req.user?.id == id)) {
             let {
                 email,
                 name,
