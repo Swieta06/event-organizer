@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Payment.belongsTo(models.Order);
-      Payment.belongsTo(models.PaymentMethod);
     }
   }
   Payment.init(
@@ -24,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       photo: {
         type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      bankName: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       bankHolder: {

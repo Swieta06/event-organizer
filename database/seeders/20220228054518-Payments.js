@@ -15,8 +15,8 @@ module.exports = {
       {
         id: "c1c1c1c1-c1c1-c1c1-c1c1-c1c1c1c1c1c1",
         OrderId: "b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b1b1",
-        PaymentMethodId: 1,
         photo: "",
+        bankName: "BNI",
         bankHolder: "Haiqal",
         bankNumber: "0718426194",
         price: 25000000,
@@ -27,8 +27,8 @@ module.exports = {
       {
         id: "c1c1c1c1-c1c1-c1c1-c1c1-c1c1c1c1c1c2",
         OrderId: "b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b1b2",
-        PaymentMethodId: 1,
         photo: "",
+        bankName: "BCA",
         bankHolder: "Rama",
         bankNumber: "0718426194",
         price: 25000000,
