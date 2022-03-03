@@ -9,6 +9,9 @@ exports.updateOrder = async (req, res, next) => {
       throw createError(400, "body not defined");
     }
     const { idOrder: orderId } = req.params;
+    if (!orderId) {
+      throw createError(400, "orderId not defined");
+    }
     const {
       customerName,
       companyName,
@@ -17,6 +20,17 @@ exports.updateOrder = async (req, res, next) => {
       postalCode,
       paymentMethodId,
     } = req.body;
+
+    if (
+      !customerName ||
+      !companyName ||
+      !tel ||
+      !address ||
+      !postalCode ||
+      !paymentMethodId
+    ) {
+      throw createError(400, "some field is required");
+    }
 
     const user = res.locals.user;
     if (user == null) {
