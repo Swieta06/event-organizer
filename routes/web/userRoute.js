@@ -5,6 +5,7 @@ const route = require("express").Router()
 const { body, validationResult } = require('express-validator');
 const response = require('../../utils/response');
 
+
 route.post("/register",
     body('email').isEmail(),
     body('password').isLength({ min: 5 }),
