@@ -103,7 +103,7 @@ exports.getViewsStep2 = async (req, res, next) => {
           },
         },
       });
-      res.status(200).json({
+      res.render("pages/orderStep2", {
         talent,
         kipas,
         kursi,
