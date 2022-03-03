@@ -5,16 +5,19 @@ const createError = require("http-errors");
 
 exports.updateOrder = async (req, res, next) => {
   try {
-    if (!req.body.paymentMethod) {
-      throw createError(400, "paymentMethod not defined");
-    }
-    if (!req.body.order) {
-      throw createError(400, "order detail not defined");
+    if (!req.body) {
+      throw createError(400, "body not defined");
     }
     const { idOrder: orderId } = req.params;
-    const { customerName, companyName, tel, address, postalCode } =
-      req.body.order;
-    const { id: paymentId } = req.body.paymentMethod;
+    const {
+      customerName,
+      companyName,
+      tel,
+      address,
+      postalCode,
+      paymentMethodId,
+    } = req.body;
+
     const user = res.locals.user;
     if (user == null) {
       throw createError(401, "User not authenticated");
@@ -35,7 +38,7 @@ exports.updateOrder = async (req, res, next) => {
 
     const paymentMethod = await PaymentMethod.findAll({
       where: {
-        id: parseInt(paymentId),
+        id: parseInt(paymentMethodId),
       },
       raw: true,
     });
@@ -50,7 +53,7 @@ exports.updateOrder = async (req, res, next) => {
       tel,
       address,
       postalCode,
-      PaymentMethodId: paymentId,
+      PaymentMethodId: paymentMethodId,
     };
 
     const updatedOrder = await Order.update(updateOrder, {
