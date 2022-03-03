@@ -12,4 +12,5 @@ module.exports = {
   createProduct,
   deleteProduct,
   updateProduct,
+  testgtihubiser,
 };
