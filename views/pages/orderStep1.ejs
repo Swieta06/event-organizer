@@ -13,7 +13,7 @@
     }
     .slide-show-control{
         position: absolute;
-        z-index: 2000;
+        z-index: 1;
         top: 54%;
         left: -1%;
         display: flex;
@@ -189,12 +189,12 @@
         <% themes.forEach((data, i)=>{ %>
         <% let themeId = i + 1; %>
        <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-theme px-1 d-inline-block <%= themeId === 1 ? "pivottheme": ""%>" id="theme<%=themeId%>">
-                <div class="card ">
+                <div class="card card-check-theme">
                   <div class="card-header bg-white">
                     <div class="row my-1">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18"><%= data.name %></label></div>
                       <div class="col-2 radio-check">
-                        <input class="form-check-input" type="radio" name="radioNoLabel" id="<%= data.name %>" value="" aria-label="..."/>
+                        <input class="form-check-input" type="radio" name="theme" id="<%= data.name %>" value="" aria-label="..."/>
                       </div>
                     </div>
                  </div>
@@ -217,16 +217,15 @@
 <div class="row text-start mt-3">
   <div class="col">
     <p>Bagaimana konsep acara anda?</p>
-    <select class="form-select" id="eventConcept" >
-      <option value="0" selected>Indoor</option>
-      <option value="1">Outdoor</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+    <select class="form-select" name="eventConcept" id="eventConcept" >
+      <option selected value="">Pilih konsep</option>
+      <option value="indoor" >Indoor</option>
+      <option value="outdoor">Outdoor</option>
     </select>
   </div>
   <div class="col">
     <p>Tulis nama untuk souvenir costum pulpen</p>
-      <input type="email" class="form-control" id="costumPulpen" placeholder="">
+      <input type="text" name="costumPulpen" class="form-control" id="costumPulpen" placeholder="">
   </div>
 </div>
 
@@ -240,14 +239,14 @@
         <div class="bg-white">
           <div class="row align-items-center justify-content-around">
             <div class="col-2">
-              <button type="button" class="btn btn-outline-purple  w-100"  >Selanjutnya</button>
+              <button type="button" class="btn btn-outline-purple  w-100" id="previous" >Sebelumnya</button>
             </div>
             <div class="col-7 text-center">
               <p class="mb-1 mt-2">total (1 paket)</p>
               <p class="fs-18" id="price">25.000.000</p>
             </div>
             <div class="col-2 text-end">
-              <button type="button" class="btn w-100 text-white btn-purple" >sebelumnya</button>
+              <button type="button" class="btn w-100 text-white btn-purple" id="next" >Selanjutnya</button>
             </div>
           </div>
         </div>
@@ -470,12 +469,12 @@
           const card = (type, title,themeId, data)=>{
             return `
              <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${themeId === 1 ? `pivot${title}`: ""}" id="${title+themeId}" >
-                <div class="card ">
+                <div class="card ${"card-check-"+title}">
                   <div class="card-header bg-white">
                     <div class="row my-1 ">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${data.name}</label></div>
                       <div class="col-2">
-                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="radioNoLabel" id="${data.name}" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" value="" id="${data.name}">`}
+                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="${title}" id="${data.name}" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" name="snack" value="" id="${data.name}">`}
                         
                       </div>
                     </div>
@@ -506,46 +505,95 @@
        </script>
        <script>
          const eventConcept = document.getElementById("eventConcept");
-         eventConcept.addEventListener("change",(e)=>{
-            console.log(e.target.value);
+         eventConcept.addEventListener("change", (e)=>{
+            if(e.target.value !== ""){
+              localStorage.setItem(e.target.name, e.target.value)
+            }else{
+              localStorage.removeItem(e.target.name)
+            }
          });
-        const costumPulpen = document.getElementById("costumPulpen");
 
+        //  CustomPulpen
+        const costumPulpen = document.getElementById("costumPulpen");
         costumPulpen.addEventListener('keyup',(e)=>{
-          console.log(e.target.value);
+            localStorage.setItem(e.target.name, e.target.value)
         })
 
          const themeCheck = document.getElementsByClassName("theme-check");
           const lengthTheme = themeCheck.length;
+              let snack = [];
          for (let i = 0; i < lengthTheme; i++) {
             themeCheck[i].addEventListener('click', function(event){
-              console.log(event.path[0].id);
+              let cardCheck = "";
+              const getName = event.path[0].name;
+              if( getName === "theme"){
+                cardCheck= document.querySelectorAll('.card-check-theme');
+              }
+              if( getName === "food"){
+                cardCheck= document.querySelectorAll('.card-check-food');
+              }
+              if( getName === "snack"){
+                cardCheck= document.querySelectorAll('.card-check-snack');
+              }
+               if (event.path[0].checked) {
+                 for (let ab = 0; ab < cardCheck.length; ab++) {
+                     cardCheck[ab].style.border = "1px solid #e5e5e5";
+                     if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
+                       cardCheck[ab].style.border = "3px solid #7940CC";
+                     }
+              }
+              if(getName === "snack"){
+                snack.push(event.path[0].id)
+                localStorage.setItem(getName, JSON.stringify(snack))
+              }else{
+                localStorage.setItem(getName, event.path[0].id)
+              }
+                event.path[0].parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
+                 
+               }else{
+                 
+                 for (let ab = 0; ab < cardCheck.length; ab++) {
+                     cardCheck[ab].style.border = "1px solid #e5e5e5"; 
+                      if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
+                       cardCheck[ab].style.border = "3px solid #7940CC";
+                     }              
+              }
+               }
             });
          }
 
+// Btn Add Guest & Reduce Guest
          const redGuest = document.getElementById("redGuest");
          const addGuest = document.getElementById("addGuest");
          const totalGuest = document.getElementById("totalGuest");
          const totalGuestText = document.getElementById("totalGuestText");
          localStorage.setItem('guest', 30)
          const localStorageGuest = localStorage.getItem('guest');
-         totalGuest.value = localStorageGuest;
          totalGuestText.innerText = `total tamu undangan ${localStorageGuest}`;
          redGuest.addEventListener('click',()=>{
            const total = parseInt(localStorage.getItem('guest')) - 10;
-           totalGuest.value =  total;
+          
            totalGuestText.innerText =  `total tamu undangan ${total}`;
-           console.log(total);
-           console.log(total === 0);
            if (total !== 0) {
              localStorage.setItem('guest', total)
+              totalGuest.value = parseInt(totalGuest.value) - 10;
            }
          })
          addGuest.addEventListener('click',()=>{
            const total = parseInt(localStorage.getItem('guest')) + 10;
-           totalGuest.value =  total;
+           totalGuest.value = parseInt(totalGuest.value) + 10;
            totalGuestText.innerText =  `total tamu undangan ${total}`;
            localStorage.setItem('guest', total)
+         })
+
+// Btn Selanjutnya
+         const btnNext = document.getElementById("next");
+         btnNext.addEventListener("click", ()=>{
+           if(!localStorage.getItem('food')){
+             console.log("Food Kosong");
+           }else{
+             console.log(localStorage.getItem('food'));
+           }
          })
 
        </script>
