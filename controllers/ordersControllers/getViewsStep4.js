@@ -19,7 +19,7 @@ const getViewsStep4 = async (req, res, next) => {
       ],
     });
     if (data)
-      res.status(200).json({
+      res.renser("ppages/orderStep4", {
         order: OrderId,
         totalPrice: data.totalPrice,
         paymentMethod: {
