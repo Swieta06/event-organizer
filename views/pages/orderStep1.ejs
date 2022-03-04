@@ -27,20 +27,37 @@
        <%- include('../partials/navbar.ejs') %>
        <%- include('login')%> 
     </header>
+ 
     <main >
+          <!-- Modal -->
+<div class="modal fade" id="order1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content ">
+     
+      <div class="modal-body text-center">
+        <i class="bi bi-exclamation-triangle-fill text-center text-danger " style="font-size: 62px;"></i>
+        <p  style="font-size: 18px;">Masih Ada Data yang Kosong</p>
+      </div>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">OK</button>
+    </div>
+  </div>
+</div>
       <p class="mt-5">test</p>
       <div class="container-fluid" id="orderStep1" >
+       
+    
         <div class="row justify-content-center">
           <div class="col-10 bg-neutral-10 px-5  py-5 rounded-3">
             <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
             <div class="row mt-5">
+              <% location = ["Jakarta","Bandung", "Surabaya", "Medan", "Denpasar"] %>
               <div class="col">
                 <p>pilih lokasi</p>
                 <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                      <option selected>Tentukan lokasi anda</option>
+                  <% for (let locIndex = 0; locIndex < location.length; locIndex++) { %>
+                      <option value="<%= location[locIndex]  %>"><%= location[locIndex]  %></option>
+                  <%} %>
                 </select>
               </div>
               <div class="col ">
@@ -76,11 +93,50 @@
             <div class="row mt-4">
               <div class="col">
                 <p>paket yang dipilih</p>
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>Paket Silver - Kapasitas 30 orang</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+
+                <%packages= [
+                  {
+                    id: "1",
+                    name: "Paket Silver",
+                    minParticipant: 30,
+                    additionCost: 100000,
+                    price: 25000000,
+                    maxSnack: 2,
+                    selected: false,
+                },
+                  {
+                    id: "2",
+                    name: "Paket Medium",
+                    minParticipant: 60,
+                    additionCost: 200000,
+                    price: 50000000,
+                    maxSnack: 2,
+                    selected: true,
+                },
+                  {
+                    id: "3",
+                    name: "Paket Gold",
+                    minParticipant: 90,
+                    additionCost: 300000,
+                    price: 75000000,
+                    maxSnack: 3,
+                    selected: false,
+                },
+                
+                ];%>
+                <select class="form-select" aria-label="Default select example" id="package">
+                  <% for (let packageIndex = 0; packageIndex < packages.length; packageIndex++) { %>
+                    <% const packageValue = {
+                       name : packages[packageIndex].name,
+                       minParticipan : packages[packageIndex].minParticipant,
+                       additionCost : packages[packageIndex].additionCost,
+                       price : packages[packageIndex].price,
+                    };
+                    
+                      const convert =  encodeURIComponent(JSON.stringify(packageValue))
+                    %>
+                        <option <%= packages[packageIndex].selected ? "selected" : "" %>  value="<%= convert %>"> <%= packages[packageIndex].name + " - Kapasitas " + packages[packageIndex].minParticipant + " Orang"  %> </option>
+                 <% } %>
                 </select>
               </div>
               <div class="col">
@@ -91,7 +147,7 @@
                   <div class="col">
                 <div class="d-flex">
                   <button type="button" id="redGuest" class="btn btn-outline-purple text-purple-main">-</button>
-                  <input type="text" class="mx-2 w-25 text-center text-purple-main" disabled  value="0" id="totalGuest">
+                  <input type="number" class="mx-2 w-25 text-center text-purple-main" disabled  value="0" id="totalGuest">
                   <button type="button" id="addGuest" class="btn btn-outline-purple text-purple-main ">+</button>
                 </div>
 
@@ -133,6 +189,9 @@
   <div class="col-12 position-relative">
         <div class="themes" >
                       <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih tema acara</p>
+                      <div class="alert alert-danger d-none" role="alert" id="error-theme">
+                        Mohon pilih tema sebelum melanjutkan ke langkah berikutnya
+                      </div>
                       <%
                         const themes = [
                             {
@@ -254,7 +313,29 @@
     </footer>
   <script>
 
-
+         // Control Local Storage
+const structurData = {
+  namePackage: "",
+  minParticipan: "",
+  additionCost : 0,
+  addParticipan : 0,
+}
+localStorage.setItem('data', JSON.stringify(structurData))
+const setLocalStorage = (name, value) =>{
+  const getData = JSON.parse(localStorage.getItem('data'))
+  getData[name] = value;
+  localStorage.setItem('data', JSON.stringify(getData));
+}
+const getLocalStorage = (name) =>{
+  const getData = JSON.parse(localStorage.getItem('data'))
+  return getData[name];
+}
+const formatRupiah = (numb) => {
+  const format = numb.toString().split('').reverse().join('');
+  const convert = format.match(/\d{1,3}/g);
+  const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
+  return rupiah;
+}
 //     const snackCheck = document.getElementsByClassName("snack-check");
    
 //  snackCheck[0].addEventListener('click', function(event){
@@ -335,61 +416,61 @@
                     id:1,
                     name: 'nasi goreng',
                     photo: "nasigoreng.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian potongan ayam, telur, sosis, bakso, dan acar",
                 },
                 {
                     id:2,
                     name: 'nasi kuning',
                     photo: "nasikuning.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:3,
                     name: 'nasi uduk',
                     photo: "nasiuduk.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:4,
                     name: 'mie seafood',
                     photo: "mieseafood.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:5,
                     name: 'soto mie',
                     photo: "sotomie.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:6,
                     name: 'nasi goreng',
                     photo: "nasigoreng.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:7,
                     name: 'nasi kuning',
                     photo: "nasikuning.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:8,
                     name: 'nasi uduk',
                     photo: "nasiuduk.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:9,
                     name: 'mie seafood',
                     photo: "mieseafood.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
                 {
                     id:10,
                     name: 'soto mie',
                     photo: "sotomie.png",
-                    desc:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.",
+                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
                 },
         ],
         snack : [
@@ -459,6 +540,9 @@
          const cardControl = (title, customTitle) =>{
            return `
            <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih ${customTitle}</p>
+              <div class="alert alert-danger d-none" role="alert" id="error-${title}">
+                        Mohon pilih ${title === "food"  ? "Menu": "Snack"} sebelum melanjutkan ke langkah berikutnya
+              </div>
             <div class="slide-show-control">
                 <button id="btnLeft${title}" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
                 <button id="btnRight${title}" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
@@ -481,7 +565,7 @@
                  </div>
                   <div class="card-body p-0" style="white-space: initial;">
                            <img class="w-100" src="images/default/${data.photo}" alt=""/>
-                           ${data.desc ? `<p class="w-100" > ${data.desc} </p>`:""}
+                           ${data.desc ? `<p class="w-100 mt-2 text-start px-1" > ${data.desc} </p>`:""}
                   </div>
                 </div>
            </div>`;
@@ -507,16 +591,16 @@
          const eventConcept = document.getElementById("eventConcept");
          eventConcept.addEventListener("change", (e)=>{
             if(e.target.value !== ""){
-              localStorage.setItem(e.target.name, e.target.value)
+              setLocalStorage('eventConcept', e.target.value)
             }else{
-              localStorage.removeItem(e.target.name)
+              setLocalStorage('eventConcept', "")
             }
          });
 
         //  CustomPulpen
         const costumPulpen = document.getElementById("costumPulpen");
         costumPulpen.addEventListener('keyup',(e)=>{
-            localStorage.setItem(e.target.name, e.target.value)
+          setLocalStorage(e.target.name, e.target.value)
         })
 
          const themeCheck = document.getElementsByClassName("theme-check");
@@ -542,16 +626,18 @@
                        cardCheck[ab].style.border = "3px solid #7940CC";
                      }
               }
-              if(getName === "snack"){
-                snack.push(event.path[0].id)
-                localStorage.setItem(getName, JSON.stringify(snack))
-              }else{
-                localStorage.setItem(getName, event.path[0].id)
-              }
+                  if(getName === "snack"){
+                    snack.push(event.path[0].id)
+                    setLocalStorage(getName, snack )
+                  }else{
+                    setLocalStorage(getName, event.path[0].id )
+                  }
                 event.path[0].parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
                  
                }else{
-                 
+                 snack.pop(event.path[0].id)
+                 console.log(event.path[0].id);
+                  setLocalStorage(getName, snack );
                  for (let ab = 0; ab < cardCheck.length; ab++) {
                      cardCheck[ab].style.border = "1px solid #e5e5e5"; 
                       if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
@@ -562,40 +648,97 @@
             });
          }
 
+
+
 // Btn Add Guest & Reduce Guest
-         const redGuest = document.getElementById("redGuest");
-         const addGuest = document.getElementById("addGuest");
-         const totalGuest = document.getElementById("totalGuest");
-         const totalGuestText = document.getElementById("totalGuestText");
-         localStorage.setItem('guest', 30)
-         const localStorageGuest = localStorage.getItem('guest');
-         totalGuestText.innerText = `total tamu undangan ${localStorageGuest}`;
-         redGuest.addEventListener('click',()=>{
-           const total = parseInt(localStorage.getItem('guest')) - 10;
-          
-           totalGuestText.innerText =  `total tamu undangan ${total}`;
-           if (total !== 0) {
-             localStorage.setItem('guest', total)
-              totalGuest.value = parseInt(totalGuest.value) - 10;
-           }
-         })
-         addGuest.addEventListener('click',()=>{
-           const total = parseInt(localStorage.getItem('guest')) + 10;
-           totalGuest.value = parseInt(totalGuest.value) + 10;
-           totalGuestText.innerText =  `total tamu undangan ${total}`;
-           localStorage.setItem('guest', total)
-         })
+  const redGuest = document.getElementById("redGuest");
+  const addGuest = document.getElementById("addGuest");
+  const totalGuest = document.getElementById("totalGuest");
+  const totalGuestText = document.getElementById("totalGuestText");
+  const price = document.getElementById("price");
+  
+  const minParticipan = getLocalStorage("minParticipan");
+  totalGuestText.innerText = `total tamu undangan ${minParticipan}`;
+  redGuest.addEventListener('click',()=>{
+  const minParticipan = getLocalStorage("minParticipan");
+  const addParticipan = getLocalStorage("addParticipan");
+    if (addParticipan >= 10) {
+      const totalParticipan = addParticipan - 10;
+      totalGuestText.innerText =  `total tamu undangan ${minParticipan + totalParticipan}`;
+      setLocalStorage("addParticipan", totalParticipan)
+      totalGuest.value = getLocalStorage("addParticipan");
+      price.innerText = formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
+    }
+  })
+  addGuest.addEventListener('click',()=>{
+     const minParticipan = getLocalStorage("minParticipan");
+     const totalParticipan = getLocalStorage('addParticipan') + 10;
+      totalGuestText.innerText =  `total tamu undangan ${minParticipan + totalParticipan}`;
+      setLocalStorage("addParticipan", totalParticipan)
+      totalGuest.value = getLocalStorage("addParticipan");
+      price.innerText = formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
+  })
 
 // Btn Selanjutnya
          const btnNext = document.getElementById("next");
          btnNext.addEventListener("click", ()=>{
-           if(!localStorage.getItem('food')){
-             console.log("Food Kosong");
+          let error = false;
+           if(getLocalStorage("theme")){
+             document.getElementById("error-theme").classList.remove("d-block");
+             document.getElementById("error-theme").classList.add("d-none");
            }else{
-             console.log(localStorage.getItem('food'));
+             document.getElementById("error-theme").classList.remove("d-none");
+             document.getElementById("error-theme").classList.add("d-block");
+             error= true;
            }
+           if( getLocalStorage("snack") && getLocalStorage("snack").length !== 0){
+             document.getElementById("error-snack").classList.remove("d-block");
+             document.getElementById("error-snack").classList.add("d-none");
+           }else{
+             document.getElementById("error-snack").classList.remove("d-none");
+             document.getElementById("error-snack").classList.add("d-block");
+             error= true;
+           }
+           if(getLocalStorage("food")){
+             document.getElementById("error-food").classList.remove("d-block");
+             document.getElementById("error-food").classList.add("d-none");
+           }else{
+             document.getElementById("error-food").classList.remove("d-none");
+             document.getElementById("error-food").classList.add("d-block");
+             error= true;
+           }
+
+          var myModal = new bootstrap.Modal(document.getElementById('order1'), {
+  keyboard: false
+}) 
+
+if(error){
+   myModal.show()
+}
+         
          })
 
+// Package
+const getPackage = document.getElementById('package')
+const getPackageConvert = JSON.parse(decodeURIComponent(getPackage.value))
+  setLocalStorage('namePackage', getPackageConvert.name)
+  setLocalStorage('additionCost', getPackageConvert.additionCost)
+  setLocalStorage('minParticipan', getPackageConvert.minParticipan)
+  setLocalStorage('price', getPackageConvert.price)
+  totalGuestText.innerText =  `total tamu undangan ${getPackageConvert.minParticipan}`;
+  document.getElementById('price').innerText =  formatRupiah(getPackageConvert.price)
+  
+getPackage.addEventListener("change", (e)=>{
+  const data = decodeURIComponent(e.target.value)
+  const convertData = JSON.parse(data)
+  setLocalStorage('namePackage', convertData.name)
+  setLocalStorage('minParticipan', convertData.minParticipan)
+  setLocalStorage('additionCost', convertData.additionCost)
+  setLocalStorage('price', convertData.price)
+  totalGuestText.innerText =  `total tamu undangan ${convertData.minParticipan + getLocalStorage("addParticipan")}`;
+  document.getElementById('price').innerText =  formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
+
+})
        </script>
     <%- include('../partials/scripts.ejs') %>
   </body>
