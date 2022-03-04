@@ -17,6 +17,9 @@ exports.createOrder = async (req, res, next) => {
 
     const { id: userId } = req.user;
 
+    if (products?.length === 0 || !products) {
+      throw createError(400, "No products added");
+    }
     const editedProducts = products.map((product) => {
       return {
         ProductId: product.id,
@@ -28,6 +31,11 @@ exports.createOrder = async (req, res, next) => {
       attributes: ["id"],
       where: { [Op.or]: [{ name: package }, { slug: package }] },
     });
+
+    if (!selectedPackage) {
+      throw createError(400, "Package not found");
+    }
+
     const order = await Order.create(
       {
         UserId: userId,
@@ -55,9 +63,9 @@ exports.createOrder = async (req, res, next) => {
       package: selectedPackage.name,
       updatedAt: order.updatedAt,
       createdAt: order.createdAt,
-      redirectUrl: `/orders/${order.id}?step=3`,
+      redirectUrl: `/orders/${order.id}/step/3`,
     };
-    res.status(200).json(response("success", result));
+    res.status(201).json(response("success", result));
   } catch (error) {
     next(error);
   }
