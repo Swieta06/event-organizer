@@ -4,12 +4,13 @@ const userRoute = require("./user");
 const productRoute = require("./product");
 const adminRoute = require("./admin");
 const vendorRoute = require("./vendor");
-const { Order } = require("../../models");
+const orderRoute = require("./order");
 
 router.use("/admin", adminRoute);
 router.use("/users", userRoute);
 router.use("/products", productRoute);
 router.use("/vendors", vendorRoute);
+router.use("/orders", orderRoute);
 
 /* GET test api. */
 router.get("/test", async function (req, res, next) {
