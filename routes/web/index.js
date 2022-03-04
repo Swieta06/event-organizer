@@ -6,10 +6,7 @@ const userRoute = require("./userRoute");
 const ordersRoute = require("./orders");
 const mainRoute = require('./main');
 
-// get home page
-router.get("/", (req,res,next)=>{
-res.render("pages/index",{user:req.user})
-})
+
 
 /* Main page. */
 router.use("/", mainRoute);
