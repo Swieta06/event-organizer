@@ -19,7 +19,7 @@ const getViewsStep4 = async (req, res, next) => {
       ],
     });
     if (data)
-      res.renser("ppages/orderStep4", {
+      res.render("pages/orderStep4", {
         order: OrderId,
         totalPrice: data.totalPrice,
         paymentMethod: {
