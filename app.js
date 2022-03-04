@@ -54,6 +54,9 @@ app.use('/', router);
 router.get('/order',(req, res)=>{
     res.render("pages/orderStep1");
 })
+router.get('/order2',(req, res)=>{
+    res.render("pages/orderStep2");
+})
 // catch 404 and forward to error handler
 router.use(function (req, res, next) {
   next(createError(404));

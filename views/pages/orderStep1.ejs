@@ -147,7 +147,7 @@
                   <div class="col">
                 <div class="d-flex">
                   <button type="button" id="redGuest" class="btn btn-outline-purple text-purple-main">-</button>
-                  <input type="number" class="mx-2 w-25 text-center text-purple-main" disabled  value="0" id="totalGuest">
+                  <input type="text" class="mx-2 w-25 text-center text-purple-main" disabled  value="0" id="totalGuest">
                   <button type="button" id="addGuest" class="btn btn-outline-purple text-purple-main ">+</button>
                 </div>
 
@@ -608,17 +608,9 @@ const formatRupiah = (numb) => {
               let snack = [];
          for (let i = 0; i < lengthTheme; i++) {
             themeCheck[i].addEventListener('click', function(event){
-              let cardCheck = "";
               const getName = event.path[0].name;
-              if( getName === "theme"){
-                cardCheck= document.querySelectorAll('.card-check-theme');
-              }
-              if( getName === "food"){
-                cardCheck= document.querySelectorAll('.card-check-food');
-              }
-              if( getName === "snack"){
-                cardCheck= document.querySelectorAll('.card-check-snack');
-              }
+              cardCheck= document.querySelectorAll(`.card-check-${getName}`);
+              
                if (event.path[0].checked) {
                  for (let ab = 0; ab < cardCheck.length; ab++) {
                      cardCheck[ab].style.border = "1px solid #e5e5e5";
