@@ -235,14 +235,14 @@ a {
 }
 .text-neutral-100 {
   color: #0A0A0A !important;
-
+}
 .cursor-pointer{
   cursor: pointer;
 }
 
 /*testimoni*/
 #testimoni {
-  width: 1440px;
+  width: auto;
   height: 410px;
   left: 0px;
   top: 0px;
@@ -260,7 +260,7 @@ a {
 .testimoni-oval {
   height: 250px;
   width: 150px;
-  border-radius: 0 60px 180px 0;
+  border-radius: 0 80px 150px 0;
   margin-bottom: 60px;
   background: linear-gradient(90deg, rgba(119, 0, 212, 0.8) 0%, rgba(179, 67, 247, 0.8) 50%, rgba(148, 111, 252, 0.8) 100%);
 }
@@ -277,7 +277,7 @@ a {
 
 .pertanyaan-testimoni{
   display: inline-block;
-  transform: translate(-80%, -100%);
+  transform: translate(-78%, -120%);
   width: 340px;
   height: 108px;
   left: 0px;
@@ -297,9 +297,8 @@ a {
 
 .slider-testimoni{
   display: inline-block;
-  transform: translate(65%, -130%);
+  transform: translate(62%, -145%);
   display: inline-block;
-  padding: 24px;
   width: 802px;
   height: 223px;
   left: 0px;
@@ -307,6 +306,18 @@ a {
   margin: 0px 16px;
 }
 
+.border-jawaban-testimoni{
+  display: inline-block;
+  padding: 20px;
+  width: 202px;
+  height: 223px;
+  left: 0px;
+  top: 11.5px;
+  background: #F5F5F5;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  margin: 0px 16px;
+}
 .nama-testimoni {
   display: inline-block;
   font-family: Inter;
@@ -319,19 +330,6 @@ a {
   margin: 16px 0px;  
 }
 
-.border-jawaban-testimoni{
-  display: inline-block;
-  padding: 24px;
-  width: 202px;
-  height: 223px;
-  left: 0px;
-  top: 11.5px;
-  background: #F5F5F5;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
-  border-radius: 8px;
-  margin: 0px 16px;
-}
-
 .slick-prev, .slick-next {
   width: 50px;
   height: 50px;
@@ -339,10 +337,11 @@ a {
 }
 
 .slick-prev {
-  left: 5px;
+  left: -32px;
 }
 .slick-next {
-  right: 5px;
+  right: -32px;
+
 }
 .slick-prev:before, .slick-next:before {
   font-size: 40px;
@@ -350,7 +349,7 @@ a {
 }
 
 .slick-dots li button:before {
-  margin-top: 60px;
+  margin-top: 20px;
   font-size: 12px;
   color: #fff;
   text-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -358,4 +357,4 @@ a {
 }
 .slick-dots li.slick-active button:before {
   color: #dedede;
-}
+} 
