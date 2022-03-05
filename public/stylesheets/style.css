@@ -476,3 +476,9 @@ a {
       border: 3px solid #7940cc;
       filter: drop-shadow(0px 4px 11px #7940CC);
 }
+
+#testimonial {
+  background-image: url("../images/default/bgTestimonial.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
