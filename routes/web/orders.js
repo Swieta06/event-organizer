@@ -12,6 +12,9 @@ router.get("/:idOrder/", ordersControlers.getViewsStep3);
 /* Update order after click next step on page step 3 to step 4 */
 router.post("/:idOrder/edit", ordersControlers.updateOrder);
 
+/* Get Views Step 4 */
+router.get("/:OrderId", ordersControlers.getViewsStep4);
+
 /* POST Order Payments */
 router.post(
   "/:OrderId/payments",

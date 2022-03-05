@@ -32,7 +32,6 @@ module.exports = {
           key: "id",
         },
         onUpdate: "CASCADE",
-        allowNull: false,
       },
       customerName: {
         type: Sequelize.STRING,
