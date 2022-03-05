@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <%- include('../partials/head.ejs', {title: 'Home'}) %>
+
+  <body class="p-0">
+    <header>
+      <!-- Swita taruh sini -->
+       <%- include('../partials/navbar.ejs') %>
+       <%- include('login')%> 
+       
+    </header>
+    <main>
+      <p class="mt-5 bg-purple-pressed">test</p>
+       <div id="location">
+        <div class="location-sub text-center">
+          <h1 class="text-center">Tersebar di beberapa lokasi</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius tristique convallis eget tristique tincidunt. Vitae est pharetra est tortor vestibulum. Id quam mus sociis nisl. Id enim pellentesque laoreet ac</p>
+        </div>
+
+        <div class="container-fluid location-border">
+            <div class="head-border">
+                <div class="row">
+                    <div class="col">
+                      <h6>Jabodetabek</h6>
+                    </div>
+                    <div class="col">
+                        <a href=""></a>
+                        <h6 class="jabar">Jawa Barat</h6>
+                    </div>
+                    <div class="col">
+                        <h6>Jawa Tengah</h6>
+                    </div>
+                    <div class="col">
+                        <h6>Jawa Timur</h6>
+                    </div>
+                    <div class="col">
+                        <h6>Bali dan Nusa Tenggara</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body-border">
+                <div class="row">
+                    <div class="col">
+                      <p>Jakarta Selatan</p>
+                    </div>
+                    <div class="col">
+                        <p>Jakarta Pusat</p>
+                    </div>
+                    <div class="col">
+                        <p>Jakarta Timur</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <p>Jakarta Barat</p>
+                    </div>
+                    <div class="col">
+                        <p>Jakarta Utara</p>
+                    </div>
+                    <div class="col">
+                        <p>Kota Tanggerang</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <p>Kota Serang</p>
+                    </div>
+                    <div class="col">
+                        <p>Kota Cilegon</p>
+                    </div>
+                    <div class="col">
+                        <p>Kota Tanggerang Selatan</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <p>Kota Depok</p>
+                    </div>
+                    <div class="col">
+                        <p>Kota Bogor</p>
+                    </div>
+                    <div class="col">
+                        <p>Kota Sukabumi</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <p>Kota Bekasi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../partials/scripts.ejs') %>
+  </body>
+</html>

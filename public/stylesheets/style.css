@@ -358,3 +358,105 @@ a {
 .slick-dots li.slick-active button:before {
   color: #dedede;
 } 
+
+/*location*/
+#location {
+  background-color:#FFFFFF;
+  height: 615px;
+  width: auto;
+}
+
+.location-sub h1{
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 150%;
+letter-spacing: -0.022em;
+color: #0A0A0A;
+}
+
+.location-sub p {
+font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 160%;
+letter-spacing: -0.011em;
+margin:0 180px 60px;
+}
+
+.location-border{
+  width: 1118px;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  order: 5;
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}
+
+/* .slider-location{
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+} */
+
+.head-border{
+  padding: 16px 32px;
+}
+
+.head-border h6{
+  width: auto;
+  height: 30px;
+  left: 32px;
+  top: 16px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: -0.019em;
+  color: #0A0A0A;
+}
+
+.head-border h6:link, .head-border h6:visited {
+  text-decoration: none;
+  color: #ffffff;
+  transition: border-bottom 0.2s;
+}
+
+.head-border h6:hover, .head-border h6:active {
+  border-bottom: 3px solid #7940CC;;
+}
+
+.body-border{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 20px;
+  background: #FFFFFF;
+}
+
+.body-border .col {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px 24px 12px 12px;
+  position: static;
+  width: 335.33px;
+  height: 48px;
+  left: 0px;
+  top: 0px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 8px 8px;
+}
