@@ -17,8 +17,8 @@ module.exports = {
        {
          id: 1,
          name:"Event Organizer",
-         province:"Jawa Barat",
-         city:"Bekasi",
+         province:"jawa barat",
+         city:"bekasi",
          phone:"086725673319",
          createdAt: new Date(),
          updatedAt: new Date()
@@ -26,8 +26,8 @@ module.exports = {
        {
         id: 2,
         name:"EO Planner",
-        province:"Jawa Barat",
-        city:"Depok",
+        province:"jawa barat",
+        city:"depok",
         phone:"081725675532",
         createdAt: new Date(),
         updatedAt: new Date()
@@ -35,8 +35,8 @@ module.exports = {
       {
         id: 3,
         name:"Penyewa Tenda",
-        province:"Jawa Barat",
-        city:"Bekasi",
+        province:"jawa barat",
+        city:"bekasi",
         phone:"081725673319",
         createdAt: new Date(),
         updatedAt: new Date()
@@ -44,8 +44,8 @@ module.exports = {
       {
         id: 4,
         name:"Penyewa Tenda",
-        province:"Jawa Barat",
-        city:"Depok",
+        province:"jawa barat",
+        city:"depok",
         phone:"081725673319",
         createdAt: new Date(),
         updatedAt: new Date()
@@ -53,8 +53,8 @@ module.exports = {
       {
         id: 5,
         name:"Penyewa Tenda",
-        province:"Jakarta",
-        city:"Jakarta Selatan",
+        province:"jakarta",
+        city:"jakarta selatan",
         phone:"081725673319",
         createdAt: new Date(),
         updatedAt: new Date()
@@ -63,7 +63,7 @@ module.exports = {
      {}
    );
     await queryInterface.sequelize.query(
-      'ALTER SEQUENCE public."Vendors_id_seq" RESTART 3;'
+      'ALTER SEQUENCE public."Vendors_id_seq" RESTART 6;'
     );
   },
 
