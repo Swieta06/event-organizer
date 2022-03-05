@@ -4,7 +4,7 @@ const { ordersControlers } = require("../../controllers");
 const upload = require("../../middlewares/uploadPayment");
 
 /* GET Orders Page Step 1. */
-router.get("/", ordersControlers.getViews);
+router.get("/step/1", ordersControlers.getViews);
 
 /* GET Orders Page Step 2. */
 router.get("/step/2", ordersControlers.getViewsStep2);
