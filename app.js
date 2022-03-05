@@ -59,6 +59,14 @@ app.use(assignUser);
 // routes setup
 app.use("/", router);
 
+// custom middlewares: checkAPI
+app.use(checkAPI);
+// custom middlewares: assign user data to each response
+app.use(assignUser);
+
+// routes setup
+app.use("/", router);
+
 router.get('/order',(req, res)=>{
     res.render("pages/orderStep1");
 })
