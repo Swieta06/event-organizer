@@ -12,7 +12,6 @@ const assignUser = require("./middlewares/assignUser");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
-const flashMiddle = require("./middlewares/asignFlash");
 
 require("dotenv").config();
 
@@ -56,8 +55,6 @@ app.use(flash());
 app.use(checkAPI);
 // custom middlewares: assign user data to each response
 app.use(assignUser);
-// custom middleware : flash succes/error akan disimpan dan dirender di view redirect
-app.use(flashMiddle);
 
 // routes setup
 app.use("/", router);

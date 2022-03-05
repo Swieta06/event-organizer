@@ -13,6 +13,7 @@ const getAllVendors = async (req, res, next) => {
           sequelize.fn("lower", sequelize.col("city")),
           location.toLowerCase()
         ),
+
         include: [
           {
             model: Product,
