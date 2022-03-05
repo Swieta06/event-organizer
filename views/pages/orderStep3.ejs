@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<%- include('../partials/head.ejs', {title: 'Home' }) %>
+
+  <body class="p-0 bg-neutral-20">
+    <header>
+      <!-- Swita taruh sini -->
+      <%- include('../partials/navbar.ejs') %>
+        <%- include('login')%>
+    </header>
+    <!-- paket-step-3 -->
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+    <div class="container d-flex-col justify-content-center" id="customer-details">
+      <div class="card w-100 cust-card">
+        <div class="card-body cust-details-card">
+          <h2 class="fs-20 text-center" id="cust-details-title">Detail Pelanggan</h2>
+          <div class="mb-3">
+            <label for="paket-step-3" class="form-label fs-16">Nama Pemesan</label>
+            <input type="email" class="form-control form-cust border-neutral-40" id="cust-name" placeholder="Nama Pemesan">
+          </div>
+          <div class="mb-3">
+            <label for="paket-step-3" class="form-label fs-16">Nama Perusahaan/Organisasi</label>
+            <input type="text" class="form-control form-cust border-neutral-40" id="cust-company" placeholder="Nama Perusahaan">
+          </div>
+          <div class="mb-3">
+            <label for="paket-step-3" class="form-label fs-16">Nomor Telepon</label>
+            <input type="tel" class="form-control form-cust border-neutral-40" id="cust-telp" placeholder="Nomor telepon"
+              pattern="^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label fs-16">Alamat diselenggarakannya acara</label>
+            <textarea class="form-control form-cust-textarea border-neutral-40" id="event-address" rows="3"
+              placeholder="Nama Jalan, Gedung, No. Rumah, Kecamatan, Kota, Provinsi"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="paket-step-3" class="form-label fs-16">Kode Pos</label>
+            <input type="string" class="form-control form-cust border-neutral-40" id="cust-postal-code" placeholder="Kode Pos Kantor">
+          </div>
+        </div>
+      </div>
+      <!-- ======================================================================================= -->
+      <div class="card order-details">
+        <div class="card-body order-details-card">
+          <h2 class="fs-20 text-center" id="order-details-title">Rincian Pesanan</h2>
+          <div class="details-margin">
+            <h3 class="fs-16 mb-3">Paket yang diambil</h3>
+            <div class="d-flex justify-content-between">
+              <p class="text-neutral-80">Paket Silver<%# order.package.name %></p>
+              <p class="">Rp25.000.000<%# order.package.price %></p>
+            </div>
+          </div>
+          <hr class="price-line">
+          <div class="details-margin">
+            <h3 class="fs-16 mb-3">Tambahan lainnya</h3>
+            <div class="d-flex justify-content-between">
+              <p class="text-neutral-80">Kipas Air<%# order.package.name %></p>
+              <p class="">Rp600.000<%# order.package.price %></p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p class="text-neutral-80">Kursi Ragna<%# order.package.name %></p>
+              <p class="">Rp2000.000<%# order.package.price %></p>
+            </div>
+          </div>  
+          <hr class="price-line">
+          <div class="d-flex justify-content-between price-total">
+            <p class="text-purple-main fs-16">Total Harga<%# order.package.name %></p>
+            <p class="text-purple-main fs-16">Rp27.600.000<%# order.package.price %></p>
+          </div>
+          <div class="select-payment">
+          <select class="form-select form-select-lg mb-3 fs-16 text-neutral-60 form-cust" aria-label=".form-select-lg example">
+            <option selected hidden>Pilih Metode Pembayaran</option>
+            <option value="1"><span class="fs-16 text-neutral-90">Bank BCA (Dicek Manual)</span><br>
+              <span class="all-bank">Menerima transfer dari semua bank</span></option>
+              <option value="2"><span class="fs-16 text-neutral-90">Bank Mandiri (Dicek Manual)</span><br>
+                <span class="all-bank">Menerima transfer dari semua bank</span></option>
+                <option value="3"><span class="fs-16 text-neutral-90">Bank BNI (Dicek Manual)</span><br>           
+                  <span class="all-bank">Menerima transfer dari semua bank</span></option>
+                </select>
+          </div>
+          <div class="tnc">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="tnc-checkbox">
+              <label class="tnc-label text-neutral-80" for="exampleCheck1">Saya telah membaca dan menerima semua <a href="#" class="text-purple-main tnc-link">Syarat dan Ketentuan</a> yang berlaku, dan menyetujui untuk membuat pesanan</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ======================================================================================= -->
+      <div class="card open-wa-card">
+        <div class="row card-body align-items-center">
+          <div class="col-lg-9 p-0">
+            <label class="fs-16" id="text-whatsapp">Diskusi lebih lanjut melalui Whatsapp</label>
+            <label class="fs-12 text-purple-main">*Pesanan Anda otomatis tersimpan meskipun keluar dari halaman ini</label>
+          </div>
+          <div class="col-lg-3 p-0 mt-3 mt-lg-0">
+            <button class="btn-whatsapp"><i class="bi bi-whatsapp"></i> Buka Whatsapp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- paket-step-3 -->
+
+    <%- include('../partials/scripts.ejs') %>
+  </body>
+
+</html>
