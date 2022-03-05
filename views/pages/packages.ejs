@@ -37,12 +37,19 @@
                             </div>
                             </div>
                        <%})%>
-                       <a href="/orders/step/1?package=<%= package.name %>">
+                      <% if(user){%>
+                         <a href="/orders/step/1?package=<%= package.name %>">
                         <button type="button" class="btn  <%= package.name === "Dadakan" ? "btn-purple text-white":"btn-outline-purple text-purple-main"%>">
                         <i class="bi bi-cart3  <%= package.name === "Dadakan" ? "text-white":"text-purple-main "%>"></i> 
                         Pilih Paket
                         </button>
                         </a>
+                      <%}else{%>
+                          <button type="button" class="btn  <%= package.name === "Dadakan" ? "btn-purple text-white":"btn-outline-purple text-purple-main"%>" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <i class="bi bi-cart3  <%= package.name === "Dadakan" ? "text-white":"text-purple-main "%>"></i> 
+                          Pilih Paket
+                          </button>
+                      <%}%>
                     </div>
                   </div>
                 <%})%>

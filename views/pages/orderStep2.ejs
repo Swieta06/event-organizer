@@ -28,9 +28,8 @@
        <%- include('login')%> 
     </header>
     <main>
-      <p class="mt-5">test</p>
-      <div class="container-fluid">
-        <div class="row justify-content-center">
+      <div class="container-fluid mt-5 pt-3">
+        <div class="row justify-content-center ">
           <div class="col-10 bg-neutral-10 px-5  py-5 rounded-3">
             <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
 
@@ -39,78 +38,75 @@
                                 {   
                                     id: "1",
                                     name: "custom tema",
-                                    img: "customtheme.png",
+                                    photo: "customtheme.png",
                                     price: 10000,
                                     stock: 10,
                                 },
                                 {
                                     id: "2",
                                     name: "colorful",
-                                    img: "colorfultheme.png",
+                                    photo: "colorfultheme.png",
                                     price: 20000,
                                     stock: 10,
                                 },
                                 {
                                     id: "3",
                                     name: "gold & white",
-                                    img: "goldwhitetheme.png",
+                                    photo: "goldwhitetheme.png",
                                     price: 40000,
                                     stock: 10,
                                 },
                                 {
                                     id: "4",
                                     name: "Monokrom",
-                                    img: "Monokromtheme.png",
+                                    photo: "Monokromtheme.png",
                                     price: 70000,
                                     stock: 10,
                                 },
                                 {
                                     id: "5",
                                     name: "Halloween",
-                                    img: "Halloweentheme.png",
+                                    photo: "Halloweentheme.png",
                                     price: 26000,
                                     stock: 10,
                                 },
                                 {
                                     id: "6",
                                     name: "custom tema",
-                                    img: "customtheme.png",
+                                    photo: "customtheme.png",
                                      price: 90000,
                                      stock: 10,
                                 },
                                 {
                                     id: "7",
                                     name: "colorful",
-                                    img: "colorfultheme.png",
+                                    photo: "colorfultheme.png",
                                      price: 20000,
                                      stock: 10,
                                 },
                                 {
                                     id: "8",
                                     name: "gold & white",
-                                    img: "goldwhitetheme.png",
+                                    photo: "goldwhitetheme.png",
                                      price: 80000,
                                      stock: 10,
                                 },
                                 {
                                     id: "9",
                                     name: "Monokrom",
-                                    img: "Monokromtheme.png",
+                                    photo: "Monokromtheme.png",
                                      price: 20000,
                                      stock: 10,
                                 },
                                 {
                                     id: "10",
                                     name: "Halloween",
-                                    img: "Halloweentheme.png",
+                                    photo: "Halloweentheme.png",
                                      price: 20000,
                                      stock: 10,
                                 }
                             ];
-
                             %>
-
-                          
                 <%- include('cardStep2.ejs', {id: "talent",title: "Talent", datas: themes, isCalculator: false}) %>
                 <%- include('cardStep2.ejs', {id: "airConditioner",title: "Pendingin Udara", datas: themes, isCalculator: true}) %>
                 <%- include('cardStep2.ejs', {id: "chair",title: "Kursi", datas: themes, isCalculator: true}) %>

@@ -20,6 +20,17 @@
         width: 102%;
         justify-content: space-between;
     }
+.fade-in-image {
+  animation: fadeInUp 1.5s;
+}
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 </style>
   <body class="p-0" style="background-color:  #E5E5E5;">
     <header>
@@ -44,20 +55,17 @@
 </div>
       <p class="mt-5">test</p>
       <div class="container-fluid" id="orderStep1" >
-       
-    
         <div class="row justify-content-center">
-          <div class="col-10 bg-neutral-10 px-5  py-5 rounded-3">
+          <div class="col-10 bg-neutral-10 px-5  py-4 rounded-3">
             <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
-            <div class="row mt-5">
-              <% location = ["Jakarta","Bandung", "Surabaya", "Medan", "Denpasar"] %>
+            <div class="row mt-3">
               <div class="col">
                 <p>pilih lokasi</p>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" id="location">
                       <option selected>Tentukan lokasi anda</option>
-                  <% for (let locIndex = 0; locIndex < location.length; locIndex++) { %>
-                      <option value="<%= location[locIndex]  %>"><%= location[locIndex]  %></option>
-                  <%} %>
+                  <% location.map((location)=>{ %>
+                      <option value="<%= location %>"><%= location  %></option>
+                  <%}) %>
                 </select>
               </div>
               <div class="col ">
@@ -94,49 +102,19 @@
               <div class="col">
                 <p>paket yang dipilih</p>
 
-                <%packages= [
-                  {
-                    id: "1",
-                    name: "Paket Silver",
-                    minParticipant: 30,
-                    additionCost: 100000,
-                    price: 25000000,
-                    maxSnack: 2,
-                    selected: false,
-                },
-                  {
-                    id: "2",
-                    name: "Paket Medium",
-                    minParticipant: 60,
-                    additionCost: 200000,
-                    price: 50000000,
-                    maxSnack: 2,
-                    selected: true,
-                },
-                  {
-                    id: "3",
-                    name: "Paket Gold",
-                    minParticipant: 90,
-                    additionCost: 300000,
-                    price: 75000000,
-                    maxSnack: 3,
-                    selected: false,
-                },
-                
-                ];%>
                 <select class="form-select" aria-label="Default select example" id="package">
-                  <% for (let packageIndex = 0; packageIndex < packages.length; packageIndex++) { %>
+                  <% packages.map((package)=>{ %>
                     <% const packageValue = {
-                       name : packages[packageIndex].name,
-                       minParticipan : packages[packageIndex].minParticipant,
-                       additionCost : packages[packageIndex].additionCost,
-                       price : packages[packageIndex].price,
+                       name : package.name,
+                       minParticipan : package.minParticipant,
+                       additionCost : package.additionCost,
+                       price : package.price,
                     };
                     
                       const convert =  encodeURIComponent(JSON.stringify(packageValue))
                     %>
-                        <option <%= packages[packageIndex].selected ? "selected" : "" %>  value="<%= convert %>"> <%= packages[packageIndex].name + " - Kapasitas " + packages[packageIndex].minParticipant + " Orang"  %> </option>
-                 <% } %>
+                        <option selected="<%= package.selected %>"  value="<%= convert %>"> <%= package.name + " - Kapasitas " + package.minParticipant + " Orang"  %> </option>
+                 <% }) %>
                 </select>
               </div>
               <div class="col">
@@ -164,7 +142,13 @@
           </div>
         </div>
 
-          <div style=" margin-bottom: 100px;" class="row justify-content-center mt-4">
+<div class="d-flex justify-content-center mt-5 d-none align-items-center" id="loadingBar">
+  <span class="spinner-border text-purple-main" role="status" aria-hidden="true"></span>
+  <span class="fs-24">&nbsp;Loading...</span>
+</span>
+</div>
+
+          <div style=" margin-bottom: 100px;" class="row fade-in-image justify-content-center mt-4 d-none" id="eventInformation">
               <div  class="col-10 position-relative  bg-neutral-10 text-center px-5 py-5 rounded-3">
                   <h1 class="text-capitalize text-neutral-100 fw-bold fs-24">detail acara</h1>
                   <div class="row">
@@ -192,52 +176,6 @@
                       <div class="alert alert-danger d-none" role="alert" id="error-theme">
                         Mohon pilih tema sebelum melanjutkan ke langkah berikutnya
                       </div>
-                      <%
-                        const themes = [
-                            {
-                                name: "custom tema",
-                                img: "customtheme.png"
-                            },
-                            {
-                                name: "colorful",
-                                img: "colorfultheme.png"
-                            },
-                            {
-                                name: "gold & white",
-                                img: "goldwhitetheme.png"
-                            },
-                            {
-                                name: "Monokrom",
-                                img: "Monokromtheme.png"
-                            },
-                            {
-                                name: "Halloween",
-                                img: "Halloweentheme.png"
-                            },
-                            {
-                                name: "custom tema",
-                                img: "customtheme.png"
-                            },
-                            {
-                                name: "colorful",
-                                img: "colorfultheme.png"
-                            },
-                            {
-                                name: "gold & white",
-                                img: "goldwhitetheme.png"
-                            },
-                            {
-                                name: "Monokrom",
-                                img: "Monokromtheme.png"
-                            },
-                            {
-                                name: "Halloween",
-                                img: "Halloweentheme.png"
-                            },
-                        ];
-
-                        const lengthThemes = themes.length; 
-                      %>
 
         <div class="slide-show-control">
              <button id="btnLefttheme" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
@@ -253,12 +191,13 @@
                     <div class="row my-1">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18"><%= data.name %></label></div>
                       <div class="col-2 radio-check">
-                        <input class="form-check-input" type="radio" name="theme" id="<%= data.name %>" value="" aria-label="..."/>
+                        <input class="form-check-input" type="radio" name="theme" id="<%= data.id %>" value="" aria-label="..."/>
                       </div>
                     </div>
                  </div>
                   <div class="card-body p-0" style="white-space: initial;">
-                           <img class="w-100" src="images/default/<%= data.img%>" alt=""/>
+                           <!-- <img class="w-100" src="images/default/<%= data.img%>" alt=""/> -->
+                           <img class="w-100" src="<%= data.photo%>" alt=""/>
                            <!-- <p class="w-100 text-start" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
                   </div>
                 </div>
@@ -312,54 +251,60 @@
       </div>
     </footer>
   <script>
-
-         // Control Local Storage
 const structurData = {
   namePackage: "",
   minParticipan: "",
   additionCost : 0,
   addParticipan : 0,
-}
-localStorage.setItem('data', JSON.stringify(structurData))
-const setLocalStorage = (name, value) =>{
-  const getData = JSON.parse(localStorage.getItem('data'))
-  getData[name] = value;
-  localStorage.setItem('data', JSON.stringify(getData));
-}
+  products : [],
+};
+
+localStorage.setItem('data', JSON.stringify(structurData));
+
 const getLocalStorage = (name) =>{
-  const getData = JSON.parse(localStorage.getItem('data'))
+  const getData = JSON.parse(localStorage.getItem('data'));
   return getData[name];
-}
+};
 const formatRupiah = (numb) => {
   const format = numb.toString().split('').reverse().join('');
   const convert = format.match(/\d{1,3}/g);
   const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
   return rupiah;
-}
-//     const snackCheck = document.getElementsByClassName("snack-check");
-   
-//  snackCheck[0].addEventListener('click', function(event){
-//         console.log(event.path[0].id);
-//       });
+};
 
+const setLocalStorage = (name, value) => {
+  const getData = JSON.parse(localStorage.getItem('data'));
+  getData[name] = value;
+  localStorage.setItem('data', JSON.stringify(getData));
+};
+const setLocalStorageProduct = ( value, value2 = 0) => {
+  const getData = JSON.parse(localStorage.getItem("data"));
+    getData["products"]
+      .push({
+        id: value,
+        qty: value2,
+      });
+  localStorage.setItem("data", JSON.stringify(getData));
+};
+</script>
 
-//  const foodCheck = document.getElementsByClassName("food-check");
-//  foodCheck[0].addEventListener('click', function(event){
-//         console.log(event.path[0].id);
-//       });
-    //   Themes
-           function themesControl(title) {
+    <script>
+   function themesControl(title) {
           const pivot = document.querySelector(`.${"pivot"+title}`).id;
           const sortingId = parseInt(pivot.charAt(pivot.length - 1))
           const dataLength = document.querySelectorAll(`.slide-show-item-${title}`).length 
           const totalItemShow = 5;
           
-          
           const btnLeft = document.getElementById(`btnLeft${title}`);
           const btnRight = document.getElementById(`btnRight${title}`);
+            console.log(sortingId);
 
           if(sortingId === 1){
              btnLeft.style.visibility = 'hidden';
+           }
+
+           if(dataLength <=5 ){
+             btnRight.style.visibility = 'hidden';
            }
 
          btnRight.addEventListener('click', ()=>{
@@ -392,6 +337,7 @@ const formatRupiah = (numb) => {
           const getData = parseInt(pivot.charAt(pivot.length - 1))
           const hitung =  getData - 2 ;
           const rubah = getData - 1;
+
           for (let i = 1; i <= dataLength; i++) {
              document.getElementById(`${title+i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
              document.getElementById(`${title+i}`).style.transition = "all 1s ease 0s";
@@ -407,137 +353,9 @@ const formatRupiah = (numb) => {
              btnLeft.style.visibility = 'hidden';
             }
           });
-          }
-
-          const dataBE = {
-            vendors : [],
-            makanan : [
-                {
-                    id:1,
-                    name: 'nasi goreng',
-                    photo: "nasigoreng.png",
-                    desc:"Dilengkapi dengan isian potongan ayam, telur, sosis, bakso, dan acar",
-                },
-                {
-                    id:2,
-                    name: 'nasi kuning',
-                    photo: "nasikuning.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:3,
-                    name: 'nasi uduk',
-                    photo: "nasiuduk.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:4,
-                    name: 'mie seafood',
-                    photo: "mieseafood.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:5,
-                    name: 'soto mie',
-                    photo: "sotomie.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:6,
-                    name: 'nasi goreng',
-                    photo: "nasigoreng.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:7,
-                    name: 'nasi kuning',
-                    photo: "nasikuning.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:8,
-                    name: 'nasi uduk',
-                    photo: "nasiuduk.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:9,
-                    name: 'mie seafood',
-                    photo: "mieseafood.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-                {
-                    id:10,
-                    name: 'soto mie',
-                    photo: "sotomie.png",
-                    desc:"Dilengkapi dengan isian ayam suwir, telur, sayur, dan saus",
-                },
-        ],
-        snack : [
-           {
-                    id:1,
-                    name: 'sus vla',
-                    photo: "susvla.png",
-                    desc:"",
-                },
-                {
-                    id:2,
-                    name: 'brownies',
-                    photo: "brownies.png",
-                    desc:"",
-                },
-                {
-                    id:3,
-                    name: 'risoles',
-                    photo: "risoles.png",
-                    desc:"",
-                },
-                {
-                    id:4,
-                    name: 'pastel',
-                    photo: "pastel.png",
-                    desc:"",
-                },
-                {
-                    id:5,
-                    name: 'mini sandwich',
-                    photo: "minisandwich.png",
-                    desc:"",
-                },
-                {
-                    id:6,
-                    name: 'nasi goreng',
-                    photo: "nasigoreng.png",
-                    desc:"",
-                },
-                {
-                    id:7,
-                    name: 'nasi kuning',
-                    photo: "nasikuning.png",
-                    desc:"",
-                },
-                {
-                    id:8,
-                    name: 'nasi uduk',
-                    photo: "nasiuduk.png",
-                    desc:"",
-                },
-                {
-                    id:9,
-                    name: 'mie seafood',
-                    photo: "mieseafood.png",
-                    desc:"",
-                },
-                {
-                    id:10,
-                    name: 'soto mie',
-                    photo: "sotomie.png",
-                    desc:"",
-                },
-        ]
           };
-
-         const cardControl = (title, customTitle) =>{
+// Card Control
+   const cardControl = (title, customTitle) =>{
            return `
            <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih ${customTitle}</p>
               <div class="alert alert-danger d-none" role="alert" id="error-${title}">
@@ -549,51 +367,96 @@ const formatRupiah = (numb) => {
              </div>
              <div class="slide-show-ari theme-check"  id="${title}Item"></div>
                       `
-          }
-          const card = (type, title,themeId, data)=>{
+          };
+   const card = (type, title, id, data)=>{
             return `
-             <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${themeId === 1 ? `pivot${title}`: ""}" id="${title+themeId}" >
+             <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${id === 1 ? `pivot${title}`: ""}" id="${title+id}" >
                 <div class="card ${"card-check-"+title}">
                   <div class="card-header bg-white">
                     <div class="row my-1 ">
                       <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${data.name}</label></div>
                       <div class="col-2">
-                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="${title}" id="${data.name}" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" name="snack" value="" id="${data.name}">`}
-                        
+                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="${title}" id="${data.id}" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" name="snack" value="" id="${data.id}">`}
                       </div>
                     </div>
                  </div>
                   <div class="card-body p-0" style="white-space: initial;">
-                           <img class="w-100" src="images/default/${data.photo}" alt=""/>
+                           <img class="w-100" src="${data.photo}" alt=""/>
                            ${data.desc ? `<p class="w-100 mt-2 text-start px-1" > ${data.desc} </p>`:""}
                   </div>
                 </div>
            </div>`;
+          };
+ 
+   const resetBorderCard = (title) =>{
+     const cardCheckSnack = document.querySelectorAll(`.card-check-${title}`);
+     for (let i = 0; i < cardCheckSnack.length; i++) {
+       cardCheckSnack[i].style.border = "1px solid #e5e5e5";
+       cardCheckSnack[i].children[0].children[0].children[1].children[0].checked = false;
+     }
+   }
+   const loadViewApi = (data) => {
+     document.getElementById('food').innerHTML = cardControl('food', "menu utama");
+     document.getElementById('snack').innerHTML = cardControl('snack', "jenis snack");
+
+      data.products.makanan.forEach((data, foodIndex)=>{
+              document.getElementById('foodItem').innerHTML += card("radio","food",foodIndex + 1, data);
+          });
+      data.products.snack.forEach((data, snackIndex)=>{
+          document.getElementById('snackItem').innerHTML += card("checkbox","snack",snackIndex + 1, data);
+      });
+
+      themesControl("food");
+      themesControl("snack");
+      themesControl("theme");
+
+      resetBorderCard("snack")
+      resetBorderCard("food")
+      resetBorderCard("theme")
+      
+      document.getElementById("costumPulpen").value = ""
+      document.getElementById("eventConcept").value = "";
+      const getDataLs = JSON.parse(localStorage.getItem("data"));
+      getDataLs['products'] = [];
+      getDataLs['food'] = "";
+      getDataLs['theme'] = "";
+      getDataLs['concept'] = "";
+      getDataLs['costumPulpen'] = "";
+      localStorage.setItem("data", JSON.stringify(getDataLs))
+
+   }
+
+  document.getElementById("location").addEventListener("change", ()=>{
+      const eventInformation = document.getElementById("eventInformation");
+      const loadingBar = document.getElementById("loadingBar");
+      eventInformation.classList.add("d-none") 
+      loadingBar.classList.remove("d-none") 
+
+        setTimeout(async() => {
+          try {
+            const getProduct  = await fetch("/api/v1/vendors?location=bekasi");
+            const {data} = await getProduct.json();
+            eventInformation.classList.remove("d-none")
+            loadingBar.classList.add("d-none");
+            // load View API
+            loadViewApi(data)
+            console.log(data);
+            loadViewChecked()
+          } catch (error) {
+            console.log(error);
           }
+      }, 1000);
+  })
 
-          document.getElementById('food').innerHTML = cardControl('food', "menu utama");
-          document.getElementById('snack').innerHTML = cardControl('snack', "jenis snack");
-          dataBE.makanan.forEach((data, i)=>{
-              let themeId = i+1
-              document.getElementById('foodItem').innerHTML += card("radio","food",themeId, data);
-          })
-          dataBE.snack.forEach((data, i)=>{
-              let themeId = i+1
-              document.getElementById('snackItem').innerHTML += card("checkbox","snack",themeId, data);
-          })
+    </script>
 
-          themesControl("food");
-          themesControl("snack");
-          themesControl("theme");
-  
-       </script>
        <script>
          const eventConcept = document.getElementById("eventConcept");
          eventConcept.addEventListener("change", (e)=>{
             if(e.target.value !== ""){
-              setLocalStorage('eventConcept', e.target.value)
+              setLocalStorage('concept', e.target.value)
             }else{
-              setLocalStorage('eventConcept', "")
+              setLocalStorage('concept', "")
             }
          });
 
@@ -603,9 +466,10 @@ const formatRupiah = (numb) => {
           setLocalStorage(e.target.name, e.target.value)
         })
 
-         const themeCheck = document.getElementsByClassName("theme-check");
+
+ const loadViewChecked = () => {
+     const themeCheck = document.getElementsByClassName("theme-check");
           const lengthTheme = themeCheck.length;
-              let snack = [];
          for (let i = 0; i < lengthTheme; i++) {
             themeCheck[i].addEventListener('click', function(event){
               const getName = event.path[0].name;
@@ -618,17 +482,18 @@ const formatRupiah = (numb) => {
                        cardCheck[ab].style.border = "3px solid #7940CC";
                      }
               }
+              console.log(getName);
                   if(getName === "snack"){
-                    snack.push(event.path[0].id)
-                    setLocalStorage(getName, snack )
+                    setLocalStorageProduct(event.path[0].id)
                   }else{
                     setLocalStorage(getName, event.path[0].id )
                   }
                 event.path[0].parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
                  
                }else{
-                 snack.pop(event.path[0].id)
-                 console.log(event.path[0].id);
+                 const product = getLocalStorage('product').filter((product)=> product.id !== event.path[0].id);
+                 setLocalStorage('product', product)
+                //  console.log(event.path[0].id);
                   setLocalStorage(getName, snack );
                  for (let ab = 0; ab < cardCheck.length; ab++) {
                      cardCheck[ab].style.border = "1px solid #e5e5e5"; 
@@ -639,6 +504,8 @@ const formatRupiah = (numb) => {
                }
             });
          }
+   }
+         
 
 
 
