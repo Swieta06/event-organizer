@@ -17,14 +17,33 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Vendor.init({
-    name: DataTypes.STRING,
-    province: DataTypes.STRING,
-    city: DataTypes.STRING,
-    phone: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Vendor',
-  });
+  Vendor.init(
+    {
+      name: DataTypes.STRING,
+      province: {
+        type: DataTypes.STRING,
+        set(val) {
+          this.setDataValue("province", val.toLowerCase());
+        },
+        get() {
+          return this.getDataValue("province").toLowerCase();
+        },
+      },
+      city: {
+        type: DataTypes.STRING,
+        set(val) {
+          this.setDataValue("city", val.toLowerCase());
+        },
+        get() {
+          return this.getDataValue("city").toLowerCase();
+        },
+      },
+      phone: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Vendor",
+    }
+  );
   return Vendor;
 };
