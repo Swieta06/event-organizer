@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Payment.belongsTo(models.Order);
-      Payment.belongsTo(models.PaymentMethod);
     }
   }
   Payment.init(
@@ -26,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      bankName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       bankHolder: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -36,10 +39,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       price: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      paidAt: {
-        type: DataTypes.DATE,
         allowNull: false,
       },
     },

@@ -11,6 +11,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      slug: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
       minParticipant: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,6 +35,10 @@ module.exports = {
       },
       features: {
         type: Sequelize.TEXT,
+      },
+      minOrderTime: {
+        type: Sequelize.INTEGER,
+        defaultValue: 7,
       },
       createdAt: {
         allowNull: false,
