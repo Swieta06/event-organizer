@@ -5,9 +5,9 @@ const { body, validationResult } = require('express-validator');
 const response = require('../../utils/response');
 
 route.post("/register",
-    body('nama').notEmpty().withMessage('Tidak boleh kosong!'),
-    body('email').notEmpty().withMessage('Tidak boleh kosong!').isEmail().withMessage('Email tidak valid!'),
-    body('password').notEmpty().withMessage('Tidak boleh kosong!').isLength({ min: 5 }),
+    body('nama').notEmpty().withMessage('Nama tidak boleh kosong!'),
+    body('email').notEmpty().withMessage('Email tidak boleh kosong!').isEmail().withMessage('Email tidak valid!'),
+    body('password').notEmpty().withMessage('Password tidak boleh kosong!').isLength({ min: 5 }),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -32,8 +32,8 @@ route.post("/register",
     Auth.register);
 
 route.post("/login",
-    body('email').notEmpty().withMessage('Tidak boleh kosong!').isEmail().withMessage('Email tidak valid!'),
-    body('password').notEmpty().withMessage('Tidak boleh kosong!'),
+    body('email').notEmpty().withMessage('Email tidak boleh kosong!').isEmail().withMessage('Email tidak valid!'),
+    body('password').notEmpty().withMessage('Password tidak boleh kosong!'),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

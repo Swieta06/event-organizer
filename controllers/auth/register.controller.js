@@ -30,7 +30,7 @@ async function register(req, res) {
 
     } catch (error) {
         req.flash("error", "Internal server error");
-        res.status(500).json(response('Internal server error', null, error));
+        next(error);
     }
 }
 

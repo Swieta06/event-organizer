@@ -10,7 +10,7 @@ async function login(req, res) {
         res.render("pages/index", { title: "Express" });
     } catch (error) {
         req.flash("error", "Internal server error");
-        res.status(500).json(response('Internal server error', null, error));
+        next(error);
     }
 }
 
