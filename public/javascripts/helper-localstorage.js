@@ -16,3 +16,12 @@ const setLocalStorageProduct = ( value, value2 = 0) => {
       });
   localStorage.setItem("data", JSON.stringify(getData));
 };
+const setLocalStorageSnack = ( value, value2 = 0) => {
+  const getData = JSON.parse(localStorage.getItem("data"));
+    getData["snack"]
+      .push({
+        id: value,
+        qty: value2,
+      });
+  localStorage.setItem("data", JSON.stringify(getData));
+};

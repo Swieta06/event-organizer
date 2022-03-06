@@ -76,14 +76,8 @@ function sliderControl(title) {
   });
 };
 
-   const cardControl = (title, customTitle) => {
+   const viewBtnSlider = (title) => {
      return `
-           <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih ${customTitle}</p>
-              <div class="alert alert-danger d-none" role="alert" id="error-${title}">
-                        Mohon pilih ${
-                          title === "food" ? "Menu" : "Snack"
-                        } sebelum melanjutkan ke langkah berikutnya
-              </div>
             <div class="slide-show-control">
                 <button id="btnLeft${title}" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
                 <button id="btnRight${title}" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>

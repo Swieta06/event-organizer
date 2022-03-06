@@ -60,13 +60,16 @@
             <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
             <div class="row mt-3">
               <div class="col">
-                <p>pilih lokasi</p>
+                <p>Pilih lokasi</p>
                 <select class="form-select" aria-label="Default select example" id="location">
                       <option selected>Tentukan lokasi anda</option>
                   <% location.map((location)=>{ %>
                       <option value="<%= location %>"><%= location  %></option>
                   <%}) %>
                 </select>
+                 <span class="text-danger text-end fs-16 mt-1 d-none" role="alert" id="error-location">
+                    Lokasi wajib terisi.
+              </span>
               </div>
               <div class="col ">
                 <p>tanggal diselenggarakan acara</p>
@@ -105,10 +108,10 @@
                 <select class="form-select" aria-label="Default select example" id="package">
                   <% packages.map((package)=>{ %>
                     <% const packageValue = {
-                       name : package.name,
+                       package : package.name,
                        minParticipan : package.minParticipant,
                        additionCost : package.additionCost,
-                       price : package.price,
+                       totalPrice : package.price,
                     };
                     
                       const convert =  encodeURIComponent(JSON.stringify(packageValue))
@@ -149,27 +152,51 @@
 </div>
 
           <div style=" margin-bottom: 100px;" class="row fade-in-image justify-content-center mt-4 d-none" id="eventInformation">
-              <div  class="col-10 position-relative  bg-neutral-10 text-center px-5 py-5 rounded-3">
+              <div class="col-10 position-relative  bg-neutral-10 text-center px-5 py-5 rounded-3">
                   <h1 class="text-capitalize text-neutral-100 fw-bold fs-24">detail acara</h1>
-                  <div class="row">
-                    <div class="col-12 position-relative">
 
-                      <!-- Food -->
-                  <div class="food" id="food"></div>
-                      <!-- Food -->
+                  <!-- Food -->
+                  <div class="row mt-4">
+                    <div class="col-12 position-relative">
+                      <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih vendor makanan</p>
+                      <div class="alert alert-danger d-none" role="alert" id="vendor-theme">
+                        Mohon pilih tema sebelum melanjutkan ke langkah berikutnya
+                      </div>
+                       <div class="food" id="vendor"></div>
                     </div>
                   </div>
-                  <div class="row mt-5">
-                    <div class="col-12 position-relative">
 
-                      <!-- Food -->
-                  <div class="snack" id="snack"></div>
-                      <!-- Food -->
+                  <!-- Food -->
+                  <div class="row mt-4">
+                    <div class="col-12 position-relative">
+                       <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih Menu Utama  </p>
+                        <div class="alert alert-danger d-none" role="alert" id="error-food">
+                           Mohon Menu Utama sebelum melanjutkan ke langkah berikutnya
+                        </div>
+                       <div class="food" id="food"></div>
+                    </div>
+                  </div>
+
+                  <!-- Snack -->
+                  <div class="row mt-4">
+                    <div class="col-12 position-relative">
+                      <div class="row">
+                        <div class="col-11">
+                          <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih Jenis Snack  </p>
+                        </div>
+                        <div class="col-1">
+                          <p class="text-neutral-80 text-center fs-18 bg-purple-surface py-2 rounded-pill">0/2</p>
+                        </div>
+                      </div>
+                        <div class="alert alert-danger d-none" role="alert" id="error-snack">
+                             Mohon Pilih Snack sebelum melanjutkan ke langkah berikutnya
+                        </div>
+                       <div class="snack" id="snack"></div>
                     </div>
                   </div>
                 
 <!-- Themes -->
-<div class="row mt-5">
+<div class="row mt-4">
   <div class="col-12 position-relative">
         <div class="themes" >
                       <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih tema acara</p>
@@ -220,10 +247,16 @@
       <option value="indoor" >Indoor</option>
       <option value="outdoor">Outdoor</option>
     </select>
+      <div class="alert alert-danger mt-2 d-none" role="alert" id="error-concept">
+         Konsep Wajib terisi.
+    </div>
   </div>
   <div class="col">
     <p>Tulis nama untuk souvenir costum pulpen</p>
-      <input type="text" name="costumPulpen" class="form-control" id="costumPulpen" placeholder="">
+    <input type="text" name="costumPulpen" class="form-control" id="costumPulpen" placeholder="">
+    <div class="alert alert-danger mt-2 d-none" role="alert" id="error-costumPulpen">
+        Cutom Pulpen Wajib terisi.
+   </div>
   </div>
 </div>
 
@@ -241,153 +274,36 @@
             </div>
             <div class="col-7 text-center">
               <p class="mb-1 mt-2">total (1 paket)</p>
-              <p class="fs-18" id="price">25.000.000</p>
+              <p class="fs-18" id="totalPrice">25.000.000</p>
             </div>
             <div class="col-2 text-end">
-              <button type="button" class="btn w-100 text-white btn-purple" id="next" >Selanjutnya</button>
+              <button type="button" class="btn w-100 text-white btn-purple" id="next2" >Selanjutnya</button>
             </div>
           </div>
         </div>
       </div>
     </footer>
+
+    <script src="/javascripts/helper-localstorage.js"></script>
+    <script src="/javascripts/helper.js"></script>
+    <script src="/javascripts/slider-card.js"></script>
+    <script src="/javascripts/card-view.js"></script>
+    <script src="/javascripts/control-informasi-acara.js"></script>
   <script>
 const structurData = {
-  namePackage: "",
+  package: "",
   minParticipan: "",
   additionCost : 0,
   addParticipan : 0,
-  products : [],
+  snack : [],
 };
 
 localStorage.setItem('data', JSON.stringify(structurData));
-
-const getLocalStorage = (name) =>{
-  const getData = JSON.parse(localStorage.getItem('data'));
-  return getData[name];
-};
-const formatRupiah = (numb) => {
-  const format = numb.toString().split('').reverse().join('');
-  const convert = format.match(/\d{1,3}/g);
-  const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
-  return rupiah;
-};
-
-const setLocalStorage = (name, value) => {
-  const getData = JSON.parse(localStorage.getItem('data'));
-  getData[name] = value;
-  localStorage.setItem('data', JSON.stringify(getData));
-};
-const setLocalStorageProduct = ( value, value2 = 0) => {
-  const getData = JSON.parse(localStorage.getItem("data"));
-    getData["products"]
-      .push({
-        id: value,
-        qty: value2,
-      });
-  localStorage.setItem("data", JSON.stringify(getData));
-};
 </script>
 
-    <script>
-   function themesControl(title) {
-          const pivot = document.querySelector(`.${"pivot"+title}`).id;
-          const sortingId = parseInt(pivot.charAt(pivot.length - 1))
-          const dataLength = document.querySelectorAll(`.slide-show-item-${title}`).length 
-          const totalItemShow = 5;
-          
-          const btnLeft = document.getElementById(`btnLeft${title}`);
-          const btnRight = document.getElementById(`btnRight${title}`);
-            console.log(sortingId);
-
-          if(sortingId === 1){
-             btnLeft.style.visibility = 'hidden';
-           }
-
-           if(dataLength <=5 ){
-             btnRight.style.visibility = 'hidden';
-           }
-
-         btnRight.addEventListener('click', ()=>{
-          const pivot = document.querySelector(`.${"pivot"+title}`).id;
-          const getData = parseInt(pivot.charAt(pivot.length - 1))
-          const pivotBreak = dataLength - totalItemShow + 1; 
-          const hitung = (getData  > pivotBreak) ? pivotBreak : getData;
-
-          for (let i = 1; i <= dataLength; i++) {
-             document.getElementById(`${title+i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
-             document.getElementById(`${title+i}`).style.transition = "all 1s ease 0s";
-           }
-           const addPivot = getData+1;
-             if(getData  <= pivotBreak){
-               document.getElementById(pivot).classList.remove(`${"pivot"+title}`)
-               document.getElementById(`${title+addPivot}`).classList.add(`${"pivot"+title}`)
-             }
-            
-             if (addPivot !== 1) {
-                btnLeft.style.visibility = 'visible';
-            }
-
-             if (addPivot === pivotBreak) {
-                btnRight.style.visibility = 'hidden';
-            }
-          })
-          
-         btnLeft.addEventListener('click', ()=>{
-          const pivot = document.querySelector(`.${"pivot"+title}`).id;
-          const getData = parseInt(pivot.charAt(pivot.length - 1))
-          const hitung =  getData - 2 ;
-          const rubah = getData - 1;
-
-          for (let i = 1; i <= dataLength; i++) {
-             document.getElementById(`${title+i}`).style.transform = `translate(-${hitung * 104}%, 0%)`;
-             document.getElementById(`${title+i}`).style.transition = "all 1s ease 0s";
-           }
-             if(getData > 1){
-             document.getElementById(pivot).classList.remove(`${"pivot"+title}`)
-             document.getElementById(`${title+rubah}`).classList.add(`${"pivot"+title}`)
-             }
-            if (rubah !== 1) {
-             btnRight.style.visibility = 'visible';
-            }
-             if (rubah === 1) {
-             btnLeft.style.visibility = 'hidden';
-            }
-          });
-          };
+<script>
 // Card Control
-   const cardControl = (title, customTitle) =>{
-           return `
-           <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih ${customTitle}</p>
-              <div class="alert alert-danger d-none" role="alert" id="error-${title}">
-                        Mohon pilih ${title === "food"  ? "Menu": "Snack"} sebelum melanjutkan ke langkah berikutnya
-              </div>
-            <div class="slide-show-control">
-                <button id="btnLeft${title}" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
-                <button id="btnRight${title}" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
-             </div>
-             <div class="slide-show-ari theme-check"  id="${title}Item"></div>
-                      `
-          };
-   const card = (type, title, id, data)=>{
-            return `
-             <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-${title} px-1 d-inline-block  ${id === 1 ? `pivot${title}`: ""}" id="${title+id}" >
-                <div class="card ${"card-check-"+title}">
-                  <div class="card-header bg-white">
-                    <div class="row my-1 ">
-                      <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${data.name}</label></div>
-                      <div class="col-2">
-                      ${type === "radio" ? `<input class="form-check-input" type="radio" name="${title}" id="${data.id}" value="" aria-label="..."/>`: `<input class="form-check-input" type="checkbox" name="snack" value="" id="${data.id}">`}
-                      </div>
-                    </div>
-                 </div>
-                  <div class="card-body p-0" style="white-space: initial;">
-                           <img class="w-100" src="${data.photo}" alt=""/>
-                           ${data.desc ? `<p class="w-100 mt-2 text-start px-1" > ${data.desc} </p>`:""}
-                  </div>
-                </div>
-           </div>`;
-          };
- 
+
    const resetBorderCard = (title) =>{
      const cardCheckSnack = document.querySelectorAll(`.card-check-${title}`);
      for (let i = 0; i < cardCheckSnack.length; i++) {
@@ -396,19 +312,32 @@ const setLocalStorageProduct = ( value, value2 = 0) => {
      }
    }
    const loadViewApi = (data) => {
-     document.getElementById('food').innerHTML = cardControl('food', "menu utama");
-     document.getElementById('snack').innerHTML = cardControl('snack', "jenis snack");
-
+     document.getElementById('food').innerHTML = viewBtnSlider('food');
+     document.getElementById('snack').innerHTML = viewBtnSlider('snack');
+     
+     if(data.vendors){
+       document.getElementById('vendor').innerHTML = `<select class="form-select" aria-label="Default select example" id="vendorItem"></select>`;
+        data.vendors.forEach((data, foodIndex)=>{
+              document.getElementById('vendorItem').innerHTML += `<option value="${data.name}">${data.name}</option>`;
+          });
       data.products.makanan.forEach((data, foodIndex)=>{
               document.getElementById('foodItem').innerHTML += card("radio","food",foodIndex + 1, data);
           });
       data.products.snack.forEach((data, snackIndex)=>{
           document.getElementById('snackItem').innerHTML += card("checkbox","snack",snackIndex + 1, data);
       });
+     }else{
+       data.makanan.forEach((data, foodIndex)=>{
+              document.getElementById('foodItem').innerHTML += card("radio","food",foodIndex + 1, data);
+          });
+      data.snack.forEach((data, snackIndex)=>{
+          document.getElementById('snackItem').innerHTML += card("checkbox","snack",snackIndex + 1, data);
+      });
+     }
 
-      themesControl("food");
-      themesControl("snack");
-      themesControl("theme");
+      sliderControl("food");
+      sliderControl("snack");
+      sliderControl("theme");
 
       resetBorderCard("snack")
       resetBorderCard("food")
@@ -417,37 +346,63 @@ const setLocalStorageProduct = ( value, value2 = 0) => {
       document.getElementById("costumPulpen").value = ""
       document.getElementById("eventConcept").value = "";
       const getDataLs = JSON.parse(localStorage.getItem("data"));
-      getDataLs['products'] = [];
+      getDataLs['snack'] = [];
       getDataLs['food'] = "";
       getDataLs['theme'] = "";
       getDataLs['concept'] = "";
       getDataLs['costumPulpen'] = "";
       localStorage.setItem("data", JSON.stringify(getDataLs))
 
+            removeAlert("theme");
+            removeAlert("food");
+            removeAlert("snack");
+            removeAlert("costumPulpen");
+            removeAlert("concept");
+            removeAlert("location");
+
    }
 
-  document.getElementById("location").addEventListener("change", ()=>{
-      const eventInformation = document.getElementById("eventInformation");
+   const renderByApi = (position, value) =>{
+     const eventInformation = document.getElementById("eventInformation");
       const loadingBar = document.getElementById("loadingBar");
       eventInformation.classList.add("d-none") 
       loadingBar.classList.remove("d-none") 
 
         setTimeout(async() => {
+          const url = position === "location" ? `/api/v1/vendors?location=bekasi` : `/api/v1/products/vendors/1?filter=makanan`;
           try {
-            const getProduct  = await fetch("/api/v1/vendors?location=bekasi");
+            const getProduct  = await fetch(url);
             const {data} = await getProduct.json();
             eventInformation.classList.remove("d-none")
             loadingBar.classList.add("d-none");
             // load View API
-            loadViewApi(data)
+            loadViewApi(data);
             console.log(data);
             loadViewChecked()
           } catch (error) {
             console.log(error);
           }
       }, 1000);
-  })
+   }
 
+  document.getElementById("location").addEventListener("change", async(e)=>{
+    if( e.target.value !== "Tentukan lokasi anda"){
+      const positionId = e.target.id; 
+      const valueSelected = e.target.value; 
+      renderByApi(positionId, valueSelected);
+      setLocalStorage("location", e.target.value)
+    }else{
+      document.getElementById("eventInformation").classList.add("d-none")
+      setLocalStorage("location", "")
+    }
+    validation("location");
+  });
+  document.getElementById("vendor").addEventListener("change", (e)=>{
+    const positionId = e.target.id; 
+    const valueSelected = e.target.value; 
+    renderByApi(positionId, valueSelected);
+    setLocalStorage("vendor", e.target.value)
+  })
     </script>
 
        <script>
@@ -458,13 +413,15 @@ const setLocalStorageProduct = ( value, value2 = 0) => {
             }else{
               setLocalStorage('concept', "")
             }
+              validation("concept")
          });
 
         //  CustomPulpen
         const costumPulpen = document.getElementById("costumPulpen");
         costumPulpen.addEventListener('keyup',(e)=>{
           setLocalStorage(e.target.name, e.target.value)
-        })
+          validation("costumPulpen")
+        });
 
 
  const loadViewChecked = () => {
@@ -482,18 +439,17 @@ const setLocalStorageProduct = ( value, value2 = 0) => {
                        cardCheck[ab].style.border = "3px solid #7940CC";
                      }
               }
-              console.log(getName);
                   if(getName === "snack"){
-                    setLocalStorageProduct(event.path[0].id)
+                    setLocalStorageSnack(event.path[0].id)
                   }else{
                     setLocalStorage(getName, event.path[0].id )
                   }
+                validation(getName)
                 event.path[0].parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
                  
                }else{
-                 const product = getLocalStorage('product').filter((product)=> product.id !== event.path[0].id);
-                 setLocalStorage('product', product)
-                //  console.log(event.path[0].id);
+                 const snack = getLocalStorage('snack').filter((product)=> product.id !== event.path[0].id);
+                 setLocalStorage('snack', snack)
                   setLocalStorage(getName, snack );
                  for (let ab = 0; ab < cardCheck.length; ab++) {
                      cardCheck[ab].style.border = "1px solid #e5e5e5"; 
@@ -504,101 +460,46 @@ const setLocalStorageProduct = ( value, value2 = 0) => {
                }
             });
          }
-   }
+   };
          
 
+// Package Listener
 
+       </script>
 
-// Btn Add Guest & Reduce Guest
-  const redGuest = document.getElementById("redGuest");
-  const addGuest = document.getElementById("addGuest");
-  const totalGuest = document.getElementById("totalGuest");
-  const totalGuestText = document.getElementById("totalGuestText");
-  const price = document.getElementById("price");
-  
-  const minParticipan = getLocalStorage("minParticipan");
-  totalGuestText.innerText = `total tamu undangan ${minParticipan}`;
-  redGuest.addEventListener('click',()=>{
-  const minParticipan = getLocalStorage("minParticipan");
-  const addParticipan = getLocalStorage("addParticipan");
-    if (addParticipan >= 10) {
-      const totalParticipan = addParticipan - 10;
-      totalGuestText.innerText =  `total tamu undangan ${minParticipan + totalParticipan}`;
-      setLocalStorage("addParticipan", totalParticipan)
-      totalGuest.value = getLocalStorage("addParticipan");
-      price.innerText = formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
-    }
-  })
-  addGuest.addEventListener('click',()=>{
-     const minParticipan = getLocalStorage("minParticipan");
-     const totalParticipan = getLocalStorage('addParticipan') + 10;
-      totalGuestText.innerText =  `total tamu undangan ${minParticipan + totalParticipan}`;
-      setLocalStorage("addParticipan", totalParticipan)
-      totalGuest.value = getLocalStorage("addParticipan");
-      price.innerText = formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
-  })
+       <script>
 
-// Btn Selanjutnya
-         const btnNext = document.getElementById("next");
+      
+         // Btn Next Listener
+         const btnNext = document.getElementById("next2");
          btnNext.addEventListener("click", ()=>{
           let error = false;
-           if(getLocalStorage("theme")){
-             document.getElementById("error-theme").classList.remove("d-block");
-             document.getElementById("error-theme").classList.add("d-none");
-           }else{
-             document.getElementById("error-theme").classList.remove("d-none");
-             document.getElementById("error-theme").classList.add("d-block");
-             error= true;
-           }
-           if( getLocalStorage("snack") && getLocalStorage("snack").length !== 0){
-             document.getElementById("error-snack").classList.remove("d-block");
-             document.getElementById("error-snack").classList.add("d-none");
-           }else{
-             document.getElementById("error-snack").classList.remove("d-none");
-             document.getElementById("error-snack").classList.add("d-block");
-             error= true;
-           }
-           if(getLocalStorage("food")){
-             document.getElementById("error-food").classList.remove("d-block");
-             document.getElementById("error-food").classList.add("d-none");
-           }else{
-             document.getElementById("error-food").classList.remove("d-none");
-             document.getElementById("error-food").classList.add("d-block");
-             error= true;
-           }
-
-          var myModal = new bootstrap.Modal(document.getElementById('order1'), {
-  keyboard: false
-}) 
-
-if(error){
-   myModal.show()
-}
-         
-         })
-
-// Package
-const getPackage = document.getElementById('package')
-const getPackageConvert = JSON.parse(decodeURIComponent(getPackage.value))
-  setLocalStorage('namePackage', getPackageConvert.name)
-  setLocalStorage('additionCost', getPackageConvert.additionCost)
-  setLocalStorage('minParticipan', getPackageConvert.minParticipan)
-  setLocalStorage('price', getPackageConvert.price)
-  totalGuestText.innerText =  `total tamu undangan ${getPackageConvert.minParticipan}`;
-  document.getElementById('price').innerText =  formatRupiah(getPackageConvert.price)
-  
-getPackage.addEventListener("change", (e)=>{
-  const data = decodeURIComponent(e.target.value)
-  const convertData = JSON.parse(data)
-  setLocalStorage('namePackage', convertData.name)
-  setLocalStorage('minParticipan', convertData.minParticipan)
-  setLocalStorage('additionCost', convertData.additionCost)
-  setLocalStorage('price', convertData.price)
-  totalGuestText.innerText =  `total tamu undangan ${convertData.minParticipan + getLocalStorage("addParticipan")}`;
-  document.getElementById('price').innerText =  formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
-
-})
+          if(getLocalStorage("location")){
+            error = validation("theme");
+            error = validation("food");
+            error = validation("snack");
+            error = validation("costumPulpen");
+            error = validation("concept");
+            error = validation("location");
+            const myModal = new bootstrap.Modal(document.getElementById('order1'), {keyboard: false}); 
+            if(error){
+              myModal.show()
+            }
+          }else{
+            error = validation("location");
+          }
+          
+});
        </script>
+
+       <script>
+// Btn Add Guest & Reduce Guest
+addOrReduceGuest();
+// Pakage Listener
+packageListener();
+       </script>
+ 
+
     <%- include('../partials/scripts.ejs') %>
   </body>
 </html>
