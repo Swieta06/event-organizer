@@ -13,12 +13,12 @@ route.post("/register",
         if (!errors.isEmpty()) {
             const error = errors.mapped()
 
-            const nama = error.name?.msg
+            const nama = error.nama?.msg
             const email = error.email?.msg
             const password = error.password?.msg
 
             const data = {
-                "name" : nama,
+                "nama" : nama,
                 "email" : email,
                 "password" : password
             }
