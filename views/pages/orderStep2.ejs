@@ -135,22 +135,21 @@
         </div>
       </div>
     </footer>
-<script src="/javascripts/order.js"></script>
+    <script src="/javascripts/helper-localstorage.js"></script>
+    <script src="/javascripts/helper.js"></script>
+    <script src="/javascripts/slider-card.js"></script>
       
 <script>
     
 
             
-slideControl("talent");
-slideControl("airConditioner");
-slideControl("table");
-slideControl("tent");
-slideControl("chair");
-
-
+sliderControl("talent");
+sliderControl("airConditioner");
+sliderControl("table");
+sliderControl("tent");
+sliderControl("chair");
 
 // SlideControle End
-
 const calculatorCard = (event) =>{
      if(event.innerText === "+")
      {
@@ -158,8 +157,16 @@ const calculatorCard = (event) =>{
         let result = event.parentElement.children[1];
         result.value = parseInt(result.value) + 1;
         getValue.innerText =  formatRupiah(String(result.value * parseInt(getValue.id)))
-        const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0].checked;
-        if(getChecked){
+        const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
+        if(getChecked.checked){
+           const idProduct = getChecked.id;
+           const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
+           const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
+           const qty  = result.value;
+           if(productCheck){
+             setLocalStorage('products', product)
+            }
+            setLocalStorageProduct(idProduct, qty)
             const totalPrice = getLocalStorage("totalPrice") + parseInt(getValue.id);
             document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
             setLocalStorage('totalPrice', totalPrice )
@@ -177,6 +184,14 @@ const calculatorCard = (event) =>{
         }
         const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
         if(getChecked.checked && total >= 0){
+           const idProduct = getChecked.id;
+           const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
+           const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
+           const qty  = result.value;
+           if(productCheck){
+             setLocalStorage('products', product)
+            }
+            setLocalStorageProduct(idProduct, qty)
             const totalPrice = getLocalStorage("totalPrice") - parseInt(getValue.id);
             document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
             setLocalStorage('totalPrice', totalPrice )
@@ -194,6 +209,10 @@ const checkedCard = (event) =>{
     
          const getPrice = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[4]?.id
          const getItem = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1].value
+
+         const id = event.id;
+         console.log(getName !== "talent");
+       
          if (event.checked) {
          const totalPrice = getLocalStorage("totalPrice") + (parseInt(getPrice) * getItem) 
          if(totalPrice){
@@ -210,26 +229,18 @@ const checkedCard = (event) =>{
 
               switch (getName) {
                   case "airConditioner": 
-                                airConditioner.push(event.id)
-                                setLocalStorage(getName, airConditioner )
-                        break;
                   case "chair": 
-                                chair.push(event.id)
-                                setLocalStorage(getName, chair )
-                        break;
                   case "table": 
-                                table.push(event.id)
-                                setLocalStorage(getName, table )
-                        break;
                   case "tent": 
-                                tent.push(event.id)
-                                setLocalStorage(getName, tent )
+                        const qty = event.parentElement.parentElement.parentElement.parentElement.children[1].children[3].children[1].value;
+                        setLocalStorageProduct(id, qty);
                         break;
                   case "talent": 
                                 talent.push(event.id)
                                 const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
                                 const totalPrice = getLocalStorage("totalPrice") + parseInt(talentCost);
-                                setLocalStorage(getName, talent )
+                                // setLocalStorage(getName, talent )
+                                setLocalStorageProduct(id);
                                 setLocalStorage('totalPrice', totalPrice )
                                 document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
 
@@ -247,29 +258,19 @@ const checkedCard = (event) =>{
                     setLocalStorage('totalPrice', totalPrice )
                 }
 
-
+                  const product = getLocalStorage('products').filter((product)=> product.id !== id);
+                 
                    switch (getName) {
                   case "airConditioner": 
-                                airConditioner = airConditioner.filter((data)=> data !== event.id)
-                                setLocalStorage(getName, airConditioner )
-                        break;
                   case "chair": 
-                                chair = chair.filter((data)=> data !== event.id)
-                                setLocalStorage(getName, chair )
-                        break;
                   case "table": 
-                                table = table.filter((data)=> data !== event.id)
-                                setLocalStorage(getName, table )
-                        break;
-                  case "tent": 
-                                tent = tent.filter((data)=> data !== event.id)
-                                setLocalStorage(getName, tent )
+                  case "tent": setLocalStorage('products', product)
                         break;
                   case "talent": 
-                                talent = talent.filter((data)=> data !== event.id)
                                 const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
                                 const totalPrice = getLocalStorage("totalPrice") - parseInt(talentCost);
-                                setLocalStorage(getName, talent )
+                                setLocalStorageProduct(id);
+                                setLocalStorage('products', product)
                                 setLocalStorage('totalPrice', totalPrice )
                                 document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
                         break;
