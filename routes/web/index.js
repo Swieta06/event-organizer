@@ -3,19 +3,14 @@ const router = express.Router();
 const passport = require("passport");
 const { authentication } = require("../../middlewares");
 const userRoute = require("./userRoute");
-const { homeControllers } = require("../../controllers");
 const ordersRoute = require("./orders");
+const mainRoute = require('./main');
+
+/* Main page. */
+router.use("/", mainRoute);
 
 /* Register with Email */
 router.use("/", userRoute);
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('pages/index', { title: 'Express' });
-});
-
-/* GET home page. */
-router.get("/", homeControllers.getIndex);
 
 /* Login Goole. */
 router.get(

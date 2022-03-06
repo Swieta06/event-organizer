@@ -8,9 +8,28 @@
       <a class="navbar-brand" href="">Events</a>
       <a class="navbar-brand" href="about-us">About Us</a>
     </div>
-    <a class="navbar-brand justify-content-end">
-      <button type="button" class="btn" style="border-color: #7940cc; color: #7940cc" data-bs-toggle="modal" data-bs-target="#exampleModal">Masuk</button>
-      <button type="button" class="btn text-white" style="background-color: #7940cc" data-bs-toggle="modal" data-bs-target="#exampleModal2">Daftar</button>
-    </a>
+    <% if (user) { %>
+      <div class="dropdown" id="nav1">
+        <img src="/images/profile.png" alt="" width="30" height="24">
+        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Naomi Lisda
+        </a>
+      
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+
+      
+    <%} else {%>
+      <a class="navbar-brand justify-content-end">
+        <button type="button" class="btn" id="nav" style="border-color: #7940cc; color: #7940cc" data-bs-toggle="modal" data-bs-target="#exampleModal">Masuk</button> 
+       <button type="button" class="btn text-white" id="nav" style="background-color: #7940cc">Daftar</button>  
+     </a>
+    <%} %>
+   
+   
   </div>
-</nav>
+</nav>> 
