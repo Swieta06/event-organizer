@@ -1,12 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const passport = require("passport");
 const { authentication } = require("../../middlewares");
 const userRoute = require("./userRoute");
 const ordersRoute = require("./orders");
 const mainRoute = require('./main');
-
-
 
 /* Main page. */
 router.use("/", mainRoute);
@@ -16,19 +14,19 @@ router.use("/", userRoute);
 
 /* Login Goole. */
 router.get(
-  "/login/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
+  '/login/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
   })
 );
 
 router.get(
-  "/login/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/",
-    successRedirect: "/",
+  '/login/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/',
+    successRedirect: '/',
     failureFlash: true,
-    successFlash: "Successfully logged in!",
+    successFlash: 'Successfully logged in!',
   })
 );
 

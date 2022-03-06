@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const userRoute = require("./user");
 const productRoute = require("./product");
@@ -13,8 +13,8 @@ router.use("/vendors", vendorRoute);
 router.use("/orders", orderRoute);
 
 /* GET test api. */
-router.get("/test", async function (req, res, next) {
-  res.status(200).json({ test: "test" });
+router.get('/', function (req, res, next) {
+  res.status(200).json({ test: 'test' });
 });
 
 module.exports = router;
