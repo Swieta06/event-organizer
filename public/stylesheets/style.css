@@ -492,3 +492,20 @@ a {
 #testimonial .carousel-control-prev-icon{
   background-image: url("../images/default/chevronleft.png");
 }
+
+/* visibility css */
+.input-container{
+  position: relative;
+  width: 100%;
+}
+
+
+#material{
+  position: absolute;
+  width: 35px;
+  height: 100px;
+  right: 0px;
+  top: 34px;
+  color: #757575;
+  
+}
