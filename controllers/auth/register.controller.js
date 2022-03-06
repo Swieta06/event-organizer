@@ -26,8 +26,8 @@ async function register(req, res) {
 
         const newUser = await User.create(payload)
         req.flash("success", "Register berhasil!");
-        res.status(200).json(response("Success", newUser, null))
-
+        res.redirect("/");
+        return;
     } catch (error) {
         req.flash("error", "Internal server error");
         next(error);
