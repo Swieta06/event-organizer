@@ -7,6 +7,8 @@ const fs = require('fs');
 const router = require('./routes');
 const createError = require('http-errors');
 const errorHandler = require('./middlewares/error');
+const checkAPI = require("./middlewares/checkAPI");
+const assignUser = require("./middlewares/assignUser");
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -48,15 +50,21 @@ require('./config/googleOauth');
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+// custom middlewares: checkAPI
+app.use(checkAPI);
+// custom middlewares: assign user data to each response
+app.use(assignUser);
+
 // routes setup
 app.use('/', router);
 
 // catch 404 and forward to error handler
-router.use(function (req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-router.use(errorHandler);
+app.use(errorHandler);
 
 module.exports = app;

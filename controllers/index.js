@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-const userController = require('./user');
-module.exports = { userController };
-=======
 const Auth = require("./auth")
 const homeControllers = require("../controllers/homeControllers");
 const userController = require("./user");
@@ -15,4 +11,3 @@ module.exports = {
   productController,
   Auth
 };
->>>>>>> dafaaccd93f73fa1be22f78e02baeb33f515206e
