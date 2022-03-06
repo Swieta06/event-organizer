@@ -13,6 +13,7 @@ const getAllVendors = async (req, res, next) => {
           sequelize.fn("lower", sequelize.col("city")),
           location.toLowerCase()
         ),
+
         include: [
           {
             model: Product,
@@ -32,12 +33,24 @@ const getAllVendors = async (req, res, next) => {
         return;
       }
 
-      let vendors = vendor.map((el) => {
-        return {
-          id: el.id,
-          name: el.name,
-        };
-      });
+      let vendors = vendor
+        .filter((el) => {
+          for (const item of el.products) {
+            if (
+              item.category.name == "snack" ||
+              item.category.name == "makanan"
+            )
+              return true;
+          }
+          return false;
+        })
+        .map((el) => {
+          return {
+            id: el.id,
+            name: el.name,
+          };
+        });
+
       let products = { makanan: [], snack: [] };
 
       if (vendor[0].products)
