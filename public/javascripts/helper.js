@@ -10,15 +10,26 @@ const formatInteger = (string) => {
 };
 
 // Validation
-   const validation = (title) => {
+const validation = (title) => {
+     let error = false;
      if (getLocalStorage(title) && getLocalStorage(title).length !== 0) {
        document.getElementById(`error-${title}`).classList.remove("d-block");
        document.getElementById(`error-${title}`).classList.add("d-none");
+       error = true;
      } else {
        document.getElementById(`error-${title}`).classList.remove("d-none");
        document.getElementById(`error-${title}`).classList.add("d-block");
-       return true;
+       error = false;
      }
+
+     if(title === "snack" && getLocalStorage(title).length < getLocalStorage("maxSnack")){
+        document.getElementById(`error-${title}-quota`).classList.remove("d-none");
+        error = false;
+     }else if(title === "snack" && getLocalStorage(title).length >= getLocalStorage("maxSnack")){
+        document.getElementById(`error-${title}-quota`).classList.add("d-none");
+        error = true;
+     }
+     return error;
    };
 
   //  Remove Alert

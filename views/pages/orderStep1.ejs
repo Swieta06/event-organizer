@@ -69,7 +69,7 @@
                 </select>
                  <span class="text-danger text-end fs-16 mt-1 d-none" role="alert" id="error-location">
                     Lokasi wajib terisi.
-              </span>
+                 </span>
               </div>
               <div class="col ">
                 <p>tanggal diselenggarakan acara</p>
@@ -105,18 +105,19 @@
               <div class="col">
                 <p>paket yang dipilih</p>
 
-                <select class="form-select" aria-label="Default select example" id="package">
+                <select class="form-select" aria-label="Default select example" id="choosePackage">
                   <% packages.map((package)=>{ %>
                     <% const packageValue = {
                        package : package.name,
                        minParticipan : package.minParticipant,
                        additionCost : package.additionCost,
                        totalPrice : package.price,
+                       maxSnack : package.maxSnack,
                     };
                     
                       const convert =  encodeURIComponent(JSON.stringify(packageValue))
                     %>
-                        <option selected="<%= package.selected %>"  value="<%= convert %>"> <%= package.name + " - Kapasitas " + package.minParticipant + " Orang"  %> </option>
+                        <option  value="<%= convert %>"> <%= package.name + " - Kapasitas " + package.minParticipant + " Orang"  %> </option>
                  <% }) %>
                 </select>
               </div>
@@ -180,16 +181,22 @@
                   <!-- Snack -->
                   <div class="row mt-4">
                     <div class="col-12 position-relative">
-                      <div class="row">
+                      <div class="row align-items-center">
                         <div class="col-11">
                           <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih Jenis Snack  </p>
                         </div>
                         <div class="col-1">
-                          <p class="text-neutral-80 text-center fs-18 bg-purple-surface py-2 rounded-pill">0/2</p>
+                          <p class="text-neutral-80 text-center fs-18 bg-purple-surface py-2 rounded-pill" id="maxSnack">0/2</p>
                         </div>
                       </div>
                         <div class="alert alert-danger d-none" role="alert" id="error-snack">
                              Mohon Pilih Snack sebelum melanjutkan ke langkah berikutnya
+                        </div>
+                        <div class="alert alert-primary d-none" role="alert" id="error-snack-quota">
+                             Anda Masih dapat memilih Snack
+                        </div>
+                        <div class="alert alert-danger d-none" role="alert" id="error-snack-toolong">
+                             Jumlah Snack Sudah Maksimal
                         </div>
                        <div class="snack" id="snack"></div>
                     </div>
@@ -247,15 +254,15 @@
       <option value="indoor" >Indoor</option>
       <option value="outdoor">Outdoor</option>
     </select>
-      <div class="alert alert-danger mt-2 d-none" role="alert" id="error-concept">
-         Konsep Wajib terisi.
+      <div class="alert alert-danger mt-2 d-none text-capitalize" role="alert" id="error-concept">
+         Konsep Acara Wajib terisi.
     </div>
   </div>
   <div class="col">
     <p>Tulis nama untuk souvenir costum pulpen</p>
     <input type="text" name="costumPulpen" class="form-control" id="costumPulpen" placeholder="">
-    <div class="alert alert-danger mt-2 d-none" role="alert" id="error-costumPulpen">
-        Cutom Pulpen Wajib terisi.
+    <div class="alert alert-danger mt-2 d-none text-capitalize" role="alert" id="error-costumPulpen">
+        Custom Pulpen Wajib terisi.
    </div>
   </div>
 </div>
@@ -303,7 +310,6 @@ localStorage.setItem('data', JSON.stringify(structurData));
 
 <script>
 // Card Control
-
    const resetBorderCard = (title) =>{
      const cardCheckSnack = document.querySelectorAll(`.card-check-${title}`);
      for (let i = 0; i < cardCheckSnack.length; i++) {
@@ -377,8 +383,9 @@ localStorage.setItem('data', JSON.stringify(structurData));
             loadingBar.classList.add("d-none");
             // load View API
             loadViewApi(data);
-            console.log(data);
-            loadViewChecked()
+            loadViewChecked();
+            
+
           } catch (error) {
             console.log(error);
           }
@@ -423,6 +430,53 @@ localStorage.setItem('data', JSON.stringify(structurData));
           validation("costumPulpen")
         });
 
+const resetCheckedCard = () =>{
+  for (let i = 0; i < cardCheck.length; i++) {
+    cardCheck[i].style.border = "1px solid #e5e5e5";
+    if(cardCheck[i].children[0].children[0].children[1].children[0].checked){
+       cardCheck[i].style.border = "3px solid #7940CC";
+    }
+  }
+}
+
+const checkedCard = (event) =>{
+      const productName = event.path[0].name;
+      const productId = event.path[0].id;
+      const productChecked = event.path[0].checked;
+      const maxSnack = document.getElementById("maxSnack");
+      const valueMaxSnack = maxSnack.innerText;
+      const card = event.path[0].parentElement.parentElement.parentElement.parentElement;
+      document.getElementById("error-snack-toolong").classList.add("d-none")
+      if (productChecked) {
+          if(productName === "snack" && (getLocalStorage("snack").length ) >= parseInt(valueMaxSnack.charAt(2))){
+             event.path[0].checked = false;
+             document.getElementById("error-snack-toolong").classList.remove("d-none")
+             cardCheck[i].style.border = "1px solid #e5e5e5";
+          }
+          resetCheckedCard();
+          if(productName === "snack" ){
+            setLocalStorageSnack(productId)
+            maxSnack.innerText = `${parseInt(valueMaxSnack.charAt(0))+1}/${valueMaxSnack.charAt(2)}`;
+          
+          }else{
+            setLocalStorage(productName, productId )
+          }
+          
+          validation(productName)
+          event.path[0].parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
+        }else{
+           if(productName === "snack" ){
+             maxSnack.innerText = `${parseInt(valueMaxSnack.charAt(0)) - 1}/${valueMaxSnack.charAt(2)}`;
+             const snack = getLocalStorage('snack').filter((product)=> product.id !== productId);
+             setLocalStorage('snack', snack)
+            }else if(productName === "food" || productName === "theme"){
+              setLocalStorage(productName, snack );
+            }
+            // maxSnack.innerText = `${parseInt(valueMaxSnack.charAt(0))-1}/${valueMaxSnack.charAt(2)}`;
+           
+            resetCheckedCard();
+        }
+}
 
  const loadViewChecked = () => {
      const themeCheck = document.getElementsByClassName("theme-check");
@@ -431,33 +485,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
             themeCheck[i].addEventListener('click', function(event){
               const getName = event.path[0].name;
               cardCheck= document.querySelectorAll(`.card-check-${getName}`);
-              
-               if (event.path[0].checked) {
-                 for (let ab = 0; ab < cardCheck.length; ab++) {
-                     cardCheck[ab].style.border = "1px solid #e5e5e5";
-                     if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
-                       cardCheck[ab].style.border = "3px solid #7940CC";
-                     }
-              }
-                  if(getName === "snack"){
-                    setLocalStorageSnack(event.path[0].id)
-                  }else{
-                    setLocalStorage(getName, event.path[0].id )
-                  }
-                validation(getName)
-                event.path[0].parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
-                 
-               }else{
-                 const snack = getLocalStorage('snack').filter((product)=> product.id !== event.path[0].id);
-                 setLocalStorage('snack', snack)
-                  setLocalStorage(getName, snack );
-                 for (let ab = 0; ab < cardCheck.length; ab++) {
-                     cardCheck[ab].style.border = "1px solid #e5e5e5"; 
-                      if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
-                       cardCheck[ab].style.border = "3px solid #7940CC";
-                     }              
-              }
-               }
+              checkedCard(event);
             });
          }
    };
@@ -473,20 +501,54 @@ localStorage.setItem('data', JSON.stringify(structurData));
          // Btn Next Listener
          const btnNext = document.getElementById("next2");
          btnNext.addEventListener("click", ()=>{
-          let error = false;
+          let error = [];
+          let msg = null;
           if(getLocalStorage("location")){
-            error = validation("theme");
-            error = validation("food");
-            error = validation("snack");
-            error = validation("costumPulpen");
-            error = validation("concept");
-            error = validation("location");
+               msg = validation("theme");
+               error.push(msg);
+               msg = validation("food");
+               error.push(msg);
+               msg = validation("snack");
+               error.push(msg);
+               msg = validation("costumPulpen");
+               error.push(msg);
+               msg = validation("concept");
+               error.push(msg);
+               msg = validation("location");
+               error.push(msg);
+              console.log(error);
+
+            document.getElementById("error-snack-toolong").classList.add("d-none")
             const myModal = new bootstrap.Modal(document.getElementById('order1'), {keyboard: false}); 
-            if(error){
+            if(error.includes(false)){
               myModal.show()
-            }
+            }else{
+              const data = JSON.parse(localStorage.getItem("data"));
+                const foodTheme = [
+                  {
+                    id : data.food,
+                    qty: 0,
+                  },
+                  {
+                    id : data.theme,
+                    qty: 0,
+                  },
+                ];
+
+              const finalData = {
+                  package: data.package, 
+                  totalParticipant: data.minParticipan + data.addParticipan,
+                  totalPrice: data.totalPrice + (data.additionCost * data.addParticipan),
+                  eventAt: "",
+                  concept: data.concept, 
+                  desc: data.costumPulpen,
+                  products: foodTheme.concat(data.snack),
+                }
+              localStorage.setItem("data", JSON.stringify(finalData));
+              window.location.href = "http://localhost:3000/orders?step=2&location=jakarta";
+            } 
           }else{
-            error = validation("location");
+             validation("location");
           }
           
 });
@@ -496,6 +558,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
 // Btn Add Guest & Reduce Guest
 addOrReduceGuest();
 // Pakage Listener
+// packageListener();
 packageListener();
        </script>
  

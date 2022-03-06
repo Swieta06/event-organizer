@@ -46,25 +46,37 @@ const addOrReduceGuest = () =>{
 }
 
 // Pakage Listener
-const packageListener = () =>{
-  const getPackage = document.getElementById('package')
-const getPackageConvert = JSON.parse(decodeURIComponent(getPackage.value))
-  setLocalStorage('namePackage', getPackageConvert.name)
-  setLocalStorage('additionCost', getPackageConvert.additionCost)
-  setLocalStorage('minParticipan', getPackageConvert.minParticipan)
-  setLocalStorage('totalPrice', getPackageConvert.totalPrice)
-  totalGuestText.innerText =  `total tamu undangan ${getPackageConvert.minParticipan}`;
-  document.getElementById('price').innerText =  formatRupiah(getPackageConvert.price)
-  
-getPackage.addEventListener("change", (e)=>{
-  const data = decodeURIComponent(e.target.value)
-  const convertData = JSON.parse(data)
-  setLocalStorage('namePackage', convertData.name)
-  setLocalStorage('minParticipan', convertData.minParticipan)
-  setLocalStorage('additionCost', convertData.additionCost)
-  setLocalStorage('price', convertData.price)
-  totalGuestText.innerText =  `total tamu undangan ${convertData.minParticipan + getLocalStorage("addParticipan")}`;
-  document.getElementById('price').innerText =  formatRupiah(getLocalStorage('price') + ((getLocalStorage("addParticipan") / 10) * getLocalStorage('additionCost')))
+const setLsPackage = (value) => {
+  const decodeCp = JSON.parse(decodeURIComponent(value));
+  setLocalStorage("package", decodeCp.package);
+  setLocalStorage("additionCost", decodeCp.additionCost);
+  setLocalStorage("minParticipan", decodeCp.minParticipan);
+  setLocalStorage("totalPrice", decodeCp.totalPrice);
+  setLocalStorage("maxSnack", decodeCp.maxSnack);
+  setLocalStorage("snack", []);
 
-});
+  const addParticipan = getLocalStorage("addParticipan");
+
+  document.getElementById("totalGuestText").innerText = `total tamu undangan ${decodeCp.minParticipan + addParticipan}`;
+  document.getElementById("maxSnack").innerText = `0/${decodeCp.maxSnack}`;
+  document.getElementById("totalGuest").value = addParticipan;
+  const totalPrice = addParticipan === 0 ? decodeCp.totalPrice : decodeCp.totalPrice + (decodeCp.additionCost * (addParticipan / 10));
+  document.getElementById("totalPrice").innerText = formatRupiah(
+    totalPrice
+  );
+};
+const packageListener = () =>{
+  const choosePackage = document.getElementById('choosePackage');
+  setLsPackage(choosePackage.value);
+
+  choosePackage.addEventListener("change", (e) => {
+      setLsPackage(e.target.value);
+      const cardCheckSnack = document.querySelectorAll(".card-check-snack");
+      document.getElementById("error-snack-toolong").classList.add("d-none");
+      document.getElementById("error-snack-quota").classList.add("d-none");
+      for (let i = 0; i < cardCheckSnack.length; i++) {
+        cardCheckSnack[i].style.border = "1px solid #e5e5e5";
+        cardCheckSnack[i].children[0].children[0].children[1].children[0].checked = false;
+      }
+  });
 }
