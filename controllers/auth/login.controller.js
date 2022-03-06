@@ -9,7 +9,6 @@ async function login(req, res) {
           }
         res.render("pages/index", { title: "Express" });
     } catch (error) {
-        req.flash("error", "Internal server error");
         next(error);
     }
 }

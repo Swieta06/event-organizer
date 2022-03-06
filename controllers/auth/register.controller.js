@@ -29,7 +29,6 @@ async function register(req, res) {
         res.redirect("/");
         return;
     } catch (error) {
-        req.flash("error", "Internal server error");
         next(error);
     }
 }
