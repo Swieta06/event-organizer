@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const vendorController = require("../../controllers/vendorControllers");
+const authentication = require("../../middlewares/authentication");
+const authenticationAdmin = require("../../middlewares/authenticationAdmin");
 
-route.use(authentication, authenticationAdmin);
+router.use(authentication, authenticationAdmin);
 
 router.get("/", vendorController.getAllVendor);
 router.post("/", vendorController.createVendor);

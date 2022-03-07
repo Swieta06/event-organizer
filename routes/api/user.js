@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { Auth } = require("../../controllers");
+const authentication = require("../../middlewares/authentication");
+const authenticationAdmin = require("../../middlewares/authenticationAdmin");
 
-route.use(authentication, authenticationAdmin);
+router.use(authentication, authenticationAdmin);
 
 // route request reset password
 router.post("/request-reset-password", Auth.requestResetPassword);

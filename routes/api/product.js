@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const { productController } = require("../../controllers");
+const authentication = require("../../middlewares/authentication");
+const authenticationAdmin = require("../../middlewares/authenticationAdmin");
 
-route.use(authentication, authenticationAdmin);
+router.use(authentication, authenticationAdmin);
 
 router.post("/", productController.createProduct);
 router.get("/", productController.getAllProduct);
