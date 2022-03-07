@@ -3,7 +3,7 @@ const { packageControllers } = require("../../controllers");
 const authentication = require("../../middlewares/authentication");
 const authenticationAdmin = require("../../middlewares/authenticationAdmin");
 
-// router.use(authentication, authenticationAdmin);
+router.use(authentication, authenticationAdmin);
 
 router.get('/', packageControllers.getAllPackages);
 router.get('/:id', packageControllers.getPackage);
