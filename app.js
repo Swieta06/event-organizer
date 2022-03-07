@@ -12,7 +12,7 @@ const assignUser = require("./middlewares/assignUser");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
-
+const asignFlash = require("./middlewares/asignFlash");
 require("dotenv").config();
 
 const app = express();
@@ -55,7 +55,8 @@ app.use(flash());
 app.use(checkAPI);
 // custom middlewares: assign user data to each response
 app.use(assignUser);
-
+//custom middlewares : asign flash error/succes to each local response
+app.use(asignFlash);
 // routes setup
 app.use("/", router);
 
