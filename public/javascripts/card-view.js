@@ -6,7 +6,7 @@ const card = (type, title, id, data) => {
                 <div class="card ${"card-check-" + title}">
                   <div class="card-header bg-white">
                     <div class="row my-1 ">
-                      <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18">${
+                      <div class="col-10"><label for="test" class="text-capitalize text-neutral-100 fs-16">${
                         data.name
                       }</label></div>
                       <div class="col-2">

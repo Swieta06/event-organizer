@@ -5,9 +5,9 @@ const formatRupiah = (numb) => {
         const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
         return rupiah;
         }
-                                            %>
-            <div class="row mt-5">
-            <div class="col-12 position-relative">
+    %>
+            <div class="row mt-5 mb-5 ">
+            <div class="col-12 position-relative mb-5">
                     <div class="themes" >
                         <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih jenis <%= title %></p>
                         <div class="alert alert-danger d-none" role="alert" id="error-theme">
@@ -28,14 +28,14 @@ const formatRupiah = (numb) => {
                                     <div class="row my-1">
                                     <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18"><%= data.name %></label></div>
                                     <div class="col-2 radio-check">
-                                        <input class="form-check-input" type="checkbox" name="<%= id %>" id="<%= data.name %>" value="" aria-label="..."/>
+                                        <input class="form-check-input" type="checkbox" name="<%= id %>" id="<%= data.id %>" value="" aria-label="..."/>
                                     </div>
                                     </div>
                                 </div>
                                 <div class="card-body p-0" style="white-space: initial;">
-                                    <img class="w-100" src="images/default/<%= data.photo%>" alt=""/>
-                                    <p class=" text-center fs-16 mt-2 mb-1 text-dark" id=<%=data.price%>>Rp. 200.000/pcs</p>
-                                    <p class="w-100 text-start ps-2 "  >Humidier dengan kapasitas tangki 2L, dilengkapi mode swing dan fitur pengaturan</p>
+                                    <img class="w-100" src="<%= data.photo%>" alt=""/>
+                                    <p class=" text-center fs-16 mt-2 mb-1 text-dark" id=<%=data.price%>><%= formatRupiah(data.price) %>/pcs</p>
+                                    <p class="w-100 text-start ps-2 "  ><%= data.description %></p>
                                             <%if(isCalculator){%>
                                             <div class="d-flex justify-content-center ">
                                                 <button type="button" id="redGuest<%= data.id%>" class="btn btn-outline-purple text-purple-main">-</button>

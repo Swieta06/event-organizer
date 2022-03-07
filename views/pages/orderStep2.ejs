@@ -2,25 +2,6 @@
 <html lang="en">
 <html>
   <%- include('../partials/head.ejs', {title: 'Home'}) %>
-<style>
-    .slide-show-ari{
-        flex-wrap: nowrap !important;
-        overflow: auto hidden !important;
-        overflow-x: hidden !important;
-        white-space: nowrap;
-        transition: all 0.5s ease 0s !important;
-        position: relative !important;
-    }
-    .slide-show-control{
-        position: absolute;
-        z-index: 1;
-        top: 54%;
-        left: -1%;
-        display: flex;
-        width: 102%;
-        justify-content: space-between;
-    }
-</style>
   <body class="p-0" style="background-color:  #E5E5E5;">
     <header>
       <!-- Swita taruh sini -->
@@ -28,115 +9,25 @@
        <%- include('login')%> 
     </header>
     <main>
-      <div class="container-fluid mt-5 pt-3">
+      <script src="/javascripts/helper.js"></script>
+      <div class="container-fluid mt-5 pt-3" id="orderStep2">
         <div class="row justify-content-center ">
           <div class="col-10 bg-neutral-10 px-5  py-5 rounded-3">
-            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
-
-           <%
-                            const themes = [
-                                {   
-                                    id: "1",
-                                    name: "custom tema",
-                                    photo: "customtheme.png",
-                                    price: 10000,
-                                    stock: 10,
-                                },
-                                {
-                                    id: "2",
-                                    name: "colorful",
-                                    photo: "colorfultheme.png",
-                                    price: 20000,
-                                    stock: 10,
-                                },
-                                {
-                                    id: "3",
-                                    name: "gold & white",
-                                    photo: "goldwhitetheme.png",
-                                    price: 40000,
-                                    stock: 10,
-                                },
-                                {
-                                    id: "4",
-                                    name: "Monokrom",
-                                    photo: "Monokromtheme.png",
-                                    price: 70000,
-                                    stock: 10,
-                                },
-                                {
-                                    id: "5",
-                                    name: "Halloween",
-                                    photo: "Halloweentheme.png",
-                                    price: 26000,
-                                    stock: 10,
-                                },
-                                {
-                                    id: "6",
-                                    name: "custom tema",
-                                    photo: "customtheme.png",
-                                     price: 90000,
-                                     stock: 10,
-                                },
-                                {
-                                    id: "7",
-                                    name: "colorful",
-                                    photo: "colorfultheme.png",
-                                     price: 20000,
-                                     stock: 10,
-                                },
-                                {
-                                    id: "8",
-                                    name: "gold & white",
-                                    photo: "goldwhitetheme.png",
-                                     price: 80000,
-                                     stock: 10,
-                                },
-                                {
-                                    id: "9",
-                                    name: "Monokrom",
-                                    photo: "Monokromtheme.png",
-                                     price: 20000,
-                                     stock: 10,
-                                },
-                                {
-                                    id: "10",
-                                    name: "Halloween",
-                                    photo: "Halloweentheme.png",
-                                     price: 20000,
-                                     stock: 10,
-                                }
-                            ];
-                            %>
-                <%- include('cardStep2.ejs', {id: "talent",title: "Talent", datas: themes, isCalculator: false}) %>
-                <%- include('cardStep2.ejs', {id: "airConditioner",title: "Pendingin Udara", datas: themes, isCalculator: true}) %>
-                <%- include('cardStep2.ejs', {id: "chair",title: "Kursi", datas: themes, isCalculator: true}) %>
-                <%- include('cardStep2.ejs', {id: "table",title: "Meja", datas: themes, isCalculator: true}) %>
-                <%- include('cardStep2.ejs', {id: "tent",title: "Tenda", datas: themes, isCalculator: true}) %>
+            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">Sewa Talent</h1>
+            
+            <%- include('cardStep2.ejs', {id: "talent",title: "Talent", datas: talent, isCalculator: false}) %>
+            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">Sewa Alat</h1>
+                <%- include('cardStep2.ejs', {id: "airConditioner",title: "Pendingin Udara", datas: kipas, isCalculator: true}) %>
+                <%- include('cardStep2.ejs', {id: "chair",title: "Kursi", datas: kursi, isCalculator: true}) %>
+                <%- include('cardStep2.ejs', {id: "table",title: "Meja", datas: meja, isCalculator: true}) %>
+                <%- include('cardStep2.ejs', {id: "tent",title: "Tenda", datas: tenda, isCalculator: true}) %>
 
                 
             </div>
         </div>
-      </div><footer>
-      <div class="footer  position-fixed bottom-0 w-100 shadow-lg">
-      <!-- <div class="footer  container-fluid bg-neutral-10"> -->
-        <div class="bg-white">
-          <div class="row align-items-center justify-content-around">
-            <div class="col-2">
-              <button type="button" class="btn btn-outline-purple  w-100" id="previous" >Sebelumnya</button>
-            </div>
-            <div class="col-7 text-center">
-              <p class="mb-1 mt-2">total (1 paket)</p>
-              <p class="fs-18" id="totalPrice">25.000.000</p>
-            </div>
-            <div class="col-2 text-end">
-              <button type="button" class="btn w-100 text-white btn-purple" id="next" >Selanjutnya</button>
-            </div>
-          </div>
-        </div>
       </div>
-    </footer>
+      <%- include('footerOrder', {btnLeft: true}) %>
     <script src="/javascripts/helper-localstorage.js"></script>
-    <script src="/javascripts/helper.js"></script>
     <script src="/javascripts/slider-card.js"></script>
       
 <script>
@@ -212,7 +103,6 @@ const checkedCard = (event) =>{
          const getItem = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1].value
 
          const id = event.id;
-         console.log(getName !== "talent");
        
          if (event.checked) {
          const totalPrice = getLocalStorage("totalPrice") + (parseInt(getPrice) * getItem) 
@@ -290,11 +180,6 @@ const checkedCard = (event) =>{
    const checkItem = document.getElementsByClassName("check-item");
           const lengthCheckItem = checkItem.length;
 
-          let talent = [];
-          let airConditioner = [];
-          let chair = [];
-          let table = [];
-          let tent = [];
          for (let i = 0; i < lengthCheckItem; i++) {
             checkItem[i].addEventListener('click', function(event){
                 
@@ -304,6 +189,28 @@ const checkedCard = (event) =>{
          }
 
 
+</script>
+
+<script>
+  // Btn Selanjutnya
+  document.getElementById("next2").addEventListener("click", async ()=>{
+    const data = localStorage.getItem("data");
+    try {
+      const config = {
+        headers: { 'Content-Type': 'application/json'},
+        method: "post",
+        body: data,
+      }
+      const sendData = await fetch( "/api/v1/orders", config );
+      const result = await sendData.json();
+      if(result.message === "success" ){
+        window.location.href = `http://localhost:3000/orders/${result.data.id}/step/3`;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  });
 </script>
     <%- include('../partials/scripts.ejs') %>
   </body>

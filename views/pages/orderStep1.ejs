@@ -2,36 +2,7 @@
 <html lang="en">
 <html>
   <%- include('../partials/head.ejs', {title: 'Home'}) %>
-<style>
-    .slide-show-ari{
-        flex-wrap: nowrap !important;
-        overflow: auto hidden !important;
-        overflow-x: hidden !important;
-        white-space: nowrap;
-        transition: all 0.5s ease 0s !important;
-        position: relative !important;
-    }
-    .slide-show-control{
-        position: absolute;
-        z-index: 1;
-        top: 54%;
-        left: -1%;
-        display: flex;
-        width: 102%;
-        justify-content: space-between;
-    }
-.fade-in-image {
-  animation: fadeInUp 1.5s;
-}
- @keyframes fadeInUp {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-</style>
+
   <body class="p-0" style="background-color:  #E5E5E5;">
     <header>
       <!-- Swita taruh sini -->
@@ -117,7 +88,7 @@
                     
                       const convert =  encodeURIComponent(JSON.stringify(packageValue))
                     %>
-                        <option  value="<%= convert %>"> <%= package.name + " - Kapasitas " + package.minParticipant + " Orang"  %> </option>
+                        <option  value="<%= convert %>" <%= package.selected ? "selected" : ""%> > <%= package.name + " - Kapasitas " + package.minParticipant + " Orang"  %> </option>
                  <% }) %>
                 </select>
               </div>
@@ -271,25 +242,7 @@
       </div>
 
     </main>
-    <footer>
-      <div class="footer  position-fixed bottom-0 w-100 shadow-lg">
-      <!-- <div class="footer  container-fluid bg-neutral-10"> -->
-        <div class="bg-white">
-          <div class="row align-items-center justify-content-around">
-            <div class="col-2">
-              <button type="button" class="btn btn-outline-purple  w-100" id="previous" >Sebelumnya</button>
-            </div>
-            <div class="col-7 text-center">
-              <p class="mb-1 mt-2">total (1 paket)</p>
-              <p class="fs-18" id="totalPrice">25.000.000</p>
-            </div>
-            <div class="col-2 text-end">
-              <button type="button" class="btn w-100 text-white btn-purple" id="next2" >Selanjutnya</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <%- include('footerOrder', {btnLeft: false}) %>
 
     <script src="/javascripts/helper-localstorage.js"></script>
     <script src="/javascripts/helper.js"></script>
@@ -324,7 +277,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
      if(data.vendors){
        document.getElementById('vendor').innerHTML = `<select class="form-select" aria-label="Default select example" id="vendorItem"></select>`;
         data.vendors.forEach((data, foodIndex)=>{
-              document.getElementById('vendorItem').innerHTML += `<option value="${data.name}">${data.name}</option>`;
+              document.getElementById('vendorItem').innerHTML += `<option value="${data.id}">${data.name}</option>`;
           });
       data.products.makanan.forEach((data, foodIndex)=>{
               document.getElementById('foodItem').innerHTML += card("radio","food",foodIndex + 1, data);
@@ -375,7 +328,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
       loadingBar.classList.remove("d-none") 
 
         setTimeout(async() => {
-          const url = position === "location" ? `/api/v1/vendors?location=bekasi` : `/api/v1/products/vendors/1?filter=makanan`;
+          const url = position === "location" ? `/api/v1/vendors?location=${value}` : `/api/v1/products/vendors/${value}?filter=makanan`;
           try {
             const getProduct  = await fetch(url);
             const {data} = await getProduct.json();
@@ -539,13 +492,13 @@ const checkedCard = (event) =>{
                   package: data.package, 
                   totalParticipant: data.minParticipan + data.addParticipan,
                   totalPrice: data.totalPrice + (data.additionCost * data.addParticipan),
-                  eventAt: "",
+                  eventAt: "2022-03-21",
                   concept: data.concept, 
                   desc: data.costumPulpen,
                   products: foodTheme.concat(data.snack),
                 }
               localStorage.setItem("data", JSON.stringify(finalData));
-              window.location.href = "http://localhost:3000/orders?step=2&location=jakarta";
+              window.location.href = `http://localhost:3000/orders/step/2?location=${data.location}`;
             } 
           }else{
              validation("location");
