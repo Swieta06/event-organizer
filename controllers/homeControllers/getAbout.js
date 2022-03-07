@@ -1,7 +1,7 @@
-exports.getEvents = async (req, res) => {
+exports.getAbout = async (req, res) => {
     try {
-        res.render("pages/events", {
-            title: "Events",
+        res.render("pages/about", {
+            title: "About Us",
         });
     } catch (error) {
         next(createError(error.status || 500, error.message));
