@@ -2,7 +2,7 @@ const { User } = require("../../models");
 const bcrypt = require("../../utils/bcrypt");
 const uuid = require("uuid");
 
-async function register(req, res) {
+async function register(req, res, next) {
     try {
         console.log("=== Register User ====");
         const id = uuid.v4();

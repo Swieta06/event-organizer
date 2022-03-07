@@ -1,4 +1,4 @@
-async function logout(req, res) {
+async function logout(req, res, next) {
     try {
         req.logout();
         if(req.user) {
