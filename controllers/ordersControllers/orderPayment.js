@@ -12,7 +12,9 @@ const paymentOrder = async (req, res, next) => {
     if (typeof req.file !== "undefined") {
       photo = await req.file.filename;
     } else {
-      res.status(400).json(response("Image Not Found", 200));
+      req.flash("error",error);
+      return res.redirect("back");
+      // res.status(400).json(response("Image Not Found", 200));
     }
     const payload = {
       id,

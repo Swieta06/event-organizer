@@ -80,7 +80,8 @@ exports.updateOrder = async (req, res, next) => {
     if (updatedOrder[0] == 0) {
       throw createError(500, "Error while updating order");
     }
-
+    req.flash("error",error);
+    // return res.redirect("back");
     // res.status(200).json(response("Order Updated", "test"));
     res.redirect(`/orders/${orderId}?step=4`);
   } catch (error) {
