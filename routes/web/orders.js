@@ -24,4 +24,7 @@ router.post(
   upload.single("photo"),
   ordersControlers.orderPayment
 );
+
+router.get("/payments/:idPayment/:filename", ordersControlers.getPhotoPayment);
+
 module.exports = router;

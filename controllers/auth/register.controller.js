@@ -1,36 +1,34 @@
-const { User } = require("../../models")
-const bcrypt = require("../../utils/bcrypt")
-const uuid = require("uuid")
-const response = require('../../utils/response');
+const { User } = require("../../models");
+const bcrypt = require("../../utils/bcrypt");
+const uuid = require("uuid");
 
-async function register(req, res) {
+async function register(req, res, next) {
     try {
-        console.log("=== Register User ====")
-        const role = "user"
-        const id = uuid.v4()
+        console.log("=== Register User ====");
+        const id = uuid.v4();
         let {
             email,
             name,
             password,
             photo,
             address
-        } = req.body
+        } = req.body;
 
-        password = bcrypt.generate(password)
+        password = bcrypt.generate(password);
         const payload = {
             id,
             email,
             name,
             password
-        }
+        };
 
-        const newUser = await User.create(payload)
-        // res.status(200).json({ data: newUser })
-        res.status(200).json(response("Success", newUser, null))
-
+        await User.create(payload);
+        req.flash("success", "Register berhasil!");
+        res.redirect("/");
+        return;
     } catch (error) {
-        res.status(500).json(response('Internal server error', null, error));
+        next(error);
     }
 }
 
-module.exports = register
+module.exports = register;
