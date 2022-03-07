@@ -14,7 +14,7 @@ const { getByVendor } = require("../productControllers");
 exports.orderDetail = async (req, res, next) => {
   try {
     const { idOrder } = req.params;
-    const orderDetail = await Order.findOne({
+    let orderDetail = await Order.findOne({
       where: {
         id: idOrder,
       },
@@ -47,11 +47,8 @@ exports.orderDetail = async (req, res, next) => {
         },
         {
           model: Product,
+            as: "products",
           attributes: ["id", "name"],
-          as: "products",
-          through: {
-            attributes: ["qty"],
-          },
           include: [
             {
               model: Vendor,
@@ -59,6 +56,9 @@ exports.orderDetail = async (req, res, next) => {
               attributes: ["name"],
             },
           ],
+          through: {
+            attributes: ["qty"],
+          },
         },
         {
           model: Payment,
@@ -73,6 +73,21 @@ exports.orderDetail = async (req, res, next) => {
         },
       ],
     });
+
+    console.log(orderDetail.dataValues.products[0].vendor.name, "<<<<<<");
+
+    const orderDetails = orderDetail.dataValues.products.map((el) => {
+      const productDetail = {};
+      productDetail.id = el.id;
+      productDetail.name = el.name;
+      productDetail.vendor = el.vendor.name;
+      productDetail.qty = el.OrderProduct.qty;
+
+      return productDetail;
+    });
+    // orderDetail.dataValues.products = orderDetails;
+
+    console.log(orderDetail, "<<<< Ini Order Detail");
 
     if (orderDetail) {
       res.status(200).json(orderDetail);
