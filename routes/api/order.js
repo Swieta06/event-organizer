@@ -9,6 +9,8 @@ const response = require('../../utils/response');
 
 router.post("/", ordersControlers.createOrder);
 
+router.get("/all", ordersControlers.getAllOrders);
+
 router.put("/:idOrder/status",
     body('status', 'Status order tidak sesuai!').isInt({ min: 0, max: 5}),
     (req, res, next) => {
