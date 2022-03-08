@@ -527,6 +527,161 @@ a {
   color: #757575;
   
 }
+
+/* reset password css */
+.resetemail.error input {
+  border-color: #ff3860;
+}
+
+.resetemail .error {
+  color: #ff3860;
+  font-size: 9px;
+  height: 13px;
+}
+.resetemail{
+
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 32px;
+
+position: absolute;
+width: 494px;
+height: 356px;
+left: 473px;
+top: 222px;
+background: #FFFFFF;
+
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+border-radius: 8px;
+}
+.resetemail h5{
+
+
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+
+text-align: center;
+letter-spacing: -0.019em;
+
+color: #000000;
+
+}
+.resetemail p{
+position: static;
+width: 430px;
+height: 44px;
+left: 0px;
+top: 0px;
+
+
+font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 160%;
+
+letter-spacing: -0.006em;
+
+color: #616161;
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: 12px 0px;
+}
+.form-pass{
+  position: static;
+  width: 430px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  
+  color: #404040;
+  
+}
+.pass-control{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 14px 16px;
+
+position: static;
+width: 430px;
+height: 52px;
+left: 0px;
+top: 38px;
+
+background: #FFFFFF;
+
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+
+box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.05);
+border-radius: 6px;
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+margin: 12px 0px;
+}
+.btn-pass{
+  
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 6px 16px;
+
+position: static;
+width: 430px;
+height: 52px;
+left: 32px;
+top: 272px;
+
+background: #7940CC;
+
+box-shadow: 0px 1px 2px rgba(206, 206, 206, 0.12);
+border-radius: 6px;
+
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+margin: 10px 0px;
+}
+.btn-pass p{
+position: static;
+width: 74px;
+height: 21px;
+left: 178px;
+top: 15.5px;
+
+font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 150%;
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.006em;
+color: #FFFFFF;
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 5px 4px;
+}
 #orderStep1 .slide-show-ari,
 #orderStep2 .slide-show-ari{
         flex-wrap: nowrap !important;
