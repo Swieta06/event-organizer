@@ -527,9 +527,17 @@ a {
   color: #757575;
   
 }
-<<<<<<< HEAD
 
 /* reset password css */
+.resetemail.error input {
+  border-color: #ff3860;
+}
+
+.resetemail .error {
+  color: #ff3860;
+  font-size: 9px;
+  height: 13px;
+}
 .resetemail{
 
 display: flex;
@@ -674,7 +682,6 @@ order: 0;
 flex-grow: 0;
 margin: 5px 4px;
 }
-=======
 #orderStep1 .slide-show-ari,
 #orderStep2 .slide-show-ari{
         flex-wrap: nowrap !important;
@@ -706,4 +713,3 @@ margin: 5px 4px;
         opacity: 1;
     }
 }
->>>>>>> 28da4e82e8099bdecbe2f0417d6984845ba4cf27
