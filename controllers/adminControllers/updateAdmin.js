@@ -11,7 +11,6 @@ async function updateAdmin(req, res, next) {
                 email,
                 name,
                 password,
-                photo,
                 address
             } = req.body;
     
@@ -20,7 +19,6 @@ async function updateAdmin(req, res, next) {
                 email,
                 name,
                 password,
-                photo,
                 address
             };
             
