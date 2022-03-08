@@ -1,6 +1,4 @@
-const response = require('../../utils/response');
-
-async function login(req, res) {
+async function login(req, res, next) {
     try {
         if (req.isAuthenticated()) {
             req.flash("success", "Login berhasil!");
@@ -13,4 +11,4 @@ async function login(req, res) {
     }
 }
 
-module.exports = login
+module.exports = login;
