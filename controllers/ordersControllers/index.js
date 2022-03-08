@@ -5,6 +5,9 @@ const { updateOrder } = require("./updateOrder");
 const orderPayment = require("./orderPayment");
 const { createOrder } = require("./createOrder");
 const getViewsStep4 = require("./getViewsStep4");
+const updateStatusOrder = require('./updateStatusOrder');
+const getAllOrders = require('./getAllOrders');
+const getBuktiPembayaran = require('./getBuktiPembayaran')
 const { getPhotoPayment } = require("./getPhotoPayment");
 const { getOrder } = require("./getOrder");
 
@@ -16,6 +19,9 @@ module.exports = {
   updateOrder,
   getViewsStep4,
   createOrder,
+  updateStatusOrder,
+  getAllOrders,
+  getBuktiPembayaran,
   getPhotoPayment,
   getOrder
 };
