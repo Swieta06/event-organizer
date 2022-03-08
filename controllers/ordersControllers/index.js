@@ -9,6 +9,7 @@ const updateStatusOrder = require('./updateStatusOrder');
 const getAllOrders = require('./getAllOrders');
 const getBuktiPembayaran = require('./getBuktiPembayaran')
 const { getPhotoPayment } = require("./getPhotoPayment");
+const { getOrder } = require("./getOrder");
 
 module.exports = {
   getViews,
@@ -22,4 +23,5 @@ module.exports = {
   getAllOrders,
   getBuktiPembayaran,
   getPhotoPayment,
+  getOrder
 };
