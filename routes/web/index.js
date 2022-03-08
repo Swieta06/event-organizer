@@ -37,6 +37,9 @@ router.get('/request-reset-password', (req, res) => {
 router.get('/confirm-reset-password', (req, res) => {
   res.render('pages/confirm-reset-password-test');
 });
+router.get('/test', (req, res) => {
+  res.render('pages/event');
+});
 
 router.use('/orders', ordersRoute);
 

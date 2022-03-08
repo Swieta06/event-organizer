@@ -376,6 +376,9 @@ a {
 #why-choose-us {
   position: relative;
 }
+#customer-details {
+  margin-top: 48px;
+}
 #customer-details.container {
   max-width: 664px;
 }
@@ -445,7 +448,7 @@ a {
   --bs-gutter-x: 0;
 }
 .open-wa-card {
-  margin-bottom: 123px;
+  margin-bottom: 195px;
   padding: 16px 32px 16px 16px;
   border-radius: 8px;
 }
@@ -463,6 +466,12 @@ a {
   border-radius: 6px;
   border: none;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-whatsapp:hover {
+  color: #ffffff;
 }
 .form-cust::placeholder {
   color: #9e9e9e;
@@ -488,6 +497,28 @@ a {
   border-radius: 6px;
   padding-left: 16px;
   padding-right: 16px;
+}
+.footer-s3 {
+  height: 72px;
+}
+.modal-content-order-3 {
+  padding: 32px;
+  width: 469px;
+  height: 350px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+}
+.modal-content-margin {
+  margin-bottom: 32px;
+}
+.modal-btn {
+  height: 52px;
+  width: 194px;
+  border-radius: 6px;
+}
+.modal-p {
+  padding: 0;
+  line-height: 1.6;
 }
 
 /* Slider */
