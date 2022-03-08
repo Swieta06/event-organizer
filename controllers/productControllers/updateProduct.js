@@ -16,19 +16,25 @@ exports.updateProduct = async (req, res, next) => {
       },
       attributes: ["name", "photo"],
     });
-    //Get New Name if body.name not null
-    let { filename: imageName } = req.file;
-    if (!name) {
-      imageName =
-        oldData.name + "_" + Date.now() + path.extname(req.file.originalname);
+    if (req.file) {
+      //Get New Name if body.name not null
+      var { filename: imageName } = req.file;
+      if (!name) {
+        imageName =
+          oldData.name + "_" + Date.now() + path.extname(req.file.originalname);
+      }
+      //Resize Image
+      await sharp(req.file.path)
+        .resize(200)
+        .jpeg({ quality: 90 })
+        .toFile(path.resolve("public/images/products", imageName));
+      //delete temp (original image)
+      fs.unlinkSync(req.file.path);
+      // Delete Old Photo
+      const oldPath = "public/images/products/";
+      if (fs.existsSync(oldPath + oldData.photo))
+        fs.unlinkSync(oldPath + oldData.photo);
     }
-    //Resize Image
-    await sharp(req.file.path)
-      .resize(200)
-      .jpeg({ quality: 90 })
-      .toFile(path.resolve("public/images/products", imageName));
-    //delete temp (original image)
-    fs.unlinkSync(req.file.path);
 
     const updateProduct = {
       VendorId,
@@ -36,14 +42,9 @@ exports.updateProduct = async (req, res, next) => {
       description,
       price: price ? parseInt(price) : price,
       CategoryId: CategoryId ? parseInt(CategoryId) : CategoryId,
-      photo: imageName,
+      photo: imageName ? imageName : undefined,
       stock,
     };
-
-    // Delete Old Photo
-    const oldPath = "public/images/products/";
-    if (fs.existsSync(oldPath + oldData.photo))
-      fs.unlinkSync(oldPath + oldData.photo);
 
     const replaceData = await Product.update(updateProduct, {
       where: {
