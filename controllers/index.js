@@ -3,6 +3,7 @@ const homeControllers = require("../controllers/homeControllers");
 const ordersControlers = require("./ordersControllers");
 const productController = require("./productControllers");
 const adminController = require('./adminControllers');
+const packageControllers = require('./packageControllers');
 
 module.exports = {
   homeControllers,
@@ -10,4 +11,5 @@ module.exports = {
   productController,
   adminController,
   Auth,
+  packageControllers
 };

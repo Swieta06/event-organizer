@@ -66,6 +66,19 @@ module.exports = (sequelize, DataTypes) => {
           defaultValue: 7,
         },
       },
+      detailPrice: {
+        type: DataTypes.TEXT,
+        get() {
+          return JSON.parse(this.getDataValue("detailPrice"));
+        },
+        set(value) {
+          this.setDataValue("detailPrice", JSON.stringify(value));
+        },
+        minOrderTime: {
+          type: DataTypes.INTEGER,
+          defaultValue: 7,
+        },
+      },
     },
     {
       sequelize,
