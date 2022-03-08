@@ -12,7 +12,6 @@ router.post("/", ordersControlers.createOrder);
 router.use(authenticationAdmin);
 
 router.get("/", ordersControlers.getAllOrders);
-
 router.get("/:idOrders", ordersControlers.getBuktiPembayaran);
 
 router.put("/:idOrder/status",
