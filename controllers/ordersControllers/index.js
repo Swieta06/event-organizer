@@ -5,6 +5,7 @@ const { updateOrder } = require("./updateOrder");
 const orderPayment = require("./orderPayment");
 const { createOrder } = require("./createOrder");
 const getViewsStep4 = require("./getViewsStep4");
+const { getPhotoPayment } = require("./getPhotoPayment");
 
 module.exports = {
   getViews,
@@ -14,4 +15,5 @@ module.exports = {
   updateOrder,
   getViewsStep4,
   createOrder,
+  getPhotoPayment,
 };

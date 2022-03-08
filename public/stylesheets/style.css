@@ -185,7 +185,7 @@ a {
 .bg-neutral-80 {
   background-color: #616161 !important;
 }
-.text-neutral-90 {
+.bg-neutral-90 {
   background-color: #404040 !important;
 }
 .bg-neutral-100 {
@@ -484,7 +484,7 @@ a {
 }
 
 #hero {
-  margin-top: -12px;
+  margin-top: -20px;
 }
 
 #packages {
@@ -527,6 +527,7 @@ a {
   color: #757575;
   
 }
+<<<<<<< HEAD
 
 /* reset password css */
 .resetemail{
@@ -673,3 +674,36 @@ order: 0;
 flex-grow: 0;
 margin: 5px 4px;
 }
+=======
+#orderStep1 .slide-show-ari,
+#orderStep2 .slide-show-ari{
+        flex-wrap: nowrap !important;
+        overflow: auto hidden !important;
+        overflow-x: hidden !important;
+        white-space: nowrap;
+        transition: all 0.5s ease 0s !important;
+        position: relative !important;
+    }
+#orderStep1 .slide-show-control,
+#orderStep2 .slide-show-control{
+        position: absolute;
+        z-index: 1;
+        top: 54%;
+        left: -1%;
+        display: flex;
+        width: 102%;
+        justify-content: space-between;
+    }
+#orderStep1 .fade-in-image,
+#orderStep2 .fade-in-image {
+  animation: fadeInUp 1.5s;
+}
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+>>>>>>> 28da4e82e8099bdecbe2f0417d6984845ba4cf27

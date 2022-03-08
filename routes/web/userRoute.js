@@ -56,4 +56,6 @@ route.post("/login",
     passport.authenticate("local", { failureRedirect: "/", failureFlash: true }),
     Auth.login);
 
+    route.post("/logout", Auth.logout);
+
 module.exports = route
