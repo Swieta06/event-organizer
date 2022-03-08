@@ -1,5 +1,5 @@
 const response = require('../../utils/response');
-const { Package } = require("../../models");
+const { Package, Order } = require("../../models");
 
 async function getPackage(req, res, next) {
     try {
@@ -10,7 +10,10 @@ async function getPackage(req, res, next) {
         const options = {
             where: {
                 id
-            }
+            },
+            include: [{
+                model: Order
+            }]
         }
 
         const payload = await Package.findOne(options);

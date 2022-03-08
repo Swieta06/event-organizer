@@ -1,9 +1,14 @@
 const response = require('../../utils/response');
-const { Package } = require("../../models");
+const { Package, Order } = require("../../models");
 
 async function getAllPackages(req, res, next) {
     try {
-        const payload = await Package.findAll();
+        const options = {
+            include: [{
+                model: Order
+            }]
+        }
+        const payload = await Package.findAll(options);
         res.status(200).json(response("Success", payload));
     } catch (error) {
         next(error);
