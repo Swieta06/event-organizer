@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       get() {
         const result = this.getDataValue("photo");
-        return result ? checkValidUrl(result) ?  `/images/products/${result}` : result : "";
+        return result ? checkValidUrl(result) ? result : `/images/products/${result}` :  "";
       },
     },
     stock: DataTypes.INTEGER
