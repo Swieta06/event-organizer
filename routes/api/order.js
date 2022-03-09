@@ -5,12 +5,13 @@ const authenticationAdmin = require("../../middlewares/authenticationAdmin");
 const { body, validationResult } = require('express-validator');
 const response = require('../../utils/response');
 
-router.use(authentication, authenticationAdmin);
+router.use(authentication);
 
 router.post("/", ordersControlers.createOrder);
 
-router.get("/", ordersControlers.getAllOrders);
+router.use(authenticationAdmin);
 
+router.get("/", ordersControlers.getAllOrders);
 router.get("/:idOrders", ordersControlers.getBuktiPembayaran);
 
 router.put("/:idOrder/status",

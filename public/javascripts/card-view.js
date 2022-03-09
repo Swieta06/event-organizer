@@ -5,11 +5,11 @@ const card = (type, title, id, data) => {
   }" id="${title + id}" >
                 <div class="card ${"card-check-" + title}">
                   <div class="card-header bg-white">
-                    <div class="row my-1 ">
-                      <div class="col-10"><label for="test" class="text-capitalize text-neutral-100 fs-16">${
+                    <div class="row my-1 align-items-center">
+                      <div class="col-10  "><label for="test" class="text-capitalize text-neutral-100 fs-16 fw-semibold">${
                         data.name
                       }</label></div>
-                      <div class="col-2">
+                      <div class="col-2 px-0">
                       ${
                         type === "radio"
                           ? `<input class="form-check-input" type="radio" name="${title}" id="${data.id}" value="" aria-label="..."/>`
@@ -22,7 +22,7 @@ const card = (type, title, id, data) => {
                            <img class="w-100" src="${data.photo}" alt=""/>
                            ${
                              data.desc
-                               ? `<p class="w-100 mt-2 text-start px-1" > ${data.desc} </p>`
+                               ? `<p class="w-100 mt-2 text-start px-1 fs-14" > ${data.desc} </p>`
                                : ""
                            }
                   </div>

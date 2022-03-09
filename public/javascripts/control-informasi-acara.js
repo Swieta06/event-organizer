@@ -7,7 +7,7 @@ const addOrReduceGuest = () =>{
     const totalPrice = document.getElementById("totalPrice");
 
     const minParticipan = getLocalStorage("minParticipan");
-    totalGuestText.innerText = `total tamu undangan ${minParticipan}`;
+    totalGuestText.innerText = `total tamu ${minParticipan} orang`;
 
     // Reduce Guest
     redGuest.addEventListener("click", () => {
@@ -15,9 +15,9 @@ const addOrReduceGuest = () =>{
       const addParticipan = getLocalStorage("addParticipan");
       if (addParticipan >= 10) {
         const totalParticipan = addParticipan - 10;
-        totalGuestText.innerText = `total tamu undangan ${
+        totalGuestText.innerText = `total tamu ${
           minParticipan + totalParticipan
-        }`;
+        } Orang`;
         setLocalStorage("addParticipan", totalParticipan);
         totalGuest.value = getLocalStorage("addParticipan");
         totalPrice.innerText = formatRupiah(
@@ -32,9 +32,9 @@ const addOrReduceGuest = () =>{
     addGuest.addEventListener("click", () => {
       const minParticipan = getLocalStorage("minParticipan");
       const totalParticipan = getLocalStorage("addParticipan") + 10;
-      totalGuestText.innerText = `total tamu undangan ${
+      totalGuestText.innerText = `total tamu ${
         minParticipan + totalParticipan
-      }`;
+      } Orang`;
       setLocalStorage("addParticipan", totalParticipan);
       totalGuest.value = getLocalStorage("addParticipan");
       totalPrice.innerText = formatRupiah(
@@ -54,10 +54,12 @@ const setLsPackage = (value) => {
   setLocalStorage("totalPrice", decodeCp.totalPrice);
   setLocalStorage("maxSnack", decodeCp.maxSnack);
   setLocalStorage("snack", []);
+  const additionCost = document.getElementById("additionCost");
+  additionCost.innerText = `*Penambahan kelipatan 10 / ${formatRupiah(decodeCp.additionCost)}`;
 
   const addParticipan = getLocalStorage("addParticipan");
 
-  document.getElementById("totalGuestText").innerText = `total tamu undangan ${decodeCp.minParticipan + addParticipan}`;
+  document.getElementById("totalGuestText").innerText = `total tamu ${decodeCp.minParticipan + addParticipan} Orang`;
   document.getElementById("maxSnack").innerText = `0/${decodeCp.maxSnack}`;
   document.getElementById("totalGuest").value = addParticipan;
   const totalPrice = addParticipan === 0 ? decodeCp.totalPrice : decodeCp.totalPrice + (decodeCp.additionCost * (addParticipan / 10));

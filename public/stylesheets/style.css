@@ -321,6 +321,9 @@ a {
 .text-neutral-100 {
   color: #0a0a0a !important;
 }
+.fw-semibold{
+  font-weight: 500;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -817,14 +820,21 @@ a {
   margin: 5px 4px;
 }
 #orderStep1 .slide-show-ari,
-#orderStep2 .slide-show-ari {
-  flex-wrap: nowrap !important;
-  overflow: auto hidden !important;
-  overflow-x: hidden !important;
-  white-space: nowrap;
-  transition: all 0.5s ease 0s !important;
-  position: relative !important;
+
+#orderStep2 .slide-show-ari{
+        flex-wrap: nowrap !important;
+        overflow: auto hidden !important;
+        overflow-x: hidden !important;
+        white-space: nowrap;
+        transition: all 0.5s ease 0s !important;
+        position: relative !important;
+    }
+#orderStep1 label,
+#orderStep2 label{
+    white-space: break-spaces;
+    text-align: start; 
 }
+
 #orderStep1 .slide-show-control,
 #orderStep2 .slide-show-control {
   position: absolute;
@@ -1197,4 +1207,19 @@ a {
   border-radius: 6px;
   width: 100%;
   margin-top: 32px;
+}
+#footerOrder{
+  z-index: 1000;
+}
+
+input[type=checkbox]:checked {
+  background-color: #7940cc;
+}
+input[type=radio]:checked {
+  background-color: #7940cc;
+}
+input[type=checkbox],
+input[type=radio]{
+  width: 16px;
+  height: 16px;
 }

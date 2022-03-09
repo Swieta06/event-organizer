@@ -33,17 +33,18 @@ passport.use(
           password: pass,
         });
         return done(null, newUser);
+      } else {
+        console.log(currentUser);
+        currentUser.lastVisited = new Date();
+        return done(null, currentUser);
       }
 
-      if (currentUser.source != "google") {
-        //return error
-        return done(null, false, {
-          message: `You have previously signed up with a different signin method`,
-        });
-      }
-      console.log(currentUser);
-      currentUser.lastVisited = new Date();
-      return done(null, currentUser);
+      // if (currentUser.source != "google") {
+      //   //return error
+      //   return done(null, false, {
+      //     message: `You have previously signed up with a different signin method`,
+      //   });
+      // }
     }
   )
 );
