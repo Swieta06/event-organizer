@@ -24,7 +24,7 @@ router.post("/:idOrder/edit", ordersControlers.updateOrder);
 router.get("/:OrderId/payment", ordersControlers.getViewsStep4);
 
 /* GET Views Detail Order */
-router.get("/:idOrder", ordersControlers.orderDetail);
+router.get("/:idOrder", authentication, ordersControlers.orderDetail);
 
 /* POST Order Payments */
 router.post(
