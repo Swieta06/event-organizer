@@ -13,3 +13,8 @@ visibilityToggle.addEventListener('click',function(){
    }
     password=!password
 })
+
+
+$(document).ready(function() {
+    $("#resetemail").validate();
+    });

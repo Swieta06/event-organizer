@@ -34,7 +34,7 @@ exports.getViews = async function (req, res, next) {
       where: { name: "themes" },
     });
     const themes = await category.getProducts({
-      attributes: ["id", "name", "photo"],
+      attributes: ["id", "name", "photo", "description"],
     });
     res.render("pages/orderStep1", { location, packages, themes });
     return;

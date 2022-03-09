@@ -8,7 +8,7 @@ async function register(req, res, next) {
         const id = uuid.v4();
         let {
             email,
-            name,
+            nama,
             password,
             photo,
             address
@@ -18,7 +18,7 @@ async function register(req, res, next) {
         const payload = {
             id,
             email,
-            name,
+            name:nama,
             password
         };
 
