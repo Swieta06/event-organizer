@@ -3,6 +3,8 @@ const {
   Model
 } = require('sequelize');
 const uuid = require("uuid").v4;
+const checkValidUrl = require("../utils/checkValidUrl");
+
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     /**
@@ -37,7 +39,13 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     price: DataTypes.INTEGER,
     CategoryId: DataTypes.INTEGER,
-    photo: DataTypes.STRING,
+    photo: {
+      type: DataTypes.TEXT,
+      get() {
+        const result = this.getDataValue("photo");
+        return result ? checkValidUrl(result) ?  `/images/products/${result}` : result : "";
+      },
+    },
     stock: DataTypes.INTEGER
   }, {
     sequelize,
