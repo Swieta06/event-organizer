@@ -20,12 +20,12 @@ exports.getViewsStep3 = async (req, res, next) => {
       where: {
         id: idOrder,
       },
-      attributes: ["id", "totalPrice", "UserId"],
+      attributes: ["id", "totalPrice", "UserId", "totalParticipant"],
       include: [
         {
           model: Package,
           as: "Package",
-          attributes: ["id", "name", "price"],
+          attributes: ["id", "name", "price", "additionCost", "minParticipant"],
         },
         {
           model: Product,
@@ -65,6 +65,7 @@ exports.getViewsStep3 = async (req, res, next) => {
       const qty =
         orderDetail[0].dataValues.products[i].dataValues.OrderProduct.dataValues
           .qty;
+      orderDetail[0].dataValues.products[i].qty = qty;
       orderDetail[0].dataValues.products[i].dataValues.qty = qty;
       delete orderDetail[0].dataValues.products[i].dataValues.OrderProduct;
     }

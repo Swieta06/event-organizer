@@ -1,5 +1,6 @@
 const { User } = require("../../models");
 const createError = require("http-errors");
+const response = require('../../utils/response');
 
 async function deleteAdmin(req, res, next) {
     try {
