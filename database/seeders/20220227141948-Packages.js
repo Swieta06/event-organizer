@@ -67,13 +67,13 @@ module.exports = {
           name: "Dadakan",
           slug: "dadakan",
           minParticipant: 30,
-          price: 14400000,
+          price: 17500000,
           additionCost: 800000,
           maxSnack: 1,
           features:
             "Makanan berat + 1 jenis snack,Dokumentasi foto,Dekorasi,Souvenir (Notebook + Pen)",
           detailPrice:
-            '{"makanan":50000,"snack":10000,"photo":2000000,"video":0,"pulpen":20000,"notebook":0,"totebag":0,"themes":10000000}',
+            '{"makanan":50000,"snack":10000,"photo":2000000,"video":0,"pulpen":20000,"notebook":0,"totebag":0,"themes":10000000,"ongkos dadakan":3100000}',
           minOrderTime: 7,
           createdAt: new Date(),
           updatedAt: new Date(),
