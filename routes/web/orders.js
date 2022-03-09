@@ -21,7 +21,10 @@ router.get("/:idOrder/step/3", ordersControlers.getViewsStep3);
 router.post("/:idOrder/edit", ordersControlers.updateOrder);
 
 /* Get Views Step 4 */
-router.get("/:OrderId", ordersControlers.getViewsStep4);
+router.get("/:OrderId/payment", ordersControlers.getViewsStep4);
+
+/* GET Views Detail Order */
+router.get("/:idOrder", ordersControlers.orderDetail);
 
 /* POST Order Payments */
 router.post(
@@ -31,6 +34,5 @@ router.post(
 );
 
 router.get("/payments/:idPayment/:filename", ordersControlers.getPhotoPayment);
-
 
 module.exports = router;
