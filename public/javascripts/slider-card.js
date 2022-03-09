@@ -8,7 +8,6 @@ function sliderControl(title) {
 
   const btnLeft = document.getElementById(`btnLeft${title}`);
   const btnRight = document.getElementById(`btnRight${title}`);
-  console.log(sortingId);
 
   if (sortingId === 1) {
     btnLeft.style.visibility = "hidden";
