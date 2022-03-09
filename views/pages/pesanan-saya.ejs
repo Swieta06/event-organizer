@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <%- include('../partials/head.ejs', {title: 'Home'}) %>
+
+  <body class="p-0">
+    <header>
+      <!-- Swita taruh sini -->
+       <%- include('../partials/navbar.ejs') %>
+       <%- include('login')%> 
+       
+    </header>
+    <main>
+      <p class="mt-5 bg-purple-pressed">test</p>
+
+       <div id="pesanan-saya">
+        <div class="pesanan-sub text-center">
+          <h1 class="text-center">Pesanan Saya</h1>
+        </div>
+
+        <div class="container-fluid pesanan-border">
+            <div class="detail-pesanan">
+                <div class="row pilihan-pesanan">
+                    <nav>
+                        <ul>
+                            <li><a href="#">Semua</a></li>
+                            <li><a href="#">Belum Memesan</a></li>
+                            <li><a href="#">Sedang Diproses</a></li>
+                            <li><a href="#">Pesanan Selesai</a></li>
+                            <li><a href="#">Pesanan Dibatalkan</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div id="semua-border">
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="belum-memesan">Belum memesan</p>
+                            <p class="kode-pesanan">DDK/030322/Q23W9929023</p>
+                            <p class="tanggal-pesanan">28 Maret 2022</p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b>Paket Dadakan</b> - Total kapasitas 30 orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp23.500.000</p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="menunggu-pembayaran">Menunggu pembayaran</p>
+                            <p class="kode-pesanan">SVR/030322/Q23W9929023</p>
+                            <p class="tanggal-pesanan">3 Maret 2022</p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b>Paket Silver</b> - Total kapasitas 60 orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp27.600.000</p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="verifikasi-pembayaran">Verifikasi pembayaran</p>
+                            <p class="kode-pesanan">SVR/030322/Q23W9929023</p>
+                            <p class="tanggal-pesanan">3 Maret 2022</p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b>Paket Silver</b> - Total kapasitas 60 orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp27.600.000</p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="sedang-diproses">Sedang diproses</p>
+                            <p class="kode-pesanan">GLD/030322/Q23W9929023</p>
+                            <p class="tanggal-pesanan">3 Maret 2022</p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b>Paket Gold</b> - Total kapasitas 50 orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp27.600.000</p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="pesanan-selesai">Pesanan selesai</p>
+                            <p class="kode-pesanan">SVR/030322/Q23W9929023</p>
+                            <p class="tanggal-pesanan">3 Maret 2022</p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b>Paket Silver</b> - Total kapasitas 60 orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp27.600.000</p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="pesanan-dibatalkan">Pesanan dibatalkan</p>
+                            <p class="kode-pesanan">PLT/030322/Q23W9929023</p>
+                            <p class="tanggal-pesanan">3 Maret 2022</p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b>Paket Platinum</b> - Total kapasitas 100 orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp27.600.000</p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <%- include('../partials/scripts.ejs') %>
+  </body>
+</html>

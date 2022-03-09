@@ -388,6 +388,7 @@ margin:0 180px 100px;
 }
 
 .location-border{
+  margin-top: -50px;
   width: 1118px;
   height:auto;
   display: flex;
@@ -496,4 +497,254 @@ margin:0 180px 100px;
   align-self: stretch;
   flex-grow: 0;
   margin: 8px 8px;
+}
+
+/*Pesanan-Saya*/
+#pesanan-saya {
+  background-color:#FFFFFF;
+  height: 615px;
+  width: auto;
+}
+
+.pesanan-sub h1{
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 150%;
+letter-spacing: -0.022em;
+color: #0A0A0A;
+margin-bottom: 20px;
+}
+
+.pesanan-border{
+  width: 1118px;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  order: 5;
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}
+
+footer{
+  margin-top: 10%;
+}
+
+.detail-pesanan{
+  margin: 10px auto;
+}
+
+.pilihan-pesanan{
+  margin-right: auto;
+  padding: 16px 32px;
+}
+
+.pilihan-pesanan nav {
+  padding: 5px;
+  position: sticky;
+  top: 0;
+}
+
+.pilihan-pesanan nav li {
+  display: inline;
+  list-style-type: none;
+  margin-right: 20px;
+}
+
+.pilihan-pesanan nav a {
+  margin-right: auto;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: -0.019em;
+  color: #0A0A0A;
+}
+
+.pilihan-pesanan nav a:link, .pilihan-pesanan nav a:visited {
+  text-decoration: none;
+  transition: border-bottom 0.2s;
+}
+
+.pilihan-pesanan nav a:hover, .pilihan-pesanan nav a:active {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #7940CC;
+  margin-top: 2px;
+}
+
+#semua-border .row{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px 24px 12px 12px;
+  position: static;
+  width: 1055px;
+  height: 100px;
+  left: 0px;
+  top: 0px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 8px 20px;
+}
+
+.col p{
+  flex-wrap: wrap;
+}
+
+.baris-1{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.baris-2{
+  display: flex;
+  flex-direction: row;
+}
+
+.baris-3{
+  display: flex;
+  flex-direction: row;
+  margin-left: 230px;
+}
+
+.belum-memesan{
+  width: 111px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #FFF9F2;
+  border: 1px solid #EECEB0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding-top: 4px;
+}
+
+.kode-pesanan{
+  padding-top: 4px;
+  margin-left: 20px;
+}
+
+.tanggal-pesanan{
+  padding-top: 4px;
+ margin-left: auto;
+}
+
+.paket{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+  color: #0A0A0A;
+  width: 350px;
+}
+
+.total-harga{
+  margin-top: 3px;
+  margin-left: 180px;
+  width: 100px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 160%;
+  text-align: right;
+  color: #7940CC;
+}
+
+.harga{
+  margin-left: 23px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: right;
+  letter-spacing: -0.011em;
+  color: #7940CC;
+}
+
+.menunggu-pembayaran, 
+.verifikasi-pembayaran{
+  width: 150px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #F4EFFF;
+  border: 1px solid #D2C3EE;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #7940CC;
+  padding-top: 4px;
+}
+
+.sedang-diproses{
+  width: 111px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #F4EFFF;
+  border: 1px solid #D2C3EE;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #7940CC;
+  padding-top: 4px;
+}
+
+.pesanan-selesai{
+  width: 111px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #F5F5FF;
+  border: 1px solid #B8DBCA;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #20573D;
+  padding-top: 4px;
+}
+
+.pesanan-dibatalkan{
+  width: 130px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #FFF4F2;
+  border: 1px solid #EEB4B0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #CB3A31;
+  padding-top: 4px;
 }
