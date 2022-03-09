@@ -3,7 +3,6 @@ const createError = require("http-errors");
 const uuid = require("uuid").v4;
 const emailContent = require("../../utils/emailContent");
 const emailService = require("../../utils/emailService");
-const response = require("../../utils/response");
 
 exports.requestResetPassword = async (req, res, next) => {
   try {
@@ -57,11 +56,14 @@ exports.requestResetPassword = async (req, res, next) => {
       content
     );
 
-    res
-      .status(201)
-      .json(response("Reset password sent", newToken.get({ plain: true })));
+    req.flash("success", "Reset password link has been sent to your email");
+    res.status(201).redirect("back");
   } catch (error) {
     console.log(error);
+    if (error.status < 500) {
+      req.flash("error", { message: error.message });
+      return res.status(error.status).redirect("back");
+    }
     next(createError(error.status || 500, error.message));
   }
 };
