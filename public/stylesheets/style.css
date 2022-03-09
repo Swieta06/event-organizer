@@ -779,6 +779,8 @@ a {
   margin-left: 32%;
   border: 1px solid #0a0a0a;
   border-style: dashed;
+  background-position: center;
+  background-size: cover;
 }
 
 #img-vector {
