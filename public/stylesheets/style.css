@@ -322,6 +322,9 @@ a {
 .text-neutral-100 {
   color: #0a0a0a !important;
 }
+.fw-semibold{
+  font-weight: 500;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -536,6 +539,12 @@ a {
         transition: all 0.5s ease 0s !important;
         position: relative !important;
     }
+#orderStep1 label,
+#orderStep2 label{
+    white-space: break-spaces;
+    text-align: start; 
+}
+    
 #orderStep1 .slide-show-control,
 #orderStep2 .slide-show-control{
         position: absolute;
@@ -557,4 +566,20 @@ a {
     to {
         opacity: 1;
     }
+}
+
+#footerOrder{
+  z-index: 1000;
+}
+
+input[type=checkbox]:checked {
+  background-color: #7940cc;
+}
+input[type=radio]:checked {
+  background-color: #7940cc;
+}
+input[type=checkbox],
+input[type=radio]{
+  width: 16px;
+  height: 16px;
 }
