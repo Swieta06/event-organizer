@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <%- include('../partials/head.ejs', {title: 'Home'}) %>
+
+    <body class="p-0" style="background-color: #e5e5e5">
+      <header>
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%>
+      </header>
+
+      <main>
+        <div
+          class="container-1 position-absolute top-50 start-50 translate-middle border"
+        >
+          <div class="container text-center">
+            <h3 id="pay-info" class="info-pay">Informasi Pembayaran</h3>
+          </div>
+          <div class="value-pay">
+            <h4 id="pay-total" class="total-pay">Total Pembayaran</h4>
+            <p id="value-pay" class="value-pay-2">Rp27.600.000</p>
+          </div>
+          <div class="text-payment">
+            <p id="text-pay" class="text-pay">
+              Bayar pesanan sesuai jumlah diatas sebelum batas waktu terakhir.
+              Pengecekan dilakukan dalam 24 jam setelah bukti transfer diupload.
+            </p>
+          </div>
+          <div id="under-line" class="under-line"></div>
+          <div class="info-payment">
+            <div class="text-step-payment">
+              <h4 id="info-pay" class="info-pay">Informasi Pembayaran</h4>
+              <p id="text-step-1" class="text-step-1">
+                1. Gunakan ATM / iBanking / mBanking / setor tunai untuk
+                transfer ke rekening berikut ini:
+              </p>
+              <div class="mini-container">
+                <div id="item-inside">
+                  <img
+                    src="/images/default/<%=paymentMethod.bankName%>.png"
+                    id="image-bca"
+                    class="rounded float-start"
+                    alt="logo-bca"
+                  />
+                  <div
+                    id="text-mini-container"
+                    class="text-container d-table w-100"
+                  >
+                    <p id="number-rek" class="number-rek">
+                      No. Rekening: <%=paymentMethod.bankNumber%><br />
+                      Cabang: <%=paymentMethod.bankBranch%><br />
+                      Nama Rekening:<%=paymentMethod.bankHolder%>
+                    </p>
+                    <div class="d-table-cell tar">
+                      <button id="btn-bca" class="custom-btn btn-1">
+                        <p>Salin Nomor</p>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p id="text-step-2" class="text-step-2">
+                2. Demi kenyamanan transaksi, mohon untuk tidak membagikan bukti
+                atau konfirmasi pembayaran pesanan kepada siapapun, selain
+                mengunggahnya via website NamaWeb
+              </p>
+              <p id="text-step-3" class="text-step-3">
+                3. Silakan upload bukti transfer sebelum
+                <a>02-03-2022</a> melalui form dibawah ini.
+              </p>
+            </div>
+          </div>
+        </div>
+        <form
+          action="/orders/<%=order%>/payment"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="container-2 mx-auto border">
+            <div class="container text-center">
+              <h3 id="pay-info" class="info-pay">Konfirmasi Pembayaran</h3>
+            </div>
+            <div class="value-pay">
+              <h4 id="pay-total" class="total-pay">Informasi Rekening Bank</h4>
+            </div>
+            <div class="mini-container-2">
+              <div id="inner-border">
+                <img
+                  id="img-vector"
+                  src="/images/default/Vector.png"
+                  alt="vector-upload"
+                  style="margin-left: 46%"
+                /><br />
+                <input type="file" id="upload" hidden name="photo" required />
+                <label
+                  class="mt-2"
+                  style="margin-left: 16%"
+                  id="text-upload-file"
+                  for="upload"
+                  >Sentuh untuk upload</label
+                >
+              </div>
+            </div>
+            <div class="mb-4 mt-4">
+              <label for="exampleInputEmail1" class="form-label"
+                >Transfer dari Bank</label
+              >
+              <select
+                id="form-select"
+                class="form-select input-color-primary"
+                id="inputGroupSelect01"
+                name="bankName"
+              >
+                <option selected>Pilih Bank</option>
+                <option value="BNI">Bank Negara Indonesia</option>
+                <option value="Mandiri">Bank Mandiri</option>
+                <option value="BRI">Bank Rakyat Indonesia</option>
+                <option value="BCA">Bank Central Asia</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputEmail1" class="form-label"
+                >Nama Pemilik Rekening</label
+              >
+              <input
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                type="text"
+                name="bankHolder"
+                placeholder="Contoh: Alfarel Zaki"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputEmail1" class="form-label"
+                >No. Rekening</label
+              >
+              <input
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                type="text"
+                name="bankNumber"
+                placeholder="Contoh: 123456789"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputEmail1" class="form-label"
+                >Jumlah yang ditransfer</label
+              >
+              <input
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                type="text"
+                name="price"
+                placeholder="Masukkan hanya nominal angka tanpa titik maupun koma"
+                required
+              />
+            </div>
+            <div class="d-grid gap-2">
+              <button id="btn-proof-payment" class="btn mt-2" type="submit">
+                <p>Kirim Bukti Pembayaran</p>
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
+      <script src="/public/javascripts/confirm-payment.js"></script>
+    </body>
+  </html>
+</html>
