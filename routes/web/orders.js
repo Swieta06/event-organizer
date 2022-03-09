@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ordersControlers } = require("../../controllers");
 const upload = require("../../middlewares/uploadPayment");
+const getOrderController = require("../../controllers/ordersControllers/getOrder");
+const authentication = require("../../middlewares/authentication");
+
+/* GET Orders List Orders. */
+router.get("/", authentication, ordersControlers.getOrder);
 
 /* GET Orders Page Step 1. */
 router.get("/step/1", ordersControlers.getViews);
@@ -26,5 +31,6 @@ router.post(
 );
 
 router.get("/payments/:idPayment/:filename", ordersControlers.getPhotoPayment);
+
 
 module.exports = router;
