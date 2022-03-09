@@ -24,13 +24,13 @@ exports.orderDetail = async (req, res, next) => {
         "totalPrice",
         "status",
         "desc",
-        "desc",
         "eventAt",
         "customerName",
         "companyName",
         "tel",
         "address",
         "postalCode",
+        "concept"
       ],
       include: [
         {
@@ -43,6 +43,7 @@ exports.orderDetail = async (req, res, next) => {
             "maxSnack",
             "additionCost",
             "price",
+            "detailPrice",
           ],
         },
         {
@@ -52,7 +53,7 @@ exports.orderDetail = async (req, res, next) => {
             attributes: ["qty"],
           },
 
-          attributes: ["id", "name", "CategoryId"],
+          attributes: ["id", "name", "CategoryId", "price"],
           include: [
             {
               model: Category,
@@ -62,7 +63,7 @@ exports.orderDetail = async (req, res, next) => {
             {
               model: Vendor,
               as: "vendor",
-              attributes: ["name"],
+              attributes: ["name", "city"],
             },
           ],
         },
@@ -108,6 +109,8 @@ exports.orderDetail = async (req, res, next) => {
         id: el.id,
         name: el.name,
         vendor: el.vendor.name,
+        location: el.vendor.city,
+        price: el.price,
         qty: el.OrderProduct.qty,
       });
     });
@@ -116,7 +119,7 @@ exports.orderDetail = async (req, res, next) => {
     orderDetail.products = products;
     console.log(orderDetail, "Ini Datavalues");
     if (orderDetail) {
-      res.render("pages/detailOrder", orderDetail);
+      res.render("pages/detailOrder", { orderDetail });
     } else {
       res.status(404).json(response("Not Found"));
     }

@@ -33,6 +33,5 @@ router.put("/:idOrder/status",
 );
 
 router.post("/", authentication, ordersControlers.createOrder);
-router.get("/:idOrder", ordersControlers.orderDetail);
 
 module.exports = router;
