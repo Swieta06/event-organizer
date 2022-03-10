@@ -1,13 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 * {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -27,7 +27,7 @@ a {
 }
 
 #faq {
-  background: url("/images/default/background_faq.svg") no-repeat;
+  background: url('/images/default/background_faq.svg') no-repeat;
   width: 100%;
   height: 1280px;
   position: absolute;
@@ -67,7 +67,7 @@ a {
 }
 
 #about .header {
-  background: url("/images/default/AboutUs-bg-hero.png") no-repeat;
+  background: url('/images/default/AboutUs-bg-hero.png') no-repeat;
   width: 100%;
   height: 530px;
   background-size: contain;
@@ -321,7 +321,7 @@ a {
 .text-neutral-100 {
   color: #0a0a0a !important;
 }
-.fw-semibold{
+.fw-semibold {
   font-weight: 500;
 }
 .cursor-pointer {
@@ -543,7 +543,7 @@ a {
 }
 /* gradient color */
 #image-slider::before {
-  content: "";
+  content: '';
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -591,7 +591,7 @@ a {
 }
 
 #text-slider h5 {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
@@ -602,7 +602,7 @@ a {
 #text-slider p {
   position: static;
   top: 116px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -634,7 +634,7 @@ a {
 }
 
 #packages {
-  background-image: url("../images/default/bgPackage.png");
+  background-image: url('../images/default/bgPackage.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -646,15 +646,15 @@ a {
 }
 
 #testimonial {
-  background-image: url("../images/default/bgTestimonial.png");
+  background-image: url('../images/default/bgTestimonial.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
 #testimonial .carousel-control-next-icon {
-  background-image: url("../images/default/chevronRight.png");
+  background-image: url('../images/default/chevronRight.png');
 }
 #testimonial .carousel-control-prev-icon {
-  background-image: url("../images/default/chevronleft.png");
+  background-image: url('../images/default/chevronleft.png');
 }
 
 /* visibility css */
@@ -820,19 +820,18 @@ a {
   margin: 5px 4px;
 }
 #orderStep1 .slide-show-ari,
-
-#orderStep2 .slide-show-ari{
-        flex-wrap: nowrap !important;
-        overflow: auto hidden !important;
-        overflow-x: hidden !important;
-        white-space: nowrap;
-        transition: all 0.5s ease 0s !important;
-        position: relative !important;
-    }
+#orderStep2 .slide-show-ari {
+  flex-wrap: nowrap !important;
+  overflow: auto hidden !important;
+  overflow-x: hidden !important;
+  white-space: nowrap;
+  transition: all 0.5s ease 0s !important;
+  position: relative !important;
+}
 #orderStep1 label,
-#orderStep2 label{
-    white-space: break-spaces;
-    text-align: start; 
+#orderStep2 label {
+  white-space: break-spaces;
+  text-align: start;
 }
 
 #orderStep1 .slide-show-control,
@@ -861,7 +860,7 @@ a {
 /* CSS Confirm Payment */
 
 /* jumbotron info Pembayaran */
-.container-1 {
+#container-1 {
   width: 664px;
   height: 666px;
   border-radius: 1px;
@@ -951,7 +950,7 @@ a {
   text-align: left;
 }
 
-.mini-container {
+#mini-container {
   height: 174px;
   width: 600px;
   left: 0px;
@@ -996,6 +995,14 @@ a {
   text-align: left;
 }
 
+#image-bank {
+  height: 25px;
+  width: 74px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
+}
+
 #number-rek {
   color: #616161;
   font-family: Inter;
@@ -1025,7 +1032,7 @@ a {
 }
 
 #btn-bca p {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   text-align: center;
@@ -1042,8 +1049,7 @@ a {
   transition: all 0.3s ease;
 }
 #btn-bca:hover {
-  box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
-    7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+  box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
 }
 /* style for right button */
 .tar {
@@ -1051,7 +1057,7 @@ a {
 }
 
 /* container-2 confirm payment */
-.container-2 {
+#container-2 {
   width: 664px;
   margin-top: 834px;
   border-radius: 1px;
@@ -1061,10 +1067,10 @@ a {
   padding: 32px;
   border-radius: 8px;
   height: 906px;
-  bottom: 48px;
+  margin-bottom: 48px;
 }
 
-.mini-container-2 {
+#mini-container-2 {
   height: 248px;
   width: 600px;
   left: 0px;
@@ -1111,7 +1117,7 @@ a {
   padding: 14px, 16px, 14px, 16px;
 }
 
-.form-control {
+#form-input-payment {
   height: 52px;
   width: 600px;
   left: 0px;
@@ -1139,7 +1145,6 @@ a {
   text-align: center;
   color: #fff;
 }
-
 /* END CSS Confirm Payment */
 
 /* detailOrder css */
@@ -1208,18 +1213,18 @@ a {
   width: 100%;
   margin-top: 32px;
 }
-#footerOrder{
+#footerOrder {
   z-index: 1000;
 }
 
-input[type=checkbox]:checked {
+input[type='checkbox']:checked {
   background-color: #7940cc;
 }
-input[type=radio]:checked {
+input[type='radio']:checked {
   background-color: #7940cc;
 }
-input[type=checkbox],
-input[type=radio]{
+input[type='checkbox'],
+input[type='radio'] {
   width: 16px;
   height: 16px;
 }
