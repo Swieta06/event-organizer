@@ -8,6 +8,28 @@
        <%- include('login')%> 
     </header>
     <main>
+      <div class="container">
+        <div id="stepProgressBar" class="mx-auto">
+          <div id="step-prog" class="step">
+            <div class="bullet">1</div>
+            <p id="prog-step-text" class="step-text">Tentukan Tema Acara</p>
+          </div>
+          <span id="step-wizard-item" class="step-wizard-item"></span>
+          <div id="step-prog" class="step-mid">
+            <div class="bullet active">2</div>
+            <p id="prog-step-text" class="step-text-mid">Sewa alat dan talent</p>
+          </div>
+          <span id="step-wizard-item" class="step-wizard-item"></span>
+          <div id="step-prog" class="step">
+            <div class="bullet">3</div>
+            <p id="prog-step-text" class="step-text">
+              Buat<br />
+              Pesanan
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div class="container-fluid mt-5 pt-3" id="orderStep2">
         <div class="row justify-content-center ">
           <div class="col-10 bg-neutral-10 px-5  py-3 rounded-3 shadow-lg" style="margin-bottom: 100px;">

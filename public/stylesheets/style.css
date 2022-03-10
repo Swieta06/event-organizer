@@ -1593,7 +1593,7 @@ margin: 0px 4px;
 
 /*Pesanan-Saya*/
 #pesanan-saya {
-  background-color:#FFFFFF;
+  background-color: #FFFFFF;
   height: 615px;
   width: auto;
 }
@@ -1840,3 +1840,113 @@ footer{
   color: #CB3A31;
   padding-top: 4px;
 }
+
+/* CSS Progress Bar */
+#stepProgressBar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 70px;
+  width: 664px;
+  left: 388px;
+  top: 120px;
+  border-radius: 0px;
+  margin-top: 120px;
+  align-items: center;
+}
+
+#step-prog {
+  text-align: center;
+  height: 70px;
+  width: 97px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
+
+  /* background: #7940cc; */
+}
+
+#step-wizard-item {
+  height: 0px;
+  top: 35px;
+  border-radius: 0px;
+  border: 1px solid #0a0a0a;
+  border-style: dashed;
+  text-align: center;
+  min-width: 170.5px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#prog-step-text {
+  height: 38px;
+  width: 97px;
+  left: 0px;
+  top: 32px;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  margin-top: 10px;
+}
+.step-text-mid {
+  height: 38px;
+  width: 97px;
+  left: 0px;
+  top: 32px;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  margin-top: 10px;
+}
+
+.bullet {
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  border-radius: 15px;
+  border: 3px solid #757575;
+  display: inline-block;
+  position: relative;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #757575;
+}
+
+.bullet::before {
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  border-radius: 15px;
+  border: 3px solid #757575;
+  display: inline-block;
+  position: relative;
+}
+
+.bullet p {
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #757575;
+}
+
+#stepProgressBar .bullet.active {
+  border-color: #7940cc;
+  background-color: #7940cc;
+  color: #fff;
+}
+/* End CSS Progress Bar */
