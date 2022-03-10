@@ -69,6 +69,7 @@ exports.updateOrder = async (req, res, next) => {
       postalCode,
       status: 1,
       PaymentMethodId: paymentMethodId,
+      orderedAt: new Date(),
     };
 
     const updatedOrder = await Order.update(updateOrder, {

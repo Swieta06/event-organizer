@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const { packageControllers } = require("../../controllers");
-const authentication = require("../../middlewares/authentication");
-const authenticationAdmin = require("../../middlewares/authenticationAdmin");
+const router = require('express').Router();
+const { packageControllers } = require('../../controllers');
+const authentication = require('../../middlewares/authentication');
+const authenticationAdmin = require('../../middlewares/authenticationAdmin');
 
 router.use(authentication, authenticationAdmin);
 
