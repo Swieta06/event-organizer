@@ -28,7 +28,7 @@ router.get("/:idOrder", authentication, ordersControlers.orderDetail);
 
 /* POST Order Payments */
 router.post(
-  "/:OrderId/payments",
+  "/:OrderId/payment",
   upload.single("photo"),
   ordersControlers.orderPayment
 );

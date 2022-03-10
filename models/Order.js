@@ -66,6 +66,20 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
+      orderedAt: {
+        type: DataTypes.DATE,
+      },
+      expiredAt: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return new Date(this.orderedAt).setDate(
+            this.orderedAt?.getDate() + 7
+          );
+        },
+        set(value) {
+          throw new Error("Do not try to set the `expiredAt` value!");
+        },
+      },
     },
     {
       hooks: {

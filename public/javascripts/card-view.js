@@ -25,6 +25,11 @@ const card = (type, title, id, data) => {
                                ? `<p class="w-100 mt-2 text-start px-1 fs-14" > ${data.desc} </p>`
                                : ""
                            }
+                           ${
+                             data.description
+                               ? `<p class="w-100 mt-2 text-start px-1 fs-14" > ${data.description} </p>`
+                               : ""
+                           }
                   </div>
                 </div>
            </div>`;
