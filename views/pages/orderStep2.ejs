@@ -225,7 +225,7 @@ const checkedCard = (event) =>{
               if(result.message === "success" ){
                  btnLoading.classList.add("d-none");
                 btnNext.classList.remove("d-none");;
-                window.location.href = `http://localhost:3000/orders/${result.data.id}/step/3`;
+                window.location.href = `/orders/${result.data.id}/step/3`;
               }else{
                 btnLoading.classList.add("d-none");
                 btnNext.classList.remove("d-none");

@@ -1223,3 +1223,86 @@ input[type=radio]{
   width: 16px;
   height: 16px;
 }
+
+#testimonial {
+  background-image: url("../images/default/bgTestimonial.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#testimonial .carousel-control-next-icon{
+  background-image: url("../images/default/chevronRight.png");
+}
+#testimonial .carousel-control-prev-icon{
+  background-image: url("../images/default/chevronleft.png");
+}
+
+/* visibility css */
+.input-container{
+  position: relative;
+  width: 100%;
+}
+
+
+#material{
+  position: absolute;
+  width: 35px;
+  height: 100px;
+  right: 0px;
+  top: 34px;
+  color: #757575;
+  
+}
+#orderStep1 .slide-show-ari,
+#orderStep2 .slide-show-ari{
+        flex-wrap: nowrap !important;
+        overflow: auto hidden !important;
+        overflow-x: hidden !important;
+        white-space: nowrap;
+        transition: all 0.5s ease 0s !important;
+        position: relative !important;
+    }
+#orderStep1 label,
+#orderStep2 label{
+    white-space: break-spaces;
+    text-align: start; 
+}
+    
+#orderStep1 .slide-show-control,
+#orderStep2 .slide-show-control{
+        position: absolute;
+        z-index: 1;
+        top: 54%;
+        left: -1%;
+        display: flex;
+        width: 102%;
+        justify-content: space-between;
+    }
+#orderStep1 .fade-in-image,
+#orderStep2 .fade-in-image {
+  animation: fadeInUp 1.5s;
+}
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#footerOrder{
+  z-index: 1000;
+}
+
+input[type=checkbox]:checked {
+  background-color: #7940cc;
+}
+input[type=radio]:checked {
+  background-color: #7940cc;
+}
+
+input[type=checkbox],
+input[type=radio]{
+  width: 16px;
+  height: 16px;
+}
