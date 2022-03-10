@@ -56,6 +56,12 @@ route.post("/login",
     passport.authenticate("local", { failureRedirect: "/", failureFlash: true }),
     Auth.login);
 
-    route.post("/logout", Auth.logout);
+route.post("/logout", Auth.logout);
+
+// route request reset password
+route.post("/request-reset-password", Auth.requestResetPassword);
+
+// route confirm reset password
+route.post("/confirm-reset-password", Auth.confirmResetPassword);
 
 module.exports = route

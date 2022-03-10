@@ -506,7 +506,7 @@ const checkedCard = (event) =>{
                   products: foodTheme.concat(data.snack),
                 }
               localStorage.setItem("data", JSON.stringify(finalData));
-              window.location.href = `http://localhost:3000/orders/step/2?location=${data.location}`;
+              window.location.href = `/orders/step/2?location=${data.location}`;
             } 
           }else{
              validation("location");

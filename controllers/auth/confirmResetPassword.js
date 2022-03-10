@@ -1,19 +1,17 @@
 const { User, ResetPasswordToken } = require("../../models");
 const createError = require("http-errors");
-const response = require("../../utils/response");
 const bcrypt = require("../../utils/bcrypt");
 
 exports.confirmResetPassword = async (req, res, next) => {
   try {
-    const { password, confirmPassword } = req.body;
-    const { t } = req.query;
+    const { password, confirmPassword, t } = req.body;
 
     if (password !== confirmPassword) {
-      throw createError(200, "Password doesn't match");
+      throw createError(400, "Password doesn't match");
     }
 
     if (!t) {
-      throw createError(400, "Req query must have t");
+      throw createError(400, "Req body must have t");
     }
 
     const tokenRaw = await ResetPasswordToken.findAll({
@@ -69,9 +67,14 @@ exports.confirmResetPassword = async (req, res, next) => {
       ],
     });
 
-    res.status(201).json(response("Reset password success", updatedUser[0]));
+    req.flash("success", "Reset password success");
+    res.status(201).redirect("back");
   } catch (error) {
     console.log(error);
-    next(createError(error.status || 500, error.message));
+    if (error.status < 500) {
+      req.flash("error", { message: error.message });
+      return res.status(error.status).redirect("back");
+    }
+    next(error);
   }
 };

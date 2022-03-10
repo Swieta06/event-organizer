@@ -4,10 +4,8 @@ const createError = require("http-errors");
 const getViewsStep4 = async (req, res, next) => {
   try {
     const { step } = req.query;
-    if (step != "4") {
-      throw createError(404, "Page Not Found");
-    }
     const { OrderId } = req.params;
+
     const data = await Order.findOne({
       where: {
         id: OrderId,
@@ -18,6 +16,7 @@ const getViewsStep4 = async (req, res, next) => {
         },
       ],
     });
+
     if (data)
       res.render("pages/orderStep4", {
         order: OrderId,

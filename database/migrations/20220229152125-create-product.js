@@ -33,7 +33,7 @@ module.exports = {
         onUpdate: "CASCADE",
       },
       photo: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       stock: {
         type: Sequelize.INTEGER,

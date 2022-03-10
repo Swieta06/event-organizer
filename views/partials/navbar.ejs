@@ -4,13 +4,13 @@
     <a class="navbar-brand justify-content-start fw-bolder" href="#header">Nama Web</a>
     <div class="justify-content-center">
       <a class="navbar-brand" href="">Home</a>
-      <a class="navbar-brand" href="">FAQ</a>
-      <a class="navbar-brand" href="">Events</a>
-      <a class="navbar-brand" href="about-us">About Us</a>
+      <a class="navbar-brand" href="#faq">FAQ</a>
+      <a class="navbar-brand" href="/events">Events</a>
+      <a class="navbar-brand" href="/about">About Us</a>
     </div>
     <% if (user) { %>
       <div class="dropdown" id="nav1">
-        <img src="/images/profile.png" alt="" width="30" height="24">
+        <img src="<%=user.photo %>" alt="" width="30" height="30">
         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           Naomi Lisda
         </a>

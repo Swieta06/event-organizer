@@ -35,7 +35,11 @@ router.get('/request-reset-password', (req, res) => {
 });
 
 router.get('/confirm-reset-password', (req, res) => {
-  res.render('pages/confirm-reset-password-test');
+  const token = req.query.t;
+  res.render('pages/confirm-reset-password-test', { token });
+});
+router.get('/test', (req, res) => {
+  res.render('pages/event');
 });
 
 router.use('/orders', ordersRoute);

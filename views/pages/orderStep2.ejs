@@ -17,7 +17,6 @@
             <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">Sewa Alat</h1>
                 <%- include('cardStep2.ejs', {id: "airConditioner",title: "Pendingin Udara", datas: kipas, isCalculator: true}) %>
                 <%- include('cardStep2.ejs', {id: "chair",title: "Kursi", datas: kursi, isCalculator: true}) %>
-
                 <%- include('cardStep2.ejs', {id: "table",title: "Meja", datas: meja, isCalculator: true}) %>
                 <%- include('cardStep2.ejs', {id: "tent",title: "Tenda", datas: tenda, isCalculator: true}) %>
 
@@ -226,7 +225,7 @@ const checkedCard = (event) =>{
               if(result.message === "success" ){
                  btnLoading.classList.add("d-none");
                 btnNext.classList.remove("d-none");;
-                window.location.href = `http://localhost:3000/orders/${result.data.id}/step/3`;
+                window.location.href = `/orders/${result.data.id}/step/3`;
               }else{
                 btnLoading.classList.add("d-none");
                 btnNext.classList.remove("d-none");
