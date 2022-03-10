@@ -72,6 +72,7 @@
                 <option value="Mandiri">Bank Mandiri</option>
                 <option value="BRI">Bank Rakyat Indonesia</option>
                 <option value="BCA">Bank Central Asia</option>
+                <option value="CIMB">Bank CIMB</option>
               </select>
             </div>
             <div class="mb-4">
@@ -109,9 +110,10 @@
       }
 
       document.querySelector('#btn-bca').onclick = function () {
-        copyNumber('382371928');
+        copyNumber('<%=paymentMethod.bankNumber%>');
       };
 
+      // javascript upload Image
       const upload = document.querySelector('#upload');
       var uploaded_image;
 
