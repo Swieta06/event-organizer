@@ -2,11 +2,21 @@ const express = require("express");
 const router = express.Router();
 const { ordersControlers } = require("../../controllers");
 const upload = require("../../middlewares/uploadPayment");
+<<<<<<< HEAD
 const getOrderController = require("../../controllers/ordersControllers/getOrder");
 const authentication = require("../../middlewares/authentication");
 
 /* GET Orders List Orders. */
 router.get("/", authentication, ordersControlers.getOrder);
+=======
+const authentication = require("../../middlewares/authentication");
+
+/* Middleware to check authentication */
+router.use(authentication);
+
+/* GET Orders List Orders. */
+router.get("/", ordersControlers.getOrder);
+>>>>>>> 05196e4b140387a8edc21ffce9b0846346a43c63
 
 /* GET Orders Page Step 1. */
 router.get("/step/1", ordersControlers.getViews);

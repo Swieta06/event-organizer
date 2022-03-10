@@ -85,8 +85,11 @@ exports.updateOrder = async (req, res, next) => {
     // res.status(200).json(response("Order Updated", "test"));
     res.redirect(`/orders/${orderId}/payment`);
   } catch (error) {
-
-    next(createError(error.status || 500, error.message));
-    req.flash("error",error.message);
+    console.log(error);
+    if (error.status < 500) {
+      req.flash("error", { message: error.message });
+      return res.status(error.status).redirect("back");
+    }
+    next(error);
   }
 };

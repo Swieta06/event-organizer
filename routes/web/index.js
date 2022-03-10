@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require("passport");
-const { authentication } = require("../../middlewares");
 const userRoute = require("./userRoute");
 const ordersRoute = require("./orders");
-const mainRoute = require('./main');
+const mainRoute = require("./main");
+const googleRoute = require("./google");
+const resetPasswordRoute = require("./resetPassword");
 
 /* Main page. */
 router.use("/", mainRoute);
@@ -12,28 +12,17 @@ router.use("/", mainRoute);
 /* Register with Email */
 router.use("/", userRoute);
 
+/* Reset Password */
+router.use("/", resetPasswordRoute);
+
 /* Login Goole. */
-router.get(
-  '/login/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email'],
-  })
-);
+router.use("/login/google", googleRoute);
 
-router.get(
-  '/login/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/',
-    successRedirect: '/',
-    failureFlash: true,
-    successFlash: 'Successfully logged in!',
-  })
-);
-
-router.get('/request-reset-password', (req, res) => {
-  res.render('pages/request-reset-password-test');
+router.get("/test", (req, res) => {
+  res.render("pages/index");
 });
 
+<<<<<<< HEAD
 router.get('/confirm-reset-password', (req, res) => {
   const token = req.query.t;
   res.render('pages/confirm-reset-password-test', { token });
@@ -52,5 +41,8 @@ router.get('/test', (req, res) => {
 });
 
 router.use('/orders', ordersRoute);
+=======
+router.use("/orders", ordersRoute);
+>>>>>>> 05196e4b140387a8edc21ffce9b0846346a43c63
 
 module.exports = router;
