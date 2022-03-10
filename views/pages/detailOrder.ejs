@@ -2,6 +2,13 @@
 <html lang="en">
   <%- include('../partials/head.ejs', {title: 'Rincian Pesanan' }) %>
   <body class="bg-neutral-20">
+    <% function createCommas(str){
+      return str.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    } %> 
+
+    <% function getFilename(str) {
+      return str.substring(str.lastIndexOf('/')+1);
+    } %> 
     <%- include('../partials/navbar.ejs') %>
     <section class="container" id="detail-order">
       <div class="card">
@@ -13,8 +20,7 @@
           </h6>
           <div class="detail-order-list text-neutral-80">
             <% for(let key in orderDetail.Package.detailPrice){ %> 
-              <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="themes") { %> 
-                <% console.log(key) %>
+              <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="themes"&&key!=="ongkos dadakan") { %> 
                 <% if(orderDetail.products[key]?.length > 0) { %> 
                   <% for(let i = 0; i < orderDetail.products[key]?.length;i++) { %>
                     <div class="row">
@@ -25,8 +31,8 @@
                         <%= orderDetail.totalParticipant %> pcs
                       </p>
                       <p class="col-md-4 text-md-end text-neutral-100">
-                        Rp<%= (orderDetail.Package.detailPrice[key] *
-                        orderDetail.totalParticipant).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %>
+                        Rp<%= createCommas(orderDetail.Package.detailPrice[key] *
+                        orderDetail.totalParticipant) %>
                       </p>
                     </div>
                   <% } %> 
@@ -45,10 +51,10 @@
                     </p>
                     <p class="col-md-4 text-md-end text-neutral-100">
                       <% if(key==="pulpen" || key==="notebook" || key==="totebag") { %> 
-                        Rp<%= (orderDetail.Package.detailPrice[key] *
-                        orderDetail.totalParticipant).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %>
+                        Rp<%= createCommas(orderDetail.Package.detailPrice[key] *
+                        orderDetail.totalParticipant) %>
                       <% } else { %>
-                        Rp<%= orderDetail.Package.detailPrice[key].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %>
+                        Rp<%= createCommas(orderDetail.Package.detailPrice[key]) %>
                       <% } %>
                     </p>
                   </div>
@@ -68,7 +74,7 @@
                     <p class="col-md-4 text-md-start"><%=orderDetail.products[key][i].name%></p>
                     <p class="col-md-4 text-md-center"><%=orderDetail.products[key][i].qty%> pcs</p>
                     <p class="col-md-4 text-md-end text-neutral-100">
-                      Rp<%= (orderDetail.products[key][i].price*orderDetail.products[key][i].qty).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %>
+                      Rp<%= createCommas(orderDetail.products[key][i].price*orderDetail.products[key][i].qty) %>
                     </p>
                   </div>
                 </div>
@@ -80,7 +86,7 @@
             class="d-flex flex-column flex-md-row justify-content-between text-purple-main"
           >
             <div class="card-price">Total Harga</div>
-            <div class="card-price">Rp<%=orderDetail.totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");%></div>
+            <div class="card-price">Rp<%=createCommas(orderDetail.totalPrice)%></div>
           </div>
         </div>
       </div>
@@ -219,7 +225,7 @@
               <p class="col-md-6 text-md-end text-neutral-100">
                 <% if(orderDetail.Payment) { %>
                 <a href="<%= orderDetail.Payment?.photo || '#' %>">
-                  <%= orderDetail.Payment?.photo || "-" %>
+                  <%= getFilename(orderDetail.Payment?.photo) || "-" %>
                 </a>
                 <% } else { %>
                   -
