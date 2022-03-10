@@ -13,7 +13,7 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       const id = uuid.v4();
       const pass = encrypt.generate(profile.id);
-      console.log(pass);
+
       const email = profile.emails[0].value;
       const name = profile.name.givenName + profile.name.familyName;
       const photo = profile.photos[0].value;
@@ -34,17 +34,15 @@ passport.use(
         });
         return done(null, newUser);
       } else {
-        console.log(currentUser);
-        currentUser.lastVisited = new Date();
+        if (!encrypt.compare(profile.id, currentUser.dataValues.password)) {
+          //return error
+          return done(null, false, {
+            message: `You have previously signed up with a different signin method`,
+          });
+        }
+
         return done(null, currentUser);
       }
-
-      // if (currentUser.source != "google") {
-      //   //return error
-      //   return done(null, false, {
-      //     message: `You have previously signed up with a different signin method`,
-      //   });
-      // }
     }
   )
 );
