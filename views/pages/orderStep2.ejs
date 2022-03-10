@@ -4,65 +4,71 @@
   <%- include('../partials/head.ejs', {title: 'Home'}) %>
   <body class="p-0" style="background-color:  #E5E5E5;">
     <header>
-      <!-- Swita taruh sini -->
        <%- include('../partials/navbar.ejs') %>
        <%- include('login')%> 
     </header>
     <main>
-      <script src="/javascripts/helper.js"></script>
       <div class="container-fluid mt-5 pt-3" id="orderStep2">
         <div class="row justify-content-center ">
-          <div class="col-10 bg-neutral-10 px-5  py-5 rounded-3">
-            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">Sewa Talent</h1>
-            
+          <div class="col-10 bg-neutral-10 px-5  py-3 rounded-3 shadow-lg" style="margin-bottom: 100px;">
+            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center mt-5">Sewa Talent</h1>
             <%- include('cardStep2.ejs', {id: "talent",title: "Talent", datas: talent, isCalculator: false}) %>
+
             <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">Sewa Alat</h1>
                 <%- include('cardStep2.ejs', {id: "airConditioner",title: "Pendingin Udara", datas: kipas, isCalculator: true}) %>
                 <%- include('cardStep2.ejs', {id: "chair",title: "Kursi", datas: kursi, isCalculator: true}) %>
                 <%- include('cardStep2.ejs', {id: "table",title: "Meja", datas: meja, isCalculator: true}) %>
                 <%- include('cardStep2.ejs', {id: "tent",title: "Tenda", datas: tenda, isCalculator: true}) %>
-
-                
             </div>
         </div>
       </div>
-      <%- include('footerOrder', {btnLeft: true}) %>
+      <%- include('footerOrder', {btnLeft: false}) %>
+    <script src="/javascripts/helper.js"></script>
     <script src="/javascripts/helper-localstorage.js"></script>
     <script src="/javascripts/slider-card.js"></script>
-      
+    <script>
+      // Check When Reload Page
+        if(performance.navigation.type == performance.navigation.TYPE_RELOAD){
+          setLocalStorage("totalPrice", parseInt(localStorage.getItem("firstTotalPrice")));
+          setLocalStorage("products",JSON.parse(localStorage.getItem("products")));
+        }
+    </script>      
 <script>
     
     document.getElementById('totalPrice').innerText = formatRupiah(getLocalStorage('totalPrice'))
 
-            
-sliderControl("talent");
-sliderControl("airConditioner");
-sliderControl("table");
-sliderControl("tent");
-sliderControl("chair");
+    // Slider Card
+    sliderControl("talent");
+    sliderControl("airConditioner");
+    sliderControl("table");
+    sliderControl("tent");
+    sliderControl("chair");
 
-// SlideControle End
 const calculatorCard = (event) =>{
      if(event.innerText === "+")
      {
-        let getValue = event.parentElement.parentElement.children[4];
-        let result = event.parentElement.children[1];
-        result.value = parseInt(result.value) + 1;
-        getValue.innerText =  formatRupiah(String(result.value * parseInt(getValue.id)))
-        const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
-        if(getChecked.checked){
-           const idProduct = getChecked.id;
+        const totalPriceItem = event.parentElement.parentElement.children[4];
+        const qtyItem = event.parentElement.children[1];
+        qtyItem.value = parseInt(qtyItem.value) + 1;
+        totalPriceItem.innerText =  formatRupiah(String(qtyItem.value * parseInt(totalPriceItem.id)))
+
+        const checkedItem = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
+        checkedItem.checked = true;
+        event.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC";
+
+        if(checkedItem.checked){
+           const idProduct = checkedItem.id;
            const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
            const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
-           const qty  = result.value;
            if(productCheck){
              setLocalStorage('products', product)
             }
-            setLocalStorageProduct(idProduct, qty)
-            const totalPrice = getLocalStorage("totalPrice") + parseInt(getValue.id);
+            setLocalStorageProduct(idProduct, parseInt(qtyItem.value))
+            const totalPrice = getLocalStorage("totalPrice") + parseInt(totalPriceItem.id);
             document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
             setLocalStorage('totalPrice', totalPrice )
         }
+        
     }
 
     if(event.innerText === "-")
@@ -75,7 +81,9 @@ const calculatorCard = (event) =>{
             getValue.innerText =  formatRupiah(String( result.value * formatInteger(getValue.id)))
         }
         const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
-        if(getChecked.checked && total >= 0){
+        const totalPrice = getLocalStorage("totalPrice") - parseInt(getValue.id);
+        
+        if(getChecked.checked && total > 0){
            const idProduct = getChecked.id;
            const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
            const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
@@ -83,16 +91,28 @@ const calculatorCard = (event) =>{
            if(productCheck){
              setLocalStorage('products', product)
             }
-            setLocalStorageProduct(idProduct, qty)
-            const totalPrice = getLocalStorage("totalPrice") - parseInt(getValue.id);
+            setLocalStorageProduct(idProduct, parseInt(qty))
             document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
             setLocalStorage('totalPrice', totalPrice )
         }
-        // if(total === 0){
-        //     event.parentElement.parentElement.parentElement.style.border = "1px solid #e5e5e5";
-        //     getChecked.checked = false;
-        // }
+        if(getChecked.checked && total === 0){
+            event.parentElement.parentElement.parentElement.style.border = "1px solid #e5e5e5";
+            getChecked.checked = false;
+            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+            setLocalStorage('totalPrice', totalPrice )
+             const product = getLocalStorage('products').filter((product)=> product.id !== getChecked.id);
+            setLocalStorage('products', product)
+        }
     }
+}
+
+const resetCheckedCard = (cardCheck) =>{
+  for (let i = 0; i < cardCheck.length; i++) {
+    cardCheck[i].style.border = "1px solid #e5e5e5";
+    if(cardCheck[i].children[0].children[0].children[1].children[0].checked){
+       cardCheck[i].style.border = "3px solid #7940CC";
+    }
+  }
 }
 
 const checkedCard = (event) =>{
@@ -101,112 +121,104 @@ const checkedCard = (event) =>{
     
          const getPrice = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[4]?.id
          const getItem = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1].value
-
+         const qty = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1];
          const id = event.id;
-       
+         const textPrice = event.parentElement.parentElement.parentElement?.parentElement?.children[1]?.children[4];
+
          if (event.checked) {
-         const totalPrice = getLocalStorage("totalPrice") + (parseInt(getPrice) * getItem) 
-         if(totalPrice){
-              document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-              setLocalStorage('totalPrice', totalPrice )
-         }
+            const totalPrice = getLocalStorage("totalPrice") + (parseInt(getPrice) * getItem) 
+            if(totalPrice){
+                  document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+                  setLocalStorage('totalPrice', totalPrice )
+            }
 
-                 for (let ab = 0; ab < cardCheck.length; ab++) {
-                     cardCheck[ab].style.border = "1px solid #e5e5e5";
-                     if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
-                       cardCheck[ab].style.border = "3px solid #7940CC";
-                     }
+            resetCheckedCard(cardCheck);
+
+            if(getName === "airConditioner" || getName === "chair" || getName === "table" || getName === "tent"){
+                  if(qty.value === "0"){
+                    qty.value = 1;
+                    textPrice.innerText = formatRupiah(getPrice);
+                    const totalPrice = parseInt(getLocalStorage("totalPrice")) + parseInt(getPrice);
+                    setLocalStorage('totalPrice', totalPrice);
+                    document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+                  }
+                  setLocalStorageProduct(id, parseInt(qty.value));
+              }else if(getName === "talent"){
+                  const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
+                  const totalPrice = getLocalStorage("totalPrice") + parseInt(talentCost);
+                  setLocalStorageProduct(id);
+                  setLocalStorage('totalPrice', totalPrice )
+                  document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
               }
 
-              switch (getName) {
-                  case "airConditioner": 
-                  case "chair": 
-                  case "table": 
-                  case "tent": 
-                        const qty = event.parentElement.parentElement.parentElement.parentElement.children[1].children[3].children[1].value;
-                        setLocalStorageProduct(id, qty);
-                        break;
-                  case "talent": 
-                                const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
-                                const totalPrice = getLocalStorage("totalPrice") + parseInt(talentCost);
-                                setLocalStorageProduct(id);
-                                setLocalStorage('totalPrice', totalPrice )
-                                document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-
-                        break;
-                  default:
-                      break;
-              }
-                
-                event.parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
+               event.parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
                  
                }else{
                  const totalPrice = getLocalStorage("totalPrice") - (parseInt(getPrice) * getItem) 
                  if(totalPrice){
-                     document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+                    document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+                    qty.value = 0;
+                    textPrice.innerText = formatRupiah(0);
                     setLocalStorage('totalPrice', totalPrice )
-                }
-
+                  }
                   const product = getLocalStorage('products').filter((product)=> product.id !== id);
-                 
-                   switch (getName) {
-                  case "airConditioner": 
-                  case "chair": 
-                  case "table": 
-                  case "tent": setLocalStorage('products', product)
-                        break;
-                  case "talent": 
-                                const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
-                                const totalPrice = getLocalStorage("totalPrice") - parseInt(talentCost);
-                                setLocalStorageProduct(id);
-                                setLocalStorage('products', product)
-                                setLocalStorage('totalPrice', totalPrice )
-                                document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-                        break;
-                  default:
-                      break;
+
+                   if(getName === "airConditioner" || getName === "chair" || getName === "table" || getName === "tent"){
+                      setLocalStorage('products', product)
+                   }else if(getName === "talent"){
+                      const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
+                      const totalPrice = getLocalStorage("totalPrice") - parseInt(talentCost);
+                      setLocalStorageProduct(id);
+                      setLocalStorage('products', product)
+                      setLocalStorage('totalPrice', totalPrice )
+                      document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
                    }
-                 for (let ab = 0; ab < cardCheck.length; ab++) {
-                     cardCheck[ab].style.border = "1px solid #e5e5e5"; 
-                      if(cardCheck[ab].children[0].children[0].children[1].children[0].checked){
-                       cardCheck[ab].style.border = "3px solid #7940CC";
-                     }              
-              }
+                  
+                   resetCheckedCard(cardCheck);
                }
 }
 
-   const checkItem = document.getElementsByClassName("check-item");
-          const lengthCheckItem = checkItem.length;
-
-         for (let i = 0; i < lengthCheckItem; i++) {
-            checkItem[i].addEventListener('click', function(event){
-                
-              calculatorCard(event.path[0]);
-              checkedCard(event.path[0]);
-            });
-         }
-
-
+// Check All Item Radio Button And Check Box
+const checkItem = document.getElementsByClassName("check-item");
+      const lengthCheckItem = checkItem.length;
+      for (let i = 0; i < lengthCheckItem; i++) {
+        checkItem[i].addEventListener('click', function(event){
+          calculatorCard(event.path[0]);
+          checkedCard(event.path[0]);
+        });
+}
 </script>
 
 <script>
   // Btn Selanjutnya
-  document.getElementById("next2").addEventListener("click", async ()=>{
+  const btnNext = document.getElementById("next2");
+  const btnLoading = document.getElementById("next3");
+  btnNext.addEventListener("click",  ()=>{
     const data = localStorage.getItem("data");
-    try {
-      const config = {
-        headers: { 'Content-Type': 'application/json'},
-        method: "post",
-        body: data,
-      }
-      const sendData = await fetch( "/api/v1/orders", config );
-      const result = await sendData.json();
-      if(result.message === "success" ){
-        window.location.href = `http://localhost:3000/orders/${result.data.id}/step/3`;
-      }
-    } catch (error) {
-      console.log(error);
-    }
+     btnLoading.classList.remove("d-none");
+     btnNext.classList.add("d-none");
+         setTimeout(async () => {
+          try {
+            const config = {
+              headers: { 'Content-Type': 'application/json'},
+              method: "post",
+              body: data,
+            }
+            const sendData = await fetch( "/api/v1/orders", config );
+            const result = await sendData.json();
+              if(result.message === "success" ){                 btnLoading.classList.add("d-none");
+                btnNext.classList.remove("d-none");;
+                window.location.href = `/orders/${result.data.id}/step/3`;
+              }else{
+                btnLoading.classList.add("d-none");
+                btnNext.classList.remove("d-none");
+                console.log(result);
+              }
+          } catch (error) {
+            console.log(error);
+          }
+        }, 1500);
+    
 
   });
 </script>

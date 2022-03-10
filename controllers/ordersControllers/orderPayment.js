@@ -8,13 +8,16 @@ const paymentOrder = async (req, res, next) => {
     const OrderId = req.params.OrderId;
     const { bankName, bankHolder, bankNumber, price } = req.body;
     const id = uuid.v4();
+ 
     let photo;
     if (typeof req.file !== "undefined") {
       photo = await req.file.filename;
     } else {
+      const error = {
+        "image" : "Image Not Found"
+      }
       req.flash("error",error);
       return res.redirect("back");
-      // res.status(400).json(response("Image Not Found", 200));
     }
     const payload = {
       id,
@@ -36,9 +39,14 @@ const paymentOrder = async (req, res, next) => {
           },
         }
       );
-    res.redirect("/");
+    res.redirect("/orders");
   } catch (error) {
-    next(createError(error.status || 500, error.message));
+  console.log(error);
+    if (error.status < 500) {
+      req.flash("error", { message: error.message });
+      return res.status(error.status).redirect("back");
+    }
+    next(error);
   }
 };
 

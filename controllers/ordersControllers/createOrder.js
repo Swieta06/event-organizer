@@ -1,4 +1,10 @@
-const { Order, Package, OrderProduct } = require("../../models");
+const {
+  Order,
+  Package,
+  OrderProduct,
+  Product,
+  Category,
+} = require("../../models");
 const { Op } = require("sequelize");
 const response = require("../../utils/response");
 const createError = require("http-errors");
@@ -20,10 +26,43 @@ exports.createOrder = async (req, res, next) => {
     if (products?.length === 0 || !products) {
       throw createError(400, "No products added");
     }
+
+    const findProduct = await Product.findAll({
+      where: {
+        id: {
+          [Op.in]: products.map((product) => product.id),
+        },
+      },
+      include: {
+        model: Category,
+        as: "category",
+      },
+    });
+
     const editedProducts = products.map((product) => {
+      let qty = product.qty;
+      const foundProduct = findProduct.find((p) => p.id === product.id);
+      if (foundProduct) {
+        switch (foundProduct.category?.name?.toLowerCase()) {
+          case "makanan":
+          case "snack":
+            qty = totalParticipant;
+            break;
+          case "themes":
+          case "talent":
+            qty = 1;
+            break;
+          case "kipas":
+          case "kursi":
+          case "meja":
+          default:
+            qty = product.qty;
+            break;
+        }
+      }
       return {
         ProductId: product.id,
-        qty: product.qty,
+        qty: qty,
       };
     });
 

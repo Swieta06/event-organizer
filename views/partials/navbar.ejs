@@ -4,21 +4,22 @@
     <a class="navbar-brand justify-content-start fw-bolder" href="#header">Nama Web</a>
     <div class="justify-content-center">
       <a class="navbar-brand" href="">Home</a>
-      <a class="navbar-brand" href="">FAQ</a>
-      <a class="navbar-brand" href="">Events</a>
-      <a class="navbar-brand" href="about-us">About Us</a>
+      <a class="navbar-brand" href="#faq">FAQ</a>
+      <a class="navbar-brand" href="/events">Events</a>
+      <a class="navbar-brand" href="/about">About Us</a>
     </div>
     <% if (user) { %>
       <div class="dropdown" id="nav1">
-        <img src="/images/profile.png" alt="" width="30" height="24">
+        <img src="<%=user.photo %>" alt="" width="30" height="30">
         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          Naomi Lisda
+         <%=user.name%>
         </a>
       
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <li><a class="dropdown-item" href="#">Daftar pesanan</a></li>
+          <form action="/logout" method="post">
+          <li>&nbsp;<button type="logout" class="btn " style="border-color:#fff;">  Logout</button></li>
+        </form>
         </ul>
       </div>
 
@@ -32,4 +33,4 @@
    
    
   </div>
-</nav>> 
+</nav>

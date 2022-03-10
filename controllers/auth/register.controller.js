@@ -8,9 +8,8 @@ async function register(req, res, next) {
         const id = uuid.v4();
         let {
             email,
-            name,
+            nama,
             password,
-            photo,
             address
         } = req.body;
 
@@ -18,15 +17,16 @@ async function register(req, res, next) {
         const payload = {
             id,
             email,
-            name,
+            name: nama,
             password
         };
-
-        await User.create(payload);
+console.log(payload)
+       await User.create(payload);
         req.flash("success", "Register berhasil!");
         res.redirect("/");
         return;
     } catch (error) {
+        console.log("error")
         next(error);
     }
 }

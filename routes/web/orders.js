@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ordersControlers } = require("../../controllers");
 const upload = require("../../middlewares/uploadPayment");
+const getOrderController = require("../../controllers/ordersControllers/getOrder");
+const authentication = require("../../middlewares/authentication");
+
+/* GET Orders List Orders. */
+router.get("/", authentication, ordersControlers.getOrder);
 
 /* GET Orders Page Step 1. */
 router.get("/step/1", ordersControlers.getViews);
@@ -16,11 +21,14 @@ router.get("/:idOrder/step/3", ordersControlers.getViewsStep3);
 router.post("/:idOrder/edit", ordersControlers.updateOrder);
 
 /* Get Views Step 4 */
-router.get("/:OrderId", ordersControlers.getViewsStep4);
+router.get("/:OrderId/payment", ordersControlers.getViewsStep4);
+
+/* GET Views Detail Order */
+router.get("/:idOrder", authentication, ordersControlers.orderDetail);
 
 /* POST Order Payments */
 router.post(
-  "/:OrderId/payments",
+  "/:OrderId/payment",
   upload.single("photo"),
   ordersControlers.orderPayment
 );
