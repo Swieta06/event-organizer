@@ -44,6 +44,16 @@
     sliderControl("tent");
     sliderControl("chair");
 
+    const countTalentTools = () =>{
+        const firstLengthProduct = JSON.parse(localStorage.getItem("products")).length;
+        const product            = getLocalStorage("products");
+        const productQtyZero     = product.filter((data)=>data.qty === 0)
+        const productQtyNotZero  = product.filter((data)=>data.qty !== 0)
+        const sumTalent          = productQtyZero.length - firstLengthProduct 
+        const sumTools           = productQtyNotZero.length;
+        document.getElementById("titleOrder").innerText = `Total (1 paket ${sumTalent > 0 ? `+ ${sumTalent} talent`: "" }   ${sumTools > 0 ? `+ ${sumTools} alat`: "" })`
+    }
+
 const calculatorCard = (event) =>{
      if(event.innerText === "+")
      {
@@ -68,7 +78,7 @@ const calculatorCard = (event) =>{
             document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
             setLocalStorage('totalPrice', totalPrice )
         }
-        
+    countTalentTools();
     }
 
     if(event.innerText === "-")
@@ -103,6 +113,7 @@ const calculatorCard = (event) =>{
              const product = getLocalStorage('products').filter((product)=> product.id !== getChecked.id);
             setLocalStorage('products', product)
         }
+        countTalentTools();
     }
 }
 
@@ -152,7 +163,7 @@ const checkedCard = (event) =>{
               }
 
                event.parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
-                 
+                 countTalentTools();
                }else{
                  const totalPrice = getLocalStorage("totalPrice") - (parseInt(getPrice) * getItem) 
                  if(totalPrice){
@@ -175,6 +186,7 @@ const checkedCard = (event) =>{
                    }
                   
                    resetCheckedCard(cardCheck);
+                   countTalentTools();
                }
 }
 
