@@ -2,11 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { ordersControlers } = require("../../controllers");
 const upload = require("../../middlewares/uploadPayment");
-const getOrderController = require("../../controllers/ordersControllers/getOrder");
 const authentication = require("../../middlewares/authentication");
 
+/* Middleware to check authentication */
+router.use(authentication);
+
 /* GET Orders List Orders. */
-router.get("/", authentication, ordersControlers.getOrder);
+router.get("/", ordersControlers.getOrder);
 
 /* GET Orders Page Step 1. */
 router.get("/step/1", ordersControlers.getViews);
