@@ -54,67 +54,64 @@
         document.getElementById("titleOrder").innerText = `Total (1 paket ${sumTalent > 0 ? `+ ${sumTalent} talent`: "" }   ${sumTools > 0 ? `+ ${sumTools} alat`: "" })`
     }
 
+
 const calculatorCard = (event) =>{
+
+    const totalPriceItem = event.parentElement?.parentElement?.children[4];
+    const qtyItem        = event.parentElement?.children[1];
+    const checkedItem    = event.parentElement?.parentElement?.parentElement?.children[0]?.children[0]?.children[1]?.children[0];
+    const cardBorder     = event.parentElement?.parentElement?.parentElement;
+    const cardId         = checkedItem?.id;
+    const products       = getLocalStorage('products'); 
+    const productById    = products.filter((product)=> product.id === cardId);
+    const productNotById = products.filter((product)=> product.id !== cardId);
+    let totalPrice       = 0;
+    const lsTotalPrice   = getLocalStorage("totalPrice");
+    const elmTotalPrice  = document.getElementById("totalPrice");
+
      if(event.innerText === "+")
      {
-        const totalPriceItem = event.parentElement.parentElement.children[4];
-        const qtyItem = event.parentElement.children[1];
-        qtyItem.value = parseInt(qtyItem.value) + 1;
+        qtyItem.value            = parseInt(qtyItem.value) + 1;
+        checkedItem.checked      = true;
+        cardBorder.style.border  = "3px solid #7940CC";
+        totalPrice               = lsTotalPrice + parseInt(totalPriceItem.id)
         totalPriceItem.innerText =  formatRupiah(String(qtyItem.value * parseInt(totalPriceItem.id)))
 
-        const checkedItem = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
-        checkedItem.checked = true;
-        event.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC";
-
         if(checkedItem.checked){
-           const idProduct = checkedItem.id;
-           const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
-           const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
-           if(productCheck){
-             setLocalStorage('products', product)
-            }
-            setLocalStorageProduct(idProduct, parseInt(qtyItem.value))
-            const totalPrice = getLocalStorage("totalPrice") + parseInt(totalPriceItem.id);
-            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-            setLocalStorage('totalPrice', totalPrice )
+            if(productById) setLocalStorage('products', productNotById);
+            setLocalStorageProduct(cardId, parseInt(qtyItem.value))
+            setLocalStorage('totalPrice', lsTotalPrice  + parseInt(totalPriceItem.id))
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
-    countTalentTools();
     }
 
     if(event.innerText === "-")
     {
-        let getValue = event.parentElement.parentElement.children[4];
-        let result = event.parentElement.children[1];
-        let total = parseInt(result.value) - 1;
-        if(total >= 0){
-            result.value = total;
-            getValue.innerText =  formatRupiah(String( result.value * formatInteger(getValue.id)))
+        totalPrice = lsTotalPrice - parseInt(totalPriceItem.id);
+        const resultQtyItem = parseInt(qtyItem.value) - 1;
+
+        if(resultQtyItem >= 0){
+            qtyItem.value = resultQtyItem;
+            totalPriceItem.innerText =  formatRupiah(String( qtyItem.value * formatInteger(totalPriceItem.id)))
         }
-        const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
-        const totalPrice = getLocalStorage("totalPrice") - parseInt(getValue.id);
         
-        if(getChecked.checked && total > 0){
-           const idProduct = getChecked.id;
-           const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
-           const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
-           const qty  = result.value;
-           if(productCheck){
-             setLocalStorage('products', product)
-            }
-            setLocalStorageProduct(idProduct, parseInt(qty))
-            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+        if(checkedItem.checked && resultQtyItem > 0){
+            if(productById) setLocalStorage('products', productNotById);
+            setLocalStorageProduct(cardId, parseInt(qtyItem.value))
             setLocalStorage('totalPrice', totalPrice )
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
-        if(getChecked.checked && total === 0){
-            event.parentElement.parentElement.parentElement.style.border = "1px solid #e5e5e5";
-            getChecked.checked = false;
-            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+
+        if(checkedItem.checked && resultQtyItem === 0){
+            cardBorder.style.border = "1px solid #e5e5e5";
+            checkedItem.checked = false;
             setLocalStorage('totalPrice', totalPrice )
-             const product = getLocalStorage('products').filter((product)=> product.id !== getChecked.id);
-            setLocalStorage('products', product)
+            setLocalStorage('products', productNotById)
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
-        countTalentTools();
-    }
+      }
+
+      countTalentTools();
 }
 
 const resetCheckedCard = (cardCheck) =>{
