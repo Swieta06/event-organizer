@@ -21,6 +21,8 @@ const getViewsStep4 = async (req, res, next) => {
       res.render("pages/orderStep4", {
         order: OrderId,
         totalPrice: data.totalPrice,
+        orderedAt: data.orderedAt,
+        expiredAt: data.expiredAt,
         paymentMethod: {
           id: data.PaymentMethod.id,
           bankBranch: data.PaymentMethod.bankBranch,

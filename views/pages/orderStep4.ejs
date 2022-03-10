@@ -5,6 +5,13 @@
 
     <body class="p-0" style="background-color: #e5e5e5">
       <header><%- include('../partials/navbar.ejs') %> <%- include('login')%></header>
+      <% function dateToYMD(date) {
+        const result = new Date(date);
+        const d = result.getDate();
+        const m = result.getMonth() + 1;
+        const y = result.getFullYear();
+        return (d <= 9 ? '0' + d : d) + '-' + (m<=9 ? '0' + m : m) + '-' + y;
+      } %> 
 
       <main>
         <div id="container-1" class="container-1 position-absolute top-50 start-50 translate-middle border">
@@ -43,7 +50,7 @@
               <p id="text-step-2" class="text-step-2">2. Demi kenyamanan transaksi, mohon untuk tidak membagikan bukti atau konfirmasi pembayaran pesanan kepada siapapun, selain mengunggahnya via website NamaWeb</p>
               <p id="text-step-3" class="text-step-3">
                 3. Silakan upload bukti transfer sebelum
-                <a>02-03-2022</a> melalui form dibawah ini.
+                <a><%= dateToYMD(expiredAt) %></a> melalui form dibawah ini.
               </p>
             </div>
           </div>
