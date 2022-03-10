@@ -13,6 +13,7 @@ router.get("/vendors/:vendorId", productController.getByVendor);
 router.use(authenticationAdmin);
 
 router.post("/",
+    upload.single("photo"),
     body('VendorId').notEmpty().withMessage('Vendor tidak boleh kosong!'),
     body('name').notEmpty().withMessage('Name tidak boleh kosong!'),
     body('price').notEmpty().withMessage('Price tidak boleh kosong!').isInt().withMessage('Price harus berupa angka!'),
@@ -41,13 +42,13 @@ router.post("/",
             return;
         }
         next();
-    },
-    upload.single("photo"), productController.createProduct);
+    }, productController.createProduct);
 
 router.get("/", productController.getAllProduct);
 router.get("/:id", productController.getProductById);
 
 router.put("/:id",
+    upload.single("photo"),
     body('VendorId').notEmpty().withMessage('Vendor tidak boleh kosong!'),
     body('name').notEmpty().withMessage('Name tidak boleh kosong!'),
     body('price').notEmpty().withMessage('Price tidak boleh kosong!').isInt().withMessage('Price harus berupa angka!'),
@@ -76,8 +77,7 @@ router.put("/:id",
             return;
         }
         next();
-    },
-    upload.single("photo"), productController.updateProduct);
+    }, productController.updateProduct);
 
 router.delete("/:id", productController.deleteProduct);
 

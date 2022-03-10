@@ -62,6 +62,7 @@ router.get("/:idOrder", authentication, ordersControlers.orderDetail);
 
 /* POST Order Payments */
 router.post("/:OrderId/payment",
+  upload.single("photo"),
   body('bankName', 'Bank Name tidak boleh kosong!').notEmpty(),
   body('bankHolder', 'Bank Holder tidak boleh kosong!').notEmpty(),
   body('bankNumber', 'Bank Number tidak boleh kosong!').notEmpty(),
@@ -88,7 +89,6 @@ router.post("/:OrderId/payment",
     }
     next();
   },
-  upload.single("photo"),
   ordersControlers.orderPayment
 );
 
