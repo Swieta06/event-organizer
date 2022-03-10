@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {title: 'Rincian Pesanan' }) %>
+  <body class="bg-neutral-20">
+    <% function createCommas(str){
+      return str.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    } %> 
+
+    <% function getFilename(str) {
+      return str.substring(str.lastIndexOf('/')+1);
+    } %> 
+    <%- include('../partials/navbar.ejs') %>
+    <section class="container" id="detail-order">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title title-detail text-center">Rincian Pesanan</h5>
+          <h6 class="card-title subtitle-detail text-neutral-100">
+            Paket <%= orderDetail.Package.name %> - <%=
+            orderDetail.totalParticipant %> Tamu
+          </h6>
+          <div class="detail-order-list text-neutral-80">
+            <% for(let key in orderDetail.Package.detailPrice){ %> 
+              <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="themes"&&key!=="ongkos dadakan") { %> 
+                <% if(orderDetail.products[key]?.length > 0) { %> 
+                  <% for(let i = 0; i < orderDetail.products[key]?.length;i++) { %>
+                    <div class="row">
+                      <p class="col-md-4 text-md-start">
+                        <%= orderDetail.products[key][i].name %>
+                      </p>
+                      <p class="col-md-4 text-md-center">
+                        <%= orderDetail.totalParticipant %> pcs
+                      </p>
+                      <p class="col-md-4 text-md-end text-neutral-100">
+                        Rp<%= createCommas(orderDetail.Package.detailPrice[key] *
+                        orderDetail.totalParticipant) %>
+                      </p>
+                    </div>
+                  <% } %> 
+                <% } %> 
+              <% } else { %> 
+                <% if(orderDetail.Package.detailPrice[key]!==0) { %>
+                  <div class="row">
+                    <p class="col-md-4 text-md-start">
+                      <%= key %>
+                    </p>
+                    
+                    <p class="col-md-4 text-md-center">
+                      <% if(key==="pulpen" || key==="notebook" || key==="totebag") { %>
+                        <%= orderDetail.totalParticipant %> pcs 
+                      <% } %>
+                    </p>
+                    <p class="col-md-4 text-md-end text-neutral-100">
+                      <% if(key==="pulpen" || key==="notebook" || key==="totebag") { %> 
+                        Rp<%= createCommas(orderDetail.Package.detailPrice[key] *
+                        orderDetail.totalParticipant) %>
+                      <% } else { %>
+                        Rp<%= createCommas(orderDetail.Package.detailPrice[key]) %>
+                      <% } %>
+                    </p>
+                  </div>
+                <% } %>
+              <% } %>
+            <% } %>
+          </div>
+          <hr />
+          <h6 class="card-title subtitle-detail text-neutral-100">
+            Alat dan Talent
+          </h6>
+          <% for(let key in orderDetail.products) { %>
+            <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="makanan"&&key!=="snack"&&key!=="themes") { %>
+              <% for(let i=0;i<orderDetail.products[key]?.length;i++) { %>
+                <div class="detail-order-list text-neutral-80">
+                  <div class="row">
+                    <p class="col-md-4 text-md-start"><%=orderDetail.products[key][i].name%></p>
+                    <p class="col-md-4 text-md-center"><%=orderDetail.products[key][i].qty%> pcs</p>
+                    <p class="col-md-4 text-md-end text-neutral-100">
+                      Rp<%= createCommas(orderDetail.products[key][i].price*orderDetail.products[key][i].qty) %>
+                    </p>
+                  </div>
+                </div>
+              <% } %>
+            <% } %>
+          <% } %>
+          <hr />
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between text-purple-main"
+          >
+            <div class="card-price">Total Harga</div>
+            <div class="card-price">Rp<%=createCommas(orderDetail.totalPrice)%></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title title-detail text-center">Detail Acara</h5>
+          <h6 class="card-title subtitle-detail text-neutral-100">Acara</h6>
+          <div class="detail-order-list text-neutral-80">
+            <div class="row">
+              <p class="col-md-6 text-md-start">Tanggal acara</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.eventAt.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Lokasi acara</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.products.makanan[0].location %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Jumlah tamu</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.totalParticipant %> orang</p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Konsep acara</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.concept%></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Tema acara</p>
+              <% if(orderDetail.products.themes?.length!==0 && orderDetail.products.themes) {%>
+                <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.products["themes"][0].name %></p>
+              <% } %>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Tulisan souvenir pulpen</p>
+              <p class="col-md-6 text-md-end text-neutral-100">
+                <%= orderDetail.desc %>
+              </p>
+            </div>
+          </div>
+          <hr />
+          <h6 class="card-title subtitle-detail text-neutral-100">Makanan</h6>
+          <div class="detail-order-list text-neutral-80">
+            <div class="row">
+              <p class="col-md-6 text-md-start">Makanan berat</p>
+              <p class="col-md-6 text-md-end text-neutral-100">
+                <%= orderDetail.products.makanan[0].name %> - <%= orderDetail.products.makanan[0].vendor %>
+              </p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Snack</p>
+              <p class="col-md-6 text-md-end text-neutral-100">
+                <% for(let i=0;i<orderDetail.products.snack?.length;i++) {%>
+                  <%= orderDetail.products.snack[i].name %>
+                  <% if(i!==orderDetail.products.snack?.length-1) {%>
+                    ,
+                  <% } %>
+                <%}%>
+              </p>
+            </div>
+          </div>
+          <h6 class="card-title subtitle-detail text-neutral-100">
+            Alat dan Talent
+          </h6>
+          <% for(let key in orderDetail.products) { %>
+            <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="makanan"&&key!=="snack"&&key!=="themes") { %>
+              <% for(let i=0;i<orderDetail.products[key]?.length;i++) { %>
+                <div class="detail-order-list">
+                  <div class="row">
+                    <p class="col-md-6 text-md-start"><%=orderDetail.products[key][i].name%></p>
+                    <p class="col-md-6 text-md-end text-neutral-100">
+                      <%=orderDetail.products[key][i].qty%> pcs
+                    </p>
+                  </div>
+                </div>
+              <% } %>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title title-detail text-center">Detail Pelanggan</h5>
+          <div class="detail-order-list text-neutral-80">
+            <div class="row">
+              <p class="col-md-6 text-md-start">Nama Pemesan</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.customerName || "-" %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Nama Perusahaan/Organisasi</p>
+              <p class="col-md-6 text-md-end text-neutral-100">
+                <%= orderDetail.companyName || "-"  %>
+              </p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Nomor Telepon</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.tel || "-"  %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">
+                Alamat diselenggarakannya acara
+              </p>
+              <p class="col-md-6 text-md-end text-neutral-100">
+                <%= orderDetail.address || "-"  %>
+              </p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Kode Pos</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.postalCode || "-"  %></p>
+            </div>
+          </div>
+          <% if (orderDetail.customerName===null||orderDetail.customerName===undefined) { %>
+            <a href="/orders/<%= orderDetail.id%>/step/3" class="btn btn-purple text-white">Ubah Detail Pelanggan</a>
+          <% } %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title title-detail text-center">Detail Pembayaran</h5>
+          <div class="detail-order-list text-neutral-80">
+            <div class="row">
+              <p class="col-md-6 text-md-start">Transfer dari Bank</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.Payment?.bankName || "-"  %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Nama Pemilik Rekening</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.Payment?.bankHolder || "-"  %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">No. Rekening</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.Payment?.bankNumber || "-"  %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Jumlah yang ditransfer</p>
+              <p class="col-md-6 text-md-end text-neutral-100">Rp<%= orderDetail.Payment?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") || "-"  %></p>
+            </div>
+            <div class="row">
+              <p class="col-md-6 text-md-start">Bukti Transfer</p>
+              <p class="col-md-6 text-md-end text-neutral-100">
+                <% if(orderDetail.Payment) { %>
+                <a href="<%= orderDetail.Payment?.photo || '#' %>">
+                  <%= getFilename(orderDetail.Payment?.photo) || "-" %>
+                </a>
+                <% } else { %>
+                  -
+                <% } %>
+              </p>
+            </div>
+          </div>
+          <% if ((orderDetail.customerName!==null&&orderDetail.customerName!==undefined)&&(orderDetail.Payment===null||orderDetail.Payment===undefined)) { %>
+            <a href="/orders/<%= orderDetail.id%>/payment" class="btn btn-purple text-white">Kirim Bukti Pembayaran</a>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

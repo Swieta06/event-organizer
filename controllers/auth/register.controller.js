@@ -10,7 +10,6 @@ async function register(req, res, next) {
             email,
             nama,
             password,
-            photo,
             address
         } = req.body;
 
@@ -18,7 +17,7 @@ async function register(req, res, next) {
         const payload = {
             id,
             email,
-            name:nama,
+            name: nama,
             password
         };
 console.log(payload)
