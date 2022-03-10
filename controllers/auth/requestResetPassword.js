@@ -56,8 +56,11 @@ exports.requestResetPassword = async (req, res, next) => {
       content
     );
 
-    req.flash("success", "Reset password link has been sent to your email");
-    res.status(201).redirect("back");
+    req.flash("success", {
+      message: "Reset password link has been sent to your email",
+      email: user[0].email,
+    });
+    res.status(201).redirect("/verification-sent");
   } catch (error) {
     console.log(error);
     if (error.status < 500) {

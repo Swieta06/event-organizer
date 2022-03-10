@@ -663,7 +663,11 @@ a {
   width: 100%;
 }
 
-#material {
+
+form i {
+  cursor: pointer;
+}
+#material{
   position: absolute;
   width: 35px;
   height: 100px;
@@ -673,6 +677,26 @@ a {
 }
 
 /* reset password css */
+.invalid-feedback{
+position: static;
+width: 430px;
+height: 22px;
+left: 0px;
+top: 150px;
+
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 160%;
+
+letter-spacing: -0.006em;
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
 .resetemail.error input {
   border-color: #ff3860;
 }

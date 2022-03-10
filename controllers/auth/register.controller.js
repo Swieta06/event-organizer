@@ -20,12 +20,13 @@ async function register(req, res, next) {
             name: nama,
             password
         };
-
-        await User.create(payload);
+console.log(payload)
+       await User.create(payload);
         req.flash("success", "Register berhasil!");
         res.redirect("/");
         return;
     } catch (error) {
+        console.log("error")
         next(error);
     }
 }
