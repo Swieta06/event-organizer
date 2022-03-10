@@ -12,13 +12,14 @@
       <div class="dropdown" id="nav1">
         <img src="<%=user.photo %>" alt="" width="30" height="30">
         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          Naomi Lisda
+         <%=user.name%>
         </a>
       
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <li><a class="dropdown-item" href="#">Daftar pesanan</a></li>
+          <form action="/logout" method="post">
+          <li>&nbsp;<button type="logout" class="btn " style="border-color:#fff;">  Logout</button></li>
+        </form>
         </ul>
       </div>
 
