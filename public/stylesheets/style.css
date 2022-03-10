@@ -657,6 +657,77 @@ a {
   background-image: url("../images/default/chevronleft.png");
 }
 
+/* verivication sent css */
+.verification-sent{
+  display: flex;
+flex-direction: column;
+align-items: center;
+padding: 32px;
+
+position: absolute;
+width: 494px;
+height: 258px;
+left: 473px;
+top: 229px;
+
+
+background: #FFFFFF;
+
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+border-radius: 8px;
+}
+.verification-sent h3{
+position: static;
+width: 150px;
+height: 35px;
+left: 172px;
+top: 32px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+text-align: center;
+letter-spacing: -0.019em;
+
+color: #000000;
+
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 10px 0px;
+}
+.verification-sent p{
+position: static;
+width: 430px;
+height: 44px;
+left: 0px;
+top: 0px;
+
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 160%;
+
+text-align: center;
+letter-spacing: -0.006em;
+
+color: #616161;
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: 30px 0px;
+}
+.verification-sent p1{
+  color: #7940cc;
+}
 /* visibility css */
 .input-container {
   position: relative;

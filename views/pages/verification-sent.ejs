@@ -1,5 +1,23 @@
-<% if (success.length!==0) { %>
+
+<!-- <% if (success.length!==0) { %>
 <div class="alert alert-success">
   <strong>Success!</strong> <%=success[0]?.message%> <%=success[0]?.email%>
 </div>
-<% } %>
+<% } %> -->
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {title: 'Reset Password'}) %>
+  <body>
+    <header>
+  <%- include('../partials/navbar.ejs') %>
+  <%- include('login') %> 
+  <%- include('register') %> 
+   </header>   
+  <div class="verification-sent">
+    <h3>Reset Password</h3>
+    <img src="/images/default/image 96.png">
+    <p>Email verifikasi sudah dikirimkan ke <p1><%=success[0]?.email%></p1>, silahkan cek email anda.</p>
+  </div>
+      <%- include('../partials/scripts.ejs') %>
+</body>
+</html>
