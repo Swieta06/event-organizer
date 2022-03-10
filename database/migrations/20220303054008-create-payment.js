@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
       },
       OrderId: {
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
         references: {
           model: "Orders",
           key: "id",
@@ -34,10 +34,6 @@ module.exports = {
       },
       price: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      paidAt: {
-        type: Sequelize.DATE,
         allowNull: false,
       },
       createdAt: {

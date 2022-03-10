@@ -1,0 +1,55 @@
+<%
+const formatRupiah = (numb) => {
+        const format = numb.toString().split('').reverse().join('');
+        const convert = format.match(/\d{1,3}/g);
+        const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
+        return rupiah;
+        }
+    %>
+            <div class="row">
+            <div class="col-12 position-relative mb-5">
+                    <div class="themes" >
+                        <p class="text-neutral-90 text-start fs-16 text-capitalize my-3">Pilih jenis <%= title %></p>
+                        <div class="alert alert-danger d-none" role="alert" id="error-theme">
+                        Mohon pilih tema sebelum melanjutkan ke langkah berikutnya
+                        </div>
+
+                    <div class="slide-show-control">
+                        <button id="btnLeft<%= id %>" class=" fs-18 btn text-start bg-neutral-10 shadow  rounded-circle"><i class="bi bi-chevron-left"></i></button>
+                        <button id="btnRight<%= id %>" class=" fs-18 btn text-end bg-neutral-10 shadow rounded-circle  top-0 left-0"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                            
+                    <div class="slide-show-ari check-item">
+                    <% datas.forEach((data, i)=>{ %>
+                    <% let themeId = i + 1; %>
+                        <div style="width: 19.6%; box-sizing: border-box;" class="slide-show-item-<%= id %> px-1 d-inline-block <%= themeId === 1 ? "pivot"+id : ""%>" id="<%=id + themeId%>">
+                            <div class="card card-check-<%= id %>">
+                                <div class="card-header bg-white">
+                                    <div class="row my-1">
+                                    <div class="col-10"><label for="test" class="text-capitalize fs-16 text-neutral-100 fw-semibold"><%= data.name %></label></div>
+                                    <div class="col-2 px-2">
+                                        <input class="form-check-input" type="checkbox" name="<%= id %>" id="<%= data.id %>" value="" aria-label="..."/>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0" style="white-space: initial;">
+                                    <img class="w-100" src="<%= data.photo%>" alt=""/>
+                                    <p class=" text-center fs-16 mt-3 mb-2 text-dark" id=<%=data.price%>><span class="fw-bold"><%= formatRupiah(data.price) %></span><span class="text-muted fs-14">/pcs</span></p>
+                                    <p class="w-100 text-start ps-2 fs-14"  ><%= data.description %></p>
+                                            <%if(isCalculator){%>
+                                            <div class="d-flex justify-content-center ">
+                                                <button type="button" id="redGuest<%= data.id%>" class="btn btn-outline-purple text-purple-main">-</button>
+                                                <input type="text" class="mx-2 w-25 text-center text-purple-main" disabled  value="0">
+                                                <button type="button" id="addGuest<%= data.id%>" class="btn btn-outline-purple text-purple-main ">+</button>
+                                            </div>
+                                            <p class="text-muted text-purple-main text-center mt-2 mb-2 fs-14" id=<%=data.price%>>Rp 0</p>
+                                            <%}%>
+                                </div>
+                            </div>
+                    </div>
+                <% });  %>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>

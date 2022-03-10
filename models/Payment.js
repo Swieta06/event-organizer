@@ -1,6 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const uuid = require("uuid").v4;
+const checkValidUrl = require("../utils/checkValidUrl");
 
 module.exports = (sequelize, DataTypes) => {
   class Payment extends Model {
@@ -41,12 +42,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      paidAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
     },
     {
+      hooks: {
+        beforeCreate: (payment) => {
+          if (checkValidUrl(payment.photo)) {
+            return payment;
+          }
+          payment.photo = `/orders/payments/${payment.id}/${payment.photo}`;
+        },
+      },
       sequelize,
       modelName: "Payment",
     }

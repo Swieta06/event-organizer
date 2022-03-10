@@ -36,6 +36,9 @@ module.exports = {
       features: {
         type: Sequelize.TEXT,
       },
+      detailPrice: {
+        type: Sequelize.TEXT,
+      },
       minOrderTime: {
         type: Sequelize.INTEGER,
         defaultValue: 7,

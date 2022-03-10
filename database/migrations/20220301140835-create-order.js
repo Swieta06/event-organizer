@@ -5,7 +5,7 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
       },
       UserId: {
         type: Sequelize.UUID,
@@ -32,7 +32,6 @@ module.exports = {
           key: "id",
         },
         onUpdate: "CASCADE",
-        allowNull: false,
       },
       customerName: {
         type: Sequelize.STRING,
@@ -70,6 +69,9 @@ module.exports = {
       },
       eventAt: {
         allowNull: false,
+        type: Sequelize.DATE,
+      },
+      orderedAt: {
         type: Sequelize.DATE,
       },
       createdAt: {
