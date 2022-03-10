@@ -349,7 +349,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
           }
       }, 1000);
    }
-
+// Control Location
   document.getElementById("location").addEventListener("change", async(e)=>{
     if( e.target.value !== "Tentukan lokasi anda"){
       const positionId = e.target.id; 
@@ -362,6 +362,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
     }
     validation("location");
   });
+// Control Vendor
   document.getElementById("vendor").addEventListener("change", (e)=>{
     const positionId = e.target.id; 
     const valueSelected = e.target.value; 
@@ -370,23 +371,24 @@ localStorage.setItem('data', JSON.stringify(structurData));
   })
     </script>
 
-       <script>
-         const eventConcept = document.getElementById("eventConcept");
-         eventConcept.addEventListener("change", (e)=>{
-            if(e.target.value !== ""){
-              setLocalStorage('concept', e.target.value)
-            }else{
-              setLocalStorage('concept', "")
-            }
-              validation("concept")
-         });
+<script>
+//  Control Input Concept
+const eventConcept = document.getElementById("eventConcept");
+eventConcept.addEventListener("change", (e)=>{
+  if(e.target.value !== ""){
+    setLocalStorage('concept', e.target.value)
+  }else{
+    setLocalStorage('concept', "")
+  }
+    validation("concept")
+});
 
-        //  CustomPulpen
-        const costumPulpen = document.getElementById("costumPulpen");
-        costumPulpen.addEventListener('keyup',(e)=>{
-          setLocalStorage(e.target.name, e.target.value)
-          validation("costumPulpen")
-        });
+//  Control CustomPulpen
+const costumPulpen = document.getElementById("costumPulpen");
+costumPulpen.addEventListener('keyup',(e)=>{
+setLocalStorage(e.target.name, e.target.value)
+validation("costumPulpen")
+});
 
 const resetCheckedCard = () =>{
   for (let i = 0; i < cardCheck.length; i++) {
@@ -448,83 +450,86 @@ const checkedCard = (event) =>{
          }
    };
          
-       </script>
-       <script>
-         // Btn Next Listener
-         const btnNext = document.getElementById("next2");
-         btnNext.addEventListener("click", ()=>{
-          let error = [];
-          let msg = null;
-          const date = getLocalStorage("date");
-          if(getLocalStorage("location")){
-               msg = validation("theme");
-               error.push(msg);
-               msg = validation("food");
-               error.push(msg);
-               msg = validation("snack");
-               error.push(msg);
-               msg = validation("costumPulpen");
-               error.push(msg);
-               msg = validation("concept");
-               error.push(msg);
-               msg = validation("location");
-               error.push(msg);
-               
-               msg = date ? true : false;
+</script>
+<script>
+// Control Button Next
+const btnNext = document.getElementById("next2");
+btnNext.addEventListener("click", ()=>{
+    let error = [];
+    let msg = null;
+    const date = getLocalStorage("date");
+    if(getLocalStorage("location")){
+          msg = validation("theme");
+          error.push(msg);
+          msg = validation("food");
+          error.push(msg);
+          msg = validation("snack");
+          error.push(msg);
+          msg = validation("costumPulpen");
+          error.push(msg);
+          msg = validation("concept");
+          error.push(msg);
+          msg = validation("location");
+          error.push(msg);
+          
+          msg = date ? true : false;
 
-               const errorDate = document.getElementById("error-date");
-               if(date === "" || !date){
-                  errorDate.innerText = "Tanggal tidak valid.";
-                  error.push(false);
-               }else if(errorDate.innerText !== ""){
-                  error.push(false);
-               }
-            document.getElementById("error-snack-toolong").classList.add("d-none")
-            const myModal = new bootstrap.Modal(document.getElementById('order1'), {keyboard: false}); 
-            if(error.includes(false)){
-              myModal.show()
-            }else{
-              const data = JSON.parse(localStorage.getItem("data"));
-                const foodTheme = [
-                  {
-                    id : data.food,
-                    qty: 0,
-                  },
-                  {
-                    id : data.theme,
-                    qty: 0,
-                  },
-                ];
-
-              const finalData = {
-                  package: data.package, 
-                  totalParticipant: data.minParticipan + data.addParticipan,
-                  totalPrice: data.totalPrice + (data.additionCost * (data.addParticipan / 10)),
-                  eventAt: data.date,
-                  concept: data.concept, 
-                  desc: data.costumPulpen,
-                  products: foodTheme.concat(data.snack),
-                }
-              localStorage.setItem("data", JSON.stringify(finalData));
-              window.location.href = `/orders/step/2?location=${data.location}`;
-            } 
-          }else{
-             validation("location");
-              if(date === "" || !date){
-                  document.getElementById("error-date").innerText = "Tanggal tidak valid.";
-              }
+          const errorDate = document.getElementById("error-date");
+          if(date === "" || !date){
+            errorDate.innerText = "Tanggal tidak valid.";
+            error.push(false);
+          }else if(errorDate.innerText !== ""){
+            error.push(false);
           }
+      document.getElementById("error-snack-toolong").classList.add("d-none")
+      const myModal = new bootstrap.Modal(document.getElementById('order1'), {keyboard: false}); 
+      if(error.includes(false)){
+        myModal.show()
+      }else{
+        const data = JSON.parse(localStorage.getItem("data"));
+          const foodTheme = [
+            {
+              id : data.food,
+              qty: 0,
+            },
+            {
+              id : data.theme,
+              qty: 0,
+            },
+          ];
+
+        const finalData = {
+            package: data.package, 
+            totalParticipant: data.minParticipan + data.addParticipan,
+            totalPrice: data.totalPrice + (data.additionCost * (data.addParticipan / 10)),
+            eventAt: data.date,
+            concept: data.concept, 
+            desc: data.costumPulpen,
+            products: foodTheme.concat(data.snack),
+          }
+        localStorage.setItem("data", JSON.stringify(finalData));
+        localStorage.setItem("firstTotalPrice", data.totalPrice);
+        localStorage.setItem("products", JSON.stringify(foodTheme.concat(data.snack)));
+        window.location.href = `/orders/step/2?location=${data.location}`;
+      } 
+    }else{
+        validation("location");
+        if(date === "" || !date){
+            document.getElementById("error-date").innerText = "Tanggal tidak valid.";
+        }
+    }
           
 });
-       </script>
+</script>
 
-       <script>
+<script>
 // Btn Add Guest & Reduce Guest
 addOrReduceGuest();
 // Pakage Listener
 packageListener();
-       </script>
-        <script>
+</script>
+<script>
+          // Control Date
         let date = moment().tz("Asia/Jakarta");
         let date2 = moment().tz("Asia/Jakarta");
         let addDate = date.add(30,"days");
@@ -572,19 +577,22 @@ packageListener();
           document.getElementById("error-date").innerText = text;
         }
 
+        // Control Day in Date
         document.getElementById("day").addEventListener("change", (e)=>{
           day = e.target.value;
             validasiDate();
          } );
+        // Control month in Date
         document.getElementById("month").addEventListener("change", (e)=>{
           month = e.target.value;
             validasiDate();
         });
+        // Control year in Date
         document.getElementById("year").addEventListener("change", (e)=>{
           year = e.target.value;
             validasiDate();
         });
-      </script>
+</script>
  
 
     <%- include('../partials/scripts.ejs') %>
