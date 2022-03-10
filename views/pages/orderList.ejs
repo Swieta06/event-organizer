@@ -1,32 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<%- include('../partials/head.ejs', {title: 'Home'}) %>
-<body class="p-0" style="background-color:  #E5E5E5;">
+<html>
+  <%- include('../partials/head.ejs', {title: 'Home'}) %>
+
+  <%function statusPesanan(status){
+    switch (status){
+      case "Belum Memesan":
+          return "belum-memesan";
+  
+      case "Menunggu Pembayaran":
+          return "menunggu-pembayaran";
+      
+      case "Verifikasi Pembayaran":
+          return "verifikasi-pembayaran";
+  
+      case "Sedang Diproses":
+          return "sedang-diproses";
+  
+      case "Pesanan Selesai":
+          return "pesanan-selesai";
+  
+      case "Pesanan Dibatalkan":
+          return "pesanan-dibatalkan";
+  
+  }
+  }%>
+
+  <body class="p-0">
     <header>
+      <!-- Swita taruh sini -->
        <%- include('../partials/navbar.ejs') %>
        <%- include('login')%> 
+       
     </header>
- 
-    <main >
+    <main>
+      <p class="mt-5 bg-purple-pressed">test</p>
+
+       <div id="pesanan-saya">
+        <div class="pesanan-sub text-center">
+          <h1 class="text-center">Pesanan Saya</h1>
+        </div>
+
+        <div class="container-fluid pesanan-border">
+          <div class="detail-pesanan">
+            <div class="row pilihan-pesanan">
+              <nav>
+                        <ul>
+                            <li><a href="/orders">Semua</a></li>
+                            <li><a href="/orders?status=0">Belum Memesan</a></li>
+                            <li><a href="/orders?status=3">Sedang Diproses</a></li>
+                            <li><a href="/orders?status=4">Pesanan Selesai</a></li>
+                            <li><a href="/orders?status=5">Pesanan Dibatalkan</a></li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                    
+              <div id="semua-border">
+              <% for( let i = 0; i < orders.length; i++ ) { %>
+                <div class="row">
+                    <div class="col">
+                        <div class="baris-1">
+                            <p class="<%=statusPesanan(orders[i].status)%>"><%= orders[i].status %></p>
+                            <p class="kode-pesanan"><<%= orders[i].id %></p>
+                            <p class="tanggal-pesanan"><%= orders[i].createdAt %></p>
+                        </div>
+
+                        <div class="baris-2">
+                            <p class="paket"><b><%= orders[i].Package.name %> </b> - Total kapasitas <%= orders[i].totalParticipant %> orang</p>
+                            <div class="baris-3">
+                                <p class="total-harga">Total Harga:</p>    
+                                <p class="harga">Rp<%= orders[i].totalPrice %></p>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                <% } %>
+
     </main>
-
-      <% for( let i = 0; i < orders.length; i++ ) { %>
-        <h3><%= orders[i].id %> </h3>
-        <p><%= orders[i].status %> </p>
-        <p><%= orders[i].package %> </p>
-        <p><%= orders[i].totalParticipant %> </p>
-        <p><%= orders[i].totalPrice %> </p>
-        <p><%= orders[i].createdAt %> </p>
-        <p><%= orders[i].updatedAt %> </p>
-      <% } %>
-
-    
-<%- include('../partials/scripts.ejs') %>
-</body>
+    <%- include('../partials/scripts.ejs') %>
+  </body>
 </html>
