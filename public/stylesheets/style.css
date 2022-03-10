@@ -1508,110 +1508,107 @@ input[type='radio'] {
   height: 16px;
 }
 /* resetpassword css */
-.errmsg{
+.errmsg {
   color: red;
 }
-.resetpassword{
+.resetpassword {
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
 
-flex-direction: column;
-align-items: center;
-padding: 32px;
+  width: 494px;
+  left: 473px;
+  top: 127px;
 
-width: 494px;
-left: 473px;
-top: 127px;
+  background: #ffffff;
 
-
-background: #FFFFFF;
-
-border: 1px solid #E0E0E0;
-box-sizing: border-box;
-border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
-.resetpassword button{
+.resetpassword button {
   display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 6px 16px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
 
-position: static;
-width: 430px;
-height: 52px;
-left: 32px;
-top: 462px;
-
-/* Primary/Main */
-
-background: #7940CC;
-/* Shadow 1 */
-
-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
-border-radius: 6px;
-
-/* Inside auto layout */
-
-flex: none;
-order: 3;
-align-self: stretch;
-flex-grow: 0;
-margin: 32px 0px;
-}
-.resetpassword button p{
   position: static;
-width: 107px;
-height: 21px;
-left: 161.5px;
-top: 15.5px;
+  width: 430px;
+  height: 52px;
+  left: 32px;
+  top: 462px;
 
-/* Body/M/Medium */
+  /* Primary/Main */
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 150%;
-/* identical to box height, or 21px */
+  background: #7940cc;
+  /* Shadow 1 */
 
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: -0.006em;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
 
-color: #FFFFFF;
+  /* Inside auto layout */
 
-
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 0px 4px;
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 32px 0px;
 }
-.resetpassword ul li{
-  color: #616161;
+.resetpassword button p {
+  position: static;
+  width: 107px;
+  height: 21px;
+  left: 161.5px;
+  top: 15.5px;
 
+  /* Body/M/Medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.006em;
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 4px;
+}
+.resetpassword ul li {
+  color: #616161;
+}
 /*Pesanan-Saya*/
 #pesanan-saya {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   height: 615px;
   width: auto;
 }
 
-.pesanan-sub h1{
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 36px;
-line-height: 150%;
-letter-spacing: -0.022em;
-color: #0A0A0A;
-margin-bottom: 20px;
+.pesanan-sub h1 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 150%;
+  letter-spacing: -0.022em;
+  color: #0a0a0a;
+  margin-bottom: 20px;
 }
 
-.pesanan-border{
+.pesanan-border {
   width: 1118px;
-  height:auto;
+  height: auto;
   display: flex;
   flex-direction: column;
   order: 5;
@@ -1620,15 +1617,15 @@ margin-bottom: 20px;
   border-radius: 8px;
 }
 
-footer{
+footer {
   margin-top: 10%;
 }
 
-.detail-pesanan{
+.detail-pesanan {
   margin: 10px auto;
 }
 
-.pilihan-pesanan{
+.pilihan-pesanan {
   margin-right: auto;
   padding: 16px 32px;
 }
@@ -1654,21 +1651,23 @@ footer{
   line-height: 150%;
   text-align: center;
   letter-spacing: -0.019em;
-  color: #0A0A0A;
+  color: #0a0a0a;
 }
 
-.pilihan-pesanan nav a:link, .pilihan-pesanan nav a:visited {
+.pilihan-pesanan nav a:link,
+.pilihan-pesanan nav a:visited {
   text-decoration: none;
   transition: border-bottom 0.2s;
 }
 
-.pilihan-pesanan nav a:hover, .pilihan-pesanan nav a:active {
+.pilihan-pesanan nav a:hover,
+.pilihan-pesanan nav a:active {
   padding-bottom: 5px;
-  border-bottom: 3px solid #7940CC;
+  border-bottom: 3px solid #7940cc;
   margin-top: 2px;
 }
 
-#semua-border .row{
+#semua-border .row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1678,8 +1677,8 @@ footer{
   height: 100px;
   left: 0px;
   top: 0px;
-  background: #FFFFFF;
-  border: 1px solid #E0E0E0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 6px;
   flex: none;
@@ -1689,28 +1688,28 @@ footer{
   margin: 8px 20px;
 }
 
-.col p{
+.col p {
   flex-wrap: wrap;
 }
 
-.baris-1{
+.baris-1 {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
 
-.baris-2{
+.baris-2 {
   display: flex;
   flex-direction: row;
 }
 
-.baris-3{
+.baris-3 {
   display: flex;
   flex-direction: row;
   margin-left: 230px;
 }
 
-.belum-memesan{
+.belum-memesan {
   width: 111px;
   height: 26px;
   text-align: center;
@@ -1719,35 +1718,35 @@ footer{
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  background: #FFF9F2;
-  border: 1px solid #EECEB0;
+  background: #fff9f2;
+  border: 1px solid #eeceb0;
   box-sizing: border-box;
   border-radius: 6px;
   padding-top: 4px;
 }
 
-.kode-pesanan{
+.kode-pesanan {
   padding-top: 4px;
   margin-left: 20px;
 }
 
-.tanggal-pesanan{
+.tanggal-pesanan {
   padding-top: 4px;
- margin-left: auto;
+  margin-left: auto;
 }
 
-.paket{
+.paket {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 160%;
   letter-spacing: -0.011em;
-  color: #0A0A0A;
+  color: #0a0a0a;
   width: 350px;
 }
 
-.total-harga{
+.total-harga {
   margin-top: 3px;
   margin-left: 180px;
   width: 100px;
@@ -1757,10 +1756,10 @@ footer{
   font-size: 12px;
   line-height: 160%;
   text-align: right;
-  color: #7940CC;
+  color: #7940cc;
 }
 
-.harga{
+.harga {
   margin-left: 23px;
   font-family: Inter;
   font-style: normal;
@@ -1769,11 +1768,11 @@ footer{
   line-height: 160%;
   text-align: right;
   letter-spacing: -0.011em;
-  color: #7940CC;
+  color: #7940cc;
 }
 
-.menunggu-pembayaran, 
-.verifikasi-pembayaran{
+.menunggu-pembayaran,
+.verifikasi-pembayaran {
   width: 150px;
   height: 26px;
   text-align: center;
@@ -1782,15 +1781,15 @@ footer{
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  background: #F4EFFF;
-  border: 1px solid #D2C3EE;
+  background: #f4efff;
+  border: 1px solid #d2c3ee;
   box-sizing: border-box;
   border-radius: 6px;
-  color: #7940CC;
+  color: #7940cc;
   padding-top: 4px;
 }
 
-.sedang-diproses{
+.sedang-diproses {
   width: 111px;
   height: 26px;
   text-align: center;
@@ -1799,15 +1798,15 @@ footer{
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  background: #F4EFFF;
-  border: 1px solid #D2C3EE;
+  background: #f4efff;
+  border: 1px solid #d2c3ee;
   box-sizing: border-box;
   border-radius: 6px;
-  color: #7940CC;
+  color: #7940cc;
   padding-top: 4px;
 }
 
-.pesanan-selesai{
+.pesanan-selesai {
   width: 111px;
   height: 26px;
   text-align: center;
@@ -1816,15 +1815,15 @@ footer{
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  background: #F5F5FF;
-  border: 1px solid #B8DBCA;
+  background: #f5f5ff;
+  border: 1px solid #b8dbca;
   box-sizing: border-box;
   border-radius: 6px;
-  color: #20573D;
+  color: #20573d;
   padding-top: 4px;
 }
 
-.pesanan-dibatalkan{
+.pesanan-dibatalkan {
   width: 130px;
   height: 26px;
   text-align: center;
@@ -1833,11 +1832,11 @@ footer{
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  background: #FFF4F2;
-  border: 1px solid #EEB4B0;
+  background: #fff4f2;
+  border: 1px solid #eeb4b0;
   box-sizing: border-box;
   border-radius: 6px;
-  color: #CB3A31;
+  color: #cb3a31;
   padding-top: 4px;
 }
 
