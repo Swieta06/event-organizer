@@ -105,11 +105,11 @@
                     </div>
                     <div class="mb-2">
                       <label for="pesan" class="form-label" >Pesan </label>
-                      <textarea name="pesan" class="form-control rounded-3 border-2" id="" cols="30" rows="5"></textarea>
+                      <textarea name="pesan" class="form-control rounded-3 border-2" id="pesan" cols="30" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="d-grid gap-2 pt-3">
-                    <button type="submit" value="Send" class="btn text-white" style="background-color: #7940cc" >Kirim Pesan</button>
+                    <button type="submit" value="Send" class="btn text-white" style="background-color: #7940cc" id="send">Kirim Pesan</button>
                 </div>
               </div>
             </form>
@@ -139,6 +139,18 @@
       </footer>
 
       <%- include('../partials/scripts.ejs') %>
+
+      <script>
+        document.getElementById("send").addEventListener('click', function () {
+          const nama = document.getElementById("nama").value
+	        const email = document.getElementById("email").value
+	        const pesan = document.getElementById("pesan").value
+
+	        const subject = nama + " (" + email + ")"
+
+	        window.open(`mailto:test@gmail.com?subject=${subject}&body=${pesan}`)
+        });
+      </script>
     </body>
 </html>
 
