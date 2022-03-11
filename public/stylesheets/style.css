@@ -1957,3 +1957,7 @@ footer {
   color: #fff;
 }
 /* End CSS Progress Bar */
+
+#loadingBar {
+  margin-bottom: 200px;
+}

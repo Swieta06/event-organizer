@@ -91,7 +91,7 @@ const calculatorCard = (event) =>{
         const resultQtyItem = parseInt(qtyItem.value) - 1;
 
         if(resultQtyItem >= 0){
-            qtyItem.value = resultQtyItem;
+            qtyItem.value            = resultQtyItem;
             totalPriceItem.innerText =  formatRupiah(String( qtyItem.value * formatInteger(totalPriceItem.id)))
         }
         
@@ -104,7 +104,7 @@ const calculatorCard = (event) =>{
 
         if(checkedItem.checked && resultQtyItem === 0){
             cardBorder.style.border = "1px solid #e5e5e5";
-            checkedItem.checked = false;
+            checkedItem.checked     = false;
             setLocalStorage('totalPrice', totalPrice )
             setLocalStorage('products', productNotById)
             elmTotalPrice.innerText = formatRupiah(totalPrice)
@@ -112,15 +112,6 @@ const calculatorCard = (event) =>{
       }
 
       countTalentTools();
-}
-
-const resetCheckedCard = (cardCheck) =>{
-  for (let i = 0; i < cardCheck.length; i++) {
-    cardCheck[i].style.border = "1px solid #e5e5e5";
-    if(cardCheck[i].children[0].children[0].children[1].children[0].checked){
-       cardCheck[i].style.border = "3px solid #7940CC";
-    }
-  }
 }
 
 const resetCheckedCard = (cardCheck) =>{
