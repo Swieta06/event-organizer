@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
   if (req.checkAPI(req.originalUrl)) {
     return res
       .status(err.status || 500)
-      .json(response(err.message, null, err.stack));
+      .json(response(err.message, null, req.app.get("env") === "development" ? err.stack : err));
   }
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
