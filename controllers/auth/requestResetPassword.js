@@ -7,9 +7,6 @@ const emailService = require("../../utils/emailService");
 exports.requestResetPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
-    if (!email) {
-      throw createError(400, "email not defined");
-    }
     const user = await User.findAll({
       raw: true,
       where: {

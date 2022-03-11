@@ -6,7 +6,6 @@ async function createPackage(req, res, next) {
     try {
         let {
             name,
-            slug,
             minParticipant,
             price,
             additionCost,
@@ -20,7 +19,6 @@ async function createPackage(req, res, next) {
         const data = {
             id,
             name,
-            slug,
             minParticipant,
             price,
             additionCost,

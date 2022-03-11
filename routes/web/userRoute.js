@@ -24,7 +24,7 @@ route.post("/register",
             }
 
             req.flash("error", data);
-            res.redirect("/");
+            res.redirect("back");
             return;
         }
         next();
@@ -48,7 +48,7 @@ route.post("/login",
             }
 
             req.flash("error", data);
-            res.redirect("/");
+            res.redirect("back");
             return;
         }
         next();
@@ -59,9 +59,60 @@ route.post("/login",
 route.post("/logout", Auth.logout);
 
 // route request reset password
-route.post("/request-reset-password", Auth.requestResetPassword);
+route.post("/request-reset-password",
+    body('email').notEmpty().withMessage('Email tidak boleh kosong!')
+        .isEmail().withMessage('Email tidak valid!'),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const error = errors.mapped()
+
+            const email = error.email?.msg
+
+            const data = {
+                "email" : email
+            }
+
+            req.flash("error", data);
+            res.redirect("back");
+            return;
+        }
+        next();
+    },
+    Auth.requestResetPassword);
 
 // route confirm reset password
-route.post("/confirm-reset-password", Auth.confirmResetPassword);
+route.post("/confirm-reset-password",
+    body('password').notEmpty().withMessage('Password tidak boleh kosong!')
+        .isLength({ min: 5 }).withMessage('Karakter password tidak boleh kurang dari 5!'),
+    body('confirmPassword').notEmpty().withMessage('Confirm Password tidak boleh kosong!')
+        .isLength({ min: 5 }).withMessage('Karakter password tidak boleh kurang dari 5!')
+        .custom((value, { req }) => {
+            if (value !== req.body.password) {
+              throw new Error('Confirm Password tidak sama dengan password!');
+            }
+        return true;
+      }),
+      (req, res, next) => {
+        // Handle the request
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const error = errors.mapped()
+
+            const password = error.password?.msg
+            const confirmPassword = error.confirmPassword?.msg
+
+            const data = {
+                "password" : password,
+                "confirmPassword" : confirmPassword
+            }
+
+            req.flash("error", data);
+            res.redirect("back");
+            return;
+        }
+        next();
+      },
+    Auth.confirmResetPassword);
 
 module.exports = route
