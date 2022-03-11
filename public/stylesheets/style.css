@@ -519,6 +519,43 @@ a {
   padding: 0;
   line-height: 1.6;
 }
+.event-header {
+  margin-top: 48px;
+  margin-bottom: 100px;
+}
+.event-card-container {
+  margin-bottom: 100px;
+}
+.event-card {
+  width: 527px;
+  height: 558px;
+}
+.event-modal {
+  max-width: max-content;
+}
+.event-card-title {
+  letter-spacing: -0.022em;
+  margin-bottom: 16px;
+}
+.event-lg-img {
+  width: 397px;
+  height: 293px;
+}
+.event-sm-img {
+  width: 90px;
+  height: 67.25px;
+  margin: 0 4px 8px 0;
+  padding: 0;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
 
 /* Slider */
 #carouselExampleIndicators {
