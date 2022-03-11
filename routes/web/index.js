@@ -22,7 +22,6 @@ router.get("/test", (req, res) => {
   res.render("pages/index");
 });
 
-<<<<<<< HEAD
 router.get('/confirm-reset-password', (req, res) => {
   const token = req.query.t;
   res.render('pages/confirm-reset-password-test', { token });
@@ -41,8 +40,5 @@ router.get('/test', (req, res) => {
 });
 
 router.use('/orders', ordersRoute);
-=======
-router.use("/orders", ordersRoute);
->>>>>>> 05196e4b140387a8edc21ffce9b0846346a43c63
 
 module.exports = router;
