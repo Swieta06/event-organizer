@@ -25,28 +25,28 @@
           <div class="row justify-content-center mt-2 mb-5">
             <div class="col-lg-4">
               <div class="card" >
-                <img src="/images/default/Vector.jpg" class="image-fluid" alt="/images/default/Vector.jpg">
+                <img src="/images/default/team1.png" class="image-fluid">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Jack</h5>
+                  <p class="card-text">Founder & CEO</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="card" >
-                <img src="/images/default/Vector.jpg" class="card-img-top" alt="/images/default/Vector.jpg">
+                <img src="/images/default/team2.png" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Annastasya</h5>
+                  <p class="card-text">Product Operation Head</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="card" >
-                <img src="/images/default/Vector.jpg" class="card-img-top" alt="/images/default/Vector.jpg">
+                <img src="/images/default/team3.png" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Steph</h5>
+                  <p class="card-text">Business Development</p>
                 </div>
               </div>
             </div>
@@ -55,28 +55,28 @@
           <div class="row justify-content-center mt-3 mb-3">
             <div class="col-lg-4">
               <div class="card" >
-                <img src="/images/default/Vector.jpg" class="card-img-top" alt="/images/default/Vector.jpg">
+                <img src="/images/default/team4.png" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Marie</h5>
+                  <p class="card-text">Marketing & Sale</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="card" >
-                <img src="/images/default/Vector.jpg" class="card-img-top" alt="/images/default/Vector.jpg">
+                <img src="/images/default/team5.png" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Brian</h5>
+                  <p class="card-text">Creative Director</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="card" >
-                <img src="/images/default/Vector.jpg" class="card-img-top" alt="/images/default/Vector.jpg">
+                <img src="/images/default/team6.png" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Samantha</h5>
+                  <p class="card-text">Corporate Communication</p>
                 </div>
               </div>
             </div>
@@ -92,50 +92,74 @@
             </div>
             <div class="col-lg-6 pt-5">
               <h2>Hubungi kami?</h2>
-              <form action="mailto:someone@example.com" method="GET">
-                <div class="row justify-content-center ">
+              <form action="mailto:mail@exsample.com" method="GET" class="needs-validation" novalidate>
+                <div class="row justify-content-center">
                 <div class="md-5">
                     <div class="mb-2">
-                    <label for="nama" class="form-label" >Nama </label>
-                    <input type="text" class="form-control rounded-3 border-2" id="nama" aria-describedby="nama" name="nama" placeholder="Nama"/>
+                      <label for="nama" class="form-label" >Nama </label>
+                      <input type="text" class="form-control rounded-3 border-2" id="nama" aria-describedby="nama" name="nama" placeholder="Nama" required/>
+                      <div class="invalid-feedback">Nama tidak boleh kosong.</div>
                     </div>
                     <div class="mb-2">
                       <label for="email" class="form-label" >Email </label>
-                      <input type="email" class="form-control rounded-3 border-2" id="email" aria-describedby="email" name="email" placeholder="Email"/>
+                      <input type="email"  class="form-control rounded-3 border-2" id="email" aria-describedby="email" name="email" placeholder="you@mail.com" required/>
+                      <div class="invalid-feedback">Email tidak boleh kosong.</div>
                     </div>
                     <div class="mb-2">
                       <label for="pesan" class="form-label" >Pesan </label>
-                      <textarea name="pesan" class="form-control rounded-3 border-2" id="" cols="30" rows="5"></textarea>
+                      <textarea name="pesan" class="form-control rounded-3 border-2" id="" cols="30" rows="5" placeholder="Pesan" required></textarea>
+                      <div class="invalid-feedback">Pesan tidak boleh kosong.</div>
                     </div>
                 </div>
                 <div class="d-grid gap-2 pt-3">
-                    <button type="submit" value="Send" class="btn text-white" style="background-color: #7940cc" >Kirim Pesan</button>
+                    <button type="submit" value="Send" class="btn text-white" style="background-color: #7940cc" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim Pesan</button>
                 </div>
               </div>
             </form>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div style="height: auto;" class="verification-sent position-absolute top-50 start-50 translate-middle">
+                  <h3>Pesan Terkirim</h3>
+                  <img src="/images/default/success-reset.svg">
+                  <p>Pesan berhasil terkirim, kami akan menjawab pesan Anda sesegera mungkin</p>
+                  <div class="d-grid gap-2 ">
+                      <button class="btn text-white" style="background-color: #7940cc" type="button">OK </button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
       </div>
+      <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+          })
+      })()
+      </script>
       </section>
       <br> <br>
 
-      <footer>
-        <div id="footer">
-          <div class="text-center pt-5 position-relative">
-            <h1 class="fs-24 mb-3 pt-5 mt-4">Nama Web</h1>
-            <p class="fs-16 pb-4">ini nanti diisi dengan tagline dari perusahaan event organizer</p>
-            <div class="footer-icon my-5">
-              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-twitter"></i></a>
-              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-instagram"></i></a>
-              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-youtube"></i></a>
-              <a class="cursor-pointer border border-2 rounded-circle p-2 mx-2 border-purple-main text-purple-pressed fs-24"><i class="bi bi-facebook"></i></a>
-            </div>
-            <div class="position-absolute bottom-0 text-center w-100 mb-3">
-              <p class="text-neutral-10">&copy; 2022 Halloween. All Rights Reserved</p>
-            </div>
-            <img src="/images/default/imgFooter.png" class="w-100 mt-5" alt="" />
-          </div>
-        </div>
+      <footer class="mt-5">
+        <%- include('footerLandingPage')%>
       </footer>
 
       <%- include('../partials/scripts.ejs') %>
