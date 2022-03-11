@@ -31,7 +31,10 @@ const getViewsStep4 = async (req, res, next) => {
           bankNumber: data.PaymentMethod.bankNumber,
         },
       };
-      if (data.PaymentMethod.id == 6)
+      if (
+        data.PaymentMethod.id == 6 ||
+        data.PaymentMethod.bankHolder == "Midtrans"
+      )
         res.render("pages/orderStep4-automatic", result);
       else res.render("pages/orderStep4", result);
     } else throw createError(400, "Order Not Found");

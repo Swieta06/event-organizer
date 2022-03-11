@@ -111,7 +111,28 @@
       $("#btn-proof-payment").click(function () {
         let OrderId = `<%= order %>`;
         $.post("/orders/payment/automatic", { OrderId }, (data, status) => {
-          window.snap.pay(data.transactionToken);
+          window.snap.pay(data.transactionToken, {
+            onSuccess: function (result) {
+              window.location.replace("/orders");
+              /* You may add your own implementation here */
+              // alert("payment success!");
+              // console.log(result);
+            },
+            onPending: function (result) {
+              /* You may add your own implementation here */
+              // alert("wating your payment!");
+              // console.log(result);
+            },
+            onError: function (result) {
+              /* You may add your own implementation here */
+              // alert("payment failed!");
+              // console.log(result);
+            },
+            onClose: function () {
+              /* You may add your own implementation here */
+              // alert("you closed the popup without finishing the payment");
+            },
+          });
         });
       });
       // javascript upload Image

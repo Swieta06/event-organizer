@@ -44,7 +44,8 @@ const payOrder = async (req, res) => {
           secure: true,
         },
         customer_details: {
-          first_name: order.User.name,
+          first_name: order.customerName,
+          phone: order.tel,
           email: order.User.email,
         },
       };

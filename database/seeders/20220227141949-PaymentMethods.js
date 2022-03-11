@@ -64,7 +64,7 @@ module.exports = {
           bankName: "Pembayaran Otomotis (BCA,BNI,BRI,Mandiri)",
           bankBranch: "Jakarta Timur",
           bankNumber: "382371928",
-          bankHolder: "PT Halloween Indonesia",
+          bankHolder: "Midtrans",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
