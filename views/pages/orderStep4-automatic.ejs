@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <%- include('../partials/head.ejs', {title: 'Home'}) %>
+    <script
+      type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-0fB_qnnAp1usFTWc"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <body class="p-0" style="background-color: #e5e5e5">
+      <header>
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%>
+      </header>
+      <% function dateToYMD(date) { const result = new Date(date); const d =
+      result.getDate(); const m = result.getMonth() + 1; const y =
+      result.getFullYear(); return (d <= 9 ? '0' + d : d) + '-' + (m<=9 ? '0' +
+      m : m) + '-' + y; } %>
+
+      <main>
+        <div
+          id="container-1"
+          class="container-1 position-absolute top-50 start-50 translate-middle border"
+        >
+          <div class="container text-center">
+            <h3 id="pay-info" class="info-pay">Informasi Pembayaran</h3>
+          </div>
+          <div class="value-pay">
+            <h4 id="pay-total" class="total-pay">Total Pembayaran</h4>
+            <p id="value-pay" class="value-pay-2">
+              Rp<%= (totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %>
+            </p>
+          </div>
+          <div class="text-payment">
+            <p id="text-pay" class="text-pay">
+              Bayar pesanan sesuai jumlah diatas sebelum batas waktu terakhir.
+              Pengecekan dilakukan dalam 24 jam setelah bukti transfer diupload.
+            </p>
+          </div>
+          <div id="under-line" class="under-line"></div>
+          <button
+            id="btn-proof-payment"
+            class="btn mt-2"
+            type="submit"
+            style="height: 50px"
+          >
+            <span class="text-light">Bayar</span>
+          </button>
+          <!-- <div class="info-payment">
+            <div class="text-step-payment">
+              <h4 id="info-pay" class="info-pay">Informasi Pembayaran</h4>
+              <p id="text-step-1" class="text-step-1">
+                1. Gunakan ATM / iBanking / mBanking / setor tunai untuk
+                transfer ke rekening berikut ini:
+              </p>
+              <div id="mini-container" class="mini-container">
+                <div id="item-inside">
+                  <img
+                    src="/images/default/<%=paymentMethod.bankName%>.png"
+                    id="image-bank"
+                    class="rounded float-start"
+                    alt="logo-bca"
+                  />
+                  <div
+                    id="text-mini-container"
+                    class="text-container d-table w-100"
+                  >
+                    <p id="number-rek" class="number-rek">
+                      No. Rekening: <%=paymentMethod.bankNumber%><br />
+                      Cabang: <%=paymentMethod.bankBranch%><br />
+                      Nama Rekening:<%=paymentMethod.bankHolder%>
+                    </p>
+                    <div class="d-table-cell tar">
+                      <button id="btn-bca" class="custom-btn btn-1">
+                        <p>Salin Nomor</p>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p id="text-step-2" class="text-step-2">
+                2. Demi kenyamanan transaksi, mohon untuk tidak membagikan bukti
+                atau konfirmasi pembayaran pesanan kepada siapapun, selain
+                mengunggahnya via website NamaWeb
+              </p>
+              <p id="text-step-3" class="text-step-3">
+                3. Silakan upload bukti transfer sebelum
+                <a><%= dateToYMD(expiredAt) %></a> melalui form dibawah ini.
+              </p>
+            </div>
+          </div> -->
+        </div>
+      </main>
+    </body>
+    <%- include('../partials/scripts.ejs') %>
+
+    <script>
+      // javascript copy number rek
+      // function copyNumber(value) {
+      //   var tempInput = document.createElement("input");
+      //   tempInput.value = value;
+      //   document.body.appendChild(tempInput);
+      //   tempInput.select();
+      //   document.execCommand("copy");
+      //   document.body.removeChild(tempInput);
+      // }
+
+      // document.querySelector("#btn-bca").onclick = function () {
+      //   copyNumber("<%=paymentMethod.bankNumber%>");
+      // };
+
+      $("#btn-proof-payment").click(function () {
+        let OrderId = `<%= order %>`;
+        $.post("/orders/payment/automatic", { OrderId }, (data, status) => {
+          window.snap.pay(data.transactionToken);
+        });
+      });
+      // javascript upload Image
+    </script>
+  </html>
+</html>

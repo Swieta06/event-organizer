@@ -17,8 +17,8 @@ const getViewsStep4 = async (req, res, next) => {
       ],
     });
 
-    if (data)
-      res.render("pages/orderStep4", {
+    if (data) {
+      const result = {
         order: OrderId,
         totalPrice: data.totalPrice,
         orderedAt: data.orderedAt,
@@ -30,8 +30,11 @@ const getViewsStep4 = async (req, res, next) => {
           bankHolder: data.PaymentMethod.bankHolder,
           bankNumber: data.PaymentMethod.bankNumber,
         },
-      });
-    else throw createError(400, "Order Not Found");
+      };
+      if (data.PaymentMethod.id == 6)
+        res.render("pages/orderStep4-automatic", result);
+      else res.render("pages/orderStep4", result);
+    } else throw createError(400, "Order Not Found");
   } catch (error) {
     next(createError(error.status || 500, error.message));
   }
