@@ -3,8 +3,8 @@ const { packageProductsControllers } = require("../../controllers");
 const authentication = require("../../middlewares/authentication");
 const authenticationAdmin = require("../../middlewares/authenticationAdmin");
 
-// routes.use(authentication);
-// routes.use(authenticationAdmin);
+routes.use(authentication);
+routes.use(authenticationAdmin);
 
 routes.get("/",packageProductsControllers.getAllPackageProducts)
 routes.get("/:id", packageProductsControllers.getPackageProduct)
