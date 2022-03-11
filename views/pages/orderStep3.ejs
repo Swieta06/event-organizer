@@ -62,11 +62,11 @@
             <h3 class="fs-16 mb-3">Paket yang diambil</h3>
             <div class="d-flex justify-content-between">
               <p class="text-neutral-80">Paket <%= order.package.name %></p>
-              <p class="">Rp<%= (order.package.price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %></p>
+              <p class="">Rp<%= (order.package.price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
             </div>
             <div class="d-flex justify-content-between">
               <p class="text-neutral-80">Tambah <%= order.totalParticipant - order.package.minParticipant %> orang</p>
-              <p class="">Rp<%= (order.package.additionCost * (order.totalParticipant - order.package.minParticipant)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %></p>
+              <p class="">Rp<%= ((order.package.additionCost / 10) * (order.totalParticipant - order.package.minParticipant)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
             </div>
           </div>
           <hr class="price-line">
@@ -75,14 +75,14 @@
             <% for (let i = 0; i < order.products.length; i++) { %>
               <div class="d-flex justify-content-between">
                 <p class="text-neutral-80"><%= order.products[i].name %></p>
-                <p class="">Rp<%= (order.products[i].price * order.products[i].qty).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %></p>
+                <p class="">Rp<%= (order.products[i].price * order.products[i].qty).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
               </div>
             <% } %>
           </div>  
           <hr class="price-line">
           <div class="d-flex justify-content-between price-total">
             <p class="text-purple-main fs-16">Total Harga</p>
-            <p class="text-purple-main fs-16">Rp<%= (order.totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %></p>
+            <p class="text-purple-main fs-16">Rp<%= (order.totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
           </div>
           <div class="select-payment">
           <select required name="paymentMethodId" class="form-select form-select-lg mb-3 fs-16 text-neutral-80 form-cust input-outline-purple" aria-label=".form-select-lg example">
