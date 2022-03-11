@@ -5,12 +5,10 @@
 
     <body class="p-0">
       <header>
-        <!-- Swita taruh sini -->
         <%- include('../partials/navbar.ejs') %> <%- include('login')%>
          <%- include('register')%>
       </header>
       <main>
-        <!-- bry taruh sini -->
         <div id="hero">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
             <div class="carousel-indicators">
@@ -61,10 +59,8 @@
           </div>
         </div>
 
-     <!-- Ari -->
       <%- include('packages')%>
        
-        <!-- faisal taruh sini -->
         <div id="our-client" class="bg-neutral-20">
           <div class="container">
             <h2 class="text-center title fs-36">Klien kami</h2>
@@ -88,8 +84,6 @@
           </div>
         </div>
       </div>
-       <!-- steven taruh sini -->
-       <%- include('testimonial')%>
       
         <div id="why-choose-us" class="bg-neutral-10">
           <img src="/images/default/Meliuk-liuk.png" alt="Meliuk-liuk" class="bg-wcu-1" />
@@ -128,21 +122,17 @@
           </div>
         </div>
         
-       <!-- steven taruh sini -->
-
-       <!-- kusno taruh sini -->
+        <%- include('testimonial')%>
         <%- include('faq')%>
         <%- include('maps')%>
         
-        
-       
-   
+        <!-- Btn Whatshapp -->
+        <%- include('btnWhatsapp')%>
       </main>
-      <footer>
+      <footer class="mt-5">
         <%- include('footerLandingPage')%>
       </footer>
       <%- include('../partials/scripts.ejs') %>
-     
     </body>
   </html>
 </html>

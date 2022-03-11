@@ -1519,3 +1519,11 @@ input[type='radio'] {
   width: 16px;
   height: 16px;
 }
+
+/* Btn Whatsapp */
+#btn-whatsapp img{
+  z-index: 4000;
+}
+#footer .footer-brand {
+  height: 96px;
+}
