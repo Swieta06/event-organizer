@@ -1452,19 +1452,7 @@ input[type='radio'] {
 }
 
 /* visibility css */
-.input-container {
-  position: relative;
-  width: 100%;
-}
 
-#material {
-  position: absolute;
-  width: 35px;
-  height: 100px;
-  right: 0px;
-  top: 34px;
-  color: #757575;
-}
 #orderStep1 .slide-show-ari,
 #orderStep2 .slide-show-ari {
   flex-wrap: nowrap !important;
@@ -1518,4 +1506,458 @@ input[type='checkbox'],
 input[type='radio'] {
   width: 16px;
   height: 16px;
+}
+
+/* Btn Whatsapp */
+#btn-whatsapp img{
+  z-index: 4000;
+}
+#footer .footer-brand {
+  height: 96px;
+}
+/* resetpassword css */
+.errmsg {
+  color: red;
+}
+.resetpassword {
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+
+  width: 494px;
+  left: 473px;
+  top: 127px;
+
+  background: #ffffff;
+
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.resetpassword button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+
+  position: static;
+  width: 430px;
+  height: 52px;
+  left: 32px;
+  top: 462px;
+
+  /* Primary/Main */
+
+  background: #7940cc;
+  /* Shadow 1 */
+
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 32px 0px;
+}
+.resetpassword button p {
+  position: static;
+  width: 107px;
+  height: 21px;
+  left: 161.5px;
+  top: 15.5px;
+
+  /* Body/M/Medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.006em;
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 4px;
+}
+.resetpassword ul li {
+  color: #616161;
+}
+/*Pesanan-Saya*/
+#pesanan-saya {
+  background-color: #ffffff;
+  height: 615px;
+  width: auto;
+}
+
+.pesanan-sub h1 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 150%;
+  letter-spacing: -0.022em;
+  color: #0a0a0a;
+  margin-bottom: 20px;
+}
+
+.pesanan-border {
+  width: 1118px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  order: 5;
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}
+
+footer {
+  margin-top: 10%;
+}
+
+.detail-pesanan {
+  margin: 10px auto;
+}
+
+.pilihan-pesanan {
+  margin-right: auto;
+  padding: 16px 32px;
+}
+
+.pilihan-pesanan nav {
+  padding: 5px;
+  position: sticky;
+  top: 0;
+}
+
+.pilihan-pesanan nav li {
+  display: inline;
+  list-style-type: none;
+  margin-right: 20px;
+}
+
+.pilihan-pesanan nav a {
+  margin-right: auto;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: -0.019em;
+  color: #0a0a0a;
+}
+
+.pilihan-pesanan nav a:link,
+.pilihan-pesanan nav a:visited {
+  text-decoration: none;
+  transition: border-bottom 0.2s;
+}
+
+.pilihan-pesanan nav a:hover,
+.pilihan-pesanan nav a:active {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #7940cc;
+  margin-top: 2px;
+}
+
+#semua-border .row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px 24px 12px 12px;
+  position: static;
+  width: 1055px;
+  height: 100px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 8px 20px;
+}
+
+.col p {
+  flex-wrap: wrap;
+}
+
+.baris-1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.baris-2 {
+  display: flex;
+  flex-direction: row;
+}
+
+.baris-3 {
+  display: flex;
+  flex-direction: row;
+  margin-left: 230px;
+}
+
+.belum-memesan {
+  width: 111px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #fff9f2;
+  border: 1px solid #eeceb0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding-top: 4px;
+}
+
+.kode-pesanan {
+  padding-top: 4px;
+  margin-left: 20px;
+}
+
+.tanggal-pesanan {
+  padding-top: 4px;
+  margin-left: auto;
+}
+
+.paket {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+  color: #0a0a0a;
+  width: 350px;
+}
+
+.total-harga {
+  margin-top: 3px;
+  margin-left: 180px;
+  width: 100px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 160%;
+  text-align: right;
+  color: #7940cc;
+}
+
+.harga {
+  margin-left: 23px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: right;
+  letter-spacing: -0.011em;
+  color: #7940cc;
+}
+
+.menunggu-pembayaran,
+.verifikasi-pembayaran {
+  width: 150px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #f4efff;
+  border: 1px solid #d2c3ee;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #7940cc;
+  padding-top: 4px;
+}
+
+.sedang-diproses {
+  width: 111px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #f4efff;
+  border: 1px solid #d2c3ee;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #7940cc;
+  padding-top: 4px;
+}
+
+.pesanan-selesai {
+  width: 111px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #f5f5ff;
+  border: 1px solid #b8dbca;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #20573d;
+  padding-top: 4px;
+}
+
+.pesanan-dibatalkan {
+  width: 130px;
+  height: 26px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #fff4f2;
+  border: 1px solid #eeb4b0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #cb3a31;
+  padding-top: 4px;
+}
+
+/* CSS Progress Bar */
+#stepProgressBar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 70px;
+  width: 664px;
+  left: 388px;
+  top: 120px;
+  border-radius: 0px;
+  margin-top: 120px;
+  align-items: center;
+}
+
+#step-prog {
+  text-align: center;
+  height: 70px;
+  width: 97px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
+
+  /* background: #7940cc; */
+}
+
+#step-wizard-item {
+  height: 0px;
+  top: 35px;
+  border-radius: 0px;
+  border: 1px solid #0a0a0a;
+  border-style: dashed;
+  text-align: center;
+  min-width: 170.5px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#prog-step-text {
+  height: 38px;
+  width: 97px;
+  left: 0px;
+  top: 32px;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  margin-top: 10px;
+}
+.step-text-mid {
+  height: 38px;
+  width: 97px;
+  left: 0px;
+  top: 32px;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  margin-top: 10px;
+}
+
+.bullet {
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  border-radius: 15px;
+  border: 3px solid #757575;
+  display: inline-block;
+  position: relative;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #757575;
+}
+
+.bullet::before {
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  border-radius: 15px;
+  border: 3px solid #757575;
+  display: inline-block;
+  position: relative;
+}
+
+.bullet p {
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #757575;
+}
+
+#stepProgressBar .bullet.active {
+  border-color: #7940cc;
+  background-color: #7940cc;
+  color: #fff;
+}
+/* End CSS Progress Bar */
+
+#loadingBar {
+  margin-bottom: 200px;
 }

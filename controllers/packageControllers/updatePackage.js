@@ -8,7 +8,6 @@ async function updatePackage(req, res, next) {
         const id = req.params.id;
         let {
             name,
-            slug,
             minParticipant,
             price,
             additionCost,
@@ -20,7 +19,6 @@ async function updatePackage(req, res, next) {
 
         const data = {
             name,
-            slug,
             minParticipant,
             price,
             additionCost,
