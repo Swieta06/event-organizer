@@ -1507,6 +1507,14 @@ input[type='radio'] {
   width: 16px;
   height: 16px;
 }
+
+/* Btn Whatsapp */
+#btn-whatsapp img{
+  z-index: 4000;
+}
+#footer .footer-brand {
+  height: 96px;
+}
 /* resetpassword css */
 .errmsg {
   color: red;
@@ -1949,3 +1957,7 @@ footer {
   color: #fff;
 }
 /* End CSS Progress Bar */
+
+#loadingBar {
+  margin-bottom: 200px;
+}
