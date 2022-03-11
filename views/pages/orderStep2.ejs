@@ -8,28 +8,6 @@
        <%- include('login')%> 
     </header>
     <main>
-      <div class="container">
-        <div id="stepProgressBar" class="mx-auto">
-          <div id="step-prog" class="step">
-            <div class="bullet">1</div>
-            <p id="prog-step-text" class="step-text">Tentukan Tema Acara</p>
-          </div>
-          <span id="step-wizard-item" class="step-wizard-item"></span>
-          <div id="step-prog" class="step-mid">
-            <div class="bullet active">2</div>
-            <p id="prog-step-text" class="step-text-mid">Sewa alat dan talent</p>
-          </div>
-          <span id="step-wizard-item" class="step-wizard-item"></span>
-          <div id="step-prog" class="step">
-            <div class="bullet">3</div>
-            <p id="prog-step-text" class="step-text">
-              Buat<br />
-              Pesanan
-            </p>
-          </div>
-        </div>
-      </div>
-
       <div class="container-fluid mt-5 pt-3" id="orderStep2">
         <div class="row justify-content-center ">
           <div class="col-10 bg-neutral-10 px-5  py-3 rounded-3 shadow-lg" style="margin-bottom: 100px;">
@@ -66,66 +44,83 @@
     sliderControl("tent");
     sliderControl("chair");
 
+const countTalentTools = () =>{
+        const firstLengthProduct = JSON.parse(localStorage.getItem("products")).length;
+        const product            = getLocalStorage("products");
+        const productQtyZero     = product.filter((data)=>data.qty === 0)
+        const productQtyNotZero  = product.filter((data)=>data.qty !== 0)
+        const sumTalent          = productQtyZero.length - firstLengthProduct 
+        const sumTools           = productQtyNotZero.length;
+        document.getElementById("titleOrder").innerText = `Total (1 paket ${sumTalent > 0 ? `+ ${sumTalent} talent`: "" }   ${sumTools > 0 ? `+ ${sumTools} alat`: "" })`
+}
+
 const calculatorCard = (event) =>{
+
+    const totalPriceItem = event.parentElement?.parentElement?.children[4];
+    const qtyItem        = event.parentElement?.children[1];
+    const checkedItem    = event.parentElement?.parentElement?.parentElement?.children[0]?.children[0]?.children[1]?.children[0];
+    const cardBorder     = event.parentElement?.parentElement?.parentElement;
+    const cardId         = checkedItem?.id;
+    const products       = getLocalStorage('products'); 
+    const productById    = products.filter((product)=> product.id === cardId);
+    const productNotById = products.filter((product)=> product.id !== cardId);
+    let totalPrice       = 0;
+    const lsTotalPrice   = getLocalStorage("totalPrice");
+    const elmTotalPrice  = document.getElementById("totalPrice");
+
      if(event.innerText === "+")
      {
-        const totalPriceItem = event.parentElement.parentElement.children[4];
-        const qtyItem = event.parentElement.children[1];
-        qtyItem.value = parseInt(qtyItem.value) + 1;
+        qtyItem.value            = parseInt(qtyItem.value) + 1;
+        checkedItem.checked      = true;
+        cardBorder.style.border  = "3px solid #7940CC";
+        totalPrice               = lsTotalPrice + parseInt(totalPriceItem.id)
         totalPriceItem.innerText =  formatRupiah(String(qtyItem.value * parseInt(totalPriceItem.id)))
 
-        const checkedItem = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
-        checkedItem.checked = true;
-        event.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC";
-
         if(checkedItem.checked){
-           const idProduct = checkedItem.id;
-           const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
-           const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
-           if(productCheck){
-             setLocalStorage('products', product)
-            }
-            setLocalStorageProduct(idProduct, parseInt(qtyItem.value))
-            const totalPrice = getLocalStorage("totalPrice") + parseInt(totalPriceItem.id);
-            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-            setLocalStorage('totalPrice', totalPrice )
+            if(productById) setLocalStorage('products', productNotById);
+            setLocalStorageProduct(cardId, parseInt(qtyItem.value))
+            setLocalStorage('totalPrice', lsTotalPrice  + parseInt(totalPriceItem.id))
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
         
     }
 
     if(event.innerText === "-")
     {
-        let getValue = event.parentElement.parentElement.children[4];
-        let result = event.parentElement.children[1];
-        let total = parseInt(result.value) - 1;
-        if(total >= 0){
-            result.value = total;
-            getValue.innerText =  formatRupiah(String( result.value * formatInteger(getValue.id)))
+        totalPrice = lsTotalPrice - parseInt(totalPriceItem.id);
+        const resultQtyItem = parseInt(qtyItem.value) - 1;
+
+        if(resultQtyItem >= 0){
+            qtyItem.value = resultQtyItem;
+            totalPriceItem.innerText =  formatRupiah(String( qtyItem.value * formatInteger(totalPriceItem.id)))
         }
-        const getChecked = event.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0];
-        const totalPrice = getLocalStorage("totalPrice") - parseInt(getValue.id);
         
-        if(getChecked.checked && total > 0){
-           const idProduct = getChecked.id;
-           const productCheck = getLocalStorage('products').filter((product)=> product.id === idProduct);
-           const product = getLocalStorage('products').filter((product)=> product.id !== idProduct);
-           const qty  = result.value;
-           if(productCheck){
-             setLocalStorage('products', product)
-            }
-            setLocalStorageProduct(idProduct, parseInt(qty))
-            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+        if(checkedItem.checked && resultQtyItem > 0){
+            if(productById) setLocalStorage('products', productNotById);
+            setLocalStorageProduct(cardId, parseInt(qtyItem.value))
             setLocalStorage('totalPrice', totalPrice )
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
-        if(getChecked.checked && total === 0){
-            event.parentElement.parentElement.parentElement.style.border = "1px solid #e5e5e5";
-            getChecked.checked = false;
-            document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+
+        if(checkedItem.checked && resultQtyItem === 0){
+            cardBorder.style.border = "1px solid #e5e5e5";
+            checkedItem.checked = false;
             setLocalStorage('totalPrice', totalPrice )
-             const product = getLocalStorage('products').filter((product)=> product.id !== getChecked.id);
-            setLocalStorage('products', product)
+            setLocalStorage('products', productNotById)
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
+      }
+
+      countTalentTools();
+}
+
+const resetCheckedCard = (cardCheck) =>{
+  for (let i = 0; i < cardCheck.length; i++) {
+    cardCheck[i].style.border = "1px solid #e5e5e5";
+    if(cardCheck[i].children[0].children[0].children[1].children[0].checked){
+       cardCheck[i].style.border = "3px solid #7940CC";
     }
+  }
 }
 
 const resetCheckedCard = (cardCheck) =>{
@@ -138,66 +133,62 @@ const resetCheckedCard = (cardCheck) =>{
 }
 
 const checkedCard = (event) =>{
-    const getName = event.name;
-    let cardCheck= document.querySelectorAll(`.card-check-${getName}`);
+    const cardName = event.name;
+    let cardCheck= document.querySelectorAll(`.card-check-${cardName}`);
     
-         const getPrice = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[4]?.id
-         const getItem = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1].value
-         const qty = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1];
-         const id = event.id;
-         const textPrice = event.parentElement.parentElement.parentElement?.parentElement?.children[1]?.children[4];
+         const priceItem        = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[4]?.id
+         const getItem          = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1].value
+         const qty              = event.parentElement.parentElement.parentElement.parentElement?.children[1]?.children[3]?.children[1];
+         const id               = event.id;
+         const textPrice        = event.parentElement.parentElement.parentElement?.parentElement?.children[1]?.children[4];
+         let totalPrice         = 0;
+         const lsTotalPrice     = getLocalStorage("totalPrice");
+         const elmTotalPrice    = document.getElementById("totalPrice");
+         const checkNotTalent   = (getName) => getName === "airConditioner" || getName === "chair" || getName === "table" || getName === "tent";
+         const checkTalent      = (getName) => getName === "talent";
+         const talentCost       = event.parentElement?.parentElement?.parentElement?.parentElement?.children[1]?.children[1]?.id;
 
          if (event.checked) {
-            const totalPrice = getLocalStorage("totalPrice") + (parseInt(getPrice) * getItem) 
-            if(totalPrice){
-                  document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-                  setLocalStorage('totalPrice', totalPrice )
-            }
+            totalPrice = lsTotalPrice + (parseInt(priceItem) * getItem) 
 
-            resetCheckedCard(cardCheck);
-
-            if(getName === "airConditioner" || getName === "chair" || getName === "table" || getName === "tent"){
-                  if(qty.value === "0"){
-                    qty.value = 1;
-                    textPrice.innerText = formatRupiah(getPrice);
-                    const totalPrice = parseInt(getLocalStorage("totalPrice")) + parseInt(getPrice);
-                    setLocalStorage('totalPrice', totalPrice);
-                    document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
+            if(checkNotTalent(cardName)){
+                  if(qty?.value === "0"){
+                    qty.value           = 1;
+                    totalPrice          = lsTotalPrice + parseInt(priceItem);
+                    textPrice.innerText = formatRupiah(priceItem);
                   }
                   setLocalStorageProduct(id, parseInt(qty.value));
-              }else if(getName === "talent"){
-                  const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
-                  const totalPrice = getLocalStorage("totalPrice") + parseInt(talentCost);
-                  setLocalStorageProduct(id);
-                  setLocalStorage('totalPrice', totalPrice )
-                  document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
               }
+            if(checkTalent(cardName)){
+                  totalPrice            = lsTotalPrice + parseInt(talentCost);
+                  setLocalStorageProduct(id);
+              }
+                
+            setLocalStorage('totalPrice', totalPrice )
+            elmTotalPrice.innerText = formatRupiah(totalPrice)
+            event.parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC";
 
-               event.parentElement.parentElement.parentElement.parentElement.style.border = "3px solid #7940CC"
-                 
                }else{
-                 const totalPrice = getLocalStorage("totalPrice") - (parseInt(getPrice) * getItem) 
-                 if(totalPrice){
-                    document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-                    qty.value = 0;
-                    textPrice.innerText = formatRupiah(0);
-                    setLocalStorage('totalPrice', totalPrice )
-                  }
-                  const product = getLocalStorage('products').filter((product)=> product.id !== id);
+                    totalPrice                  = lsTotalPrice - (parseInt(priceItem) * getItem) 
+                    if(totalPrice){
+                        qty.value               = 0;
+                        textPrice.innerText     = formatRupiah(0);
+                        elmTotalPrice.innerText = formatRupiah(totalPrice)
+                        setLocalStorage('totalPrice', totalPrice )
+                    }
 
-                   if(getName === "airConditioner" || getName === "chair" || getName === "table" || getName === "tent"){
-                      setLocalStorage('products', product)
-                   }else if(getName === "talent"){
-                      const talentCost = event.parentElement.parentElement.parentElement.parentElement.children[1].children[1].id;
-                      const totalPrice = getLocalStorage("totalPrice") - parseInt(talentCost);
-                      setLocalStorageProduct(id);
-                      setLocalStorage('products', product)
+                    const products = getLocalStorage('products').filter((product)=> product.id !== id);
+                    if(checkNotTalent(cardName)) setLocalStorage('products', products);
+                    if(checkTalent(cardName)){
+                      totalPrice = getLocalStorage("totalPrice") - parseInt(talentCost);
+                      setLocalStorage('products', products)
                       setLocalStorage('totalPrice', totalPrice )
-                      document.getElementById("totalPrice").innerText = formatRupiah(totalPrice)
-                   }
-                  
-                   resetCheckedCard(cardCheck);
-               }
+                      elmTotalPrice.innerText = formatRupiah(totalPrice)
+                    }
+                  }
+
+                  countTalentTools();
+                  resetCheckedCard(cardCheck);
 }
 
 // Check All Item Radio Button And Check Box
@@ -213,35 +204,43 @@ const checkItem = document.getElementsByClassName("check-item");
 
 <script>
   // Btn Selanjutnya
-  const btnNext = document.getElementById("next2");
-  const btnLoading = document.getElementById("next3");
-  btnNext.addEventListener("click",  ()=>{
-    const data = localStorage.getItem("data");
-     btnLoading.classList.remove("d-none");
-     btnNext.classList.add("d-none");
-         setTimeout(async () => {
-          try {
-            const config = {
-              headers: { 'Content-Type': 'application/json'},
-              method: "post",
-              body: data,
-            }
-            const sendData = await fetch( "/api/v1/orders", config );
-            const result = await sendData.json();
-              if(result.message === "success" ){                 btnLoading.classList.add("d-none");
-                btnNext.classList.remove("d-none");;
-                window.location.href = `/orders/${result.data.id}/step/3`;
-              }else{
-                btnLoading.classList.add("d-none");
-                btnNext.classList.remove("d-none");
-                console.log(result);
-              }
-          } catch (error) {
-            console.log(error);
-          }
-        }, 1500);
-    
+  const btnNext     = document.getElementById("next2");
+  const btnLoading  = document.getElementById("next3");
 
+  const isLoading   = status =>{
+    if(status){
+       btnLoading.classList.remove("d-none");
+       btnNext.classList.add("d-none");
+    }else{
+      btnLoading.classList.add("d-none");
+      btnNext.classList.remove("d-none");
+    }
+  } 
+
+  btnNext.addEventListener("click",  ()=>{
+     const data     = localStorage.getItem("data");
+     isLoading(true);
+
+    setTimeout(async () => {
+    try {
+      const config = {
+        headers: { 'Content-Type': 'application/json'},
+        method: "post",
+        body: data,
+      }
+      const sendData = await fetch( "/api/v1/orders", config );
+      const result   = await sendData.json();
+        if(result.message === "success" ){                 
+          isLoading(false);
+          window.location.href = `/orders/${result.data.id}/step/3`;
+        }else{
+         isLoading(false);
+         console.log(result);
+        }
+    } catch (error) {
+      console.log(error);
+    }
+  }, 1500);
   });
 </script>
     <%- include('../partials/scripts.ejs') %>
