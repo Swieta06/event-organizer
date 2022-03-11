@@ -5,3 +5,117 @@
 <script src="/javascripts/index.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.slider-testimoni').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2500,
+            dots: true
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.pilihan-kota').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 4,
+            autoplay: true,
+            autoplaySpeed: 2500,
+            dots: true
+        });
+    });
+</script>
+
+<script>
+const kota = document.getElementsByClassName("pilihan-kota")
+
+function pilihJabodetabek (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = false;
+        document.getElementById("jabar-border").hidden = true;
+        document.getElementById("jateng-border").hidden = true;
+        document.getElementById("jatim-border").hidden = true;
+        document.getElementById("bnt-border").hidden = true;
+        document.getElementById("sumatera-border").hidden = true;
+        document.getElementById("ksp-border").hidden = true;
+    }
+}
+function pilihJabar (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = true;
+        document.getElementById("jabar-border").hidden = false;
+        document.getElementById("jateng-border").hidden = true;
+        document.getElementById("jatim-border").hidden = true;
+        document.getElementById("bnt-border").hidden = true;
+        document.getElementById("sumatera-border").hidden = true;
+        document.getElementById("ksp-border").hidden = true;
+    }
+}
+function pilihJateng (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = true;
+        document.getElementById("jabar-border").hidden = true;
+        document.getElementById("jateng-border").hidden = false;
+        document.getElementById("jatim-border").hidden = true;
+        document.getElementById("bnt-border").hidden = true;
+        document.getElementById("sumatera-border").hidden = true;
+        document.getElementById("ksp-border").hidden = true;
+    }
+}
+function pilihJatim (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = true;
+        document.getElementById("jabar-border").hidden = true;
+        document.getElementById("jateng-border").hidden = true;
+        document.getElementById("jatim-border").hidden = false;
+        document.getElementById("bnt-border").hidden = true;
+        document.getElementById("sumatera-border").hidden = true;
+        document.getElementById("ksp-border").hidden = true;
+    }
+}
+function pilihBalidanNusaTenggara (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = true;
+        document.getElementById("jabar-border").hidden = true;
+        document.getElementById("jateng-border").hidden = true;
+        document.getElementById("jatim-border").hidden = true;
+        document.getElementById("bnt-border").hidden = false;
+        document.getElementById("sumatera-border").hidden = true;
+        document.getElementById("ksp-border").hidden = true;
+    }
+}
+function pilihSumatera (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = true;
+        document.getElementById("jabar-border").hidden = true;
+        document.getElementById("jateng-border").hidden = true;
+        document.getElementById("jatim-border").hidden = true;
+        document.getElementById("bnt-border").hidden = true;
+        document.getElementById("sumatera-border").hidden = false;
+        document.getElementById("ksp-border").hidden = true;
+    }
+}
+function pilihKalimantanSumateraPapua (i){
+    if (kota[0].children[0]) {
+        document.getElementById("jabodetabek-border").hidden = true;
+        document.getElementById("jabar-border").hidden = true;
+        document.getElementById("jateng-border").hidden = true;
+        document.getElementById("jatim-border").hidden = true;
+        document.getElementById("bnt-border").hidden = true;
+        document.getElementById("sumatera-border").hidden = true;
+        document.getElementById("ksp-border").hidden = false;
+    }
+}
+kota[0].children[0].addEventListener("click", pilihJabodetabek)
+kota[0].children[1].addEventListener("click", pilihJabar)
+kota[0].children[2].addEventListener("click", pilihJateng)
+kota[0].children[3].addEventListener("click", pilihJatim)
+kota[0].children[4].addEventListener("click", pilihBalidanNusaTenggara)
+kota[0].children[5].addEventListener("click", pilihSumatera)
+kota[0].children[6].addEventListener("click", pilihKalimantanSumateraPapua)
+</script>
