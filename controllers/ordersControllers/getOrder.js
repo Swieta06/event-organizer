@@ -1,4 +1,6 @@
 const { Order } = require("../../models");
+const { Package } = require("../../models");
+
 
 exports.getOrder = async function (req, res, next) {
     try{
@@ -7,11 +9,15 @@ exports.getOrder = async function (req, res, next) {
        
         if(statusParams == null){
             let dataOrders = await Order.findAll({
+                include:[{
+                    model:Package,
+                    attributes: ['name']
+                }],
                 where:{
                     UserId:userId
                 },
                 attributes:{
-                    exclude:['customerName', 'companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
+                    exclude:['customerName', 'address', 'companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
                 }
             });
             
@@ -43,12 +49,16 @@ exports.getOrder = async function (req, res, next) {
         }else{
            
             let dataOrders = await Order.findAll({
+                include:[{
+                    model:Package,
+                    attributes: ['name']
+                }],
                 where:{
                     UserId:userId,
                     status:statusParams
                 },
                 attributes:{
-                    exclude:['customerName', 'companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
+                    exclude:['customerName', 'address','companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
                 }
             });
             

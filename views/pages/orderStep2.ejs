@@ -82,6 +82,7 @@ const calculatorCard = (event) =>{
             setLocalStorage('totalPrice', lsTotalPrice  + parseInt(totalPriceItem.id))
             elmTotalPrice.innerText = formatRupiah(totalPrice)
         }
+        
     }
 
     if(event.innerText === "-")
@@ -111,6 +112,15 @@ const calculatorCard = (event) =>{
       }
 
       countTalentTools();
+}
+
+const resetCheckedCard = (cardCheck) =>{
+  for (let i = 0; i < cardCheck.length; i++) {
+    cardCheck[i].style.border = "1px solid #e5e5e5";
+    if(cardCheck[i].children[0].children[0].children[1].children[0].checked){
+       cardCheck[i].style.border = "3px solid #7940CC";
+    }
+  }
 }
 
 const resetCheckedCard = (cardCheck) =>{
