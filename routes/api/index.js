@@ -5,8 +5,10 @@ const adminRoute = require("./admin");
 const vendorRoute = require("./vendor");
 const orderRoute = require("./order");
 const pakcageRoute = require('./package');
+const packageProductRoute = require('./package-product');
 
 router.use("/admin", adminRoute);
+router.use("/package-product", packageProductRoute);
 router.use("/products", productRoute);
 router.use("/vendors", vendorRoute);
 router.use("/orders", orderRoute);
