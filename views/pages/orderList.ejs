@@ -1,38 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<%- include('../partials/head.ejs', {title: 'Home'}) %>
-<body class="p-0" style="background-color:  #E5E5E5;">
-    <header>
-       <%- include('../partials/navbar.ejs') %>
-       <%- include('login')%> 
-    </header>
- 
-    <main >
-    </main>
-
-      <% for( let i = 0; i < orders.length; i++ ) { %>
-        <h3><%= orders[i].id %> </h3>
-        <p><%= orders[i].status %> </p>
-        <p><%= orders[i].package %> </p>
-        <p><%= orders[i].totalParticipant %> </p>
-        <p><%= orders[i].totalPrice %> </p>
-        <p><%= orders[i].createdAt %> </p>
-        <p><%= orders[i].updatedAt %> </p>
-        <p><%= orders[i].Package.name %> </p>
-      <% } %>
-
-    
-<%- include('../partials/scripts.ejs') %>
-</body>
-=======
-<html>
   <%- include('../partials/head.ejs', {title: 'Home'}) %>
 
   <%function statusPesanan(status){
@@ -113,5 +80,4 @@
     </main>
     <%- include('../partials/scripts.ejs') %>
   </body>
->>>>>>> 05196e4b140387a8edc21ffce9b0846346a43c63
 </html>

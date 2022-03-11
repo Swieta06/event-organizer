@@ -1065,7 +1065,6 @@ form i {
   to {
     opacity: 1;
   }
-<<<<<<< HEAD
 }
 
 /* CSS Confirm Payment */
@@ -1519,8 +1518,6 @@ input[type='checkbox'],
 input[type='radio'] {
   width: 16px;
   height: 16px;
-=======
->>>>>>> 05196e4b140387a8edc21ffce9b0846346a43c63
 }
 
 /* CSS Confirm Payment */
