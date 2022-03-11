@@ -1,17 +1,23 @@
- <div class="footer  position-fixed bottom-0 w-100 shadow-lg">
+ <div class="footer  position-fixed bottom-0 w-100 shadow-lg" id="footerOrder" >
       <!-- <div class="footer  container-fluid bg-neutral-10"> -->
         <div class="bg-white">
           <div class="row align-items-center justify-content-around">
            
             <div class="col-2 <%= !btnLeft ? "invisible" : ""%> ">
-              <button type="button" class="btn btn-outline-purple  w-100 " id="previous" >Sebelumnya</button>
+              <a href="http://localhost:3000/orders/step/1?package=Gold">  
+                <button type="button" class="btn btn-outline-purple  w-100 " id="previous" >Sebelumnya</button>
+              </a>
             </div>
          
             <div class="col-7 text-center">
-              <p class="mb-1 mt-2">total (1 paket)</p>
-              <p class="fs-18" id="totalPrice">25.000.000</p>
+              <p class="mb-1 mt-2 text-capitalize fw-semibold" id="titleOrder">total (1 paket)</p>
+              <p class="fs-18 fw-bold text-purple-main" id="totalPrice">25.000.000</p>
             </div>
             <div class="col-2 text-end">
+              <button type="button" class="btn w-100 text-white btn-purple d-none" id="next3" disabled >
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+              </button>
               <button type="button" class="btn w-100 text-white btn-purple" id="next2" >Selanjutnya</button>
             </div>
           </div>

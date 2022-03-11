@@ -69,6 +69,7 @@ exports.updateOrder = async (req, res, next) => {
       postalCode,
       status: 1,
       PaymentMethodId: paymentMethodId,
+      orderedAt: new Date(),
     };
 
     const updatedOrder = await Order.update(updateOrder, {
@@ -82,7 +83,7 @@ exports.updateOrder = async (req, res, next) => {
     }
 
     // res.status(200).json(response("Order Updated", "test"));
-    res.redirect(`/orders/${orderId}?step=4`);
+    res.redirect(`/orders/${orderId}/payment`);
   } catch (error) {
     next(createError(error.status || 500, error.message));
   }

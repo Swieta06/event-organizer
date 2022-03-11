@@ -1,211 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
-<%- include('../partials/head.ejs', {title: 'Home' }) %>
+  <html>
+    <%- include('../partials/head.ejs', {title: 'Home' }) %>
 
-  <body class="p-0 bg-neutral-20">
-    <header>
-      <!-- Swita taruh sini -->
-      <%- include('../partials/navbar.ejs') %>
-        <%- include('login')%>
-    </header>
-    <!-- paket-step-3 -->
-    <form name="order" class="needs-validation" novalidate action="/orders/<%= order.id %>/edit" method="post">
-    <div class="container d-flex-col justify-content-center" id="customer-details">
-      <div class="card w-100 cust-card">
-        <div class="card-body cust-details-card">
-          <h2 class="fs-20 text-center" id="cust-details-title">Detail Pelanggan</h2>
-          <div class="mb-3">
-            <label for="paket-step-3" class="form-label fs-16">Nama Pemesan</label>
-            <input required name="customerName" type="text" class="form-control form-cust input-outline-purple" id="cust-name" placeholder="Nama Pemesan">
-            <div class="invalid-feedback">
-              Data tidak boleh kosong.
-            </div>
+    <body class="p-0 bg-neutral-20">
+      <header>
+        <!-- Swita taruh sini -->
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%>
+      </header>
+      <!-- paket-step-3 -->
+      <div class="container">
+        <div id="stepProgressBar" class="mx-auto">
+          <div id="step-prog" class="step">
+            <div class="bullet">1</div>
+            <p id="prog-step-text" class="step-text">Tentukan Tema Acara</p>
           </div>
-          <div class="mb-3">
-            <label for="paket-step-3" class="form-label fs-16">Nama Perusahaan/Organisasi</label>
-            <input required name="companyName" type="text" class="form-control form-cust input-outline-purple" id="cust-company" placeholder="Nama Perusahaan">
-            <div class="invalid-feedback">
-              Data tidak boleh kosong.
-            </div>
+          <span id="step-wizard-item" class="step-wizard-item"></span>
+          <div id="step-prog" class="step-mid">
+            <div class="bullet">2</div>
+            <p id="prog-step-text" class="step-text-mid">Sewa alat dan talent</p>
           </div>
-          <div class="mb-3">
-            <label for="paket-step-3" class="form-label fs-16">Nomor Telepon</label>
-            <input required name="tel" type="tel" class="form-control form-cust input-outline-purple" id="cust-telp" placeholder="Nomor telepon"
-              pattern="^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$">
-              <div class="invalid-feedback invalid-tel">
-                Data tidak boleh kosong.
-              </div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label fs-16">Alamat diselenggarakannya acara</label>
-            <textarea required name="address" class="form-control form-cust-textarea input-outline-purple" id="event-address" rows="3"
-              placeholder="Nama Jalan, Gedung, No. Rumah, Kecamatan, Kota, Provinsi"></textarea>
-              <div class="invalid-feedback">
-                Data tidak boleh kosong.
-              </div>
-          </div>
-          <div class="mb-3">
-            <label for="paket-step-3" class="form-label fs-16">Kode Pos</label>
-            <input required name="postalCode" type="string" class="form-control form-cust input-outline-purple" id="cust-postal-code" placeholder="Kode Pos Kantor">
-            <div class="invalid-feedback">
-              Data tidak boleh kosong.
-            </div>
+          <span id="step-wizard-item" class="step-wizard-item"></span>
+          <div id="step-prog" class="step">
+            <div class="bullet active">3</div>
+            <p id="prog-step-text" class="step-text">
+              Buat<br />
+              Pesanan
+            </p>
           </div>
         </div>
       </div>
-      <!-- ======================================================================================= -->
-      <div class="card order-details">
-        <div class="card-body order-details-card">
-          <h2 class="fs-20 text-center" id="order-details-title">Rincian Pesanan</h2>
-          <div class="details-margin">
-            <h3 class="fs-16 mb-3">Paket yang diambil</h3>
-            <div class="d-flex justify-content-between">
-              <p class="text-neutral-80">Paket <%= order.package.name %></p>
-              <p class="">Rp<%= (order.package.price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
-            </div>
-            <div class="d-flex justify-content-between">
-              <p class="text-neutral-80">Tambah <%= order.totalParticipant - order.package.minParticipant %> orang</p>
-              <p class="">Rp<%= ((order.package.additionCost / 10) * (order.totalParticipant - order.package.minParticipant)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
-            </div>
-          </div>
-          <hr class="price-line">
-          <div class="details-margin">
-            <h3 class="fs-16 mb-3">Tambahan lainnya</h3>
-            <% for (let i = 0; i < order.products.length; i++) { %>
-              <div class="d-flex justify-content-between">
-                <p class="text-neutral-80"><%= order.products[i].name %></p>
-                <p class="">Rp<%= (order.products[i].price * order.products[i].qty).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
+      <form name="order" class="needs-validation" novalidate action="/orders/<%= order.id %>/edit" method="post">
+        <div class="container d-flex-col justify-content-center" id="customer-details">
+          <div class="card w-100 cust-card">
+            <div class="card-body cust-details-card">
+              <h2 class="fs-20 text-center" id="cust-details-title">Detail Pelanggan</h2>
+              <div class="mb-3">
+                <label for="paket-step-3" class="form-label fs-16">Nama Pemesan</label>
+                <input required name="customerName" type="text" class="form-control form-cust input-outline-purple" id="cust-name" placeholder="Nama Pemesan" />
+                <div class="invalid-feedback">Data tidak boleh kosong.</div>
               </div>
-            <% } %>
-          </div>  
-          <hr class="price-line">
-          <div class="d-flex justify-content-between price-total">
-            <p class="text-purple-main fs-16">Total Harga</p>
-            <p class="text-purple-main fs-16">Rp<%= (order.totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
+              <div class="mb-3">
+                <label for="paket-step-3" class="form-label fs-16">Nama Perusahaan/Organisasi</label>
+                <input required name="companyName" type="text" class="form-control form-cust input-outline-purple" id="cust-company" placeholder="Nama Perusahaan" />
+                <div class="invalid-feedback">Data tidak boleh kosong.</div>
+              </div>
+              <div class="mb-3">
+                <label for="paket-step-3" class="form-label fs-16">Nomor Telepon</label>
+                <input required name="tel" type="tel" class="form-control form-cust input-outline-purple" id="cust-telp" placeholder="Nomor telepon" pattern="^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$" />
+                <div class="invalid-feedback invalid-tel">Data tidak boleh kosong.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label fs-16">Alamat diselenggarakannya acara</label>
+                <textarea required name="address" class="form-control form-cust-textarea input-outline-purple" id="event-address" rows="3" placeholder="Nama Jalan, Gedung, No. Rumah, Kecamatan, Kota, Provinsi"></textarea>
+                <div class="invalid-feedback">Data tidak boleh kosong.</div>
+              </div>
+              <div class="mb-3">
+                <label for="paket-step-3" class="form-label fs-16">Kode Pos</label>
+                <input required name="postalCode" type="string" class="form-control form-cust input-outline-purple" id="cust-postal-code" placeholder="Kode Pos Kantor" />
+                <div class="invalid-feedback">Data tidak boleh kosong.</div>
+              </div>
+            </div>
           </div>
-          <div class="select-payment">
-          <select required name="paymentMethodId" class="form-select form-select-lg mb-3 fs-16 text-neutral-80 form-cust input-outline-purple" aria-label=".form-select-lg example">
-            <option value="" selected disabled hidden>Pilih Metode Pembayaran</option>
-            <% for (let i = 0; i < PaymentMethods.length; i++) { %>
-            <option value="<%= PaymentMethods[i].id %>">Bank <%= PaymentMethods[i].bankName %> (Dicek Manual)</option>
-            <% } %>
-          </select>
-          <div class="invalid-feedback">
-            Pilih metode pembayaran.
-          </div>
+          <!-- ======================================================================================= -->
+          <div class="card order-details">
+            <div class="card-body order-details-card">
+              <h2 class="fs-20 text-center" id="order-details-title">Rincian Pesanan</h2>
+              <div class="details-margin">
+                <h3 class="fs-16 mb-3">Paket yang diambil</h3>
+                <div class="d-flex justify-content-between">
+                  <p class="text-neutral-80">Paket <%= order.package.name %></p>
+                  <p class="">Rp<%= (order.package.price).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="text-neutral-80">Tambah <%= order.totalParticipant - order.package.minParticipant %> orang</p>
+                  <p class="">Rp<%= ((order.package.additionCost / 10) * (order.totalParticipant - order.package.minParticipant)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
+                </div>
+              </div>
+              <hr class="price-line">
+              <div class="details-margin">
+                <h3 class="fs-16 mb-3">Tambahan lainnya</h3>
+                <% for (let i = 0; i < order.products.length; i++) { %>
+                  <div class="d-flex justify-content-between">
+                    <p class="text-neutral-80"><%= order.products[i].name %></p>
+                    <p class="">Rp<%= (order.products[i].price * order.products[i].qty).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
+                  </div>
+                <% } %>
+              </div>  
+              <hr class="price-line">
+              <div class="d-flex justify-content-between price-total">
+                <p class="text-purple-main fs-16">Total Harga</p>
+                <p class="text-purple-main fs-16">Rp<%= (order.totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); %></p>
+              </div>
+              <div class="select-payment">
+              <select required name="paymentMethodId" class="form-select form-select-lg mb-3 fs-16 text-neutral-80 form-cust input-outline-purple" aria-label=".form-select-lg example">
+                <option value="" selected disabled hidden>Pilih Metode Pembayaran</option>
+                <% for (let i = 0; i < PaymentMethods.length; i++) { %>
+                <option value="<%= PaymentMethods[i].id %>">Bank <%= PaymentMethods[i].bankName %> (Dicek Manual)</option>
+                <% } %>
+              </select>
+              <div class="invalid-feedback">
+                Pilih metode pembayaran.</div>
                 <span class="text-neutral-60">Menerima transfer dari semua bank</span>
-          </div>
-          <div class="tnc">
-            <div class="form-group form-check">
-              <input required type="checkbox" class="form-check-input" id="tnc-checkbox">
-              <label class="tnc-label text-neutral-80" for="tnc-checkbox">Saya telah membaca dan menerima semua <a href="#" class="text-purple-main tnc-link">Syarat dan Ketentuan</a> yang berlaku, dan menyetujui untuk membuat pesanan</label>
-              <div class="invalid-feedback">
-                Pastikan anda telah membaca syarat dan ketentuan.
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ======================================================================================= -->
-      <div class="card open-wa-card">
-        <div class="row card-body align-items-center">
-          <div class="col-lg-9 p-0">
-            <label class="fs-16" id="text-whatsapp">Diskusi lebih lanjut melalui Whatsapp</label>
-            <label class="fs-12 text-purple-main">*Pesanan Anda otomatis tersimpan meskipun keluar dari halaman ini</label>
-          </div>
-          <div class="col-lg-3 p-0 mt-3 mt-lg-0">
-            <a href="https://api.whatsapp.com/send?phone=6282213375776&text=Halo%20EO,%20Saya%20menemukkan%20kontak%20Anda%20dari%20website." target="_blank" class="btn btn-whatsapp"><i class="bi bi-whatsapp"></i> Buka Whatsapp</a>
-          </div>
-        </div>
-      </div>
-    
-    </div>
-    <div class="footer-s3 position-fixed bottom-0 w-100 shadow-lg">
-      <!-- <div class="footer  container-fluid bg-neutral-10"> -->
-        <div class="bg-white h-100 my-auto">
-          <div class="row h-100 align-items-center justify-content-around">
-            <div class="offset-9 col-2 text-end">
-              <button type="button" class="btn w-100 text-white btn-purple" id="button-modal"  data-bs-target="#modal-order-3" >Buat Pesanan</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- modal order 3 -->
-    <div class="modal fade" id="modal-order-3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content modal-content-order-3">
-          <div class="modal-body p-0">
-            <div class="container px-0">
-              <div class="row text-center modal-content-margin">
-                <div class="col">
-                  <h5>Buat Pesanan</h5>
-                </div>
-              </div>
-              <div class="row justify-content-center modal-content-margin">
-                <div class="col-2">
-                  <img src="/images/default/image-166.png" alt="img">
-                </div>
-              </div>
-              <div class="row text-center modal-content-margin">
-                <div class="col modal-p">
-                  <p class="m-0">Yakin ingin membuat pesanan? Setelah menekan tombol Buat Pesanan Anda tidak dapat mengubah kembali detail pesanan.</p>
-                </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-6">
-                  <button type="button" class="btn btn-outline-purple text-purple-main modal-btn" data-bs-dismiss="modal">Batal</button>
-                </div>
-                <div class="col-6">
-                  <button type="submit" class="btn btn-purple text-white modal-btn">Buat Pesanan</button>
+              <div class="tnc">
+                <div class="form-group form-check">
+                  <input required type="checkbox" class="form-check-input" id="tnc-checkbox" />
+                  <label class="tnc-label text-neutral-80" for="tnc-checkbox"
+                    >Saya telah membaca dan menerima semua <a href="#" class="text-purple-main tnc-link">Syarat dan Ketentuan</a> yang berlaku, dan menyetujui untuk membuat pesanan</label
+                  >
+                  <div class="invalid-feedback">Pastikan anda telah membaca syarat dan ketentuan.</div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- ======================================================================================= -->
+          <div class="card open-wa-card">
+            <div class="row card-body align-items-center">
+              <div class="col-lg-9 p-0">
+                <label class="fs-16" id="text-whatsapp">Diskusi lebih lanjut melalui Whatsapp</label>
+                <label class="fs-12 text-purple-main">*Pesanan Anda otomatis tersimpan meskipun keluar dari halaman ini</label>
+              </div>
+              <div class="col-lg-3 p-0 mt-3 mt-lg-0">
+                <a href="https://api.whatsapp.com/send?phone=6282213375776&text=Halo%20EO,%20Saya%20menemukkan%20kontak%20Anda%20dari%20website." target="_blank" class="btn btn-whatsapp"><i class="bi bi-whatsapp"></i> Buka Whatsapp</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </form>
-    <!-- paket-step-3 -->
+        <div class="footer-s3 position-fixed bottom-0 w-100 shadow-lg">
+          <!-- <div class="footer  container-fluid bg-neutral-10"> -->
+          <div class="bg-white h-100 my-auto">
+            <div class="row h-100 align-items-center justify-content-around">
+              <div class="offset-9 col-2 text-end">
+                <button type="button" class="btn w-100 text-white btn-purple" id="button-modal" data-bs-target="#modal-order-3">Buat Pesanan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal order 3 -->
+        <div class="modal fade" id="modal-order-3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-order-3">
+              <div class="modal-body p-0">
+                <div class="container px-0">
+                  <div class="row text-center modal-content-margin">
+                    <div class="col">
+                      <h5>Buat Pesanan</h5>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center modal-content-margin">
+                    <div class="col-2">
+                      <img src="/images/default/image-166.png" alt="img" />
+                    </div>
+                  </div>
+                  <div class="row text-center modal-content-margin">
+                    <div class="col modal-p">
+                      <p class="m-0">Yakin ingin membuat pesanan? Setelah menekan tombol Buat Pesanan Anda tidak dapat mengubah kembali detail pesanan.</p>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-6">
+                      <button type="button" class="btn btn-outline-purple text-purple-main modal-btn" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-purple text-white modal-btn">Buat Pesanan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- paket-step-3 -->
 
-    <%- include('../partials/scripts.ejs') %>
-  </body>
-<script>
-  (function () {
-  'use strict'
+      <%- include('../partials/scripts.ejs') %>
+    </body>
+    <script>
+      (function () {
+        'use strict';
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
 
-  // Loop over them and prevent submission
-  const submit = document.getElementById("button-modal")
-  submit.addEventListener("click", function (event){
-    const form = document.forms.order
-    if (!form.checkValidity()) {
-          const tel = document.forms.order.elements.tel.value
-          const invalid = document.querySelector(".invalid-tel");
+        // Loop over them and prevent submission
+        const submit = document.getElementById('button-modal');
+        submit.addEventListener('click', function (event) {
+          const form = document.forms.order;
+          if (!form.checkValidity()) {
+            const tel = document.forms.order.elements.tel.value;
+            const invalid = document.querySelector('.invalid-tel');
             if (tel.length !== 0 || tel) {
               let re = /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/;
               if (!re.test(tel)) {
-                invalid.innerHTML= "Nomor telepon tidak valid."
+                invalid.innerHTML = 'Nomor telepon tidak valid.';
               }
             } else {
-                invalid.innerHTML= "Data tidak boleh kosong."
+              invalid.innerHTML = 'Data tidak boleh kosong.';
             }
-          event.preventDefault()
-          event.stopPropagation()
-        } else {
-          const modal = document.getElementById("modal-order-3")
-          const bsModal = new bootstrap.Modal(modal, {
-            keyboard: false
-            })
-          bsModal.show()
-          event.preventDefault()
-          event.stopPropagation()
-        }
+            event.preventDefault();
+            event.stopPropagation();
+          } else {
+            const modal = document.getElementById('modal-order-3');
+            const bsModal = new bootstrap.Modal(modal, {
+              keyboard: false,
+            });
+            bsModal.show();
+            event.preventDefault();
+            event.stopPropagation();
+          }
 
-        form.classList.add('was-validated')
-  })
-})()
-</script>
+          form.classList.add('was-validated');
+        });
+      })();
+    </script>
+  </html>
 </html>

@@ -13,3 +13,4 @@ visibilityToggle.addEventListener('click',function(){
    }
     password=!password
 })
+

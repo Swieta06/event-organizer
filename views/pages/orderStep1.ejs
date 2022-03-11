@@ -7,10 +7,31 @@
     <header>
       <!-- Swita taruh sini -->
        <%- include('../partials/navbar.ejs') %>
-       <%- include('login')%> 
+       <%- include('login')%>
     </header>
  
     <main >
+      <div class="container">
+        <div id="stepProgressBar" class="mx-auto">
+          <div id="step-prog" class="step">
+            <div class="bullet active">1</div>
+            <p id="prog-step-text" class="step-text">Tentukan Tema Acara</p>
+          </div>
+          <span id="step-wizard-item" class="step-wizard-item"></span>
+          <div id="step-prog" class="step-mid">
+            <div class="bullet">2</div>
+            <p id="prog-step-text" class="step-text-mid">Sewa alat dan talent</p>
+          </div>
+          <span id="step-wizard-item" class="step-wizard-item"></span>
+          <div id="step-prog" class="step">
+            <div class="bullet">3</div>
+            <p id="prog-step-text" class="step-text">
+              Buat<br />
+              Pesanan
+            </p>
+          </div>
+        </div>
+      </div>
           <!-- Modal -->
 <div class="modal fade" id="order1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -18,24 +39,24 @@
      
       <div class="modal-body text-center">
         <i class="bi bi-exclamation-triangle-fill text-center text-danger " style="font-size: 62px;"></i>
-        <p  style="font-size: 18px;">Masih Ada Data yang Kosong</p>
+        <p  class="fs-16 text-capitalize">Masih Ada Data yang salah</p>
       </div>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">OK</button>
     </div>
   </div>
 </div>
-      <p class="mt-5">test</p>
-      <div class="container-fluid" id="orderStep1" >
+<div class="container-fluid" id="orderStep1" >
+        <p class="mt-3"></p>
         <div class="row justify-content-center">
-          <div class="col-10 bg-neutral-10 px-5  py-4 rounded-3">
-            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center">informasi acara</h1>
-            <div class="row mt-3">
+          <div class="col-10 bg-neutral-10 px-5  py-4 rounded-3 shadow-lg">
+            <h1 class="text-capitalize text-neutral-100 fw-bold fs-24 text-center mt-4">informasi acara</h1>
+            <div class="row mt-4">
               <div class="col">
-                <p>Pilih lokasi</p>
-                <select class="form-select" aria-label="Default select example" id="location">
+                <p class="fs-16 text-capitalize mb-2">Pilih lokasi</p>
+                <select class="form-select text-capitalize" aria-label="Default select example" id="location">
                       <option selected>Tentukan lokasi anda</option>
                   <% location.map((location)=>{ %>
-                      <option value="<%= location %>"><%= location  %></option>
+                      <option value="<%= location %>" class="text-capitalize"><%= location  %></option>
                   <%}) %>
                 </select>
                  <span class="text-danger text-end fs-16 mt-1 d-none" role="alert" id="error-location">
@@ -43,38 +64,43 @@
                  </span>
               </div>
               <div class="col ">
-                <p>tanggal diselenggarakan acara</p>
+                <p class="fs-16 text-capitalize mb-2">Tanggal diselenggarakan acara | Min tanggal <span class="text-danger" id="minDate"></span> </p>
                 <div class="row">
-                  <div class="col-3">
-                     <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <div class="col-4">
+                      <select class="form-select" id="day">
+                      <option selected>Pilih Hari</option>
+                      <% for (let day = 1; day <= 31; day++) {%>
+                        <option value=<%= day < 10 ? `0${day}` : day %>><%= day %></option>
+                        <%}%>
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    <% const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+                  "Agustus", "September", "Oktober", "November", "Desember"];%>
+                     <select class="form-select" id="month">
+                  <option selected>Pilih Bulan</option>
+                 <% for (let month = 0; month < months.length; month++) {%>
+                        <option value=<%= (month+1) < 10 ? `0${month+1}` : month+1 %>><%= months[month] %></option>
+                        <%}%>
                 </select>
                   </div>
-                  <div class="col-6">
-                     <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <div class="col-4">
+                     <select class="form-select" id="year">
+                  <option selected>Pilih Tahun</option>
+                  <% for (let year = 2021; year <= 2030; year++) {%>
+                        <option value=<%= year %>><%= year %></option>
+                        <%}%>
                 </select>
                   </div>
-                  <div class="col-3">
-                     <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                  </div>
+                  <span class="text-danger text-end fs-16 mt-1" role="alert" id="error-date">
+                    
+                 </span>
                 </div>
               </div>
             </div>
             <div class="row mt-4">
               <div class="col">
-                <p>paket yang dipilih</p>
+                <p class="fs-16 text-capitalize mb-2">paket yang dipilih</p>
 
                 <select class="form-select" aria-label="Default select example" id="choosePackage">
                   <% packages.map((package)=>{ %>
@@ -93,24 +119,21 @@
                 </select>
               </div>
               <div class="col">
-                <p>tambahan jumlah tamu</p>
+                <p class="fs-16 text-capitalize mb-2">tambahan jumlah tamu</p>
                
                 <div class="row align-items-center">
-
-                  <div class="col">
-                <div class="d-flex">
-                  <button type="button" id="redGuest" class="btn btn-outline-purple text-purple-main">-</button>
-                  <input type="text" class="mx-2 w-25 text-center text-purple-main" disabled  value="0" id="totalGuest">
-                  <button type="button" id="addGuest" class="btn btn-outline-purple text-purple-main ">+</button>
-                </div>
-
+                  <div class="col-5">
+                    <div class="d-flex">
+                      <button type="button" id="redGuest" class="btn btn-outline-purple text-purple-main">-</button>
+                      <input type="text" class="mx-2 w-25 text-center text-purple-main " disabled  value="0" id="totalGuest">
+                      <button type="button" id="addGuest" class="btn btn-outline-purple text-purple-main ">+</button>
+                    </div>
                   </div>
-                  <div class="col">
-                  <div class="" id="totalGuestText"></div>
-
+                  <div class="col text-start ps-0">
+                      <div class="fs-18 text-capitalize" id="totalGuestText"></div>
                   </div>
-
                 </div>
+                <p class="mt-2 fs-14 text-purple-main" id="additionCost">*Penambahan kelipatan 10 / Rp 20.000</p>
                   
               </div>
             </div>
@@ -124,13 +147,13 @@
 </div>
 
           <div style=" margin-bottom: 100px;" class="row fade-in-image justify-content-center mt-4 d-none" id="eventInformation">
-              <div class="col-10 position-relative  bg-neutral-10 text-center px-5 py-5 rounded-3">
+              <div class="col-10 position-relative  bg-neutral-10 text-center px-5 py-5 rounded-3 shadow-lg">
                   <h1 class="text-capitalize text-neutral-100 fw-bold fs-24">detail acara</h1>
 
                   <!-- Food -->
                   <div class="row mt-4">
                     <div class="col-12 position-relative">
-                      <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih vendor makanan</p>
+                      <p class="text-neutral-90 text-start fs-16 text-capitalize">Pilih vendor makanan</p>
                       <div class="alert alert-danger d-none" role="alert" id="vendor-theme">
                         Mohon pilih tema sebelum melanjutkan ke langkah berikutnya
                       </div>
@@ -141,7 +164,7 @@
                   <!-- Food -->
                   <div class="row mt-4">
                     <div class="col-12 position-relative">
-                       <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih Menu Utama  </p>
+                       <p class="text-neutral-90 text-start fs-16 text-capitalize">Pilih Menu Utama  </p>
                         <div class="alert alert-danger d-none" role="alert" id="error-food">
                            Mohon Menu Utama sebelum melanjutkan ke langkah berikutnya
                         </div>
@@ -154,7 +177,7 @@
                     <div class="col-12 position-relative">
                       <div class="row align-items-center">
                         <div class="col-11">
-                          <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih Jenis Snack  </p>
+                          <p class="text-neutral-90 text-start fs-16 text-capitalize">Pilih Jenis Snack  </p>
                         </div>
                         <div class="col-1">
                           <p class="text-neutral-80 text-center fs-18 bg-purple-surface py-2 rounded-pill" id="maxSnack">0/2</p>
@@ -177,7 +200,7 @@
 <div class="row mt-4">
   <div class="col-12 position-relative">
         <div class="themes" >
-                      <p class="text-neutral-90 text-start fs-18 fw-bold text-capitalize">Pilih tema acara</p>
+                      <p class="text-neutral-90 text-start fs-16 text-capitalize">Pilih tema acara</p>
                       <div class="alert alert-danger d-none" role="alert" id="error-theme">
                         Mohon pilih tema sebelum melanjutkan ke langkah berikutnya
                       </div>
@@ -194,16 +217,15 @@
                 <div class="card card-check-theme">
                   <div class="card-header bg-white">
                     <div class="row my-1">
-                      <div class="col-10"><label for="test" class="text-capitalize fw-bold text-neutral-100 fs-18"><%= data.name %></label></div>
-                      <div class="col-2 radio-check">
+                      <div class="col-10"><label for="test" class="text-capitalize text-neutral-100 fs-16 fw-semibold"><%= data.name %></label></div>
+                      <div class="col-2 px-0">
                         <input class="form-check-input" type="radio" name="theme" id="<%= data.id %>" value="" aria-label="..."/>
                       </div>
                     </div>
                  </div>
                   <div class="card-body p-0" style="white-space: initial;">
-                           <!-- <img class="w-100" src="images/default/<%= data.img%>" alt=""/> -->
                            <img class="w-100" src="<%= data.photo%>" alt=""/>
-                           <!-- <p class="w-100 text-start" >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum tempora ipsa odio deserunt officiis sit dolorem earum rerum obcaecati at, aperiam, tenetur, quibusdam laborum sapiente quaerat magnam ea dolor ullam.</p> -->
+                           <p class="w-100 text-start ps-2 fs-14"  ><%= data.description %></p>
                   </div>
                 </div>
            </div>
@@ -219,7 +241,7 @@
 
 <div class="row text-start mt-3">
   <div class="col">
-    <p>Bagaimana konsep acara anda?</p>
+    <p class="fs-16 text-capitalize mb-2">Bagaimana konsep acara anda?</p>
     <select class="form-select" name="eventConcept" id="eventConcept" >
       <option selected value="">Pilih konsep</option>
       <option value="indoor" >Indoor</option>
@@ -230,8 +252,8 @@
     </div>
   </div>
   <div class="col">
-    <p>Tulis nama untuk souvenir costum pulpen</p>
-    <input type="text" name="costumPulpen" class="form-control" id="costumPulpen" placeholder="">
+    <p class="fs-16 text-capitalize mb-2">Tulis nama untuk souvenir costum pulpen</p>
+    <input type="text" name="costumPulpen" class="form-control input-outline-purple" id="costumPulpen" placeholder="">
     <div class="alert alert-danger mt-2 d-none text-capitalize" role="alert" id="error-costumPulpen">
         Custom Pulpen Wajib terisi.
    </div>
@@ -249,6 +271,9 @@
     <script src="/javascripts/slider-card.js"></script>
     <script src="/javascripts/card-view.js"></script>
     <script src="/javascripts/control-informasi-acara.js"></script>
+    <script src="/javascripts/moment.js"></script>
+    <script src="/javascripts/moment-timezone.js"></script>
+     
   <script>
 const structurData = {
   package: "",
@@ -293,7 +318,8 @@ localStorage.setItem('data', JSON.stringify(structurData));
           document.getElementById('snackItem').innerHTML += card("checkbox","snack",snackIndex + 1, data);
       });
      }
-
+      const maxSnack = document.getElementById("maxSnack");
+      maxSnack.innerText = "0" + maxSnack.innerText.substring(1);
       sliderControl("food");
       sliderControl("snack");
       sliderControl("theme");
@@ -312,12 +338,12 @@ localStorage.setItem('data', JSON.stringify(structurData));
       getDataLs['costumPulpen'] = "";
       localStorage.setItem("data", JSON.stringify(getDataLs))
 
-            removeAlert("theme");
-            removeAlert("food");
-            removeAlert("snack");
-            removeAlert("costumPulpen");
-            removeAlert("concept");
-            removeAlert("location");
+      removeAlert("theme");
+      removeAlert("food");
+      removeAlert("snack");
+      removeAlert("costumPulpen");
+      removeAlert("concept");
+      removeAlert("location");
 
    }
 
@@ -344,7 +370,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
           }
       }, 1000);
    }
-
+// Control Location
   document.getElementById("location").addEventListener("change", async(e)=>{
     if( e.target.value !== "Tentukan lokasi anda"){
       const positionId = e.target.id; 
@@ -357,6 +383,7 @@ localStorage.setItem('data', JSON.stringify(structurData));
     }
     validation("location");
   });
+// Control Vendor
   document.getElementById("vendor").addEventListener("change", (e)=>{
     const positionId = e.target.id; 
     const valueSelected = e.target.value; 
@@ -365,23 +392,24 @@ localStorage.setItem('data', JSON.stringify(structurData));
   })
     </script>
 
-       <script>
-         const eventConcept = document.getElementById("eventConcept");
-         eventConcept.addEventListener("change", (e)=>{
-            if(e.target.value !== ""){
-              setLocalStorage('concept', e.target.value)
-            }else{
-              setLocalStorage('concept', "")
-            }
-              validation("concept")
-         });
+<script>
+//  Control Input Concept
+const eventConcept = document.getElementById("eventConcept");
+eventConcept.addEventListener("change", (e)=>{
+  if(e.target.value !== ""){
+    setLocalStorage('concept', e.target.value)
+  }else{
+    setLocalStorage('concept', "")
+  }
+    validation("concept")
+});
 
-        //  CustomPulpen
-        const costumPulpen = document.getElementById("costumPulpen");
-        costumPulpen.addEventListener('keyup',(e)=>{
-          setLocalStorage(e.target.name, e.target.value)
-          validation("costumPulpen")
-        });
+//  Control CustomPulpen
+const costumPulpen = document.getElementById("costumPulpen");
+costumPulpen.addEventListener('keyup',(e)=>{
+setLocalStorage(e.target.name, e.target.value)
+validation("costumPulpen")
+});
 
 const resetCheckedCard = () =>{
   for (let i = 0; i < cardCheck.length; i++) {
@@ -443,77 +471,149 @@ const checkedCard = (event) =>{
          }
    };
          
+</script>
+<script>
+// Control Button Next
+const btnNext = document.getElementById("next2");
+btnNext.addEventListener("click", ()=>{
+    let error = [];
+    let msg = null;
+    const date = getLocalStorage("date");
+    if(getLocalStorage("location")){
+          msg = validation("theme");
+          error.push(msg);
+          msg = validation("food");
+          error.push(msg);
+          msg = validation("snack");
+          error.push(msg);
+          msg = validation("costumPulpen");
+          error.push(msg);
+          msg = validation("concept");
+          error.push(msg);
+          msg = validation("location");
+          error.push(msg);
+          
+          msg = date ? true : false;
 
-// Package Listener
-
-       </script>
-
-       <script>
-
-      
-         // Btn Next Listener
-         const btnNext = document.getElementById("next2");
-         btnNext.addEventListener("click", ()=>{
-          let error = [];
-          let msg = null;
-          if(getLocalStorage("location")){
-               msg = validation("theme");
-               error.push(msg);
-               msg = validation("food");
-               error.push(msg);
-               msg = validation("snack");
-               error.push(msg);
-               msg = validation("costumPulpen");
-               error.push(msg);
-               msg = validation("concept");
-               error.push(msg);
-               msg = validation("location");
-               error.push(msg);
-              console.log(error);
-
-            document.getElementById("error-snack-toolong").classList.add("d-none")
-            const myModal = new bootstrap.Modal(document.getElementById('order1'), {keyboard: false}); 
-            if(error.includes(false)){
-              myModal.show()
-            }else{
-              const data = JSON.parse(localStorage.getItem("data"));
-                const foodTheme = [
-                  {
-                    id : data.food,
-                    qty: 0,
-                  },
-                  {
-                    id : data.theme,
-                    qty: 0,
-                  },
-                ];
-
-              const finalData = {
-                  package: data.package, 
-                  totalParticipant: data.minParticipan + data.addParticipan,
-                  totalPrice: data.totalPrice + (data.additionCost * data.addParticipan),
-                  eventAt: "2022-03-21",
-                  concept: data.concept, 
-                  desc: data.costumPulpen,
-                  products: foodTheme.concat(data.snack),
-                }
-              localStorage.setItem("data", JSON.stringify(finalData));
-              window.location.href = `http://localhost:3000/orders/step/2?location=${data.location}`;
-            } 
-          }else{
-             validation("location");
+          const errorDate = document.getElementById("error-date");
+          if(date === "" || !date){
+            errorDate.innerText = "Tanggal tidak valid.";
+            error.push(false);
+          }else if(errorDate.innerText !== ""){
+            error.push(false);
           }
+      document.getElementById("error-snack-toolong").classList.add("d-none")
+      const myModal = new bootstrap.Modal(document.getElementById('order1'), {keyboard: false}); 
+      if(error.includes(false)){
+        myModal.show()
+      }else{
+        const data = JSON.parse(localStorage.getItem("data"));
+          const foodTheme = [
+            {
+              id : data.food,
+              qty: 0,
+            },
+            {
+              id : data.theme,
+              qty: 0,
+            },
+          ];
+
+        const finalData = {
+            package: data.package, 
+            totalParticipant: data.minParticipan + data.addParticipan,
+            totalPrice: data.totalPrice + (data.additionCost * (data.addParticipan / 10)),
+            eventAt: data.date,
+            concept: data.concept, 
+            desc: data.costumPulpen,
+            products: foodTheme.concat(data.snack),
+          }
+        localStorage.setItem("data", JSON.stringify(finalData));
+        localStorage.setItem("firstTotalPrice", data.totalPrice);
+        localStorage.setItem("products", JSON.stringify(foodTheme.concat(data.snack)));
+        window.location.href = `/orders/step/2?location=${data.location}`;
+      } 
+    }else{
+        validation("location");
+        if(date === "" || !date){
+            document.getElementById("error-date").innerText = "Tanggal tidak valid.";
+        }
+    }
           
 });
-       </script>
+</script>
 
-       <script>
+<script>
 // Btn Add Guest & Reduce Guest
 addOrReduceGuest();
 // Pakage Listener
-// packageListener();
 packageListener();
-       </script>
+</script>
+<script>
+          // Control Date
+        let date = moment().tz("Asia/Jakarta");
+        let date2 = moment().tz("Asia/Jakarta");
+        let addDate = date.add(30,"days");
+        let addOneDate = date2.add(31,"days");
+        const getPackage = getLocalStorage("package");
+
+        if(getPackage === "dadakan"){
+          addDate = date.add(7,"days");
+          addOneDate = date2.add(8,"days");
+        }
+        const addOneDay = addDate;
+        document.getElementById("minDate").innerText = addOneDate.format("DD MMMM YYYY");
+
+        let day = null;
+        let month = null;
+        let year = null;
+
+        const validasiDate = () =>{
+          let text = ""
+          const checkDate  = day && month && year;
+          const inputDate = `${year}-${month}-${day}`;
+          const compareDate =  addDate.isAfter(inputDate);
+          console.log(inputDate.includes("Pilih"));
+          if(getPackage === "Dadakan"){
+                if(inputDate.includes("Pilih") || inputDate.includes("null")){
+                    setLocalStorage("date", "")
+                }else if(checkDate && compareDate){
+                    text = "Pemesanan Tanggal Acara Minimal H+7";
+                    setLocalStorage("date", inputDate)                   
+                }else{
+                    setLocalStorage("date", inputDate)
+                }
+          }
+          if(getPackage === "Silver" || getPackage === "Gold" || getPackage === "Platinum"){
+              if(inputDate.includes("Pilih") || inputDate.includes("null")){
+                    setLocalStorage("date", "")
+               }else if(checkDate && compareDate){
+                    text = "Pemesanan Tanggal Acara Minimal H+30";
+                    setLocalStorage("date", inputDate)
+               }else{
+                    setLocalStorage("date", inputDate)
+               }
+          }
+          
+          document.getElementById("error-date").innerText = text;
+        }
+
+        // Control Day in Date
+        document.getElementById("day").addEventListener("change", (e)=>{
+          day = e.target.value;
+            validasiDate();
+         } );
+        // Control month in Date
+        document.getElementById("month").addEventListener("change", (e)=>{
+          month = e.target.value;
+            validasiDate();
+        });
+        // Control year in Date
+        document.getElementById("year").addEventListener("change", (e)=>{
+          year = e.target.value;
+            validasiDate();
+        });
+</script>
  
 
     <%- include('../partials/scripts.ejs') %>
