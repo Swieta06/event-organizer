@@ -11,15 +11,15 @@ const vendorTenda = [12, 13];
 const kota = [
   "bogor",
   "bogor",
-  "Bogor",
-  "Bogor",
-  "Bogor",
+  "Bandung",
+  "Bandung",
+  "Bandung",
   "Jaksel",
   "Jaksel",
   "Jaksel",
 ];
 
-const kotaLain = ["Bogor", "Jaksel"];
+const kotaLain = ["Bandung", "Jaksel"];
 
 const makanan = [
   // HERE IS MAKANAN

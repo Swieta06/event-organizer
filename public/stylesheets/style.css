@@ -1452,6 +1452,459 @@ input[type='radio'] {
 }
 
 /* visibility css */
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+#material {
+  position: absolute;
+  width: 35px;
+  height: 100px;
+  right: 0px;
+  top: 34px;
+  color: #757575;
+}
+#orderStep1 .slide-show-ari,
+#orderStep2 .slide-show-ari {
+  flex-wrap: nowrap !important;
+  overflow: auto hidden !important;
+  overflow-x: hidden !important;
+  white-space: nowrap;
+  transition: all 0.5s ease 0s !important;
+  position: relative !important;
+}
+#orderStep1 label,
+#orderStep2 label {
+  white-space: break-spaces;
+  text-align: start;
+}
+
+#orderStep1 .slide-show-control,
+#orderStep2 .slide-show-control {
+  position: absolute;
+  z-index: 1;
+  top: 54%;
+  left: -1%;
+  display: flex;
+  width: 102%;
+  justify-content: space-between;
+}
+#orderStep1 .fade-in-image,
+#orderStep2 .fade-in-image {
+  animation: fadeInUp 1.5s;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#footerOrder {
+  z-index: 1000;
+}
+
+input[type='checkbox']:checked {
+  background-color: #7940cc;
+}
+input[type='radio']:checked {
+  background-color: #7940cc;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  width: 16px;
+  height: 16px;
+}
+
+/* CSS Confirm Payment */
+
+/* jumbotron info Pembayaran */
+#container-1 {
+  width: 664px;
+  height: 666px;
+  border-radius: 1px;
+  border-color: #e0e0e0;
+  margin-top: 48px;
+  background-color: #fff;
+  justify-content: center;
+  padding: 32px;
+  border-radius: 8px;
+}
+/* text info pembayaran */
+#pay-info {
+  font-family: Inter;
+  font-style: Semi Bold;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  line-height: 150%;
+  align-items: center;
+  vertical-align: top;
+  letter-spacing: -1.9%;
+}
+/* text total pembayaran */
+#pay-total {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.011em;
+  text-align: left;
+  left: 0px;
+  top: 0px;
+  margin-top: 32px;
+}
+/* text nilai uang */
+#value-pay {
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.019em;
+  text-align: left;
+  color: #7940cc;
+  left: 0px;
+  top: 0px;
+}
+/* text peringatan pembayaran */
+#text-pay {
+  color: #616161;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.006em;
+  text-align: left;
+  margin-top: 16px;
+}
+/* css underline */
+#under-line {
+  height: 0px;
+  width: 600px;
+  left: 0px;
+  top: 4px;
+  border: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+/* text info pembayaran atm */
+#info-pay {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.011em;
+  text-align: left;
+  margin-top: 36px;
+}
+
+#text-step-1 {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  color: #404040;
+  font-weight: 400;
+  letter-spacing: -0.006em;
+  text-align: left;
+}
+
+#mini-container {
+  height: 174px;
+  width: 600px;
+  left: 0px;
+  top: 80px;
+  border-radius: 8px;
+  padding: 32px;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 3px 10px 0px #0000001a;
+}
+
+#text-step-2 {
+  font-family: Inter;
+  font-size: 14px;
+  color: #404040;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.006em;
+  text-align: left;
+  margin-top: 16px;
+}
+
+#text-step-3 {
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.006em;
+  text-align: left;
+}
+
+#text-step-3 a {
+  font-family: Inter;
+  color: #7940cc;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.006em;
+  text-align: left;
+}
+
+#image-bank {
+  height: 25px;
+  width: 74px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
+}
+
+#number-rek {
+  color: #616161;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.006em;
+  text-align: left;
+  height: 66px;
+  width: 267px;
+  left: 0px;
+  margin-top: 10px;
+}
+
+#btn-bca {
+  height: 26px;
+  width: 112px;
+  border: 1px solid #7940cc;
+  border-radius: 6px;
+  text-align: center;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+#btn-bca p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: #7940cc;
+  vertical-align: Center;
+  line-height: 22px;
+  line-height: 160%;
+  align-items: center;
+  letter-spacing: -0.6%;
+}
+
+/* effect button copy number rek */
+#btn-bca {
+  transition: all 0.3s ease;
+}
+#btn-bca:hover {
+  box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+}
+/* style for right button */
+.tar {
+  text-align: right;
+}
+
+/* container-2 confirm payment */
+#container-2 {
+  width: 664px;
+  margin-top: 834px;
+  border-radius: 1px;
+  border-color: #e0e0e0;
+  background-color: #fff;
+  justify-content: center;
+  padding: 32px;
+  border-radius: 8px;
+  height: 906px;
+  margin-bottom: 48px;
+}
+
+#mini-container-2 {
+  height: 248px;
+  width: 600px;
+  left: 0px;
+  top: 42px;
+  border-radius: 8px;
+  padding: 32px;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 3px 10px 0px #0000001a;
+  margin-top: 16px;
+}
+
+#inner-border {
+  height: 184px;
+  width: 192px;
+  padding: 64px, 32px, 64px, 32px;
+  border-radius: 0px;
+  margin-left: 32%;
+  border: 1px solid #0a0a0a;
+  border-style: dashed;
+  background-position: center;
+  background-size: cover;
+}
+
+#img-vector {
+  margin-top: 36%;
+}
+
+#text-upload-file {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.006em;
+  color: #7940cc;
+}
+
+#form-select {
+  color: #616161;
+  height: 52px;
+  width: 600px;
+  left: 0px;
+  top: 38px;
+  border-radius: 6px;
+  padding: 14px, 16px, 14px, 16px;
+}
+
+#form-input-payment {
+  height: 52px;
+  width: 600px;
+  left: 0px;
+  top: 38px;
+  border-radius: 6px;
+  padding: 14px, 16px, 14px, 16px;
+}
+
+#btn-proof-payment {
+  height: 34px;
+  width: 600px;
+  left: 32px;
+  top: 840px;
+  border-radius: 6px;
+  padding: 6px, 16px, 6px, 16px;
+  background: #7940cc;
+}
+
+#btn-proof-payment p {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.006em;
+  text-align: center;
+  color: #fff;
+}
+/* END CSS Confirm Payment */
+
+/* detailOrder css */
+#detail-order.container {
+  padding: 48px 0;
+  max-width: 664px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#detail-order .card-body {
+  padding: 32px;
+}
+
+#detail-order .card-title.title-detail {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: -0.017em;
+  margin-bottom: 32px;
+}
+
+#detail-order .card-title.subtitle-detail {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+  margin-bottom: 16px;
+}
+
+#detail-order .detail-order-list {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: -0.006em;
+}
+
+#detail-order .detail-order-list .row p {
+  margin: 0px;
+}
+
+#detail-order .detail-order-list .row {
+  margin-bottom: 8px;
+}
+
+#detail-order hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#detail-order .card-price {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+}
+
+#detail-order .btn-purple {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 32px;
+}
+#footerOrder {
+  z-index: 1000;
+}
+
+input[type='checkbox']:checked {
+  background-color: #7940cc;
+}
+input[type='radio']:checked {
+  background-color: #7940cc;
+}
+input[type='checkbox'],
+input[type='radio'] {
+  width: 16px;
+  height: 16px;
+}
+
+#testimonial {
+  background-image: url('../images/default/bgTestimonial.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#testimonial .carousel-control-next-icon {
+  background-image: url('../images/default/chevronRight.png');
+}
+#testimonial .carousel-control-prev-icon {
+  background-image: url('../images/default/chevronleft.png');
+}
+
+/* visibility css */
 
 #orderStep1 .slide-show-ari,
 #orderStep2 .slide-show-ari {

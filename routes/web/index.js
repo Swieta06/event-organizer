@@ -22,6 +22,6 @@ router.get("/test", (req, res) => {
   res.render("pages/index");
 });
 
-router.use("/orders", ordersRoute);
+router.use('/orders', ordersRoute);
 
 module.exports = router;
