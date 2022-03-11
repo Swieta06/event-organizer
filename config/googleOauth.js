@@ -15,7 +15,7 @@ passport.use(
       const pass = encrypt.generate(profile.id);
 
       const email = profile.emails[0].value;
-      const name = profile.name.givenName + profile.name.familyName;
+      const name = profile.name.givenName + " " + profile.name.familyName;
       const photo = profile.photos[0].value;
       const source = "google";
       const currentUser = await User.findOne({
