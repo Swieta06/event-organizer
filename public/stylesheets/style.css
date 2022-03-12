@@ -1347,6 +1347,15 @@ form i {
   margin-top: 16px;
 }
 
+.was-validated #mini-container-2.error {
+  box-shadow: 0px 3px 10px 0px #dc354557;
+  border-color: #dc3545;
+}
+.was-validated #mini-container-2.success {
+  box-shadow: 0px 3px 10px 0px #19875457;
+  border-color: #198754;
+}
+
 #inner-border {
   height: 184px;
   width: 192px;
@@ -1476,6 +1485,19 @@ form i {
   border-radius: 6px;
   width: 100%;
   margin-top: 32px;
+}
+#detail-order .btn-gray {
+  background: #C2C2C2;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 32px;
+}
+#detail-order .text-purple-main.status{
+  font-weight: 400;
+  line-height: 160%;
+  margin-top: 32px;
+  margin-bottom: 0;
 }
 #footerOrder {
   z-index: 1000;
