@@ -110,7 +110,6 @@
                       <%= orders[i].createdAt %>
                     </p>
                   </div>
-
                   <div class="baris-2">
                     <p class="paket">
                       <b><%= orders[i].Package.name %> </b> - Total kapasitas
@@ -152,7 +151,6 @@
           elmActiveNav.parentElement.classList.add("pivotNavOrders");
         }
       };
-
       const url = window.location.href;
       if (url.includes("status=0")) activeNav("navBelumMemesan", 1);
       else if (url.includes("status=1")) activeNav("navMenungguPembayaran", 2);
