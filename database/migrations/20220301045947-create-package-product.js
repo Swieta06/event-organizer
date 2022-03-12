@@ -16,6 +16,7 @@ module.exports = {
           key: "id",
         },
         onUpdate: "cascade",
+        onDelete: "cascade",
         allowNull: false,
       },
       ProductId: {
@@ -25,6 +26,7 @@ module.exports = {
           key: "id",
         },
         onUpdate: "cascade",
+        onDelete: "cascade",
         allowNull: false,
       },
       createdAt: {
