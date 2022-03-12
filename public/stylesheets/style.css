@@ -519,6 +519,43 @@ a {
   padding: 0;
   line-height: 1.6;
 }
+.event-header {
+  margin-top: 48px;
+  margin-bottom: 100px;
+}
+.event-card-container {
+  margin-bottom: 100px;
+}
+.event-card {
+  width: 527px;
+  height: 558px;
+}
+.event-modal {
+  max-width: max-content;
+}
+.event-card-title {
+  letter-spacing: -0.022em;
+  margin-bottom: 16px;
+}
+.event-lg-img {
+  width: 397px;
+  height: 293px;
+}
+.event-sm-img {
+  width: 90px;
+  height: 67.25px;
+  margin: 0 4px 8px 0;
+  padding: 0;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
 
 /* Slider */
 #carouselExampleIndicators {
@@ -1029,6 +1066,15 @@ form i {
   flex-grow: 0;
   margin: 5px 4px;
 }
+#pesanan-saya .slide-show-ari{
+  flex-wrap: nowrap !important;
+  overflow: auto hidden !important;
+  overflow-x: hidden !important;
+  white-space: nowrap;
+  transition: all 0.5s ease 0s !important;
+  position: relative !important;
+  z-index: 100;
+}
 #orderStep1 .slide-show-ari,
 #orderStep2 .slide-show-ari {
   flex-wrap: nowrap !important;
@@ -1044,6 +1090,14 @@ form i {
   text-align: start;
 }
 
+#pesanan-saya .slide-show-control{
+  position: absolute;
+  z-index: 1;
+  left: -3%;
+  display: flex;
+  width: 107%;
+  justify-content: space-between;
+}
 #orderStep1 .slide-show-control,
 #orderStep2 .slide-show-control {
   position: absolute;
@@ -2049,10 +2103,150 @@ input[type='radio'] {
 .resetpassword ul li {
   color: #616161;
 }
+
+/*Find*/
+#findUs {
+  background-color:#FFFFFF;
+  height: 615px;
+  width: auto;
+}
+
+.location-sub h1{
+font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 150%;
+letter-spacing: -0.022em;
+color: #0A0A0A;
+margin-bottom: 20px;
+}
+
+.location-sub p {
+font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 160%;
+letter-spacing: -0.011em;
+margin:0 180px 100px;
+}
+
+.location-border{
+  width: 1118px;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+  order: 5;
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}
+
+.head-border{
+  padding: 16px 32px;
+}
+
+.head-border h6{
+  width: auto;
+  height: 40px;
+  left: 32px;
+  top: 16px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: -0.019em;
+  color: #0A0A0A;
+}
+
+.head-border h6:link, .head-border h6:visited {
+  text-decoration: none;
+  color: #ffffff;
+  transition: border-bottom 0.2s;
+}
+
+.head-border h6:hover, .head-border h6:active {
+  padding-bottom: 50px;
+  border-bottom: 3px solid #7940CC;
+  margin-top: 2px;
+}
+
+.pilihan-kota .slick-prev, .pilihan-kota .slick-next {
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+
+.pilihan-kota .slick-prev {
+  left: -48px;
+}
+.pilihan-kota .slick-next {
+  right: -32px;
+
+}
+.pilihan-kota .slick-prev:before, .pilihan-kota .slick-next:before {
+  font-size: 40px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.pilihan-kota .slick-dots li button:before {
+  font-size: 10px;
+  color:white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  opacity: 1;
+}
+.pilihan-kota .slick-dots li.slick-active button:before {
+  color: black;
+} 
+
+#jabodetabek-border, 
+#jabar-border,
+#jateng-border,
+#jatim-border,
+#bnt-border, 
+#sumatera-border,
+#ksp-border{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 20px;
+  background: #FFFFFF;
+}
+
+#jabodetabek-border .col, 
+#jabar-border .col,
+#jateng-border .col,
+#jatim-border .col,
+#bnt-border .col,
+#sumatera-border .col,
+#ksp-border .col {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px 24px 12px 12px;
+  position: static;
+  width: 335.33px;
+  height: 48px;
+  left: 0px;
+  top: 0px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 8px 8px;
+}
+
 /*Pesanan-Saya*/
 #pesanan-saya {
   background-color: #ffffff;
-  height: 615px;
+  min-height: 615px;
   width: auto;
 }
 
@@ -2100,7 +2294,9 @@ footer {
 .pilihan-pesanan nav li {
   display: inline;
   list-style-type: none;
-  margin-right: 20px;
+  width: 25%; 
+  border-right: 2px solid #e0e0e0; 
+  text-align: center;
 }
 
 .pilihan-pesanan nav a {
@@ -2121,10 +2317,8 @@ footer {
   transition: border-bottom 0.2s;
 }
 
-.pilihan-pesanan nav a:hover,
-.pilihan-pesanan nav a:active {
-  padding-bottom: 5px;
-  border-bottom: 3px solid #7940cc;
+#pesanan-saya .active-nav{
+   border-bottom: 3px solid #7940cc;
   margin-top: 2px;
 }
 
@@ -2181,6 +2375,7 @@ footer {
   line-height: 16px;
   background: #fff9f2;
   border: 1px solid #eeceb0;
+  color: #734011;
   box-sizing: border-box;
   border-radius: 6px;
   padding-top: 4px;

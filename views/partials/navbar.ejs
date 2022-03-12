@@ -1,13 +1,13 @@
 <!-- As a heading -->
 <nav class="navbar navbar-light bg-light shadow fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand justify-content-start fw-bolder" href="/">EVENTPRISE</a>
-    <div class="justify-content-center">
-
-      <a class="navbar-brand" href="/">Home</a>
-      <a class="navbar-brand" href="/#faq">FAQ</a>
-      <a class="navbar-brand" href="/events">Events</a>
-      <a class="navbar-brand" href="/about">About Us</a>
+    <a class="navbar-brand justify-content-start fw-bolder" href="/"><image src="/images/default/logo-brand.svg"></image></a>
+    <div class="topnav justify-content-center">
+      <a class="navmt navbar-brand" href="/">Home</a>
+      <a class="navmt navbar-brand" href="/#faq">FAQ</a>
+      <a class="navmt navbar-brand" href="/events">Events</a>
+      <a class="navmt navbar-brand" href="/about">About</a>
+      <a class="navmt navbar-brand" href="/find">Find Us</a>
     </div>
     <% if (user) { %>
     <div class="dropdown" id="nav1">
@@ -18,7 +18,7 @@
       </a>
 
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" href="#">Daftar pesanan</a></li>
+        <li><a class="dropdown-item" href="/orders">Daftar pesanan</a></li>
         <form action="/logout" method="post">
           <li>&nbsp;<button type="logout" class="btn " style="border-color:#fff;"> Logout</button></li>
         </form>
