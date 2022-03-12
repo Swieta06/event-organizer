@@ -133,6 +133,16 @@
         <%- include('footerLandingPage')%>
       </footer>
       <%- include('../partials/scripts.ejs') %>
+      <script>
+        if(window.location.hash==="#login"){
+         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+         myModal.show()
+        } else if(window.location.hash==="#register") {
+         var myModal = new bootstrap.Modal(document.getElementById('exampleModal2'))
+         myModal.show()
+       }
+      </script>
+
     </body>
   </html>
 </html>

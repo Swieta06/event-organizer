@@ -1066,6 +1066,15 @@ form i {
   flex-grow: 0;
   margin: 5px 4px;
 }
+#pesanan-saya .slide-show-ari{
+  flex-wrap: nowrap !important;
+  overflow: auto hidden !important;
+  overflow-x: hidden !important;
+  white-space: nowrap;
+  transition: all 0.5s ease 0s !important;
+  position: relative !important;
+  z-index: 100;
+}
 #orderStep1 .slide-show-ari,
 #orderStep2 .slide-show-ari {
   flex-wrap: nowrap !important;
@@ -1081,6 +1090,14 @@ form i {
   text-align: start;
 }
 
+#pesanan-saya .slide-show-control{
+  position: absolute;
+  z-index: 1;
+  left: -3%;
+  display: flex;
+  width: 107%;
+  justify-content: space-between;
+}
 #orderStep1 .slide-show-control,
 #orderStep2 .slide-show-control {
   position: absolute;
@@ -2088,7 +2105,7 @@ input[type='radio'] {
 }
 
 /*Find*/
-#location {
+#findUs {
   background-color:#FFFFFF;
   height: 615px;
   width: auto;
@@ -2229,7 +2246,7 @@ margin:0 180px 100px;
 /*Pesanan-Saya*/
 #pesanan-saya {
   background-color: #ffffff;
-  height: 615px;
+  min-height: 615px;
   width: auto;
 }
 
@@ -2277,7 +2294,9 @@ footer {
 .pilihan-pesanan nav li {
   display: inline;
   list-style-type: none;
-  margin-right: 20px;
+  width: 25%; 
+  border-right: 2px solid #e0e0e0; 
+  text-align: center;
 }
 
 .pilihan-pesanan nav a {
@@ -2298,10 +2317,8 @@ footer {
   transition: border-bottom 0.2s;
 }
 
-.pilihan-pesanan nav a:hover,
-.pilihan-pesanan nav a:active {
-  padding-bottom: 5px;
-  border-bottom: 3px solid #7940cc;
+#pesanan-saya .active-nav{
+   border-bottom: 3px solid #7940cc;
   margin-top: 2px;
 }
 
@@ -2358,6 +2375,7 @@ footer {
   line-height: 16px;
   background: #fff9f2;
   border: 1px solid #eeceb0;
+  color: #734011;
   box-sizing: border-box;
   border-radius: 6px;
   padding-top: 4px;
