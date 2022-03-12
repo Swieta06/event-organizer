@@ -62,6 +62,7 @@ const getViewsStep4 = async (req, res, next) => {
           ],
         });
         result.payment = payment;
+        console.log(result);
         res.render("pages/orderStep4-automatic", result);
       } else res.render("pages/orderStep4", result);
     } else throw createError(400, "Order Not Found");

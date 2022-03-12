@@ -44,7 +44,7 @@
                 class="text-container d-table w-100"
               >
                 <p id="number-rek" class="number-rek">
-                  No. Virtual Account: <%if(payment && payment.va_number) {%>
+                  No. Virtual Account: <%if(payment.va_number) {%>
                   <span id="va"><%=payment.va_number%> </span>
                   <%}else{%>
                   <span id="va"> - </span>

@@ -8,7 +8,12 @@ async function paymentHandling(req, res) {
     transaction_id,
     transaction_time,
     settlement_time,
+    va_numbers,
   } = req.body;
+  let va_number;
+  if (va_numbers) {
+    va_number = va_number.va_number;
+  }
   let statusOrder = 1;
   if (transaction_status == "settlement" || transaction_status == "capture") {
     statusOrder = 3;
@@ -19,6 +24,7 @@ async function paymentHandling(req, res) {
     transaction_id,
     transaction_time,
     settlement_time,
+    va_number,
   };
 
   const midtransUpdated = await MidtransPayment.update(payload, {
