@@ -64,14 +64,14 @@
             <div class="value-pay">
               <h4 id="pay-total" class="total-pay">Informasi Rekening Bank</h4>
             </div>
-            <div id="mini-container-2" class="mini-container-2">
+            <div id="mini-container-2" class="mini-container-2 <%= error.length!==0?'error':''%>">
               <div id="inner-border">
                 <img id="img-vector" src="/images/default/Vector.png" alt="vector-upload" style="margin-left: 46%" /><br />
                 <input type="file" id="upload" accept="image/png, image/jpg, image/jpeg" hidden name="photo" required />
                 <label class="mt-2" style="margin-left: 16%" id="text-upload-file" for="upload">Sentuh untuk upload</label>
               </div>
             </div>
-            <div id="invalid-photo" class="invalid-feedback" style="display: none;">
+            <div id="invalid-photo" class="invalid-feedback" style="display: <%=error.length!==0?'block':'none'%>;">
               <%= error[0]?.photo || "Bukti pembayaran tidak boleh kosong!"%>
             </div>
             <div class="mb-4 mt-4">
