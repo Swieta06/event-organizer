@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <form action="/orders/<%=order%>/payment" method="post" enctype="multipart/form-data" name="order" class="needs-validation" novalidate>
+        <form action="/orders/<%=order%>/payment" method="post" enctype="multipart/form-data" name="order" class="needs-validation <%= error.length!==0?'was-validated':''%>" novalidate>
           <div id="container-2" class="container-2 mx-auto border">
             <div class="container text-center">
               <h3 id="pay-info" class="info-pay">Konfirmasi Pembayaran</h3>
@@ -71,6 +71,9 @@
                 <label class="mt-2" style="margin-left: 16%" id="text-upload-file" for="upload">Sentuh untuk upload</label>
               </div>
             </div>
+            <div id="invalid-photo" class="invalid-feedback" style="display: none;">
+              <%= error[0]?.photo || "Bukti pembayaran tidak boleh kosong!"%>
+            </div>
             <div class="mb-4 mt-4">
               <label for="exampleInputEmail1" class="form-label">Transfer dari Bank</label>
               <select id="form-select" class="form-select input-color-primary" id="inputGroupSelect01" name="bankName" required>
@@ -81,18 +84,30 @@
                 <option value="BCA">Bank Central Asia</option>
                 <option value="CIMB">Bank CIMB</option>
               </select>
+              <div class="invalid-feedback">
+                <%= error[0]?.bankName || "Bank tidak boleh kosong!"%>
+              </div>
             </div>
             <div class="mb-4">
               <label for="exampleInputEmail1" class="form-label">Nama Pemilik Rekening</label>
               <input class="form-control" id="form-input-payment" aria-describedby="emailHelp" type="text" name="bankHolder" placeholder="Contoh: Alfarel Zaki" required />
+              <div class="invalid-feedback">
+                <%= error[0]?.bankHolder || "Nama pemilik rekening tidak boleh kosong!"%>
+              </div>
             </div>
             <div class="mb-4">
               <label for="exampleInputEmail1" class="form-label">No. Rekening</label>
               <input class="form-control" id="form-input-payment" aria-describedby="emailHelp" type="text" name="bankNumber" placeholder="Contoh: 123456789" required />
+              <div class="invalid-feedback">
+                <%= error[0]?.bankNumber || "Nomor rekening tidak boleh kosong!"%>
+              </div>
             </div>
             <div class="mb-4">
               <label for="exampleInputEmail1" class="form-label">Jumlah yang ditransfer</label>
               <input class="form-control" id="form-input-payment" aria-describedby="emailHelp" type="text" name="price" placeholder="Masukkan hanya nominal angka tanpa titik maupun koma" required />
+              <div class="invalid-feedback">
+                <%= error[0]?.price || "Jumlah yang ditransfer tidak boleh kosong!"%>
+              </div>
             </div>
             <div class="d-grid gap-2">
               <button id="btn-proof-payment" class="btn mt-2" type="submit">
@@ -139,9 +154,11 @@
         if(filePhoto.value) {
           document.querySelector('#mini-container-2').classList.add("success");
           document.querySelector('#mini-container-2').classList.remove("error");
+          document.querySelector('#invalid-photo').style= "display: none;";
         } else {
           document.querySelector('#mini-container-2').classList.remove("success");
           document.querySelector('#mini-container-2').classList.add("error");
+          document.querySelector('#invalid-photo').style= "display: block;";
         }
       });
     </script>
@@ -151,7 +168,17 @@
       var form = document.forms['order']
       form.addEventListener('submit', function (event) {
         if (!form.checkValidity()) {
-          document.querySelector('#mini-container-2').classList.add("error");
+          const error = document.querySelector('#invalid-photo')
+          const filePhoto = document.forms['order']['photo']
+          if(filePhoto.value) {
+            document.querySelector('#mini-container-2').classList.add("success");
+            document.querySelector('#mini-container-2').classList.remove("error");
+            document.querySelector('#invalid-photo').style= "display: none;";
+          } else {
+            document.querySelector('#mini-container-2').classList.remove("success");
+            document.querySelector('#mini-container-2').classList.add("error");
+            document.querySelector('#invalid-photo').style= "display: block;";
+          }
           event.preventDefault()
           event.stopPropagation()
         }
