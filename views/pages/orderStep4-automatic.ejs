@@ -116,12 +116,13 @@
               window.location.replace("/orders");
               /* You may add your own implementation here */
               // alert("payment success!");
-              // console.log(result);
+              console.log("sukses");
             },
             onPending: function (result) {
               /* You may add your own implementation here */
               // alert("wating your payment!");
               // console.log(result);
+              console.log("pending");
             },
             onError: function (result) {
               /* You may add your own implementation here */
@@ -131,6 +132,7 @@
             onClose: function () {
               /* You may add your own implementation here */
               // alert("you closed the popup without finishing the payment");
+              console.log("close");
             },
           });
         });
