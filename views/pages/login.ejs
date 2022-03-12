@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="/login" method="post"class="needs-validation" <%= error.length!==0?'was-validated':''%>novalidate>
+            <form action="/login" method="post"class="needs-validation <%= error.length!==0?'was-validated':''%>" novalidate>
                 <div class="row justify-content-center ">
                 <div class="md-5">
                     <div class="mb-2">
