@@ -12,7 +12,7 @@ async function paymentHandling(req, res) {
   } = req.body;
   let va_number;
   if (va_numbers) {
-    va_number = va_number.va_number;
+    va_number = va_numbers.va_number;
   }
   let statusOrder = 1;
   if (transaction_status == "settlement" || transaction_status == "capture") {
