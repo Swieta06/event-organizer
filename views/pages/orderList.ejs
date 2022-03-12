@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/head.ejs', {title: 'Home'}) %>
-
-  <%function statusPesanan(status){
-    switch (status){
-      case "Belum Memesan":
-          return "belum-memesan";
-  
-      case "Menunggu Pembayaran":
-          return "menunggu-pembayaran";
-      
-      case "Verifikasi Pembayaran":
-          return "verifikasi-pembayaran";
-  
-      case "Sedang Diproses":
-          return "sedang-diproses";
-  
-      case "Pesanan Selesai":
-          return "pesanan-selesai";
-  
-      case "Pesanan Dibatalkan":
-          return "pesanan-dibatalkan";
-  
-  }
+  <%- include('../partials/head.ejs', {title: 'Home'}) %> <%function
+  statusPesanan(status){ switch (status){ case "Belum Memesan": return
+  "belum-memesan"; case "Menunggu Pembayaran": return "menunggu-pembayaran";
+  case "Verifikasi Pembayaran": return "verifikasi-pembayaran"; case "Sedang
+  Diproses": return "sedang-diproses"; case "Pesanan Selesai": return
+  "pesanan-selesai"; case "Pesanan Dibatalkan": return "pesanan-dibatalkan"; }
   }%>
 
   <body class="p-0">
     <header>
       <!-- Swita taruh sini -->
-       <%- include('../partials/navbar.ejs') %>
-       <%- include('login')%> 
-       
+      <%- include('../partials/navbar.ejs') %> <%- include('login')%>
     </header>
     <main>
-       <div id="pesanan-saya" class="mt-5 pt-5">
+      <div id="pesanan-saya" class="mt-5 pt-5">
         <div class="pesanan-sub text-center">
           <h1 class="text-center">Pesanan Saya</h1>
         </div>
@@ -41,80 +22,146 @@
         <div class="container-fluid pesanan-border">
           <div class="">
             <div class="row pilihan-pesanan">
-                    <nav class="col-12">
-                          <div class="slide-show-control">
-                              <button id="btnLeftNavOrders" class=" fs-18 btn text-start "><i class="bi bi-chevron-left"></i></button>
-                              <button id="btnRightNavOrders" class=" fs-18 btn text-end "><i class="bi bi-chevron-right"></i></button>
-                          </div>
-                        <ul class="slide-show-ari">
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders1"><a href="/orders" id="navSemua">Semua</a></li>
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders2"><a href="/orders?status=0" id="navBelumMemesan">Belum Memesan</a></li>
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders3"><a href="/orders?status=1" id="navMenungguPembayaran">Menunggu Pembayaran</a></li>
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders4"><a href="/orders?status=2" id="navVerifikasiPembayaran">Verifikasi Pembayaran</a></li>
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders5"><a href="/orders?status=3" id="navSedangDiproses">Sedang Diproses</a></li>
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders6"><a href="/orders?status=4" id="navPesananSelesai">Pesanan Selesai</a></li>
-                            <li class="d-inline-block slide-show-item-NavOrders" id="NavOrders7"><a href="/orders?status=5" id="navPesananDibatalkan">Pesanan Dibatalkan</a></li>
-                          </ul>
-                        </nav>
-                      </div>
-                    </div>
-                    
-              <div id="semua-border">
-              <% for( let i = 0; i < orders.length; i++ ) { %>
-                <div class="row">
-                  <a href="http://localhost:3000/orders/<%= orders[i].id %>" class="text-decoration-none">
-                      <div class="col">
-                        <div class="baris-1">
-                            <p class="<%=statusPesanan(orders[i].status)%>"><%= orders[i].status %></p>
-                            <p class="kode-pesanan text-neutral-80"><%= orders[i].id %></p>
-                            <p class="tanggal-pesanan text-neutral-80"><%= orders[i].createdAt %></p>
-                        </div>
-
-                        <div class="baris-2">
-                            <p class="paket"><b><%= orders[i].Package.name %> </b> - Total kapasitas <%= orders[i].totalParticipant %> orang</p>
-                            <div class="baris-3">
-                                <p class="total-harga">Total Harga:</p>    
-                                <p class="harga">Rp<%= orders[i].totalPrice %></p>                    
-                            </div>
-                        </div>
-                    </div>
-                  </a>
+              <nav class="col-12">
+                <div class="slide-show-control">
+                  <button id="btnLeftNavOrders" class="fs-18 btn text-start">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button id="btnRightNavOrders" class="fs-18 btn text-end">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
                 </div>
-                <% } %>
-              </div>
+                <ul class="slide-show-ari">
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders1"
+                  >
+                    <a href="/orders" id="navSemua">Semua</a>
+                  </li>
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders2"
+                  >
+                    <a href="/orders?status=0" id="navBelumMemesan"
+                      >Belum Memesan</a
+                    >
+                  </li>
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders3"
+                  >
+                    <a href="/orders?status=1" id="navMenungguPembayaran"
+                      >Menunggu Pembayaran</a
+                    >
+                  </li>
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders4"
+                  >
+                    <a href="/orders?status=2" id="navVerifikasiPembayaran"
+                      >Verifikasi Pembayaran</a
+                    >
+                  </li>
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders5"
+                  >
+                    <a href="/orders?status=3" id="navSedangDiproses"
+                      >Sedang Diproses</a
+                    >
+                  </li>
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders6"
+                  >
+                    <a href="/orders?status=4" id="navPesananSelesai"
+                      >Pesanan Selesai</a
+                    >
+                  </li>
+                  <li
+                    class="d-inline-block slide-show-item-NavOrders"
+                    id="NavOrders7"
+                  >
+                    <a href="/orders?status=5" id="navPesananDibatalkan"
+                      >Pesanan Dibatalkan</a
+                    >
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
+
+          <div id="semua-border">
+            <% for( let i = 0; i < orders.length; i++ ) { %>
+            <div class="row">
+              <a
+                href="/orders/<%= orders[i].id %>"
+                class="text-decoration-none"
+              >
+                <div class="col">
+                  <div class="baris-1">
+                    <p class="<%=statusPesanan(orders[i].status)%>">
+                      <%= orders[i].status %>
+                    </p>
+                    <p class="kode-pesanan text-neutral-80">
+                      <%= orders[i].id %>
+                    </p>
+                    <p class="tanggal-pesanan text-neutral-80">
+                      <%= orders[i].createdAt %>
+                    </p>
+                  </div>
+
+                  <div class="baris-2">
+                    <p class="paket">
+                      <b><%= orders[i].Package.name %> </b> - Total kapasitas
+                      <%= orders[i].totalParticipant %> orang
+                    </p>
+                    <div class="baris-3">
+                      <p class="total-harga">Total Harga:</p>
+                      <p class="harga">Rp<%= orders[i].totalPrice %></p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
     </main>
-     <footer class="mt-0">
-        <%- include('footerLandingPage')%>
-      </footer>
+    <footer class="mt-0"><%- include('footerLandingPage')%></footer>
     <%- include('../partials/scripts.ejs') %>
-    
+
     <script>
-     const activeNav = (name, transform) => {
-       const elmActiveNav =  document.getElementById(name);
-       const elmNavOrders = document.querySelectorAll(".slide-show-item-NavOrders");
-       elmActiveNav.classList.add("active-nav");
-        if(transform > 3){
-         for (let i = 0; i < elmNavOrders.length; i++) {  
-         elmNavOrders[i].style.transform = `translate(-${ (transform - 3) * 120}%, 0%)`;
-         if(i === (transform - 3) ) elmNavOrders[i].classList.add("pivotNavOrders")
-       }
-      }else{
-         elmNavOrders[0].classList.add("pivotNavOrders");
-         elmActiveNav.parentElement.classList.add("pivotNavOrders");
-      }
-     }
+      const activeNav = (name, transform) => {
+        const elmActiveNav = document.getElementById(name);
+        const elmNavOrders = document.querySelectorAll(
+          ".slide-show-item-NavOrders"
+        );
+        elmActiveNav.classList.add("active-nav");
+        if (transform > 3) {
+          for (let i = 0; i < elmNavOrders.length; i++) {
+            elmNavOrders[i].style.transform = `translate(-${
+              (transform - 3) * 120
+            }%, 0%)`;
+            if (i === transform - 3)
+              elmNavOrders[i].classList.add("pivotNavOrders");
+          }
+        } else {
+          elmNavOrders[0].classList.add("pivotNavOrders");
+          elmActiveNav.parentElement.classList.add("pivotNavOrders");
+        }
+      };
 
-     const url = window.location.href;
-     if(url.includes("status=0")) activeNav("navBelumMemesan", 1); 
-     else if(url.includes("status=1")) activeNav("navMenungguPembayaran", 2);
-     else if(url.includes("status=2")) activeNav("navVerifikasiPembayaran", 3);
-     else if(url.includes("status=3")) activeNav("navSedangDiproses", 4);
-     else if(url.includes("status=4")) activeNav("navPesananSelesai", 5);
-     else if(url.includes("status=5")) activeNav("navPesananDibatalkan", 6);
-     else activeNav("navSemua", 0);
-
+      const url = window.location.href;
+      if (url.includes("status=0")) activeNav("navBelumMemesan", 1);
+      else if (url.includes("status=1")) activeNav("navMenungguPembayaran", 2);
+      else if (url.includes("status=2"))
+        activeNav("navVerifikasiPembayaran", 3);
+      else if (url.includes("status=3")) activeNav("navSedangDiproses", 4);
+      else if (url.includes("status=4")) activeNav("navPesananSelesai", 5);
+      else if (url.includes("status=5")) activeNav("navPesananDibatalkan", 6);
+      else activeNav("navSemua", 0);
     </script>
     <script src="/javascripts/slider-card.js"></script>
     <script>
