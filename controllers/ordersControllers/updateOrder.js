@@ -1,5 +1,5 @@
 const { Order } = require("../../models");
-const { PaymentMethod } = require("../../models");
+const { PaymentMethod, MidtransPayment } = require("../../models");
 const response = require("../../utils/response");
 const createError = require("http-errors");
 
@@ -60,7 +60,14 @@ exports.updateOrder = async (req, res, next) => {
     if (!paymentMethod[0]) {
       throw createError(404, "Payment method not found");
     }
-
+    if (paymentMethod[0].bankHolder == "Midtrans") {
+      const newMidtrans = await MidtransPayment.create({
+        OrderId: orderId,
+        bankName: paymentMethod[0].bankName,
+        payment_type: "Bank Transfer",
+        amount: order.totalPrice,
+      });
+    }
     const updateOrder = {
       customerName,
       companyName,

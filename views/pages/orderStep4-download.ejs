@@ -31,37 +31,6 @@
               Rp<%= (totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %>
             </p>
           </div>
-          <div id="mini-container" class="mini-container">
-            <div id="item-inside">
-              <img
-                src="/images/default/<%=paymentMethod.bankName%>.png"
-                id="image-bank"
-                class="rounded float-start"
-                alt="logo-bca"
-              />
-              <div
-                id="text-mini-container"
-                class="text-container d-table w-100"
-              >
-                <p id="number-rek" class="number-rek">
-                  No. Virtual Account: <%if(payment && payment.va_number) {%>
-                  <span id="va"><%=payment.va_number%> </span>
-                  <%}else{%>
-                  <span id="va"> - </span>
-                  <%}%>
-                  <br />
-                  Metode Pembayaran: Transfer Bank<br />
-                  Status Pembayaran: <% if(payment && payment.transaction_status
-                  == "settlement") {%> Berhasil<%}else{%> Pending <%}%>
-                </p>
-                <div class="d-table-cell tar">
-                  <button id="btn-bca" class="custom-btn btn-1">
-                    <p>Salin Nomor</p>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="text-payment">
             <p id="text-pay" class="text-pay">
               Silahkan klik tombol dibawah ini untuk melihat detail dan intruksi
@@ -69,29 +38,14 @@
             </p>
           </div>
           <div id="under-line" class="under-line"></div>
-          <% if(payment && payment.transaction_status == "pending") {%>
-          <a href="<%=payment.pdf_url%>" target="_blank">
-            <button
-              id="btn-proof-payment"
-              class="btn mt-2 btn-pay-start"
-              style="height: 50px"
-            >
-              <span class="text-light">Download</span>
-              >
-            </button>
-          </a>
-
-          <% }else{%>
-
           <button
             id="btn-proof-payment"
-            class="btn mt-2 btn-pay-start btn-pay"
+            class="btn mt-2"
+            type="submit"
             style="height: 50px"
           >
             <span class="text-light">Bayar</span>
           </button>
-          <%}%>
-
           <!-- <div class="info-payment">
             <div class="text-step-payment">
               <h4 id="info-pay" class="info-pay">Informasi Pembayaran</h4>
@@ -142,24 +96,20 @@
 
     <script>
       // javascript copy number rek
-      function copyNumber(value) {
-        var tempInput = document.createElement("input");
-        tempInput.value = value;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-      }
+      // function copyNumber(value) {
+      //   var tempInput = document.createElement("input");
+      //   tempInput.value = value;
+      //   document.body.appendChild(tempInput);
+      //   tempInput.select();
+      //   document.execCommand("copy");
+      //   document.body.removeChild(tempInput);
+      // }
 
-      document.querySelector("#btn-bca").onclick = function () {
-        var va = "<%payment.va_number%>";
-        if (va.length == 0) {
-          var va = document.getElementById("va").innerText;
-        }
-        copyNumber(va);
-      };
+      // document.querySelector("#btn-bca").onclick = function () {
+      //   copyNumber("<%=paymentMethod.bankNumber%>");
+      // };
 
-      $(".btn-pay").click(function () {
+      $("#btn-proof-payment").click(function () {
         let OrderId = `<%= order %>`;
         snap.show();
         $.post("/orders/payment/automatic", { OrderId }, (data, status) => {
@@ -172,23 +122,11 @@
               console.log("sukses");
             },
             onPending: function (result) {
-              console.log("pending");
-              console.log(result);
-              $.post(
-                "/orders/payment/automatic/update",
-                {
-                  pdf_url: result.pdf_url,
-                  transaction_status: result.transaction_status,
-                  OrderId,
-                },
-                (data, status) => {
-                  location.reload();
-                }
-              );
               /* You may add your own implementation here */
               // alert("wating your payment!");
               // console.log(result);
               console.log("pending");
+              console.log(result);
             },
             onError: function (result) {
               /* You may add your own implementation here */

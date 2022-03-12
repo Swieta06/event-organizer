@@ -29,16 +29,19 @@ module.exports = {
       payment_type: {
         type: Sequelize.STRING,
       },
+      va_number: {
+        type: Sequelize.STRING,
+      },
+      bankName: {
+        type: Sequelize.STRING,
+      },
       amount: {
         type: Sequelize.STRING,
       },
+      pdf_url: {
+        type: Sequelize.STRING,
+      },
       transaction_time: {
-        type: Sequelize.STRING,
-      },
-      signature_key: {
-        type: Sequelize.STRING,
-      },
-      settlement_time: {
         type: Sequelize.STRING,
       },
       createdAt: {

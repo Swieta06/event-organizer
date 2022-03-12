@@ -106,6 +106,10 @@ router.get("/payment/automatic", (req, res) => {
   const { order_id } = req.query;
   res.redirect(`/orders/${order_id}/payment`);
 });
+router.post(
+  "/payment/automatic/update",
+  ordersControlers.paymentAutomaticHandling
+);
 
 router.get("/payments/:idPayment/:filename", ordersControlers.getPhotoPayment);
 

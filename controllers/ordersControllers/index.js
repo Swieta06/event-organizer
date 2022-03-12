@@ -13,6 +13,7 @@ const { orderDetail } = require("./orderDetail");
 const { getOrder } = require("./getOrder");
 const paymentGateway = require("./paymentGateway");
 const paymentGatewayHandling = require("./paymentGatewayHandling");
+const paymentAutomaticHandling = require("./paymentAutomaticHandling");
 
 module.exports = {
   getViews,
@@ -30,4 +31,5 @@ module.exports = {
   getOrder,
   paymentGateway,
   paymentGatewayHandling,
+  paymentAutomaticHandling,
 };

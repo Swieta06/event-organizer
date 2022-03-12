@@ -24,10 +24,13 @@ const payOrder = async (req, res) => {
       ],
     });
 
-    if (order.MidtransPayment) {
+    let bankName = order.dataValues.MidtransPayment.dataValues.bankName;
+
+    if (order.MidtransPayment.token) {
       let transactionToken = order.MidtransPayment.token;
       res.status(200).json({
         transactionToken: transactionToken,
+        typeBank: bankName.toLowerCase() + "_va",
       });
     } else {
       let snap = new midtransClient.Snap({
@@ -53,13 +56,22 @@ const payOrder = async (req, res) => {
       snap.createTransaction(parameter).then(async (transaction) => {
         // transaction token
         let transactionToken = transaction.token;
-        await MidtransPayment.create({
-          OrderId: OrderId,
-          token: transactionToken,
-        });
+
+        await MidtransPayment.update(
+          {
+            token: transactionToken,
+            amount: order.totalPrice,
+          },
+          {
+            where: {
+              OrderId,
+            },
+          }
+        );
 
         res.status(200).json({
           transactionToken: transactionToken,
+          typeBank: bankName.toLowerCase() + "_va",
         });
       });
     }
