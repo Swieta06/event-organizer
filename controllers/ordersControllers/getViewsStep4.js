@@ -17,10 +17,10 @@ const getViewsStep4 = async (req, res, next) => {
       ],
     });
 
-    if (data.status >= 3) {
-      res.redirect(`/orders/${data.id}`);
-      return;
-    }
+    // if (data.status >= 3) {
+    //   res.redirect(`/orders/${data.id}`);
+    //   return;
+    // }
 
     if (data) {
       const result = {
