@@ -7,11 +7,11 @@ exports.confirmResetPassword = async (req, res, next) => {
     const { password, confirmPassword, t } = req.body;
 
     if (password !== confirmPassword) {
-      throw createError(400, "Password doesn't match");
+      throw createError(400, "Confirm Password tidak sama dengan password!");
     }
 
     if (!t) {
-      throw createError(400, "Req body must have t");
+      throw createError(400, "token tidak ada");
     }
 
     const tokenRaw = await ResetPasswordToken.findAll({
@@ -22,11 +22,11 @@ exports.confirmResetPassword = async (req, res, next) => {
     });
 
     if (!tokenRaw[0]) {
-      throw createError(404, "Token not found");
+      throw createError(404, "Token tidak ditemukan");
     }
 
     if (new Date().getTime() > tokenRaw[0].expiredAt.getTime()) {
-      throw createError(410, "Token has been expired");
+      throw createError(410, "Token sudah tidak berlaku");
     }
 
     const newPassword = bcrypt.generate(password);
@@ -41,7 +41,7 @@ exports.confirmResetPassword = async (req, res, next) => {
     );
 
     if (updated[0] == 0) {
-      throw createError(500, "Error while updating password");
+      throw createError(500, "Error ketika melakukan update password");
     }
 
     await ResetPasswordToken.destroy({
@@ -68,7 +68,7 @@ exports.confirmResetPassword = async (req, res, next) => {
     });
 
     req.flash("success", {
-      message: "Reset password success",
+      message: "Berhasil mengatur ulang password untuk akun dengan email",
       email: updatedUser[0].email,
     });
     res.status(201).redirect("/verification-success");
