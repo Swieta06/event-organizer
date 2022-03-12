@@ -9,6 +9,17 @@
     <% function getFilename(str) {
       return str.substring(str.lastIndexOf('/')+1);
     } %> 
+
+    <% function contains(obj) {
+      const elContains = ["talent", "kipas", "kursi", "meja", "tenda"];
+      for(let el of elContains) {
+        console.log(el);
+        if(obj[el]?.length!==0 && obj[el]) {
+          return true;
+        }
+      }
+      return false;
+    } %> 
     <%- include('../partials/navbar.ejs') %>
     <section class="container" id="detail-order">
       <div class="card">
@@ -63,25 +74,27 @@
             <% } %>
           </div>
           <hr />
-          <h6 class="card-title subtitle-detail text-neutral-100">
-            Alat dan Talent
-          </h6>
-          <% for(let key in orderDetail.products) { %>
-            <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="makanan"&&key!=="snack"&&key!=="themes") { %>
-              <% for(let i=0;i<orderDetail.products[key]?.length;i++) { %>
-                <div class="detail-order-list text-neutral-80">
-                  <div class="row">
-                    <p class="col-md-4 text-md-start"><%=orderDetail.products[key][i].name%></p>
-                    <p class="col-md-4 text-md-center"><%=orderDetail.products[key][i].qty%> pcs</p>
-                    <p class="col-md-4 text-md-end text-neutral-100">
-                      Rp<%= createCommas(orderDetail.products[key][i].price*orderDetail.products[key][i].qty) %>
-                    </p>
+          <% if(contains(orderDetail.products)) { %> 
+            <h6 class="card-title subtitle-detail text-neutral-100">
+              Alat dan Talent
+            </h6>
+            <% for(let key in orderDetail.products) { %>
+              <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="makanan"&&key!=="snack"&&key!=="themes") { %>
+                <% for(let i=0;i<orderDetail.products[key]?.length;i++) { %>
+                  <div class="detail-order-list text-neutral-80">
+                    <div class="row">
+                      <p class="col-md-4 text-md-start"><%=orderDetail.products[key][i].name%></p>
+                      <p class="col-md-4 text-md-center"><%=orderDetail.products[key][i].qty%> pcs</p>
+                      <p class="col-md-4 text-md-end text-neutral-100">
+                        Rp<%= createCommas(orderDetail.products[key][i].price*orderDetail.products[key][i].qty) %>
+                      </p>
+                    </div>
                   </div>
-                </div>
+                <% } %>
               <% } %>
             <% } %>
+            <hr />
           <% } %>
-          <hr />
           <div
             class="d-flex flex-column flex-md-row justify-content-between text-purple-main"
           >
@@ -145,20 +158,22 @@
               </p>
             </div>
           </div>
-          <h6 class="card-title subtitle-detail text-neutral-100">
-            Alat dan Talent
-          </h6>
-          <% for(let key in orderDetail.products) { %>
-            <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="makanan"&&key!=="snack"&&key!=="themes") { %>
-              <% for(let i=0;i<orderDetail.products[key]?.length;i++) { %>
-                <div class="detail-order-list">
-                  <div class="row">
-                    <p class="col-md-6 text-md-start"><%=orderDetail.products[key][i].name%></p>
-                    <p class="col-md-6 text-md-end text-neutral-100">
-                      <%=orderDetail.products[key][i].qty%> pcs
-                    </p>
+          <% if(contains(orderDetail.products)) { %> 
+            <h6 class="card-title subtitle-detail text-neutral-100">
+              Alat dan Talent
+            </h6>
+            <% for(let key in orderDetail.products) { %>
+              <% if(key !== "photo" && key !== "video" && key !== "pulpen" && key !== "notebook"&& key !== "totebag"&& key!=="makanan"&&key!=="snack"&&key!=="themes") { %>
+                <% for(let i=0;i<orderDetail.products[key]?.length;i++) { %>
+                  <div class="detail-order-list">
+                    <div class="row">
+                      <p class="col-md-6 text-md-start"><%=orderDetail.products[key][i].name%></p>
+                      <p class="col-md-6 text-md-end text-neutral-100">
+                        <%=orderDetail.products[key][i].qty%> pcs
+                      </p>
+                    </div>
                   </div>
-                </div>
+                <% } %>
               <% } %>
             <% } %>
           <% } %>
@@ -236,8 +251,13 @@
           <% if ((orderDetail.customerName!==null&&orderDetail.customerName!==undefined)&&(orderDetail.Payment===null||orderDetail.Payment===undefined)) { %>
             <a href="/orders/<%= orderDetail.id%>/payment" class="btn btn-purple text-white">Kirim Bukti Pembayaran</a>
           <% } %>
+          <% if ((orderDetail.status===2)) { %>
+            <p class="text-purple-main status fs-16">*Pembayaran sedang diverifikasi, harap menunggu</p>
+            <button disabled class="btn btn-gray text-white"><i class="bi bi-clock"></i> Tunggu Verifikasi</button>
+          <% } %>
         </div>
       </div>
     </section>
+    <%- include('../partials/scripts.ejs') %>
   </body>
 </html>
