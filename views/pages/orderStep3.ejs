@@ -9,29 +9,7 @@
         <%- include('../partials/navbar.ejs') %> <%- include('login')%>
       </header>
       <!-- paket-step-3 -->
-      <div class="container">
-        <div id="stepProgressBar" class="mx-auto">
-          <div id="step-prog" class="step">
-            <div class="bullet">1</div>
-            <p id="prog-step-text" class="step-text">Tentukan Tema Acara</p>
-          </div>
-          <span id="step-wizard-item" class="step-wizard-item"></span>
-          <div id="step-prog" class="step-mid">
-            <div class="bullet">2</div>
-            <p id="prog-step-text" class="step-text-mid">
-              Sewa alat dan talent
-            </p>
-          </div>
-          <span id="step-wizard-item" class="step-wizard-item"></span>
-          <div id="step-prog" class="step">
-            <div class="bullet active">3</div>
-            <p id="prog-step-text" class="step-text">
-              Buat<br />
-              Pesanan
-            </p>
-          </div>
-        </div>
-      </div>
+      <%- include('stepProgressBar')%>
       <form
         name="order"
         class="needs-validation"
