@@ -556,6 +556,36 @@ a {
 .fw-700 {
   font-weight: 700;
 }
+.tnc-header {
+  margin-top: 62px;
+  background: url(/images/default/background_find_us.png) no-repeat;
+  width: 100%;
+  height: 530px;
+  background-size: contain;
+  padding: 100px 150px;
+}
+.tnc-header-title {
+  line-height: 150%;
+  letter-spacing: -0.022em;
+}
+.tnc-header-paragraph {
+  line-height: 160%;
+  letter-spacing: -0.011em;
+}
+.tnc-main {
+  padding: 40px;
+  max-width: 1118px;
+}
+.tnc-main-title {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.tnc-main-chapter {
+  font-weight: 500;
+  margin-bottom: 32px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+}
 
 /* Slider */
 #carouselExampleIndicators {
