@@ -25,7 +25,7 @@ exports.requestResetPassword = async (req, res, next) => {
     });
 
     if (!user[0]) {
-      throw createError(403, "Email is not registered");
+      throw createError(403, "Email tidak terdaftar");
     }
 
     await ResetPasswordToken.destroy({
@@ -54,14 +54,14 @@ exports.requestResetPassword = async (req, res, next) => {
     );
 
     req.flash("success", {
-      message: "Reset password link has been sent to your email",
+      message: "Email verifikasi sudah dikirimkan ke email anda",
       email: user[0].email,
     });
     res.status(201).redirect("/verification-sent");
   } catch (error) {
     console.log(error);
     if (error.status < 500) {
-      req.flash("error", { message: error.message });
+      req.flash("error", { email: error.message });
       return res.status(error.status).redirect("back");
     }
     next(createError(error.status || 500, error.message));
