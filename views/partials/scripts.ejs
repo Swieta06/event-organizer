@@ -32,6 +32,16 @@
 </script>
 
 <script>
+    if(window.location.hash==="#login"){
+     var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+     myModal.show()
+    } else if(window.location.hash==="#register") {
+     var myModal = new bootstrap.Modal(document.getElementById('exampleModal2'))
+     myModal.show()
+   }
+  </script>
+
+<script>
 const kota = document.getElementsByClassName("pilihan-kota")
 
 function pilihJabodetabek (i){
