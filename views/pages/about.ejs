@@ -151,6 +151,7 @@
 
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.querySelectorAll('.needs-validation')
+          
 
           // Loop over them and prevent submission
           Array.prototype.slice.call(forms)
@@ -177,6 +178,26 @@
 	      //   window.open(`mailto:mail@eventprise.com?subject=${subject}&body=${pesan}`)
         // });
       </script>
+
+      <script>
+        document.getElementById("send").addEventListener('click', function () {
+        const nama = document.getElementById("nama").value
+        const email = document.getElementById("email").value
+        const pesan = document.getElementById("pesan").value
+        const myModal = document.getElementById("exampleModal")
+
+        if(!nama && !email && !pesan){
+          forms.classList.add('was-validated')
+          myModal.hide()
+          console.log('if');
+        } else {
+          myModal.show()
+          conslole.log('else');
+        }
+      });
+
+      </script>
+
     </body>
 </html>
 
