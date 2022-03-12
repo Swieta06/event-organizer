@@ -7,21 +7,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="/login" method="post">
+            <form action="/login" method="post"class="needs-validation <%= error.length!==0?'was-validated':''%>" novalidate>
                 <div class="row justify-content-center ">
                 <div class="md-5">
                     <div class="mb-2">
                     <label for="email" class="form-label" >Email </label>
-                    <input type="email" class="form-control rounded-3 border-2" id="email" aria-describedby="email" name="email" placeholder="Email"/>
+                    <input required type="email" class="form-control rounded-3 border-2" id="email" aria-describedby="email" name="email" placeholder="Email"/>
                     <div id="passwordHelpBlock" class="form-text">
                         Contoh:nama@gmail.com
+                    </div>
+                    <div class="invalid-feedback">
+                      <%= error[0]?.email || "Email tidak boleh kosong!" %> 
                     </div>
                     </div>
                     <div class="input-container mb-2">
                     <label for="password" class="form-label" >Password</label>   
-                    <input type="password" class="form-control rounded-3 border-2" id="password" aria-describedby="password" name="password" placeholder="Password" />     
+                    <input required type="password" class="form-control rounded-3 border-2" id="password" aria-describedby="password" name="password" placeholder="Password" />     
                     <i class="material-icons visibility" id="material">visibility_off</i>
-                    
+                    <div class="invalid-feedback">
+                      <%= error[0]?.password || "Password tidak boleh kosong!" %> 
+                    </div>
                   </div >
                     <div class="text-end mb-3 mt-3" >
                     <a href="/request-reset-password" style="color: #7940cc;">Lupa password?</a>
@@ -36,6 +41,7 @@
                 </div>
           </div>
      </form>
+     <%- include('../partials/validate.ejs') %>
     </div>
   </div>
 </div>
