@@ -18,7 +18,10 @@ exports.getOrder = async function (req, res, next) {
                 },
                 attributes:{
                     exclude:['customerName', 'address', 'companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
-                }
+                },
+                order: [
+                    ['createdAt', 'DESC']
+                ]
             });
             
             dataOrders.forEach(element => {
@@ -59,7 +62,10 @@ exports.getOrder = async function (req, res, next) {
                 },
                 attributes:{
                     exclude:['customerName', 'address','companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
-                }
+                },
+                order: [
+                    ['createdAt', 'DESC']
+                ]
             });
             
             dataOrders.forEach(element => {

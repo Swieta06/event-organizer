@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <form action="/orders/<%=order%>/payment" method="post" enctype="multipart/form-data">
+        <form action="/orders/<%=order%>/payment" method="post" enctype="multipart/form-data" name="order" class="needs-validation" novalidate>
           <div id="container-2" class="container-2 mx-auto border">
             <div class="container text-center">
               <h3 id="pay-info" class="info-pay">Konfirmasi Pembayaran</h3>
@@ -73,8 +73,8 @@
             </div>
             <div class="mb-4 mt-4">
               <label for="exampleInputEmail1" class="form-label">Transfer dari Bank</label>
-              <select id="form-select" class="form-select input-color-primary" id="inputGroupSelect01" name="bankName">
-                <option selected>Pilih Bank</option>
+              <select id="form-select" class="form-select input-color-primary" id="inputGroupSelect01" name="bankName" required>
+                <option value="" selected disabled hidden>Pilih Bank</option>
                 <option value="BNI">Bank Negara Indonesia</option>
                 <option value="Mandiri">Bank Mandiri</option>
                 <option value="BRI">Bank Rakyat Indonesia</option>
@@ -132,6 +132,33 @@
         });
         reader.readAsDataURL(this.files[0]);
       });
+    </script>
+    <script>
+      const filePhoto = document.forms['order']['photo']
+      filePhoto.addEventListener('change', function () {
+        if(filePhoto.value) {
+          document.querySelector('#mini-container-2').classList.add("success");
+          document.querySelector('#mini-container-2').classList.remove("error");
+        } else {
+          document.querySelector('#mini-container-2').classList.remove("success");
+          document.querySelector('#mini-container-2').classList.add("error");
+        }
+      });
+    </script>
+    <script>
+    (function () {
+      'use strict'
+      var form = document.forms['order']
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          document.querySelector('#mini-container-2').classList.add("error");
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })()
     </script>
   </html>
 </html>
