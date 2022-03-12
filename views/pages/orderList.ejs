@@ -62,7 +62,7 @@
               <div id="semua-border">
               <% for( let i = 0; i < orders.length; i++ ) { %>
                 <div class="row">
-                  <a href="http://localhost:3000/orders/<%= orders[i].id %>" class="text-decoration-none">
+                  <a href="/orders/<%= orders[i].id %>" class="text-decoration-none">
                       <div class="col">
                         <div class="baris-1">
                             <p class="<%=statusPesanan(orders[i].status)%>"><%= orders[i].status %></p>
