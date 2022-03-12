@@ -22,12 +22,12 @@ router.get("/:idOrder/step/3", ordersControlers.getViewsStep3);
 
 /* Update order after click next step on page step 3 to step 4 */
 router.post("/:idOrder/edit",
-  body('customerName', 'Customer Name tidak boleh kosong!').notEmpty(),
-  body('companyName', 'Company Name tidak boleh kosong!').notEmpty(),
-  body('tel', 'Telepon tidak boleh kosong!').notEmpty(),
-  body('address', 'Address tidak boleh kosong!').notEmpty(),
-  body('postalCode', 'Postal Code tidak boleh kosong!').notEmpty(),
-  body('paymentMethodId', 'Payment Method tidak boleh kosong!').notEmpty(),
+  body('customerName').notEmpty().withMessage('Customer Name tidak boleh kosong!'),
+  body('companyName').notEmpty().withMessage('Company Name tidak boleh kosong!'),
+  body('tel').notEmpty().withMessage('Telepon tidak boleh kosong!'),
+  body('address').notEmpty().withMessage('Address tidak boleh kosong!'),
+  body('postalCode').notEmpty().withMessage('Postal Code tidak boleh kosong!'),
+  body('paymentMethodId').notEmpty().withMessage('Payment Method tidak boleh kosong!'),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -63,10 +63,10 @@ router.get("/:idOrder", authentication, ordersControlers.orderDetail);
 /* POST Order Payments */
 router.post("/:OrderId/payment",
   upload.single("photo"),
-  body('bankName', 'Bank Name tidak boleh kosong!').notEmpty(),
-  body('bankHolder', 'Bank Holder tidak boleh kosong!').notEmpty(),
-  body('bankNumber', 'Bank Number tidak boleh kosong!').notEmpty(),
-  body('price', 'Price tidak boleh kosong!').notEmpty(),
+  body('bankName').notEmpty().withMessage('Nama Bank tidak boleh kosong!'),
+  body('bankHolder').notEmpty().withMessage('Pemegang Bank tidak boleh kosong!'),
+  body('bankNumber').notEmpty().withMessage('Nomor Akun Bank tidak boleh kosong!'),
+  body('price').notEmpty().withMessage('Harga tidak boleh kosong!').isInt().withMessage('Harga harus berupa angka!'),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

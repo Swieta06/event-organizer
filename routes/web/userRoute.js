@@ -1,13 +1,14 @@
 const passport = require("passport");
 const { Auth } = require("../../controllers")
-const route = require("express").Router()
+const router = require("express").Router()
 const { body, validationResult } = require('express-validator');
-const response = require('../../utils/response');
 
-route.post("/register",
+router.post("/register",
     body('nama').notEmpty().withMessage('Nama tidak boleh kosong!'),
     body('email').notEmpty().withMessage('Email tidak boleh kosong!').isEmail().withMessage('Email tidak valid!'),
-    body('password').notEmpty().withMessage('Password tidak boleh kosong!').isLength({ min: 5 }),
+    body('password').notEmpty().withMessage('Password tidak boleh kosong!')
+        .isLength({ min: 8 }).withMessage('Karakter password tidak boleh kurang dari 8!')
+        .matches(/^[A-Za-z0-9 .,'!&]+$/).withMessage('Password hanya bisa menggunakan huruf, angka dan tanda baca umum'),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -24,14 +25,14 @@ route.post("/register",
             }
 
             req.flash("error", data);
-            res.redirect("back");
+            res.redirect("#register");
             return;
         }
         next();
     },
     Auth.register);
 
-route.post("/login",
+router.post("/login",
     body('email').notEmpty().withMessage('Email tidak boleh kosong!').isEmail().withMessage('Email tidak valid!'),
     body('password').notEmpty().withMessage('Password tidak boleh kosong!'),
     (req, res, next) => {
@@ -48,7 +49,7 @@ route.post("/login",
             }
 
             req.flash("error", data);
-            res.redirect("back");
+            res.redirect("#login");
             return;
         }
         next();
@@ -56,63 +57,6 @@ route.post("/login",
     passport.authenticate("local", { failureRedirect: "/", failureFlash: true }),
     Auth.login);
 
-route.post("/logout", Auth.logout);
+router.post("/logout", Auth.logout);
 
-// route request reset password
-route.post("/request-reset-password",
-    body('email').notEmpty().withMessage('Email tidak boleh kosong!')
-        .isEmail().withMessage('Email tidak valid!'),
-    (req, res, next) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            const error = errors.mapped()
-
-            const email = error.email?.msg
-
-            const data = {
-                "email" : email
-            }
-
-            req.flash("error", data);
-            res.redirect("back");
-            return;
-        }
-        next();
-    },
-    Auth.requestResetPassword);
-
-// route confirm reset password
-route.post("/confirm-reset-password",
-    body('password').notEmpty().withMessage('Password tidak boleh kosong!')
-        .isLength({ min: 5 }).withMessage('Karakter password tidak boleh kurang dari 5!'),
-    body('confirmPassword').notEmpty().withMessage('Confirm Password tidak boleh kosong!')
-        .isLength({ min: 5 }).withMessage('Karakter password tidak boleh kurang dari 5!')
-        .custom((value, { req }) => {
-            if (value !== req.body.password) {
-              throw new Error('Confirm Password tidak sama dengan password!');
-            }
-        return true;
-      }),
-      (req, res, next) => {
-        // Handle the request
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            const error = errors.mapped()
-
-            const password = error.password?.msg
-            const confirmPassword = error.confirmPassword?.msg
-
-            const data = {
-                "password" : password,
-                "confirmPassword" : confirmPassword
-            }
-
-            req.flash("error", data);
-            res.redirect("back");
-            return;
-        }
-        next();
-      },
-    Auth.confirmResetPassword);
-
-module.exports = route
+module.exports = router
