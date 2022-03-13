@@ -242,7 +242,7 @@
             </div>
           </div>
           <% if (orderDetail.MidtransPayment.transaction_status=="Berhasil") { %>
-            <button disabled class="btn btn-gray text-white"><i class="bi bi-clock"></i> Pembayaran Berhasil</button>
+            <!-- <button disabled class="btn btn-gray text-white"><i class="bi bi-clock"></i> Pembayaran Berhasil</button> -->
           <% } else{  %>
           
             <a href="/orders/<%= orderDetail.id%>/payment" class="btn btn-purple text-white">Bayar Sekarang</a>

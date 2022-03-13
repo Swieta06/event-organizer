@@ -6,7 +6,6 @@ async function paymentHandling(req, res) {
     order_id,
     transaction_status,
     transaction_id,
-    transaction_time,
     settlement_time,
     va_numbers,
     permata_va_number,
@@ -26,8 +25,7 @@ async function paymentHandling(req, res) {
   const payload = {
     transaction_status,
     transaction_id,
-    transaction_time,
-    settlement_time,
+    transaction_time: settlement_time,
     va_number,
     amount: gross_amount.substring(0, gross_amount.length - 3),
   };
