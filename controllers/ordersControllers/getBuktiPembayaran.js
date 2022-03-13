@@ -17,7 +17,11 @@ async function getBuktiPembayaran(req, res, next) {
         }
 
         const payload = await Payment.findOne(options);
-        res.status(200).json(response("Success", payload));
+        if(payload){
+            res.status(200).json(response("Success", payload));
+        }else{
+            res.status(400).json(response("Error", null, "Data tidak ditemukan!"));
+        }
     } catch (error) {
         next(error);
     }
