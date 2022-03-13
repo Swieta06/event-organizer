@@ -77,21 +77,19 @@
               style="height: 50px"
             >
               <span class="text-light">Download Intruksi Pembayaran</span>
-              >
             </button>
           </a>
           <% }else if(payment.transaction_status == "Berhasil") {%>
-          <a href="" target="_blank">
-            <button
-              id="btn-proof-payment"
-              class="btn mt-2 btn-pay-start"
-              style="height: 50px"
-              disabled
-            >
-              <span class="text-light">Pembayaran Berhasil</span>
-              >
-            </button>
-          </a>
+
+          <button
+            id="btn-proof-payment"
+            class="btn mt-2 btn-pay-start"
+            style="height: 50px"
+            disabled
+          >
+            <span class="text-light">Pembayaran Berhasil</span>
+          </button>
+
           <% }else{%>
 
           <button
