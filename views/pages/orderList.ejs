@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('../partials/head.ejs', {title: 'Home'}) %>
-
+  <%
+  const formatRupiah = (numb) => {
+        const format = numb.toString().split('').reverse().join('');
+        const convert = format.match(/\d{1,3}/g);
+        const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
+        return rupiah;
+        };
+    %>
+  %>
   <%function statusPesanan(status){
     switch (status){
       case "Belum Memesan":
@@ -74,7 +82,7 @@
                             <p class="paket"><b><%= orders[i].Package.name %> </b> - Total kapasitas <%= orders[i].totalParticipant %> orang</p>
                             <div class="baris-3">
                                 <p class="total-harga">Total Harga:</p>    
-                                <p class="harga">Rp<%= orders[i].totalPrice %></p>                    
+                                <p class="harga"><%= formatRupiah(orders[i].totalPrice) %></p>                    
                             </div>
                         </div>
                     </div>
@@ -94,7 +102,7 @@
      const activeNav = (name, transform) => {
        const elmActiveNav =  document.getElementById(name);
        const elmNavOrders = document.querySelectorAll(".slide-show-item-NavOrders");
-       elmActiveNav.classList.add("active-nav");
+       elmActiveNav.parentElement.classList.add("active-nav");
         if(transform > 3){
          for (let i = 0; i < elmNavOrders.length; i++) {  
          elmNavOrders[i].style.transform = `translate(-${ (transform - 3) * 120}%, 0%)`;

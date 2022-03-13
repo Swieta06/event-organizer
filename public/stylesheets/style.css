@@ -2345,7 +2345,6 @@ footer {
   display: inline;
   list-style-type: none;
   width: 25%; 
-  border-right: 2px solid #e0e0e0; 
   text-align: center;
 }
 
@@ -2369,7 +2368,8 @@ footer {
 
 #pesanan-saya .active-nav{
    border-bottom: 3px solid #7940cc;
-  margin-top: 2px;
+   margin-top: 2px;
+   padding-bottom: 4px;
 }
 
 #semua-border .row {
@@ -2411,7 +2411,7 @@ footer {
 .baris-3 {
   display: flex;
   flex-direction: row;
-  margin-left: 230px;
+  margin-left: 210px;
 }
 
 .belum-memesan {
