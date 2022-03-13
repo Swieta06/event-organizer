@@ -10,6 +10,7 @@ async function paymentHandling(req, res) {
     settlement_time,
     va_numbers,
     permata_va_number,
+    gross_amount,
   } = req.body;
   let va_number;
   if (va_numbers) {
@@ -28,6 +29,7 @@ async function paymentHandling(req, res) {
     transaction_time,
     settlement_time,
     va_number,
+    amount: gross_amount.substring(0, gross_amount.length - 3),
   };
 
   const midtransUpdated = await MidtransPayment.update(payload, {

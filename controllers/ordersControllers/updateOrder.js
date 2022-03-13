@@ -65,7 +65,6 @@ exports.updateOrder = async (req, res, next) => {
         OrderId: orderId,
         bankName: paymentMethod[0].bankName,
         payment_type: "Bank Transfer",
-        amount: order.totalPrice,
       });
     }
     const updateOrder = {

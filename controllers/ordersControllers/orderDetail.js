@@ -4,6 +4,7 @@ const {
   Package,
   Category,
   Payment,
+  MidtransPayment,
   Vendor,
   OrderProduct,
 } = require("../../models");
@@ -30,7 +31,7 @@ exports.orderDetail = async (req, res, next) => {
         "tel",
         "address",
         "postalCode",
-        "concept"
+        "concept",
       ],
       include: [
         {
@@ -78,6 +79,9 @@ exports.orderDetail = async (req, res, next) => {
             "photo",
           ],
         },
+        {
+          model: MidtransPayment,
+        },
       ],
     });
     // const orderDetails = orderDetail.dataValues.products.map((el) => {
@@ -119,7 +123,11 @@ exports.orderDetail = async (req, res, next) => {
     orderDetail.products = products;
     console.log(orderDetail, "Ini Datavalues");
     if (orderDetail) {
-      res.render("pages/detailOrder", { orderDetail });
+      if (orderDetail.MidtransPayment) {
+        res.render("pages/detailOrder-otomatis", { orderDetail });
+      } else {
+        res.render("pages/detailOrder", { orderDetail });
+      }
     } else {
       res.status(404).json(response("Not Found"));
     }

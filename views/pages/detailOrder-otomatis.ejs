@@ -220,41 +220,34 @@
           <h5 class="card-title title-detail text-center">Detail Pembayaran</h5>
           <div class="detail-order-list text-neutral-80">
             <div class="row">
-              <p class="col-md-6 text-md-start">Transfer dari Bank</p>
-              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.Payment?.bankName || "-"  %></p>
+              <p class="col-md-6 text-md-start">Transfer Bank</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.MidtransPayment?.bankName || "-"  %></p>
             </div>
             <div class="row">
-              <p class="col-md-6 text-md-start">Nama Pemilik Rekening</p>
-              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.Payment?.bankHolder || "-"  %></p>
-            </div>
-            <div class="row">
-              <p class="col-md-6 text-md-start">No. Rekening</p>
-              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.Payment?.bankNumber || "-"  %></p>
+              <p class="col-md-6 text-md-start">No. Virtual Account</p>
+              <p class="col-md-6 text-md-end text-neutral-100"><%= orderDetail.MidtransPayment?.va_number || "-"  %></p>
             </div>
             <div class="row">
               <p class="col-md-6 text-md-start">Jumlah yang ditransfer</p>
-              <p class="col-md-6 text-md-end text-neutral-100">Rp<%= orderDetail.Payment?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") || "-"  %></p>
+              <p class="col-md-6 text-md-end text-neutral-100">Rp<%= orderDetail.MidtransPayment?.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") || "-"  %></p>
             </div>
             <div class="row">
-              <p class="col-md-6 text-md-start">Bukti Transfer</p>
+              <p class="col-md-6 text-md-start">Waktu Pembayaran </p>
               <p class="col-md-6 text-md-end text-neutral-100">
-                <% if(orderDetail.Payment) { %>
-                <a href="<%= orderDetail.Payment?.photo || '#' %>">
-                  <%= getFilename(orderDetail.Payment?.photo) || "-" %>
-                </a>
-                <% } else { %>
-                  -
-                <% } %>
+                                
+                  <%= orderDetail.MidtransPayment?.settlement_time || "-" %>
+                
+                
               </p>
             </div>
           </div>
-          <% if ((orderDetail.customerName!==null&&orderDetail.customerName!==undefined)&&(orderDetail.Payment===null||orderDetail.Payment===undefined)) { %>
-            <a href="/orders/<%= orderDetail.id%>/payment" class="btn btn-purple text-white">Kirim Bukti Pembayaran</a>
+          <% if ((orderDetail.transaction_status==="Berhasil")) { %>
+            <button disabled class="btn btn-gray text-white"><i class="bi bi-clock"></i> Pembayaran Berhasil</button>
+          <% } else{  %>
+          
+            <a href="/orders/<%= orderDetail.id%>/payment" class="btn btn-purple text-white">Bayar Sekarang</a>
           <% } %>
-          <% if ((orderDetail.status===2)) { %>
-            <p class="text-purple-main status fs-16">*Pembayaran sedang diverifikasi, harap menunggu</p>
-            <button disabled class="btn btn-gray text-white"><i class="bi bi-clock"></i> Tunggu Verifikasi</button>
-          <% } %>
+          
         </div>
       </div>
     </section>
