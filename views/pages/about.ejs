@@ -93,11 +93,11 @@
             </div>
             <div class="col-lg-6 pt-5">
               <h2>Hubungi kami?</h2>
-              <form action="mailto:mail@eventprise.com" method="POST" enctype="text/plain" class="needs-validation" novalidate>
+              <form class="needs-validation" action="javascript:showModal()" novalidate>
                 <div class="row justify-content-center">
                 <div class="md-5">
                     <div class="mb-2">
-                      <label for="nama" class="form-label" >Nama </label>
+                      <label for="nama" class="form-label">Nama </label>
                       <input type="text" class="form-control rounded-3 border-2" id="nama" aria-describedby="nama" name="nama" placeholder="Nama" required/>
                       <div class="invalid-feedback">Nama tidak boleh kosong.</div>
                     </div>
@@ -113,10 +113,10 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2 pt-3">
-                    <button  type="submit" value="Send" id="send" class="btn text-white" style="background-color: #7940cc" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim Pesan</button>
+                    <button  type="submit" value="Send" id="send" class="btn text-white" style="background-color: #7940cc">Kirim Pesan</button>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -151,7 +151,7 @@
 
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.querySelectorAll('.needs-validation')
-
+          
           // Loop over them and prevent submission
           Array.prototype.slice.call(forms)
             .forEach(function (form) {
@@ -166,17 +166,26 @@
             })
         })()
 
-        //mail
-        // document.getElementById("send").addEventListener('click', function () {
-        //   const nama = document.getElementById("nama").value
-	      //   const email = document.getElementById("email").value
-	      //   const pesan = document.getElementById("pesan").value
+        document.getElementById("send").addEventListener('click', function () {
+        const nama = document.getElementById("nama").value
+        const email = document.getElementById("email").value
+        const pesan = document.getElementById("pesan").value
 
-	      //   const subject = nama + " (" + email + ")"
+        if(nama && email && pesan){
+          const subject = nama + " (" + email + ")"
+	        window.open(`mailto:mail@eventprise.com?subject=${subject}&body=${pesan}`, "_blank")
+          return false
+        }
+      });
 
-	      //   window.open(`mailto:mail@eventprise.com?subject=${subject}&body=${pesan}`)
-        // });
+      function showModal(){
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+          keyboard: false
+        })
+        myModal.show()
+      }
       </script>
+
     </body>
 </html>
 
