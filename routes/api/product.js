@@ -17,7 +17,7 @@ router.post("/",
     body('VendorId').notEmpty().withMessage('Vendor tidak boleh kosong!'),
     body('name').notEmpty().withMessage('Name tidak boleh kosong!'),
     body('price').notEmpty().withMessage('Price tidak boleh kosong!').isInt().withMessage('Price harus berupa angka!'),
-    body('CategoryId').notEmpty().withMessage('Category tidak boleh kosong!'),
+    body('CategoryId').notEmpty().withMessage('Category tidak boleh kosong!').isInt().withMessage('Category harus berupa angka!'),
     body('stock').notEmpty().withMessage('Stock tidak boleh kosong!').isInt().withMessage('Stock harus berupa angka!'),
     (req, res, next) => {
         const errors = validationResult(req);
@@ -52,7 +52,7 @@ router.put("/:id",
     body('VendorId').notEmpty().withMessage('Vendor tidak boleh kosong!'),
     body('name').notEmpty().withMessage('Name tidak boleh kosong!'),
     body('price').notEmpty().withMessage('Price tidak boleh kosong!').isInt().withMessage('Price harus berupa angka!'),
-    body('CategoryId').notEmpty().withMessage('Category tidak boleh kosong!'),
+    body('CategoryId').notEmpty().withMessage('Category tidak boleh kosong!').isInt().withMessage('Category harus berupa angka!'),
     body('stock').notEmpty().withMessage('Stock tidak boleh kosong!').isInt().withMessage('Stock harus berupa angka!'),
     (req, res, next) => {
         const errors = validationResult(req);
