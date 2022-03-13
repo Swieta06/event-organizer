@@ -9,13 +9,13 @@
         %>
         <div id="packages">
          <div class="container pt-3">
-           <div class="pt-5 text-capitalize text-center">
+           <div class="pt-5 text-center">
             <div class="row justify-content-center">
-              <div class="col-7 my-3">
+              <div class="col-9 my-3">
                  <h1 class="mt-5 fs-36">Paket yang ditawarkan</h1>
-                 <p class="text-muted ">Sebagai Event Organizer andal, kami mengetahui apa dan dimana sumber daya terbaik berada. Kami bisa membantu kamu mencari ide terbaik dan mendapatkan vendor yang profesional.</p>
+                 <p class="text-neutral-80 fs-18 fw-semibold mt-4">Sebagai Event Organizer andal, kami mengetahui apa dan dimana sumber daya terbaik berada. Kami bisa membantu kamu mencari ide terbaik dan mendapatkan vendor yang profesional.</p>
               </div>
-              <div class="col-12 mt-3 mb-5">
+              <div class="col-12 mt-4 mb-5">
                 <div class="row ">
                   <% packages.map((package, i)=>{ %>
                   <div class="col " >
@@ -42,13 +42,13 @@
                             <% if(user){%>
                               <a href="/orders/step/1?package=<%= package.name %>" >
                               <button type="button" class="btn w-100 mb-4 <%= package.name === "Dadakan" ? "btn-purple text-white":"btn-outline-purple text-purple-main"%>">
-                              <i class="bi bi-cart3  <%= package.name === "Dadakan" ? "text-white":"text-purple-main "%>"></i> 
+                              <i class="bi bi-cart-fill  <%= package.name === "Dadakan" ? "text-white":"text-purple-main "%>"></i> 
                               Pilih Paket
                               </button>
                               </a>
                             <%}else{%>
                                 <button type="button" class="btn w-100 mb-4 <%= package.name === "Dadakan" ? "btn-purple text-white":"btn-outline-purple text-purple-main"%>" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-cart3  <%= package.name === "Dadakan" ? "text-white":"text-purple-main "%>"></i> 
+                                <i class="bi bi-cart-fill  <%= package.name === "Dadakan" ? "text-white":"text-purple-main "%>"></i> 
                                 Pilih Paket
                                 </button>
                             <%}%>

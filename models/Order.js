@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Order.belongsTo(models.User);
       Order.belongsTo(models.Package);
       Order.hasOne(models.Payment);
+      Order.hasOne(models.MidtransPayment);
       Order.belongsTo(models.PaymentMethod);
       Order.belongsToMany(models.Product, {
         through: models.OrderProduct,
@@ -70,14 +71,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
       },
       expiredAt: {
-        type: DataTypes.VIRTUAL,
+        type: DataTypes.VIRTUAL(DataTypes.DATE),
         get() {
-          return new Date(this.orderedAt).setDate(
+          return this.orderedAt ? new Date(this.orderedAt.setDate(
             this.orderedAt?.getDate() + 7
-          );
+          )) : null;
         },
         set(value) {
-          throw new Error("Do not try to set the `expiredAt` value!");
+          throw new Error("Do not try to set the expiredAt value!");
         },
       },
     },
