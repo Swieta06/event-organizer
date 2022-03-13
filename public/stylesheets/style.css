@@ -82,12 +82,12 @@ a {
   line-height: 160%;
   letter-spacing: -0.011em;
   color: #0a0a0a;
-  padding: 150px 0 0 0;
+  padding: 110px 0 0 0;
 }
 
 #about .petik {
   position: absolute;
-  top: 250px;
+  top: 220px;
   left: 150px;
 }
 
