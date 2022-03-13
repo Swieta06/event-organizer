@@ -1,241 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
-<%- include('../partials/head.ejs', {title: 'Events'}) %>
+  <html>
+    <%- include('../partials/head.ejs', {title: 'Events'}) %>
 
-  <body class="p-0 bg-neutral-10">
-    <header>
-      <!-- Swita taruh sini -->
-      <%- include('../partials/navbar.ejs') %>
-        <%- include('login')%>
-        <%- include('register')%>
-    </header>
+    <body class="p-0 bg-neutral-10">
+      <header>
+        <!-- Swita taruh sini -->
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%> <%- include('register')%>
+      </header>
 
-    <div class="container event-header">
-      <div class="row flex-lg-row-reverse g-5">
-        <div class="col-lg-6">
-          <img src="/images/default/event-header-bg.png" alt="portfolio">
-        </div>
-        <div class="col-lg-6">
-          <div class="row mt-3 py-5">
-            <h2 class="fs-36 text-neutral-100 fw-600">Event yang telah diselenggarakan</h2>
+      <div class="container event-header">
+        <div class="row flex-lg-row-reverse g-5">
+          <div class="col-lg-6">
+            <img src="/images/default/event-header-bg.png" alt="portfolio" />
           </div>
-          <div class="row text-center">
-            <div class="col">
-              <h1 class="fs-48 text-purple-main fw-700">100</h1>
-              <h4 class="fs-20 fw-600">Events</h4>
-              <p class="fs-16 text-neutral-80">Berhasil menyelenggarakan banyak event besar yang tersebar di berbagai
-                lokasi di Indonesia</p>
+          <div class="col-lg-6">
+            <div class="row mt-3 py-5">
+              <h2 class="fs-36 text-neutral-100 fw-600">Event yang telah diselenggarakan</h2>
             </div>
-            <div class="col">
-              <h1 class="fs-48 text-purple-main fw-700">1000+</h1>
-              <h4 class="fs-20 fw-600">Hours</h4>
-              <p class="fs-16 text-neutral-80">Kami memiliki lebih dari 1000 jam terbang dalam mengelola dan
-                merencanakan event besar</p>
+            <div class="row text-center">
+              <div class="col">
+                <h1 class="fs-48 text-purple-main fw-700">100</h1>
+                <h4 class="fs-20 fw-600">Events</h4>
+                <p class="fs-16 text-neutral-80">Berhasil menyelenggarakan banyak event besar yang tersebar di berbagai lokasi di Indonesia</p>
+              </div>
+              <div class="col">
+                <h1 class="fs-48 text-purple-main fw-700">1000+</h1>
+                <h4 class="fs-20 fw-600">Hours</h4>
+                <p class="fs-16 text-neutral-80">Kami memiliki lebih dari 1000 jam terbang dalam mengelola dan merencanakan event besar</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- --------------------------------------------- -->
-    <div class="container event-card-container">
-      <div class="row row-cols-1 row-cols-lg-2 g-4">
-        <div class="col">
-          <div class="card event-card p-4">
-            <div class="row mb-4">
-              <div class="col-10">
-                <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-1a.webp" class="card-img-top event-lg-img" alt="..."></a>
+      <!-- --------------------------------------------- -->
+      <div class="container event-card-container">
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+          <div class="col">
+            <div class="card event-card p-4">
+              <div class="row mb-4">
+                <div class="col-10">
+                  <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-1a.webp" class="card-img-top event-lg-img" alt="..." /></a>
+                </div>
+                <div class="col-2">
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1b.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1c.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1d.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1e.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                </div>
               </div>
-              <div class="col-2">
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1b.webp" class="event-sm-img" alt="..."></a>
+              <div class="card-body p-0">
+                <h5 class="card-title fw-600 fs-24 event-card-title">Capricorn Celebration Dinner and Awards</h5>
+                <h6 class="text-purple-main fs-14 fw-500 mb-3">10 Maret 2021</h6>
+                <p class="card-text fs-16 text-neutral-80">
+                  Capricorn Group mengadakan jamuan makan malam sekaligus memberikan penghargaan bagi karyawan terbaiknya sebagai bentuk perayaan hari jadi perusahaan yang ke-25 tahun dengan menerapkan tema elegan berbalutkan ungu.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card event-card p-4">
+              <div class="row mb-4">
+                <div class="col-10">
+                  <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-2a.webp" class="card-img-top event-lg-img" alt="..." /></a>
                 </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1c.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1d.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-1e.webp" class="event-sm-img" alt="..."></a>
+                <div class="col-2">
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2b.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2c.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2d.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2e.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
                 </div>
               </div>
-            </div>            
-            <div class="card-body p-0">
-              <h5 class="card-title fw-600 fs-24 event-card-title">Capricorn Celebration Dinner and Awards</h5>
-              <h6 class="text-purple-main fs-14 fw-500 mb-3">10 Maret 2021</h6>
-              <p class="card-text fs-16 text-neutral-80">Capricorn Group mengadakan jamuan makan malam sekaligus memberikan penghargaan bagi karyawan terbaiknya sebagai bentuk perayaan hari jadi perusahaan yang ke-25 tahun dengan menerapkan tema elegan berbalutkan ungu.</p>
+              <div class="card-body p-0">
+                <h5 class="card-title fw-600 fs-24 event-card-title">Popbela Beauty Awards</h5>
+                <h6 class="text-purple-main fs-14 fw-500 mb-3">31 Maret 2021</h6>
+                <p class="card-text fs-16 text-neutral-80">
+                  Perusahaan digital IDN Media mengadakan ajang penghargaan bagi beauty creator, brand makeup, hingga publik figur dengan produk maupun karya yang dihasilkannya. Nuansa yang manis dengan ragam acara membuat suasana semakin
+                  meriah.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card event-card p-4">
+              <div class="row mb-4">
+                <div class="col-10">
+                  <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-3a.webp" class="card-img-top event-lg-img" alt="..." /></a>
+                </div>
+                <div class="col-2">
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3b.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3c.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3d.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3e.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <h5 class="card-title fw-600 fs-24 event-card-title">Halal Bihalal Eximbank</h5>
+                <h6 class="text-purple-main fs-14 fw-500 mb-3">12 Juni 2021</h6>
+                <p class="card-text fs-16 text-neutral-80">
+                  Dalam rangka memperkuat silahturahmi, Eximbank mengadakan halal bihalal yang dihadiri oleh karyawan, jajaran direksi dan para pejabat pensiunan LPEI, serta turut mengundang musisi religi membuat suasana menjadi lebih hidup
+                  dan menarik.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col" id="event-4">
+            <div class="card event-card p-4">
+              <div class="row mb-4">
+                <div class="col-10">
+                  <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-4a.webp" class="card-img-top event-lg-img" alt="..." /></a>
+                </div>
+                <div class="col-2">
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4b.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4c.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4d.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4e.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <h5 class="card-title fw-600 fs-24 event-card-title">Kverneland Group Anniversary Celebration</h5>
+                <h6 class="text-purple-main fs-14 fw-500 mb-3">26 Juli 2021</h6>
+                <p class="card-text fs-16 text-neutral-80">
+                  Perusahaan Kverneland Group memilih untuk mengadakan acara outdoor dengan tema “A festive day for all” sebagai hari perayaan perjalanan dan pencapaian perusahaan. Beragam hadiah dan hidangan lezat disajikan kepada tamu dan
+                  karyawan.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col" id="event-5">
+            <div class="card event-card p-4">
+              <div class="row mb-4">
+                <div class="col-10">
+                  <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-5a.webp" class="card-img-top event-lg-img" alt="..." /></a>
+                </div>
+                <div class="col-2">
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5b.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5c.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5d.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5e.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <h5 class="card-title fw-600 fs-24 event-card-title">Avaya Corporate Education Event & Lunch</h5>
+                <h6 class="text-purple-main fs-14 fw-500 mb-3">27 Agustus 2021</h6>
+                <p class="card-text fs-16 text-neutral-80">
+                  Avaya menyelenggarakan acara kebersamaan perusahaan dalam suasana sederhana namun elegan. Rangkaian acara yang diadakan cukup beragam, mulai dari seminar perusahaan, diskusi dan makan siang bersama, hingga live music.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card event-card p-4">
+              <div class="row mb-4">
+                <div class="col-10">
+                  <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-6a.webp" class="card-img-top event-lg-img" alt="..." /></a>
+                </div>
+                <div class="col-2">
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6b.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6c.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6d.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                  <div class="row">
+                    <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6e.webp" class="event-sm-img" alt="..." /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <h5 class="card-title fw-600 fs-24 event-card-title">17th Anniversary of Integrity Asia</h5>
+                <h6 class="text-purple-main fs-14 fw-500 mb-3">26 Oktober 2021</h6>
+                <p class="card-text fs-16 text-neutral-80">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue cras fames ornare malesuada enim donec. Sit nulla adipiscing interdum ac convallis risus. Aliquam lacus, pellentesque nisl, vestibulum ipsum massa turpis.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- ---------------------------------------------------- -->
+          <div class="modal fade" id="img-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered event-modal">
+              <img src="/images/default/event-img/event-img-1a.webp" alt="" />
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card event-card p-4">
-            <div class="row mb-4">
-              <div class="col-10">
-                <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-2a.webp" class="card-img-top event-lg-img" alt="..."></a>
-              </div>
-              <div class="col-2">
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2b.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2c.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2d.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-2e.webp" class="event-sm-img" alt="..."></a>
-                </div>
-              </div>
-            </div>            
-            <div class="card-body p-0">
-              <h5 class="card-title fw-600 fs-24 event-card-title">Popbela Beauty Awards</h5>
-              <h6 class="text-purple-main fs-14 fw-500 mb-3">31 Maret 2021</h6>
-              <p class="card-text fs-16 text-neutral-80">Perusahaan digital IDN Media mengadakan ajang penghargaan bagi beauty creator, brand makeup, hingga publik figur dengan produk maupun karya yang dihasilkannya. Nuansa yang manis dengan ragam acara membuat suasana semakin meriah.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card event-card p-4">
-            <div class="row mb-4">
-              <div class="col-10">
-                <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-3a.webp" class="card-img-top event-lg-img" alt="..."></a>
-              </div>
-              <div class="col-2">
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3b.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3c.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3d.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-3e.webp" class="event-sm-img" alt="..."></a>
-                </div>
-              </div>
-            </div>            
-            <div class="card-body p-0">
-              <h5 class="card-title fw-600 fs-24 event-card-title">Halal Bihalal Eximbank</h5>
-              <h6 class="text-purple-main fs-14 fw-500 mb-3">12 Juni 2021</h6>
-              <p class="card-text fs-16 text-neutral-80">Dalam rangka memperkuat silahturahmi, Eximbank mengadakan halal bihalal yang dihadiri oleh karyawan, jajaran direksi dan para pejabat pensiunan LPEI, serta turut mengundang musisi religi membuat suasana menjadi lebih hidup dan menarik.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card event-card p-4">
-            <div class="row mb-4">
-              <div class="col-10">
-                <a data-bs-toggle="modal" href="#img-modal" ><img src="/images/default/event-img/event-img-4a.webp" class="card-img-top event-lg-img" alt="..."></a>
-              </div>
-              <div class="col-2">
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4b.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4c.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4d.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-4e.webp" class="event-sm-img" alt="..."></a>
-                </div>
-              </div>
-            </div>            
-            <div class="card-body p-0">
-              <h5 class="card-title fw-600 fs-24 event-card-title">Kverneland Group Anniversary Celebration</h5>
-              <h6 class="text-purple-main fs-14 fw-500 mb-3">26 Juli 2021</h6>
-              <p class="card-text fs-16 text-neutral-80">Perusahaan Kverneland Group memilih untuk mengadakan acara outdoor dengan tema “A festive day for all” sebagai hari perayaan perjalanan dan pencapaian perusahaan. Beragam hadiah dan hidangan lezat disajikan kepada tamu dan karyawan.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card event-card p-4">
-            <div class="row mb-4">
-              <div class="col-10">
-                <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-5a.webp" class="card-img-top event-lg-img" alt="..."></a>
-              </div>
-              <div class="col-2">
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5b.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5c.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5d.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-5e.webp" class="event-sm-img" alt="..."></a>
-                </div>
-              </div>
-            </div>            
-            <div class="card-body p-0">
-              <h5 class="card-title fw-600 fs-24 event-card-title">Avaya Corporate Education Event & Lunch</h5>
-              <h6 class="text-purple-main fs-14 fw-500 mb-3">27 Agustus 2021</h6>
-              <p class="card-text fs-16 text-neutral-80">Avaya menyelenggarakan acara kebersamaan perusahaan dalam suasana sederhana namun elegan. Rangkaian acara yang diadakan cukup beragam, mulai dari seminar perusahaan, diskusi dan makan siang bersama, hingga live music.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card event-card p-4">
-            <div class="row mb-4">
-              <div class="col-10">
-                <a data-bs-toggle="modal" href="#img-modal"><img src="/images/default/event-img/event-img-6a.webp" class="card-img-top event-lg-img" alt="..."></a>
-              </div>
-              <div class="col-2">
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6b.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6c.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6d.webp" class="event-sm-img" alt="..."></a>
-                </div>
-                <div class="row">
-                  <a data-bs-toggle="modal" class="p-0" href="#img-modal"><img src="/images/default/event-img/event-img-6e.webp" class="event-sm-img" alt="..."></a>
-                </div>
-              </div>
-            </div>            
-            <div class="card-body p-0">
-              <h5 class="card-title fw-600 fs-24 event-card-title">17th Anniversary of Integrity Asia</h5>
-              <h6 class="text-purple-main fs-14 fw-500 mb-3">26 Oktober 2021</h6>
-              <p class="card-text fs-16 text-neutral-80">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue cras fames ornare malesuada enim donec. Sit nulla adipiscing interdum ac convallis risus. Aliquam lacus, pellentesque nisl, vestibulum ipsum massa turpis.</p>
-            </div>
-          </div>
-        </div>
-    <!-- ---------------------------------------------------- -->
-    <div class="modal fade" id="img-modal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered event-modal">
-        <img src="/images/default/event-img/event-img-1a.webp" alt="">
       </div>
-    </div>
-  </div>
-</div>
-    <footer>
-      <%- include('footerLandingPage')%>
-    </footer>
-    <%- include('../partials/scripts.ejs') %>
-    <script>
-      let eventModal = document.getElementById('img-modal')
-      eventModal.addEventListener('show.bs.modal', function (event) {
-      // Button that triggered the modal
-      let button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      // var recipient = button.getAttribute('data-bs-img')
-      let recipient = button.querySelector("img").getAttribute("src")
-      // If necessary, you could initiate an AJAX request here
-      // and then do the updating in a callback.
-      //
-      // Update the modal's content.
-      let modalTitle = eventModal.querySelector('.modal-dialog img')
-      modalTitle.setAttribute("src", recipient)
-    })
-    </script>
-  </body>
-
+      <footer><%- include('footerLandingPage')%></footer>
+      <%- include('../partials/scripts.ejs') %>
+      <script>
+        let eventModal = document.getElementById('img-modal');
+        eventModal.addEventListener('show.bs.modal', function (event) {
+          // Button that triggered the modal
+          let button = event.relatedTarget;
+          // Extract info from data-bs-* attributes
+          // var recipient = button.getAttribute('data-bs-img')
+          let recipient = button.querySelector('img').getAttribute('src');
+          // If necessary, you could initiate an AJAX request here
+          // and then do the updating in a callback.
+          //
+          // Update the modal's content.
+          let modalTitle = eventModal.querySelector('.modal-dialog img');
+          modalTitle.setAttribute('src', recipient);
+        });
+      </script>
+    </body>
+  </html>
 </html>
