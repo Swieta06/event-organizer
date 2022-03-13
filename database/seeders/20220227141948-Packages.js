@@ -23,7 +23,7 @@ module.exports = {
           additionCost: 900000,
           maxSnack: 2,
           features:
-            "Makanan berat + 2 jenis snack,Dokumentasi foto,Dekorasi,Souvenir (Pulpen custom)",
+            "Makanan berat + 2 jenis snack;Dokumentasi foto;Dekorasi;Souvenir (Pulpen custom)",
           detailPrice:
             '{"makanan":50000,"snack":10000,"photo":2000000,"video":0,"pulpen":20000,"notebook":0,"totebag":0,"themes":10000000}',
           minOrderTime: 30,
@@ -39,7 +39,7 @@ module.exports = {
           additionCost: 1300000,
           maxSnack: 2,
           features:
-            "Makanan berat + 2 jenis snack,Dokumentasi foto & video kegiatan,Dekorasi,Souvenir (Pulpen custom & Notebook)",
+            "Makanan berat + 2 jenis snack;Dokumentasi foto & video kegiatan;Dekorasi;Souvenir (Pulpen custom & Notebook)",
           detailPrice:
             '{"makanan":50000,"snack":10000,"photo":2000000,"video":3000000,"pulpen":20000,"notebook":40000,"totebag":0,"themes":10000000}',
           minOrderTime: 30,
@@ -55,7 +55,7 @@ module.exports = {
           additionCost: 2000000,
           maxSnack: 3,
           features:
-            "Makanan berat + 3 jenis snack,Dokumentasi foto & video kegiatan,Dekorasi,Souvenir (Pulpen custom, Notebook, dan Totebag)",
+            "Makanan berat + 3 jenis snack;Dokumentasi foto & video kegiatan;Dekorasi;Souvenir (Pulpen custom, Notebook, dan Totebag)",
           detailPrice:
             '{"makanan":50000,"snack":10000,"photo":2000000,"video":3000000,"pulpen":20000,"notebook":40000,"totebag":60000,"themes":10000000}',
           minOrderTime: 30,
@@ -71,7 +71,7 @@ module.exports = {
           additionCost: 800000,
           maxSnack: 1,
           features:
-            "Makanan berat + 1 jenis snack,Dokumentasi foto,Dekorasi,Souvenir (Notebook + Pen)",
+            "Makanan berat + 1 jenis snack;Dokumentasi foto;Dekorasi;Souvenir (Notebook + Pen)",
           detailPrice:
             '{"makanan":50000,"snack":10000,"photo":2000000,"video":0,"pulpen":20000,"notebook":0,"totebag":0,"themes":10000000,"ongkos dadakan":3100000}',
           minOrderTime: 7,

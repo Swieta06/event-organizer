@@ -56,10 +56,10 @@ module.exports = (sequelize, DataTypes) => {
       features: {
         type: DataTypes.TEXT,
         get() {
-          return this.getDataValue("features").split(",");
+          return this.getDataValue("features").split(";");
         },
         set(value) {
-          this.setDataValue("features", value.join(","));
+          this.setDataValue("features", value.join(";"));
         },
         minOrderTime: {
           type: DataTypes.INTEGER,
