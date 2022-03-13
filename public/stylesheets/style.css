@@ -681,6 +681,13 @@ a {
   background-color: #7940cc;
   color: #fff;
   margin-top: 15px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.006em;
+  text-align: center;
 }
 
 /* indicator slider */
@@ -1096,7 +1103,7 @@ form i {
   flex-grow: 0;
   margin: 5px 4px;
 }
-#pesanan-saya .slide-show-ari{
+#pesanan-saya .slide-show-ari {
   flex-wrap: nowrap !important;
   overflow: auto hidden !important;
   overflow-x: hidden !important;
@@ -1120,7 +1127,7 @@ form i {
   text-align: start;
 }
 
-#pesanan-saya .slide-show-control{
+#pesanan-saya .slide-show-control {
   position: absolute;
   z-index: 1;
   left: -3%;
@@ -1516,13 +1523,13 @@ form i {
   margin-top: 32px;
 }
 #detail-order .btn-gray {
-  background: #C2C2C2;
+  background: #c2c2c2;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
   border-radius: 6px;
   width: 100%;
   margin-top: 32px;
 }
-#detail-order .text-purple-main.status{
+#detail-order .text-purple-main.status {
   font-weight: 400;
   line-height: 160%;
   margin-top: 32px;
@@ -2066,7 +2073,7 @@ input[type='radio'] {
 }
 
 /* Btn Whatsapp */
-#btn-whatsapp img{
+#btn-whatsapp img {
   z-index: 4000;
 }
 #footer .footer-brand {
@@ -2156,35 +2163,35 @@ input[type='radio'] {
 
 /*Find*/
 #findUs {
-  background-color:#FFFFFF;
+  background-color: #ffffff;
   height: 615px;
   width: auto;
 }
 
-.location-sub h1{
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 36px;
-line-height: 150%;
-letter-spacing: -0.022em;
-color: #0A0A0A;
-margin-bottom: 20px;
+.location-sub h1 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 150%;
+  letter-spacing: -0.022em;
+  color: #0a0a0a;
+  margin-bottom: 20px;
 }
 
 .location-sub p {
-font-family: Inter;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 160%;
-letter-spacing: -0.011em;
-margin:0 180px 100px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: -0.011em;
+  margin: 0 180px 100px;
 }
 
-.location-border{
+.location-border {
   width: 1118px;
-  height:auto;
+  height: auto;
   display: flex;
   flex-direction: column;
   order: 5;
@@ -2193,11 +2200,11 @@ margin:0 180px 100px;
   border-radius: 8px;
 }
 
-.head-border{
+.head-border {
   padding: 16px 32px;
 }
 
-.head-border h6{
+.head-border h6 {
   width: auto;
   height: 40px;
   left: 32px;
@@ -2209,22 +2216,25 @@ margin:0 180px 100px;
   line-height: 150%;
   text-align: center;
   letter-spacing: -0.019em;
-  color: #0A0A0A;
+  color: #0a0a0a;
 }
 
-.head-border h6:link, .head-border h6:visited {
+.head-border h6:link,
+.head-border h6:visited {
   text-decoration: none;
   color: #ffffff;
   transition: border-bottom 0.2s;
 }
 
-.head-border h6:hover, .head-border h6:active {
+.head-border h6:hover,
+.head-border h6:active {
   padding-bottom: 50px;
-  border-bottom: 3px solid #7940CC;
+  border-bottom: 3px solid #7940cc;
   margin-top: 2px;
 }
 
-.pilihan-kota .slick-prev, .pilihan-kota .slick-next {
+.pilihan-kota .slick-prev,
+.pilihan-kota .slick-next {
   width: 20px;
   height: 20px;
   z-index: 1;
@@ -2235,38 +2245,38 @@ margin:0 180px 100px;
 }
 .pilihan-kota .slick-next {
   right: -32px;
-
 }
-.pilihan-kota .slick-prev:before, .pilihan-kota .slick-next:before {
+.pilihan-kota .slick-prev:before,
+.pilihan-kota .slick-next:before {
   font-size: 40px;
-  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .pilihan-kota .slick-dots li button:before {
   font-size: 10px;
-  color:white;
-  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   opacity: 1;
 }
 .pilihan-kota .slick-dots li.slick-active button:before {
   color: black;
-} 
+}
 
-#jabodetabek-border, 
+#jabodetabek-border,
 #jabar-border,
 #jateng-border,
 #jatim-border,
-#bnt-border, 
+#bnt-border,
 #sumatera-border,
-#ksp-border{
+#ksp-border {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 15px 20px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
-#jabodetabek-border .col, 
+#jabodetabek-border .col,
 #jabar-border .col,
 #jateng-border .col,
 #jatim-border .col,
@@ -2282,8 +2292,8 @@ margin:0 180px 100px;
   height: 48px;
   left: 0px;
   top: 0px;
-  background: #FFFFFF;
-  border: 1px solid #E0E0E0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 6px;
   flex: none;
@@ -2344,7 +2354,7 @@ footer {
 .pilihan-pesanan nav li {
   display: inline;
   list-style-type: none;
-  width: 25%; 
+  width: 25%;
   text-align: center;
 }
 
@@ -2366,10 +2376,10 @@ footer {
   transition: border-bottom 0.2s;
 }
 
-#pesanan-saya .active-nav{
-   border-bottom: 3px solid #7940cc;
-   margin-top: 2px;
-   padding-bottom: 4px;
+#pesanan-saya .active-nav {
+  border-bottom: 3px solid #7940cc;
+  margin-top: 2px;
+  padding-bottom: 4px;
 }
 
 #semua-border .row {
