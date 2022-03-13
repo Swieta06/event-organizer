@@ -2659,3 +2659,17 @@ footer {
 #loadingBar {
   margin-bottom: 200px;
 }
+/* css navbar */
+.topnav a{
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 500;
+  
+}
+.navmt:hover{
+  color: #7940CC!important;
+}
+.topnav a.active{
+  color: #7940CC!important;
+}
