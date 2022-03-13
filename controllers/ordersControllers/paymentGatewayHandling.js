@@ -30,6 +30,7 @@ async function paymentHandling(req, res) {
     amount: gross_amount.substring(0, gross_amount.length - 3),
   };
 
+  console.log(payload);
   const midtransUpdated = await MidtransPayment.update(payload, {
     where: {
       OrderId: order_id,
