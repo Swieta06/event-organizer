@@ -51,8 +51,8 @@
                   <%}%>
                   <br />
                   Metode Pembayaran: Transfer Bank<br />
-                  Status Pembayaran: <% if(payment && payment.transaction_status
-                  == "settlement") {%> Berhasil<%}else{%> Pending <%}%>
+                  Status Pembayaran: <% if(payment.transaction_status ==
+                  "Berhasil") {%> Berhasil<%}else{%> Pending <%}%>
                 </p>
                 <div class="d-table-cell tar">
                   <button id="btn-bca" class="custom-btn btn-1">
@@ -69,7 +69,7 @@
             </p>
           </div>
           <div id="under-line" class="under-line"></div>
-          <% if(payment && payment.transaction_status == "pending") {%>
+          <% if(payment.transaction_status == "pending") {%>
           <a href="<%=payment.pdf_url%>" target="_blank">
             <button
               id="btn-proof-payment"
@@ -80,7 +80,18 @@
               >
             </button>
           </a>
-
+          <% }else if(payment.transaction_status == "Berhasil") {%>
+          <a href="" target="_blank">
+            <button
+              id="btn-proof-payment"
+              class="btn mt-2 btn-pay-start"
+              style="height: 50px"
+              disabled
+            >
+              <span class="text-light">Pembayaran Berhasil</span>
+              >
+            </button>
+          </a>
           <% }else{%>
 
           <button
