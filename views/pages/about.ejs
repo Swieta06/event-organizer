@@ -2,14 +2,17 @@
 <html lang="en">
     <%- include('../partials/head.ejs', {title: 'About Us'}) %>
     <body class="p-0">
-      <%- include('../partials/navbar.ejs') %>
+      <header>
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%>
+         <%- include('register')%>
+      </header>
 
-      <section id="about" class="pt-5">
+      <section id="about" class="pt-4">
         <div class="header">
           <h2>About Us</h2>
           <img class="petik" src="/images/default/bxs_quote-alt-right.png">
           <div class="caption">
-            <p class="caption-text" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut risus mattis venenatis cursus <br> consequat enim, fermentum commodo. Tincidunt velit elit orci ipsum, non morbi massa <br> arcu ligula. Scelerisque arcu, nibh integer aliquet tortor lorem tellus semper et.</p>
+            <p class="caption-text" >Eventprise merupakan penyedia jasa profesional dalam penyelenggaraan berbagai acara perusahaan. <br> Kami mampu memberikan pengalaman berkesan bagi Anda melalui eksekusi acara yang andal dan <br> tersusun secara interaktif, kreatif, serta inovatif. Memiliki perhatian penuh terhadap detail suatu acara dan <br> terbuka terhadap segala ide, masukan, bahkan koreksi melalui diskusi bersama dalam rangka <br> mewujudkan acara yang sempurna.</p>
           </div>
          </div>
       </section>
@@ -20,7 +23,7 @@
           <div>
             <h2 class="text-center title fs-36 pt-5 pb-3">Meet our team</h2>
             <p class="mx-auto text-center fs-18 title-paragraph pb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius tristique convallis eget tristique tincidunt. Vitae est pharetra est tortor vestibulum. Id quam mus sociis nisl. Id enim pellentesque laoreet ac.
+              Tim kami terdiri dari profesional terpilih yang memiliki kinerja terbaik, mampu menghasilkan ide-ide out of the box,<br> mengusulkan konsep inovatif, memberikan solusi turn key, dan merealisasikan hasil yang luar biasa.
             </p>
           </div>
           <div class="row justify-content-center mt-2 mb-5">
@@ -97,13 +100,13 @@
                 <div class="row justify-content-center">
                 <div class="md-5">
                     <div class="mb-2">
-                      <label for="nama" class="form-label">Nama </label>
-                      <input type="text" class="form-control rounded-3 border-2" id="nama" aria-describedby="nama" name="nama" placeholder="Nama" required/>
+                      <label for="name" class="form-label">Nama </label>
+                      <input type="text" class="form-control rounded-3 border-2" id="name" aria-describedby="name" name="name" placeholder="Nama" required/>
                       <div class="invalid-feedback">Nama tidak boleh kosong.</div>
                     </div>
                     <div class="mb-2">
-                      <label for="email" class="form-label" >Email </label>
-                      <input type="email"  class="form-control rounded-3 border-2" id="email" aria-describedby="email" name="email" placeholder="you@mail.com" required/>
+                      <label for="emailFrom" class="form-label" >Email </label>
+                      <input type="email"  class="form-control rounded-3 border-2" id="emailFrom" aria-describedby="emailFrom" name="emailFrom" placeholder="you@mail.com" required/>
                       <div class="invalid-feedback">Email tidak boleh kosong.</div>
                     </div>
                     <div class="mb-2">
@@ -119,7 +122,7 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModal" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
                 <div style="height: auto;" class="verification-sent position-absolute top-50 start-50 translate-middle">
                   <h3>Pesan Terkirim</h3>
@@ -167,19 +170,19 @@
         })()
 
         document.getElementById("send").addEventListener('click', function () {
-        const nama = document.getElementById("nama").value
-        const email = document.getElementById("email").value
+        const name = document.getElementById("name").value
+        const emailFrom = document.getElementById("emailFrom").value
         const pesan = document.getElementById("pesan").value
 
-        if(nama && email && pesan){
-          const subject = nama + " (" + email + ")"
+        if(name && emailFrom && pesan){
+          const subject = name + " (" + emailFrom + ")"
 	        window.open(`mailto:mail@eventprise.com?subject=${subject}&body=${pesan}`, "_blank")
           return false
         }
       });
 
       function showModal(){
-        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+        var myModal = new bootstrap.Modal(document.getElementById('aboutModal'), {
           keyboard: false
         })
         myModal.show()
