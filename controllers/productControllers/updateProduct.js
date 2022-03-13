@@ -14,7 +14,7 @@ exports.updateProduct = async (req, res, next) => {
       where: {
         id,
       },
-      attributes: ["name", "photo"],
+      attributes: ["id", "name", "photo"],
     });
     if (req.file) {
       //Get New Name if body.name not null
@@ -46,13 +46,17 @@ exports.updateProduct = async (req, res, next) => {
       stock,
     };
 
-    const replaceData = await Product.update(updateProduct, {
-      where: {
-        id,
-      },
-      returning: true,
-    });
-    res.status(200).json(response("Product Updated", replaceData));
+    if (oldData) {
+      const replaceData = await Product.update(updateProduct, {
+        where: {
+          id,
+        },
+        returning: true,
+      });
+      res.status(200).json(response("Product Updated", replaceData));
+    } else {
+      res.status(404).json(response("Error", null, "Product Not Found"));
+    }
   } catch (error) {
     next(createError(error.status || 500, error.message));
   }

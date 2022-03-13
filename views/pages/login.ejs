@@ -27,6 +27,22 @@
                     <div class="invalid-feedback">
                       <%= error[0]?.password || "Password tidak boleh kosong!" %> 
                     </div>
+                    <script>
+                      const visibilityToggle=document.querySelector('.visibility')
+                      const input =document.querySelector('.input-container input')
+                      var password=true
+                      visibilityToggle.addEventListener('click',function(){
+                        if(password){
+                            input.setAttribute('type','text')
+                          visibilityToggle.innerHTML='visibility'
+                          }else{
+                            input.setAttribute('type','password')
+                            visibilityToggle.innerHTML='visibility_off'
+                        }
+                          password=!password
+                      })
+
+                    </script>
                   </div >
                     <div class="text-end mb-3 mt-3" >
                     <a href="/request-reset-password" style="color: #7940cc;">Lupa password?</a>
@@ -40,9 +56,9 @@
                     </div>
                 </div>
           </div>
-     </form>
-     <%- include('../partials/validate.ejs') %>
+      </form>
+      <%- include('../partials/validate.ejs') %>
+      </div>
     </div>
   </div>
-</div>
 </div>
