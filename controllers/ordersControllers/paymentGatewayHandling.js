@@ -9,10 +9,13 @@ async function paymentHandling(req, res) {
     transaction_time,
     settlement_time,
     va_numbers,
+    permata_va_number,
   } = req.body;
   let va_number;
   if (va_numbers) {
     va_number = va_numbers[0].va_number;
+  } else if (permata_va_number) {
+    va_number = permata_va_number;
   }
   let statusOrder = 1;
   if (transaction_status == "settlement" || transaction_status == "capture") {

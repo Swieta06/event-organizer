@@ -88,15 +88,6 @@ module.exports = {
         },
         {
           id: 9,
-          bankName: "Mandiri",
-          bankBranch: "Jakarta Timur",
-          bankNumber: "382371928",
-          bankHolder: "Midtrans",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          id: 10,
           bankName: "Permata",
           bankBranch: "Jakarta Timur",
           bankNumber: "382371928",
@@ -104,6 +95,15 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        // {
+        //   id: 9,
+        //   bankName: "Mandiri",
+        //   bankBranch: "Jakarta Timur",
+        //   bankNumber: "382371928",
+        //   bankHolder: "Midtrans",
+        //   createdAt: new Date(),
+        //   updatedAt: new Date(),
+        // },
       ],
       {}
     );
