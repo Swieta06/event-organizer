@@ -25,7 +25,7 @@ router.post("/register",
             }
 
             req.flash("error", data);
-            res.redirect("#register");
+            res.redirect(`${req.get('Referrer')}#register`);
             return;
         }
         next();
@@ -49,7 +49,7 @@ router.post("/login",
             }
 
             req.flash("error", data);
-            res.redirect("#login");
+            res.redirect(`${req.get('Referrer')}#login`);
             return;
         }
         next();
