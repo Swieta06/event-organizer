@@ -2198,7 +2198,6 @@ margin:0 180px 100px;
 }
 
 .head-border h6{
-  width: auto;
   height: 40px;
   left: 32px;
   top: 16px;
@@ -2212,45 +2211,9 @@ margin:0 180px 100px;
   color: #0A0A0A;
 }
 
-.head-border h6:link, .head-border h6:visited {
-  text-decoration: none;
-  color: #ffffff;
-  transition: border-bottom 0.2s;
+.bali, .papua{
+  width: 180px;
 }
-
-.head-border h6:hover, .head-border h6:active {
-  padding-bottom: 50px;
-  border-bottom: 3px solid #7940CC;
-  margin-top: 2px;
-}
-
-.pilihan-kota .slick-prev, .pilihan-kota .slick-next {
-  width: 20px;
-  height: 20px;
-  z-index: 1;
-}
-
-.pilihan-kota .slick-prev {
-  left: -48px;
-}
-.pilihan-kota .slick-next {
-  right: -32px;
-
-}
-.pilihan-kota .slick-prev:before, .pilihan-kota .slick-next:before {
-  font-size: 40px;
-  text-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.pilihan-kota .slick-dots li button:before {
-  font-size: 10px;
-  color:white;
-  text-shadow: 0 0 10px rgba(0,0,0,0.5);
-  opacity: 1;
-}
-.pilihan-kota .slick-dots li.slick-active button:before {
-  color: black;
-} 
 
 #jabodetabek-border, 
 #jabar-border,
