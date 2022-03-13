@@ -93,7 +93,7 @@
             </div>
             <div class="col-lg-6 pt-5">
               <h2>Hubungi kami?</h2>
-              <div class="needs-validation" novalidate>
+              <form class="needs-validation" action="javascript:showModal()" novalidate>
                 <div class="row justify-content-center">
                 <div class="md-5">
                     <div class="mb-2">
@@ -115,7 +115,7 @@
                 <div class="d-grid gap-2 pt-3">
                     <button  type="submit" value="Send" id="send" class="btn text-white" style="background-color: #7940cc">Kirim Pesan</button>
                 </div>
-              </div>
+              </form>
             </div>
 
             <!-- Modal -->
@@ -170,22 +170,20 @@
         const nama = document.getElementById("nama").value
         const email = document.getElementById("email").value
         const pesan = document.getElementById("pesan").value
-        // const myModal = document.getElementById('exampleModal');
-        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-          keyboard: false
-        })
-        // const form = document.getElementsByTagName("form")
 
         if(nama && email && pesan){
-          // myModal.classList.add('show')
-          myModal.show()
-
           const subject = nama + " (" + email + ")"
 	        window.open(`mailto:mail@eventprise.com?subject=${subject}&body=${pesan}`, "_blank")
           return false
         }
       });
 
+      function showModal(){
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+          keyboard: false
+        })
+        myModal.show()
+      }
       </script>
 
     </body>
