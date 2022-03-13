@@ -76,7 +76,7 @@
               class="btn mt-2 btn-pay-start"
               style="height: 50px"
             >
-              <span class="text-light">Download</span>
+              <span class="text-light">Download Intruksi Pembayaran</span>
               >
             </button>
           </a>
@@ -180,11 +180,8 @@
               window.location.replace("/orders");
               /* You may add your own implementation here */
               // alert("payment success!");
-              console.log("sukses");
             },
             onPending: function (result) {
-              console.log("pending");
-              console.log(result);
               $.post(
                 "/orders/payment/automatic/update",
                 {
@@ -198,7 +195,6 @@
               /* You may add your own implementation here */
               // alert("wating your payment!");
               // console.log(result);
-              console.log("pending");
             },
             onError: function (result) {
               /* You may add your own implementation here */
