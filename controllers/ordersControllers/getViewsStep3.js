@@ -72,7 +72,7 @@ exports.getViewsStep3 = async (req, res, next) => {
 
     const paymentMethods = await PaymentMethod.findAll({
       raw: true,
-      attributes: ["id", "bankName"],
+      attributes: ["id", "bankName", "bankHolder"],
     });
 
     res.render("pages/orderStep3", {
