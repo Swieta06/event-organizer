@@ -3,12 +3,22 @@
   <div class="container-fluid">
     <a class="navbar-brand justify-content-start fw-bolder" href="/"><image src="/images/default/logo-brand.svg"></image></a>
     <div class="topnav justify-content-center">
-      <a class="navmt navbar-brand" href="/">Home</a>
-      <a class="navmt navbar-brand" href="/#faq">FAQ</a>
-      <a class="navmt navbar-brand" href="/events">Events</a>
-      <a class="navmt navbar-brand" href="/about">About</a>
-      <a class="navmt navbar-brand" href="/find">Find Us</a>
+      <a class=" navmt navbar-brand " id="selecthome"  href="/">Home</a>
+      <a class="navmt navbar-brand "  href="/#faq">FAQ</a>
+      <a class="navmt navbar-brand "  href="/events">Events</a>
+      <a class="navmt navbar-brand"  href="/about">About</a>
+      <a class="navmt navbar-brand"  href="/find">Find Us</a>
     </div>
+    <script>
+      
+    //   const hello = document.querySelector('.navmt');
+    //   const home = document.querySelector('#selecthome');
+    //   home.addEventListener('click', () => {
+    //     hello.classList.add('active');
+    // })
+        
+    </script>
+
     <% if (user) { %>
     <div class="dropdown" id="nav1">
       <img src="<%=user.photo %>" alt="" width="30" height="30">
