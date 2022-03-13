@@ -235,13 +235,13 @@
               <p class="col-md-6 text-md-start">Waktu Pembayaran </p>
               <p class="col-md-6 text-md-end text-neutral-100">
                                 
-                  <%= orderDetail.MidtransPayment?.settlement_time || "-" %>
+                  <%= orderDetail.MidtransPayment?.transaction_time || "-" %>
                 
                 
               </p>
             </div>
           </div>
-          <% if ((orderDetail.transaction_status==="Berhasil")) { %>
+          <% if (orderDetail.transaction_status=="Berhasil") { %>
             <button disabled class="btn btn-gray text-white"><i class="bi bi-clock"></i> Pembayaran Berhasil</button>
           <% } else{  %>
           
