@@ -229,7 +229,7 @@
             </div>
             <div class="row">
               <p class="col-md-6 text-md-start">Jumlah yang ditransfer</p>
-              <p class="col-md-6 text-md-end text-neutral-100">Rp<%= orderDetail.MidtransPayment?.amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") || "-"  %></p>
+              <p class="col-md-6 text-md-end text-neutral-100">Rp<%= orderDetail.MidtransPayment.amount?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") || "-"  %></p>
             </div>
             <div class="row">
               <p class="col-md-6 text-md-start">Waktu Pembayaran </p>
