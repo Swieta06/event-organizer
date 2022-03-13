@@ -20,7 +20,7 @@ exports.getOrder = async function (req, res, next) {
                     exclude:['customerName', 'address', 'companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
                 },
                 order: [
-                    ['createdAt', 'DESC']
+                    ['updatedAt', 'DESC']
                 ]
             });
             
@@ -64,7 +64,7 @@ exports.getOrder = async function (req, res, next) {
                     exclude:['customerName', 'address','companyName', 'tel','postalCode','desc','concept','UserId','PackageId','PaymentMethodId']
                 },
                 order: [
-                    ['createdAt', 'DESC']
+                    ['updatedAt', 'DESC']
                 ]
             });
             
