@@ -33,14 +33,39 @@
                       <%= error[0]?.email || "Email Tidak Boleh Kosong !" %> 
                     </div>
                   </div>
-                  <div class="input-container mb-2">
-                    <label for="password" class="form-label" >Password</label>   
+                  <!-- <div class="input-container mb-2"> -->
+                    <!-- <label for="password" class="form-label" >Password</label>   
                     <input required type="password" class="form-control rounded-3 border-2" id="password" aria-describedby="password" name="password" placeholder="Password" />     
                     <i class="material-icons visibility" id="material">visibility_off</i>
                     <div class="invalid-feedback">
                       <%= error[0]?.password || "Password Tidak Boleh Kosong !" %> 
-                    </div>
-                  </div >
+                    </div> -->
+                   
+                    <div class="pass-in input-container mb-2">
+                      <label for="password" class="form-label" >Password</label>   
+                      <input required type="password" class="form-control rounded-3 border-2" id="password" aria-describedby="password" name="password" placeholder="Password" />     
+                      <i class="material-icons visy " id="material">visibility_off</i>
+                      <div class="invalid-feedback">
+                        <%= error[0]?.password || "Password tidak boleh kosong!" %> 
+                      </div>
+                      <script>
+                        const visibilityTog=document.querySelector('.visy')
+                        const inpt =document.querySelector('.pass-in input')
+                        var password=true
+                        visibilityTog.addEventListener('click',function(){
+                          if(password){
+                              inpt.setAttribute('type','text')
+                            visibilityTog.innerHTML='visibility'
+                            }else{
+                              inpt.setAttribute('type','password')
+                              visibilityTog.innerHTML='visibility_off'
+                          }
+                            password=!password
+                        })
+                      </script>
+                    </div >
+                        
+                  <!-- </div > -->
                   <div class=" mb-3 mt-3">
                     <div class="text-start mb-2 mt-2">Dengan mendaftar, saya menyetujui <a href="" class="link"
                         style="color: #7940cc;">Syarat dan Ketentuan</a> serta <a href="" class="link"
