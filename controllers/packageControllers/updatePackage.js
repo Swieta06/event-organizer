@@ -6,6 +6,17 @@ const {
 async function updatePackage(req, res, next) {
     try {
         const id = req.params.id;
+        const checkId = await Package.findOne({
+            where: {
+                id
+            }
+        });
+
+        if(!checkId){
+            res.status(400).json(response("Error", null, "Id tidak ditemukan"));
+            return;
+        }
+
         let {
             name,
             minParticipant,
