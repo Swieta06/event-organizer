@@ -18,19 +18,6 @@
 </script>
 
 <script>
-    $(document).ready(function(){
-        $('.pilihan-kota').slick({
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 4,
-            autoplay: true,
-            autoplaySpeed: 2500,
-            dots: true
-        });
-    });
-</script>
-
-<script>
     if(window.location.hash==="#login"){
      var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
      myModal.show()
@@ -45,6 +32,13 @@ const kota = document.getElementsByClassName("pilihan-kota")
 
 function pilihJabodetabek (i){
     if (kota[0].children[0]) {
+        kota[0].children[0].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[1].removeAttribute("style")
+        kota[0].children[2].removeAttribute("style")
+        kota[0].children[3].removeAttribute("style")
+        kota[0].children[4].removeAttribute("style")
+        kota[0].children[5].removeAttribute("style")
+        kota[0].children[6].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = false;
         document.getElementById("jabar-border").hidden = true;
         document.getElementById("jateng-border").hidden = true;
@@ -56,6 +50,13 @@ function pilihJabodetabek (i){
 }
 function pilihJabar (i){
     if (kota[0].children[0]) {
+        kota[0].children[1].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[0].removeAttribute("style")
+        kota[0].children[2].removeAttribute("style")
+        kota[0].children[3].removeAttribute("style")
+        kota[0].children[4].removeAttribute("style")
+        kota[0].children[5].removeAttribute("style")
+        kota[0].children[6].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = true;
         document.getElementById("jabar-border").hidden = false;
         document.getElementById("jateng-border").hidden = true;
@@ -67,6 +68,13 @@ function pilihJabar (i){
 }
 function pilihJateng (i){
     if (kota[0].children[0]) {
+        kota[0].children[2].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[0].removeAttribute("style")
+        kota[0].children[1].removeAttribute("style")
+        kota[0].children[3].removeAttribute("style")
+        kota[0].children[4].removeAttribute("style")
+        kota[0].children[5].removeAttribute("style")
+        kota[0].children[6].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = true;
         document.getElementById("jabar-border").hidden = true;
         document.getElementById("jateng-border").hidden = false;
@@ -78,6 +86,13 @@ function pilihJateng (i){
 }
 function pilihJatim (i){
     if (kota[0].children[0]) {
+        kota[0].children[3].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[0].removeAttribute("style")
+        kota[0].children[1].removeAttribute("style")
+        kota[0].children[2].removeAttribute("style")
+        kota[0].children[4].removeAttribute("style")
+        kota[0].children[5].removeAttribute("style")
+        kota[0].children[6].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = true;
         document.getElementById("jabar-border").hidden = true;
         document.getElementById("jateng-border").hidden = true;
@@ -89,6 +104,13 @@ function pilihJatim (i){
 }
 function pilihBalidanNusaTenggara (i){
     if (kota[0].children[0]) {
+        kota[0].children[4].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[0].removeAttribute("style")
+        kota[0].children[1].removeAttribute("style")
+        kota[0].children[2].removeAttribute("style")
+        kota[0].children[3].removeAttribute("style")
+        kota[0].children[5].removeAttribute("style")
+        kota[0].children[6].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = true;
         document.getElementById("jabar-border").hidden = true;
         document.getElementById("jateng-border").hidden = true;
@@ -100,6 +122,13 @@ function pilihBalidanNusaTenggara (i){
 }
 function pilihSumatera (i){
     if (kota[0].children[0]) {
+        kota[0].children[5].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[0].removeAttribute("style")
+        kota[0].children[1].removeAttribute("style")
+        kota[0].children[2].removeAttribute("style")
+        kota[0].children[3].removeAttribute("style")
+        kota[0].children[4].removeAttribute("style")
+        kota[0].children[6].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = true;
         document.getElementById("jabar-border").hidden = true;
         document.getElementById("jateng-border").hidden = true;
@@ -111,6 +140,13 @@ function pilihSumatera (i){
 }
 function pilihKalimantanSumateraPapua (i){
     if (kota[0].children[0]) {
+        kota[0].children[6].style.borderBottom = "3px solid #7940CC";
+        kota[0].children[0].removeAttribute("style")
+        kota[0].children[1].removeAttribute("style")
+        kota[0].children[2].removeAttribute("style")
+        kota[0].children[3].removeAttribute("style")
+        kota[0].children[4].removeAttribute("style")
+        kota[0].children[5].removeAttribute("style")
         document.getElementById("jabodetabek-border").hidden = true;
         document.getElementById("jabar-border").hidden = true;
         document.getElementById("jateng-border").hidden = true;
