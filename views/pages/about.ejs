@@ -2,7 +2,10 @@
 <html lang="en">
     <%- include('../partials/head.ejs', {title: 'About Us'}) %>
     <body class="p-0">
-      <%- include('../partials/navbar.ejs') %>
+      <header>
+        <%- include('../partials/navbar.ejs') %> <%- include('login')%>
+         <%- include('register')%>
+      </header>
 
       <section id="about" class="pt-4">
         <div class="header">
@@ -97,13 +100,13 @@
                 <div class="row justify-content-center">
                 <div class="md-5">
                     <div class="mb-2">
-                      <label for="nama" class="form-label">Nama </label>
-                      <input type="text" class="form-control rounded-3 border-2" id="nama" aria-describedby="nama" name="nama" placeholder="Nama" required/>
+                      <label for="name" class="form-label">Nama </label>
+                      <input type="text" class="form-control rounded-3 border-2" id="name" aria-describedby="name" name="name" placeholder="Nama" required/>
                       <div class="invalid-feedback">Nama tidak boleh kosong.</div>
                     </div>
                     <div class="mb-2">
-                      <label for="email" class="form-label" >Email </label>
-                      <input type="email"  class="form-control rounded-3 border-2" id="email" aria-describedby="email" name="email" placeholder="you@mail.com" required/>
+                      <label for="emailFrom" class="form-label" >Email </label>
+                      <input type="email"  class="form-control rounded-3 border-2" id="emailFrom" aria-describedby="emailFrom" name="emailFrom" placeholder="you@mail.com" required/>
                       <div class="invalid-feedback">Email tidak boleh kosong.</div>
                     </div>
                     <div class="mb-2">
@@ -167,12 +170,12 @@
         })()
 
         document.getElementById("send").addEventListener('click', function () {
-        const nama = document.getElementById("nama").value
-        const email = document.getElementById("email").value
+        const name = document.getElementById("name").value
+        const emailFrom = document.getElementById("emailFrom").value
         const pesan = document.getElementById("pesan").value
 
-        if(nama && email && pesan){
-          const subject = nama + " (" + email + ")"
+        if(name && emailFrom && pesan){
+          const subject = name + " (" + emailFrom + ")"
 	        window.open(`mailto:mail@eventprise.com?subject=${subject}&body=${pesan}`, "_blank")
           return false
         }
