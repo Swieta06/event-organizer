@@ -75,7 +75,7 @@
                         <div class="baris-1">
                             <p class="<%=statusPesanan(orders[i].status)%>"><%= orders[i].status %></p>
                             <p class="kode-pesanan text-neutral-80"><%= orders[i].id %></p>
-                            <p class="tanggal-pesanan text-neutral-80"><%= orders[i].createdAt %></p>
+                            <p class="tanggal-pesanan text-neutral-80 orderList-date text-capitalize"><%= orders[i].createdAt %></p>
                         </div>
 
                         <div class="baris-2">
@@ -127,6 +127,32 @@
     <script src="/javascripts/slider-card.js"></script>
     <script>
       sliderControl("NavOrders", 4, 120);
+    </script>
+    <script src="/javascripts/moment.js"></script>
+    <script src="/javascripts/moment-timezone.js"></script>
+    <script>
+      const orderListDate = document.querySelectorAll(".orderList-date");
+      const convertMonth = (month) => {
+        if (month === "01") return "januari"; 
+        if (month === "02") return "februari"; 
+        if (month === "03") return "maret"; 
+        if (month === "04") return "april"; 
+        if (month === "05") return "mei"; 
+        if (month === "06") return "juni"; 
+        if (month === "07") return "juli"; 
+        if (month === "08") return "agustus"; 
+        if (month === "09") return "september"; 
+        if (month === "10") return "oktober"; 
+        if (month === "11") return "november"; 
+        if (month === "12") return "desember"; 
+      }
+      for (let i = 0; i < orderListDate.length; i++) {
+        const date  = moment(orderListDate[i].innerText).tz("Asia/Jakarta");
+        const day   = date.format("DD")  
+        const month = convertMonth(date.format("MM"));
+        const year  = date.format("YYYY")  
+        orderListDate[i].innerText = `${day} ${month} ${year}`;
+      }
     </script>
   </body>
 </html>
