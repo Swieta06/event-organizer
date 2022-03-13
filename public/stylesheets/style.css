@@ -2219,6 +2219,10 @@ input[type='radio'] {
   color: #0a0a0a;
 }
 
+.bali, .papua{
+  width: 180px;
+}
+
 .head-border h6:link,
 .head-border h6:visited {
   text-decoration: none;
