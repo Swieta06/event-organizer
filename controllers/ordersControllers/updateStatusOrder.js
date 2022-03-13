@@ -8,7 +8,7 @@ async function updateStatusOrder(req, res, next) {
 
         const checkId = await Order.findOne({
             where: {
-                idOrder
+                id: idOrder
             }
         });
 
