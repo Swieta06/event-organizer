@@ -77,7 +77,6 @@ router.get("/:idOrder", authentication, ordersControlers.orderDetail);
 /* POST Order Payments */
 router.post(
   "/:OrderId/payment",
-  upload.single("photo"),
   (req, res, next) => {
     upload.single("photo")(req, res, function (err) {
       if (err instanceof multer.MulterError) {
