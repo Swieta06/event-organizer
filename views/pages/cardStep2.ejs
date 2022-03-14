@@ -34,7 +34,7 @@ const formatRupiah = (numb) => {
                                 </div>
                                 <div class="card-body p-0" style="white-space: initial;">
                                     <img class="w-100" src="<%= data.photo%>" alt=""/>
-                                    <p class=" text-center fs-16 mt-3 mb-2 text-dark" id=<%=data.price%>><span class="fw-bold"><%= formatRupiah(data.price) %></span><span class="text-muted fs-14">/pcs</span></p>
+                                    <p class="ms-2 fs-16 mt-3 mb-2 text-dark" id=<%=data.price%>><span class="fw-bold"><%= formatRupiah(data.price) %></span><span class="text-muted fs-14"><%= id !== "talent" ? "/pcs" : ""%></span></p>
                                     <p class="w-100 text-start ps-2 fs-14"  ><%= data.description %></p>
                                             <%if(isCalculator){%>
                                             <div class="d-flex justify-content-center ">

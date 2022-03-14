@@ -1,4 +1,4 @@
-const { Order, PaymentMethod } = require("../../models");
+const { Order, PaymentMethod, MidtransPayment } = require("../../models");
 const createError = require("http-errors");
 
 const getViewsStep4 = async (req, res, next) => {
@@ -14,11 +14,27 @@ const getViewsStep4 = async (req, res, next) => {
         {
           model: PaymentMethod,
         },
+        // {
+        //   model: MidtransPayment,
+        //   attributes: [
+        //     "pdf_url",
+        //     "va_number",
+        //     "bankName",
+        //     "amount",
+        //     "payment_type",
+        //     "transaction_status",
+        //   ],
+        // },
       ],
     });
 
-    if (data)
-      res.render("pages/orderStep4", {
+    // if (data.status >= 3) {
+    //   res.redirect(`/orders/${data.id}`);
+    //   return;
+    // }
+
+    if (data) {
+      const result = {
         order: OrderId,
         totalPrice: data.totalPrice,
         orderedAt: data.orderedAt,
@@ -30,8 +46,26 @@ const getViewsStep4 = async (req, res, next) => {
           bankHolder: data.PaymentMethod.bankHolder,
           bankNumber: data.PaymentMethod.bankNumber,
         },
-      });
-    else throw createError(400, "Order Not Found");
+      };
+      if (data.PaymentMethod.bankHolder == "Midtrans") {
+        const payment = await MidtransPayment.findOne({
+          where: {
+            OrderId,
+          },
+          attributes: [
+            "pdf_url",
+            "va_number",
+            "bankName",
+            "amount",
+            "payment_type",
+            "transaction_status",
+          ],
+        });
+        result.payment = payment;
+        console.log(result);
+        res.render("pages/orderStep4-automatic", result);
+      } else res.render("pages/orderStep4", result);
+    } else throw createError(400, "Order Not Found");
   } catch (error) {
     next(createError(error.status || 500, error.message));
   }
