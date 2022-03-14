@@ -24,8 +24,6 @@ async function paymentHandling(req, res) {
   } else if (transaction_status == "cancel" || transaction_status == "expire") {
     statusOrder = 5;
     transaction_status = "Dibatalkan";
-  } else {
-    transaction_status = "Pending";
   }
   const payload = {
     transaction_status,
