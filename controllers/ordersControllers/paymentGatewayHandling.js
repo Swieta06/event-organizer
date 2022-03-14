@@ -21,6 +21,11 @@ async function paymentHandling(req, res) {
   if (transaction_status == "settlement" || transaction_status == "capture") {
     statusOrder = 3;
     transaction_status = "Berhasil";
+  } else if (transaction_status == "cancel" || transaction_status == "expire") {
+    statusOrder = 5;
+    transaction_status = "Dibatalkan";
+  } else {
+    transaction_status = "Pending";
   }
   const payload = {
     transaction_status,
@@ -30,7 +35,6 @@ async function paymentHandling(req, res) {
     amount: gross_amount.substring(0, gross_amount.length - 3),
   };
 
-  console.log(payload);
   const midtransUpdated = await MidtransPayment.update(payload, {
     where: {
       OrderId: order_id,
