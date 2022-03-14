@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <%- include('../partials/head.ejs', {title: 'Pembayaran'}) %>
+
+    <body class="p-0" style="background-color: #e5e5e5">
+      <header><%- include('../partials/navbar.ejs') %> <%- include('login')%></header>
+      <% function dateToYMD(date) {
+        const result = new Date(date);
+        const d = result.getDate();
+        const m = result.getMonth() + 1;
+        const y = result.getFullYear();
+        return (d <= 9 ? '0' + d : d) + '-' + (m<=9 ? '0' + m : m) + '-' + y;
+      } %> 
+
+      <main>
+        <div id="container-1" class="container-1 position-absolute top-50 start-50 translate-middle border">
+          <div class="container text-center">
+            <h3 id="pay-info" class="info-pay">Informasi Pembayaran</h3>
+          </div>
+          <div class="value-pay">
+            <h4 id="pay-total" class="total-pay">Total Pembayaran</h4>
+            <p id="value-pay" class="value-pay-2">Rp<%= (totalPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); %></p>
+          </div>
+          <div class="text-payment">
+            <p id="text-pay" class="text-pay">Bayar pesanan sesuai jumlah diatas sebelum batas waktu terakhir. Pengecekan dilakukan dalam 24 jam setelah bukti transfer diupload.</p>
+          </div>
+          <div id="under-line" class="under-line"></div>
+          <div class="info-payment">
+            <div class="text-step-payment">
+              <h4 id="info-pay" class="info-pay">Informasi Pembayaran</h4>
+              <p id="text-step-1" class="text-step-1">1. Gunakan ATM / iBanking / mBanking / setor tunai untuk transfer ke rekening berikut ini:</p>
+              <div id="mini-container" class="mini-container">
+                <div id="item-inside">
+                  <img src="/images/default/<%=paymentMethod.bankName%>.png" id="image-bank" class="rounded float-start" alt="logo-bca" />
+                  <div id="text-mini-container" class="text-container d-table w-100">
+                    <p id="number-rek" class="number-rek">
+                      No. Rekening: <%=paymentMethod.bankNumber%><br />
+                      Cabang: <%=paymentMethod.bankBranch%><br />
+                      Nama Rekening:<%=paymentMethod.bankHolder%>
+                    </p>
+                    <div class="d-table-cell tar">
+                      <button id="btn-bca" class="custom-btn btn-1">
+                        <p>Salin Nomor</p>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p id="text-step-2" class="text-step-2">2. Demi kenyamanan transaksi, mohon untuk tidak membagikan bukti atau konfirmasi pembayaran pesanan kepada siapapun, selain mengunggahnya via website NamaWeb</p>
+              <p id="text-step-3" class="text-step-3">
+                3. Silakan upload bukti transfer sebelum
+                <a><%= dateToYMD(expiredAt) %></a> melalui form dibawah ini.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <form action="/orders/<%=order%>/payment" method="post" enctype="multipart/form-data" name="order" class="needs-validation <%= error.length!==0?'was-validated':''%>" novalidate>
+          <div id="container-2" class="container-2 mx-auto border">
+            <div class="container text-center">
+              <h3 id="pay-info" class="info-pay">Konfirmasi Pembayaran</h3>
+            </div>
+            <div class="value-pay">
+              <h4 id="pay-total" class="total-pay">Informasi Rekening Bank</h4>
+            </div>
+            <div id="mini-container-2" class="mini-container-2 <%= error.length!==0?'error':''%>">
+              <div id="inner-border">
+                <img id="img-vector" src="/images/default/Vector.png" alt="vector-upload" style="margin-left: 46%" /><br />
+                <input type="file" id="upload" accept="image/png, image/jpg, image/jpeg" hidden name="photo" required />
+                <label class="mt-2" style="margin-left: 16%" id="text-upload-file" for="upload">Sentuh untuk upload</label>
+              </div>
+            </div>
+            <div id="invalid-photo" class="invalid-feedback" style="display: <%=error.length!==0?'block':'none'%>;">
+              <%= error[0]?.photo || "Bukti pembayaran tidak boleh kosong!"%>
+            </div>
+            <div class="mb-4 mt-4">
+              <label for="exampleInputEmail1" class="form-label">Transfer dari Bank</label>
+              <select id="form-select" class="form-select input-color-primary" id="inputGroupSelect01" name="bankName" required>
+                <option value="" selected disabled hidden>Pilih Bank</option>
+                <option value="BNI">Bank Negara Indonesia</option>
+                <option value="Mandiri">Bank Mandiri</option>
+                <option value="BRI">Bank Rakyat Indonesia</option>
+                <option value="BCA">Bank Central Asia</option>
+                <option value="CIMB">Bank CIMB</option>
+              </select>
+              <div class="invalid-feedback">
+                <%= error[0]?.bankName || "Bank tidak boleh kosong!"%>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputEmail1" class="form-label">Nama Pemilik Rekening</label>
+              <input class="form-control" id="form-input-payment" aria-describedby="emailHelp" type="text" name="bankHolder" placeholder="Contoh: Alfarel Zaki" required />
+              <div class="invalid-feedback">
+                <%= error[0]?.bankHolder || "Nama pemilik rekening tidak boleh kosong!"%>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputEmail1" class="form-label">No. Rekening</label>
+              <input class="form-control" id="form-input-payment" aria-describedby="emailHelp" type="text" name="bankNumber" placeholder="Contoh: 123456789" required />
+              <div class="invalid-feedback">
+                <%= error[0]?.bankNumber || "Nomor rekening tidak boleh kosong!"%>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputEmail1" class="form-label">Jumlah yang ditransfer</label>
+              <input class="form-control" id="form-input-payment" aria-describedby="emailHelp" type="text" name="price" placeholder="Masukkan hanya nominal angka tanpa titik maupun koma" required />
+              <div class="invalid-feedback">
+                <%= error[0]?.price || "Jumlah yang ditransfer tidak boleh kosong!"%>
+              </div>
+            </div>
+            <div class="d-grid gap-2">
+              <button id="btn-proof-payment" class="btn mt-2" type="submit">
+                <p>Kirim Bukti Pembayaran</p>
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </body>
+    <%- include('../partials/scripts.ejs') %>
+
+    <script>
+      // javascript copy number rek
+      function copyNumber(value) {
+        var tempInput = document.createElement('input');
+        tempInput.value = value;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+
+      document.querySelector('#btn-bca').onclick = function () {
+        copyNumber('<%=paymentMethod.bankNumber%>');
+      };
+
+      // javascript upload Image
+      const upload = document.querySelector('#upload');
+      var uploaded_image;
+
+      upload.addEventListener('change', function () {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+          uploaded_image = reader.result;
+          document.querySelector('#inner-border').style.backgroundImage = `url(${uploaded_image})`;
+        });
+        reader.readAsDataURL(this.files[0]);
+      });
+    </script>
+    <script>
+      const filePhoto = document.forms['order']['photo']
+      filePhoto.addEventListener('change', function () {
+        if(filePhoto.value) {
+          document.querySelector('#mini-container-2').classList.add("success");
+          document.querySelector('#mini-container-2').classList.remove("error");
+          document.querySelector('#invalid-photo').style= "display: none;";
+        } else {
+          document.querySelector('#mini-container-2').classList.remove("success");
+          document.querySelector('#mini-container-2').classList.add("error");
+          document.querySelector('#invalid-photo').style= "display: block;";
+        }
+      });
+    </script>
+    <script>
+    (function () {
+      'use strict'
+      var form = document.forms['order']
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          const error = document.querySelector('#invalid-photo')
+          const filePhoto = document.forms['order']['photo']
+          if(filePhoto.value) {
+            document.querySelector('#mini-container-2').classList.add("success");
+            document.querySelector('#mini-container-2').classList.remove("error");
+            document.querySelector('#invalid-photo').style= "display: none;";
+          } else {
+            document.querySelector('#mini-container-2').classList.remove("success");
+            document.querySelector('#mini-container-2').classList.add("error");
+            document.querySelector('#invalid-photo').style= "display: block;";
+          }
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })()
+    </script>
+  </html>
+</html>
