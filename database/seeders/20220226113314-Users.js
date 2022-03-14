@@ -50,6 +50,18 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          id: "f8f8f8f8-f8f8-f8f8-f8f8-f8f8f8f8f811",
+          name: "SYNRGY TEAM D",
+          email: "synergyteamd@gmail.com",
+          password:
+            "$2a$12$M8tXb9WNqSXKm4ytzVAFdeJfoZBflxeNUXz8CiliXgjJMfrs46Nfq",
+          role: "admin",
+          photo: `https://ui-avatars.com/api/?name=SYNRGY%20TEAM%20D&background=FFEE58&color=fff&size=64`,
+          address: "Jakarta Selatan",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
