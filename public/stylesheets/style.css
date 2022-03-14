@@ -2670,6 +2670,13 @@ footer {
 .navmt:hover{
   color: #7940CC!important;
 }
+
 .topnav a.active{
+  color: #7940CC!important;
+}
+.activeNav{
+  color: #7940CC!important;
+}
+.navbar-brand:active {
   color: #7940CC!important;
 }
