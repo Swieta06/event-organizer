@@ -7,6 +7,13 @@ const fs = require("fs");
 const router = require("./routes");
 const createError = require("http-errors");
 const errorHandler = require("./middlewares/error");
+const checkAPI = require("./middlewares/checkAPI");
+const assignUser = require("./middlewares/assignUser");
+const session = require("express-session");
+const passport = require("passport");
+const flash = require("connect-flash");
+const asignFlash = require("./middlewares/asignFlash");
+require("dotenv").config();
 
 const app = express();
 
@@ -16,11 +23,6 @@ app.set("view engine", "ejs");
 
 // logger setup
 app.use(logger("dev"));
-app.use(
-  logger("combined", {
-    stream: fs.createWriteStream("./storage/logs/access.log", { flags: "a" }),
-  })
-);
 
 // body parser setup
 app.use(cors());
@@ -34,33 +36,36 @@ app.use(express.static(path.join(__dirname, "public")));
 // session setup
 app.use(
   session({
-    secret: "yang=penting=aman", //TODO: change this secret,
-  })
-);
-
-// passport setup
-require("./config/passport");
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(
-  passport.session({
-    secret: "yang=penting=aman", //TODO: change this secret,
+    secret: process.env.SESSION_SECRET, //TODO: change this secret,
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
   })
 );
 
+// passport setup
+require("./config/passport");
+require("./config/googleOauth");
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// custom middlewares: checkAPI
+app.use(checkAPI);
+// custom middlewares: assign user data to each response
+app.use(assignUser);
+//custom middlewares : asign flash error/succes to each local response
+app.use(asignFlash);
 // routes setup
 app.use("/", router);
 
 // catch 404 and forward to error handler
-router.use(function (req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-router.use(errorHandler);
+app.use(errorHandler);
 
 module.exports = app;

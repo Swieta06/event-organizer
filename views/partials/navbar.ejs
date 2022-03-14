@@ -1,0 +1,51 @@
+<!-- As a heading -->
+<nav class="navbar navbar-light bg-light shadow fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand justify-content-start fw-bolder" href="/"><image src="/images/default/logo-brand.svg"></image></a>
+    <div class="topnav justify-content-center">
+      <a class="navmt navbar-brand" href="/">Home</a>
+      <a class="navmt navbar-brand"  href="/#faq">FAQ</a>
+      <a class="navmt navbar-brand "  href="/events">Events</a>
+      <a class="navmt navbar-brand"  href="/about">About</a>
+      <a class="navmt navbar-brand"  href="/find">Find Us</a>
+    </div>
+    <script>
+         const anchors = document.querySelectorAll('.navmt')
+        console.log(anchors[0].getAttribute("href"))
+        for (let i = 0; i < anchors.length; i++) {
+          const selectedA = anchors[i]
+          if (window.location.pathname === selectedA.getAttribute('href')) {
+              selectedA.style = 'color: #7940cc !important;'
+          }
+        }
+    </script>
+
+    <% if (user) { %>
+    <div class="dropdown" id="nav1">
+      <img src="<%=user.photo %>" alt="" width="30" height="30">
+      <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <%=user.name%>
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="/orders">Daftar pesanan</a></li>
+        <form action="/logout" method="post">
+          <li>&nbsp;<button type="logout" class="btn " style="border-color:#fff;"> Logout</button></li>
+        </form>
+      </ul>
+    </div>
+
+
+    <%} else {%>
+    <a class="navbar-brand justify-content-end">
+      <button type="button" class="btn" id="nav" style="border-color: #7940cc; color: #7940cc" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Masuk</button>
+      <button type="button" class="btn text-white" id="nav" style="background-color: #7940cc" data-bs-toggle="modal"
+        data-bs-target="#exampleModal2">Daftar</button>
+    </a>
+    <%} %>
+
+
+  </div>
+</nav>
