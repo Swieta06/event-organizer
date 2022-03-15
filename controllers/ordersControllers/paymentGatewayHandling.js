@@ -41,7 +41,11 @@ async function paymentHandling(req, res) {
   if (transaction_status == "settlement" || transaction_status == "capture") {
     statusOrder = 3;
     transaction_status = "Berhasil";
-  } else if (transaction_status == "cancel" || transaction_status == "expire") {
+  } else if (
+    transaction_status == "cancel" ||
+    transaction_status == "expire" ||
+    transaction_status == "deny"
+  ) {
     statusOrder = 5;
     transaction_status = "Dibatalkan";
   }
