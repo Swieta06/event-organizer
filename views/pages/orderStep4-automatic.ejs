@@ -51,8 +51,10 @@
                   <%}%>
                   <br />
                   Metode Pembayaran: Transfer Bank<br />
-                  Status Pembayaran: <% if(payment.transaction_status ==
-                  "Berhasil") {%> Berhasil<%}else{%> Pending <%}%>
+                  Status Pembayaran: <% if(payment.transaction_status
+                  =="Berhasil") {%> Berhasil <%}else
+                  if(payment.transaction_status == "Dibatalkan") {%> Dibatalkan
+                  <%} else {%> Pending <%}%>
                 </p>
                 <div class="d-table-cell tar">
                   <button id="btn-bca" class="custom-btn btn-1">
@@ -88,6 +90,16 @@
             disabled
           >
             <span class="text-light">Pembayaran Berhasil</span>
+          </button>
+          <% }else if(payment.transaction_status == "Dibatalkan") {%>
+
+          <button
+            id="btn-proof-payment"
+            class="btn mt-2 btn-pay-start"
+            style="height: 50px"
+            disabled
+          >
+            <span class="text-light">Pembayaran Dibatalkan</span>
           </button>
 
           <% }else{%>
